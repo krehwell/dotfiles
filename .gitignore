@@ -1,0 +1,15 @@
+# Ignore all files
+/*
+
+# Unignore nvim folder
+!/.config/
+/.config/**/
+!.config/nvim/
+
+# File to be unignored
+!.tmux.conf
+!.bashrc
+!.screenrc
+!.gitignore
+!.profile
+

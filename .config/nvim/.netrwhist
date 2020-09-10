@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =1
+let g:netrw_dirhist_1='/mnt/e/TWORK/web--/todayIsFriday/todayisfriday/client/src'
+let g:netrw_dirhist_0='/mnt/e/TWORK/web--/todayIsFriday/todayisfriday/client/src/components'
+let g:netrw_dirhist_9='/mnt/e/TWORK/web--/todayIsFriday/todayisfriday/client'
+let g:netrw_dirhist_8='/mnt/e/TWORK/web--/todayIsFriday/todayisfriday/client/src/components'
+let g:netrw_dirhist_7='/mnt/e/TWORK/web--/todayIsFriday/todayisfriday/client/public'
+let g:netrw_dirhist_6='/mnt/e/TWORK/web--/todayIsFriday/todayisfriday/client/src/components'
+let g:netrw_dirhist_5='/mnt/e/TWORK/web--/todayIsFriday/todayisfriday/client/src'
+let g:netrw_dirhist_4='/home/krehwell'
+let g:netrw_dirhist_3='/mnt/e/TWORK/web--/todayIsFriday/todayisfriday/client'
+let g:netrw_dirhist_2='/mnt/e/TWORK/web--/todayIsFriday/todayisfriday/client/src'
