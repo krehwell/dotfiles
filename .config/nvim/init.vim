@@ -2,7 +2,7 @@
 " ----- ONE STATUS -----
 set laststatus=0
 " set noruler
-au BufWrite * :OneStatus
+" au BufWrite * :OneStatus
 set noshowcmd
 
 " ----- AU BUFFER MEH ------
@@ -27,6 +27,7 @@ set undodir=~/.vim/undodir                                            " undotree
 set undofile                                                          " to be able to save history of undo tree
 set incsearch
 " set backspace=2
+set relativenumber
 set path+=**                                                          " dir path search
 set wildmenu                                                          " shows suggestion in tab :
 set nocompatible                                                      " should be good for vim to act normal
@@ -49,12 +50,14 @@ call plug#begin('~/vim/plugged')
 " Plug 'vim-utils/vim-man'
 " Plug 'lyuts/vim-rtags'
 " Plug 'peitalin/vim-jsx-typescript'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+" Plug 'preservim/nerdtree'
+" Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'ryanoasis/vim-devicons'
+" Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+Plug 'morhetz/gruvbox'
 Plug 'itchyny/lightline.vim'
 Plug 'mbbill/undotree'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'morhetz/gruvbox'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'rstacruz/vim-closer'
 Plug 'narajaon/onestatus'
@@ -63,10 +66,9 @@ Plug 'pangloss/vim-javascript'
 Plug 'chemzqm/vim-jsx-improve'
 Plug 'leafgarland/typescript-vim'
 Plug 'maxmellon/vim-jsx-pretty'
-Plug 'preservim/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'ryanoasis/vim-devicons'
-" Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': ':UpdateRemotePlugins'}
 call plug#end()
 
 " ----- MOST LET HERE -----
@@ -76,32 +78,17 @@ let g:netrw_banner = 0
 let NERDTreeMinimalUI=1
 let g:netrw_winsize=20
 
-" ----- NERDTREE SETTINGS ------
-set encoding=UTF-8
-let g:NERDTreeGitStatusUntrackedFilesMode = 'all' 
-let NERDTreeShowHidden=1
-let g:NERDTreeGitStatusUseNerdFonts=1 
-" let g:NERDTreeGitStatusIndicatorMapCustom = {
-"                 \ 'Modified'  :'*',
-"                 \ 'Staged'    :'+',
-"                 \ 'Untracked' :'[*]',
-"                 \ 'Renamed'   :'->',
-"                 \ 'Unmerged'  :'═',
-"                 \ 'Deleted'   :'X',
-"                 \ 'Dirty'     :'x',
-"                 \ 'Ignored'   :'[x]',
-"                 \ 'Clean'     :'[ok]',
-"                 \ 'Unknown'   :'?',
-"                 \ }
+" ----- SEX SETTINGS -----
+" lua vim.api.nvim_set_var("chadtree_settings", { use_icons = "emoji" })
 
 " ----- FUZZY SEARCH -----
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.yardoc\|public$|log\|tmp$',
-  \ 'file': '\.so$\|\.dat$|\.DS_Store$'
-  \ }
-let g:ctrlp_use_caching=0
-nnoremap <C-f> :Ag<Cr>
+" let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+" let g:ctrlp_custom_ignore = {
+"   \ 'dir':  '\.git$\|\.yardoc\|public$|log\|tmp$',
+"   \ 'file': '\.so$\|\.dat$|\.DS_Store$'
+"   \ }
+" let g:ctrlp_use_caching=0
+" nnoremap <C-f> :Ag<Cr>
 
 " ----- LIGHTLINE SETTTINGS -----
 let g:lightline = {'colorscheme': 'gruvbox'}
@@ -172,7 +159,7 @@ nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
 nnoremap <leader>u :UndotreeShow<CR>
-nnoremap <leader>pv :NERDTree <bar> :vertical resize 30<CR>
+nnoremap <leader>pv <cmd>CHADopen <CR><cmd>-<CR>
 nnoremap <silent> <Leader>- :vertical resize -10<CR>
 nnoremap <silent> <Leader>= :vertical resize +10<CR>
 nnoremap <silent> <Leader>0 :resize -3<CR>
