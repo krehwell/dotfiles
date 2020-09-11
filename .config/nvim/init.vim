@@ -2,7 +2,9 @@
 " ----- ONE STATUS -----
 set laststatus=0
 " set noruler
-" au BufWrite * :OneStatus
+augroup entervim 
+"   au BufWrite * :OneStatus
+augroup end
 set noshowcmd
 
 " ----- AU BUFFER MEH ------
@@ -15,6 +17,8 @@ set t_u7=
 
 " ----- ALL SET -----
 " set ve+=onemore                                                     " enable to go to one more line
+" autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o  " disabling comment on newline 
+set formatoptions-=c " formatoptions-=r formatoptions-=o                " disabling comment on newline 
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab                    " own indenting
 set backspace=indent,eol,start
 set smartindent
@@ -41,54 +45,74 @@ set signcolumn=no
 " set dir=/tmp      " vim .swp file handler
 " nnoremap <esc><esc> :noh<return>
 
-" ----- KEL FASTER TEST -----
-" set ttyfast " scrolling fast they say
-
 " ----- VIM PLUG ----- 
 call plug#begin('~/vim/plugged')
 " Plug 'leafgarland/typescript-vim'
 " Plug 'vim-utils/vim-man'
-" Plug 'lyuts/vim-rtags'
 " Plug 'peitalin/vim-jsx-typescript'
 " Plug 'preservim/nerdtree'
 " Plug 'Xuyuanp/nerdtree-git-plugin'
 " Plug 'ryanoasis/vim-devicons'
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
-Plug 'morhetz/gruvbox'
+" ------
+" Plug 'lyuts/vim-rtags'
+Plug 'jremmen/vim-ripgrep'
 Plug 'itchyny/lightline.vim'
 Plug 'mbbill/undotree'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'morhetz/gruvbox'
 Plug 'rstacruz/vim-closer'
 Plug 'narajaon/onestatus'
 Plug 'tpope/vim-fugitive'
 Plug 'pangloss/vim-javascript'
 Plug 'chemzqm/vim-jsx-improve'
-Plug 'leafgarland/typescript-vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': ':UpdateRemotePlugins'}
 call plug#end()
 
-" ----- MOST LET HERE -----
+" ----- LEADER KEY -----
 let mapleader = " "
-let g:netrw_browse_split=2
-let g:netrw_banner = 0
-let NERDTreeMinimalUI=1
-let g:netrw_winsize=20
 
-" ----- SEX SETTINGS -----
+" ----- NETRW SETTINGS -----
+" let g:netrw_browse_split=2
+" let g:netrw_banner = 0
+" let NERDTreeMinimalUI=1
+" let g:netrw_winsize=20
+
+" ----- HOLY CHAD SETTINGS -----
 " lua vim.api.nvim_set_var("chadtree_settings", { use_icons = "emoji" })
+lua vim.api.nvim_set_var("chadtree_ignores", { name = {"node_modules", ".git"} })
 
 " ----- FUZZY SEARCH -----
-" let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 " let g:ctrlp_custom_ignore = {
 "   \ 'dir':  '\.git$\|\.yardoc\|public$|log\|tmp$',
 "   \ 'file': '\.so$\|\.dat$|\.DS_Store$'
 "   \ }
-" let g:ctrlp_use_caching=0
-" nnoremap <C-f> :Ag<Cr>
+let g:ctrlp_use_caching=0
+if executable('rg')
+  let g:rg_derive_root='true'
+endif
+if executable('ag')
+  let g:rg_derive_root='true'
+endif
+
+" Default options are --nogroup --column --color | Ag fuzzy settings
+" nnoremap <silent><C-p> :FZF<CR>
+nnoremap <C-f> :Ag<Cr>
+" nnoremap <C-g> :GFiles<Cr>
+let s:ag_options = ' --one-device --skip-vcs-ignores --smart-case '
+command! -bang -nargs=* Ag
+      \ call fzf#vim#ag(
+      \   <q-args>,
+      \   s:ag_options,
+      \  <bang>0 ? fzf#vim#with_preview('up:60%')
+      \        : fzf#vim#with_preview('right:50%:hidden', '?'),
+      \   <bang>0
+      \ )
 
 " ----- LIGHTLINE SETTTINGS -----
 let g:lightline = {'colorscheme': 'gruvbox'}
@@ -104,7 +128,6 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
 vmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 command! -nargs=0 Prettier :CocCommand prettier.formatFile  " :Prettier to beutify
@@ -148,18 +171,14 @@ set background=dark
 " set termguicolors
 colorscheme gruvbox
 
-" ----- FUZZY SEARCH ACK AG -----
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
-
 " ----- SHORTCUT -----
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
 nnoremap <leader>u :UndotreeShow<CR>
-nnoremap <leader>pv <cmd>CHADopen <CR><cmd>-<CR>
+nnoremap <leader>pv <CMD>:CHADopen<CR>
+" nnoremap <leader>pv :NERDTree <bar> :vertical resize 30<CR>
 nnoremap <silent> <Leader>- :vertical resize -10<CR>
 nnoremap <silent> <Leader>= :vertical resize +10<CR>
 nnoremap <silent> <Leader>0 :resize -3<CR>
@@ -175,20 +194,19 @@ set showmode
 " boilerplates
 nnoremap ,html :-1read $HOME/templates/.skeleton.html<CR>3j2wf>a
 nnoremap ,exp :-1read $HOME/templates/.indexExpress.js<CR>4j
-nnoremap ,com :-1read $HOME/templates/.comment.js<CR>2wa
+" nnoremap ,com :-1read $HOME/templates/.comment.js<CR>2wa
 iabbrev <// </<C-X><C-O>
 
 " own meme templates
-command! Memestonkface :r ~/templates/stonkface.txt
-command! Memestonk :r ~/templates/stonk.txt
-command! Memestonkbig :r ~/templates/stonk100.txt
-command! Memeiknow :r ~/templates/iknow.txt
-command! Memesadboy :r ~/templates/sadmemewojak.txt
+" command! Memestonkface :r ~/templates/stonkface.txt
+" command! Memestonk :r ~/templates/stonk.txt
+" command! Memestonkbig :r ~/templates/stonk100.txt
+" command! Memeiknow :r ~/templates/iknow.txt
+" command! Memesadboy :r ~/templates/sadmemewojak.txt
 
 " Buffer copy by meh
 " copy
-vmap <C-c> :w! ~/.vimbuffer<CR>
-vmap <C-c> :.w! ~/.vimbuffer<CR>
-noremap Y 0vg_y
-" paste
+vnoremap <C-c> :w! ~/.vimbuffer<CR>
+vnoremap <C-c> :.w! ~/.vimbuffer<CR>
+nnoremap Y 0vg_y
 map <C-m> :r ~/.vimbuffer<CR>

@@ -9,11 +9,26 @@ case $- in
 esac
 
 #----- " KEL ADD HERE " -----
+
+# They say its fast
+export PATH="$(echo "$PATH" | python -c "import sys; path = sys.stdin.read().split(':'); path = [pp for pp in path if '/mnt/c' not in pp]; print(':'.join(path))")"
+export LD_LIBRARY_PATH="$(echo "$LD_LIBRARY_PATH" | python -c "import sys; path = sys.stdin.read().split(':'); path = [pp for pp in path if '/mnt/c' not in pp]; print(':'.join(path))")"
+
 export TERM=xterm-256color 
 alias vim=nvim
 alias ls='ls --color'
-alias sex='explorer.exe .'
+alias sex='/mnt/c/Windows/explorer.exe .'
+alias code='/mnt/c/Users/kel/AppData/Local/Programs/Microsoft\ VS\ Code/bin/code'
 alias :q='exit'
+
+#determines search program for fzf
+if type ag &> /dev/null; then
+      export FZF_DEFAULT_COMMAND='ag -p ~/node_modules -g ""'
+fi
+#refer rg over ag
+if type rg &> /dev/null; then
+      export FZF_DEFAULT_COMMAND='rg --files --hidden'
+fi
 
 # GOPATH=$HOME/go
 # function _update_ps1() {
@@ -136,4 +151,3 @@ fi
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
