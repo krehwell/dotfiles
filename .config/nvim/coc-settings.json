@@ -13,5 +13,6 @@
       "node": true
     }
   },
-  "tsserver.reportStyleChecksAsWarnings": false
+  "tsserver.reportStyleChecksAsWarnings": true,
+  "pairs.enableCharacters": ["(", "[", "{", "<"]
 }

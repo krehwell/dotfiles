@@ -4,7 +4,10 @@ set laststatus=0
 " set noruler
 augroup entervim 
 "   au BufWrite * :OneStatus
-augroup end
+" autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%"))
+autocmd BufEnter * call system("tmux rename-window " . expand("%:t"))
+autocmd VimLeave * call system("tmux rename-window bash")
+autocmd BufEnter * let &titlestring = ' ' . expand("%:t")                                                                 
 set noshowcmd
 
 " ----- AU BUFFER MEH ------
@@ -13,16 +16,18 @@ set noshowcmd
 
 " ----- WIN 10 SCREEN - BUF(at start) FIX -----
 set t_ut=""
+set t_md=
 set t_u7=
 
 " ----- ALL SET -----
 " set ve+=onemore                                                     " enable to go to one more line
 " autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o  " disabling comment on newline 
-set formatoptions-=c " formatoptions-=r formatoptions-=o                " disabling comment on newline 
+set title
+set formatoptions-=cro " formatoptions-=r formatoptions-=o            " disabling comment on newline 
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab                    " own indenting
 set backspace=indent,eol,start
 set smartindent
-set nu                                                                " number shows
+set nonu                                                              " number shows
 set nowrap
 set smartcase
 set noswapfile                                                        " no swp file
@@ -56,6 +61,11 @@ call plug#begin('~/vim/plugged')
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 " ------
 " Plug 'lyuts/vim-rtags'
+" Plug 'fsharpasharp/vim-dirvinist'
+" Plug 'kristijanhusak/vim-dirvish-git'
+" Plug 'justinmk/vim-dirvish'
+Plug 'lambdalisue/fern.vim'
+Plug 'lambdalisue/fern-git-status.vim'
 Plug 'jremmen/vim-ripgrep'
 Plug 'itchyny/lightline.vim'
 Plug 'mbbill/undotree'
@@ -70,7 +80,7 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': ':UpdateRemotePlugins'}
+" Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': ':UpdateRemotePlugins'}
 call plug#end()
 
 " ----- LEADER KEY -----
@@ -84,14 +94,15 @@ let mapleader = " "
 
 " ----- HOLY CHAD SETTINGS -----
 " lua vim.api.nvim_set_var("chadtree_settings", { use_icons = "emoji" })
-lua vim.api.nvim_set_var("chadtree_ignores", { name = {"node_modules", ".git"} })
+" lua vim.api.nvim_set_var("chadtree_ignores", { name = {"node_modules", ".git"} })
 
 " ----- FUZZY SEARCH -----
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-" let g:ctrlp_custom_ignore = {
-"   \ 'dir':  '\.git$\|\.yardoc\|public$|log\|tmp$',
-"   \ 'file': '\.so$\|\.dat$|\.DS_Store$'
-"   \ }
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\.git$\|\.yardoc\|public$|log\|tmp$',
+  \ 'file': '\.so$\|\.dat$|\.DS_Store$'
+  \ }
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 let g:ctrlp_use_caching=0
 if executable('rg')
   let g:rg_derive_root='true'
@@ -167,6 +178,7 @@ nmap <silent> gr <Plug>(coc-references)
 " ----- THEME SETUP -----
 " let g:gruvbox_termcolors='256'
 let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_bold= '0'
 set background=dark
 " set termguicolors
 colorscheme gruvbox
@@ -177,8 +189,10 @@ nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
 nnoremap <leader>u :UndotreeShow<CR>
-nnoremap <leader>pv <CMD>:CHADopen<CR>
-" nnoremap <leader>pv :NERDTree <bar> :vertical resize 30<CR>
+" nnoremap <leader>pv <CMD>:CHADopen<CR>
+" nnoremap <leader>pv <c-w>v :Dirvish <bar> :vertical resize 30<CR>
+" nnoremap <silent> <Leader>pv :Fern . -drawer -width=27 -toggle<CR><C-w>=
+nnoremap <silent> <Leader>pv :Fern . -drawer -reveal=% -width=27 -toggle<CR><C-w>=
 nnoremap <silent> <Leader>- :vertical resize -10<CR>
 nnoremap <silent> <Leader>= :vertical resize +10<CR>
 nnoremap <silent> <Leader>0 :resize -3<CR>
@@ -209,4 +223,4 @@ iabbrev <// </<C-X><C-O>
 vnoremap <C-c> :w! ~/.vimbuffer<CR>
 vnoremap <C-c> :.w! ~/.vimbuffer<CR>
 nnoremap Y 0vg_y
-map <C-m> :r ~/.vimbuffer<CR>
+nnoremap <C-m> :r ~/.vimbuffer<CR>

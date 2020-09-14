@@ -16,14 +16,15 @@ Guide from myself, for myself, to myself in development using Windows subsystem 
 
 important setup:
 
-1. command
-   some of needed command to have
+#### 1. command
+
+some of needed command to have
 
 - `ln -s <command>` : allowing shortcut to go to some dir or file
 - `Ag & Rg` : fuzzy search (install using `apt-get install`)
 - `git <command>` : git of course
 
-2. .bashrc
+#### 2. `.bashrc`
 
 - Own Alias
 
@@ -42,8 +43,10 @@ export PATH="$(echo "$PATH" | python -c "import sys; path = sys.stdin.read().spl
 export LD_LIBRARY_PATH="$(echo "$LD_LIBRARY_PATH" | python -c "import sys; path = sys.stdin.read().split(':'); path = [pp for pp in path if '/mnt/c' not in pp]; print(':'.join(path))")"
 ```
 
-3. .profile
-   nothing to see here I guess
+#### 3. `.profile`
 
-4. .screenrc
-   just like no.3
+- nothing to see here I guess
+
+#### 4. `.screenrc`
+
+- just like no.3

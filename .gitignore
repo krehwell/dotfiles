@@ -13,3 +13,4 @@
 !.gitignore
 !.profile
 !/manualconfig
+!readme.md
