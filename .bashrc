@@ -10,6 +10,8 @@ esac
 
 #----- " KEL ADD HERE " -----
 
+# Windows Area ==============
+
 # Testing Area
 export PATH="$(echo "$PATH" | python -c "import sys; path = sys.stdin.read().split(':'); path = [pp for pp in path if '/mnt/c' not in pp]; print(':'.join(path))")"
 export LD_LIBRARY_PATH="$(echo "$LD_LIBRARY_PATH" | python -c "import sys; path = sys.stdin.read().split(':'); path = [pp for pp in path if '/mnt/c' not in pp]; print(':'.join(path))")"
@@ -20,18 +22,18 @@ export LD_LIBRARY_PATH="$(echo "$LD_LIBRARY_PATH" | python -c "import sys; path 
 # export PATH=$ANDROID_HOME/tools:$PATH
 # export PATH=$ANDROID_HOME/tools/bin:$PATH
 # export PATH=$ANDROID_HOME/platform-tools:$PATH
-export PATH=$PATH:/mnt/c/Windows/System32
 
-# End Testing Area
+export PATH=$PATH:/mnt/c/Windows/System32
+alias sex='/mnt/c/Windows/explorer.exe .'
+alias code='/mnt/c/Users/kel/AppData/Local/Programs/Microsoft\ VS\ Code/bin/code'
+
+# Windows End Area ==============
 
 bind '"\t":menu-complete'
+alias :q='exit'
 export TERM=xterm-256color 
 alias vim=nvim
 alias ls='ls --color'
-alias sex='/mnt/c/Windows/explorer.exe .'
-alias code='/mnt/c/Users/kel/AppData/Local/Programs/Microsoft\ VS\ Code/bin/code'
-alias :q='exit'
-
 
 #determines search program for fzf
 if type ag &> /dev/null; then
@@ -159,7 +161,3 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-export PATH=$PATH:$JAVA_HOME/bin
