@@ -191,8 +191,8 @@ set pastetoggle=<F3>
 set showmode
 
 " boilerplates
-nnoremap ,html :-1read $HOME/templates/.skeleton.html<CR>3j2wf>a
-nnoremap ,exp :-1read $HOME/templates/.indexExpress.js<CR>4j
+nnoremap <leader>,html :-1read $HOME/boilerplates/skeleton.html<CR>3j2wf>a
+nnoremap <leader>,exp :-1read $HOME/boilerplates/expressServer.js<CR>4j
 " nnoremap ,com :-1read $HOME/templates/.comment.js<CR>2wa
 iabbrev <// </<C-X><C-O>
 
