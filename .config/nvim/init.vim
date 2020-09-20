@@ -3,11 +3,11 @@
 set laststatus=0
 " set noruler
 augroup entervim 
-"   au BufWrite * :OneStatus
+  au BufWrite * :OneStatus
 " autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%"))
-autocmd BufEnter * call system("tmux rename-window " . expand("%:t"))
-autocmd VimLeave * call system("tmux rename-window bash")
-autocmd BufEnter * let &titlestring = ' ' . expand("%:t")                                                                 
+" autocmd BufEnter * call system("tmux rename-window " . expand("%:t"))
+" autocmd VimLeave * call system("tmux rename-window bash")
+" autocmd BufEnter * let &titlestring = ' ' . expand("%:t")                                                                 
 set noshowcmd
 
 " ----- AU BUFFER MEH ------
@@ -29,6 +29,7 @@ set backspace=indent,eol,start
 set smartindent
 set nonu                                                              " number shows
 set nowrap
+set ignorecase
 set smartcase
 set noswapfile                                                        " no swp file
 set nobackup                                                          " no backup file
@@ -59,18 +60,19 @@ call plug#begin('~/vim/plugged')
 " Plug 'Xuyuanp/nerdtree-git-plugin'
 " Plug 'ryanoasis/vim-devicons'
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
-" ------
 " Plug 'lyuts/vim-rtags'
 " Plug 'fsharpasharp/vim-dirvinist'
 " Plug 'kristijanhusak/vim-dirvish-git'
 " Plug 'justinmk/vim-dirvish'
+" Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': ':UpdateRemotePlugins'}
+" ------
+Plug 'morhetz/gruvbox'
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-git-status.vim'
 Plug 'jremmen/vim-ripgrep'
 Plug 'itchyny/lightline.vim'
 Plug 'mbbill/undotree'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'morhetz/gruvbox'
 Plug 'rstacruz/vim-closer'
 Plug 'narajaon/onestatus'
 Plug 'tpope/vim-fugitive'
@@ -80,7 +82,6 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'ctrlpvim/ctrlp.vim'
-" Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': ':UpdateRemotePlugins'}
 call plug#end()
 
 " ----- LEADER KEY -----
