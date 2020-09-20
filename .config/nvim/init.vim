@@ -1,16 +1,18 @@
+"  syntax on
 " Windows Area ==========
 " ----- WIN 10 SCREEN - BUF(at start) FIX -----
 set t_ut=""
 set t_md=
 set t_u7=
 
-
-"  syntax on
 " ----- ONE STATUS -----
-set laststatus=0
+augroup onestatus
+  set laststatus=0
+  au VimLeave * call onestatus#build([{'command': 'set -g status-right "#[fg=colour234,bg=default,bold]  #[fg=#fcfcfc,bg=colour234] ~#{pane_current_path}" '}])
+  au BufEnter * :OneStatus
+augroup END
+
 " set noruler
-augroup entervim 
-" au BufWrite * :OneStatus
 " autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%"))
 " autocmd BufEnter * call system("tmux rename-window " . expand("%:t"))
 " autocmd VimLeave * call system("tmux rename-window bash")
@@ -25,7 +27,9 @@ set noshowcmd
 " set ve+=onemore                                                     " enable to go to one more line
 " autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o  " disabling comment on newline 
 set title
-set formatoptions-=cro " formatoptions-=r formatoptions-=o            " disabling comment on newline 
+set formatoptions-=cro 
+set formatoptions-=r
+set formatoptions-=o                                                  " disabling comment on newline 
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab                    " own indenting
 set backspace=indent,eol,start
 set smartindent
@@ -74,6 +78,9 @@ call plug#end()
 
 " ----- LEADER KEY -----
 let mapleader = " "
+
+" ----- ONESTATUS ------
+let g:onestatus_right_length=80
 
 " ----- NETRW SETTINGS -----
 " let g:netrw_browse_split=2

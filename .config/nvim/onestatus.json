@@ -1,0 +1,13 @@
+{
+  "status-right": [
+    { "fg": "colour234", "bg": "default", "label": "" },
+    { "fg": "#fcfcfc", "bg": "colour234", "labelFunc": "s:getCWD" },
+    { "fg": "colour235", "bg": "colour234", "label": "" },
+    { "fg": "#fcfcfc", "bg": "colour235", "labelFunc": "s:getFileName" },
+    { "fg": "colour236", "bg": "colour235", "label": "" },
+    { "fg": "#fcfcfc", "bg": "colour236", "labelFunc": "s:getHead" }
+  ],
+  "status-left": [{ "fg": "#6c757d", "bg": "default", "label": "#H/#S" }],
+  "status-style": "s:getDefaultColor",
+  "window-status-style": [{ "fg": "#6c757d", "bg": "default", "isStyleOnly": true }]
+}
