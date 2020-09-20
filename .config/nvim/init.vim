@@ -1,9 +1,16 @@
+" Windows Area ==========
+" ----- WIN 10 SCREEN - BUF(at start) FIX -----
+set t_ut=""
+set t_md=
+set t_u7=
+
+
 "  syntax on
 " ----- ONE STATUS -----
 set laststatus=0
 " set noruler
 augroup entervim 
-  au BufWrite * :OneStatus
+" au BufWrite * :OneStatus
 " autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%"))
 " autocmd BufEnter * call system("tmux rename-window " . expand("%:t"))
 " autocmd VimLeave * call system("tmux rename-window bash")
@@ -13,11 +20,6 @@ set noshowcmd
 " ----- AU BUFFER MEH ------
 " autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 " autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
-
-" ----- WIN 10 SCREEN - BUF(at start) FIX -----
-set t_ut=""
-set t_md=
-set t_u7=
 
 " ----- ALL SET -----
 " set ve+=onemore                                                     " enable to go to one more line
@@ -48,23 +50,9 @@ set hidden        " coc ask me to do this
 set signcolumn=no
 " set cursorlineopt=number
 " set cursorline
-" set dir=/tmp      " vim .swp file handler
-" nnoremap <esc><esc> :noh<return>
 
 " ----- VIM PLUG ----- 
 call plug#begin('~/vim/plugged')
-" Plug 'leafgarland/typescript-vim'
-" Plug 'vim-utils/vim-man'
-" Plug 'peitalin/vim-jsx-typescript'
-" Plug 'preservim/nerdtree'
-" Plug 'Xuyuanp/nerdtree-git-plugin'
-" Plug 'ryanoasis/vim-devicons'
-" Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
-" Plug 'lyuts/vim-rtags'
-" Plug 'fsharpasharp/vim-dirvinist'
-" Plug 'kristijanhusak/vim-dirvish-git'
-" Plug 'justinmk/vim-dirvish'
-" Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': ':UpdateRemotePlugins'}
 " ------
 Plug 'morhetz/gruvbox'
 Plug 'lambdalisue/fern.vim'
@@ -92,10 +80,6 @@ let mapleader = " "
 " let g:netrw_banner = 0
 " let NERDTreeMinimalUI=1
 " let g:netrw_winsize=20
-
-" ----- HOLY CHAD SETTINGS -----
-" lua vim.api.nvim_set_var("chadtree_settings", { use_icons = "emoji" })
-" lua vim.api.nvim_set_var("chadtree_ignores", { name = {"node_modules", ".git"} })
 
 " ----- FUZZY SEARCH -----
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
@@ -221,7 +205,7 @@ iabbrev <// </<C-X><C-O>
 
 " Buffer copy by meh
 " copy
-vnoremap <C-c> :w! ~/.vimbuffer<CR>
-vnoremap <C-c> :.w! ~/.vimbuffer<CR>
-nnoremap Y 0vg_y
-nnoremap <C-m> :r ~/.vimbuffer<CR>
+" vnoremap <C-c> :w! ~/.vimbuffer<CR>
+" vnoremap <C-c> :.w! ~/.vimbuffer<CR>
+" nnoremap Y 0vg_y
+" nnoremap <C-m> :r ~/.vimbuffer<CR>
