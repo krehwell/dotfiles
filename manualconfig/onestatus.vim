@@ -41,7 +41,14 @@ fun s:getColor(colSchem, command, isStyleOnly) abort
 endfun
 
 " set-option -g status-right
-let s:right = { -> {'command': 'set-option -g status-right', 'attributes': [{"fg": "colour234", "bg": "default", "label": ""},{"fg": "#fcfcfc", "bg": "colour234", "label": "~/" . s:getFormated()}, {"fg": "colour235","bg": "colour234", "label": ""}, {"fg": "#fcfcfc", "bg": "colour235", "label": s:getFileType()}, {"fg": "colour236","bg": "colour235", "label": ""}, {"fg": "#fcfcfc", "bg": "colour236", "label": s:getHead()}]}} 
+let s:right = { -> {'command': 'set-option -g status-right', 'attributes': [
+{"fg": "colour234", "bg": "default", "label": ""},
+{"fg": "#fcfcfc", "bg": "colour234", "label": "~/" . s:getFormated()},
+{"fg": "colour235","bg": "colour234", "label": ""}, 
+{"fg": "#fcfcfc", "bg": "colour235", "label": s:getFileType()}, 
+{"fg": "colour236","bg": "colour235", "label": ""}, 
+{"fg": "#fcfcfc", "bg": "colour236", "label": s:getHead()}
+]}} 
 
 " ----- KEL MAKE OWN MAKE ------
 " set-window-option -g window-status-current-style 
