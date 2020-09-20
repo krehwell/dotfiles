@@ -6,6 +6,8 @@
 /.config/**/
 !.config/nvim/
 
+!/boilerplates/
+
 # File to be unignored
 !.tmux.conf
 !.bashrc
