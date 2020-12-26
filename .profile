@@ -33,3 +33,5 @@ fi
 # else
 #         export TERM='xterm-color'
 # fi
+
+export PATH="$HOME/.cargo/bin:$PATH"
