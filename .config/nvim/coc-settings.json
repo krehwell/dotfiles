@@ -1,0 +1,26 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": ["css", "html"],
+  "prettier.printWidth": 80,
+  "prettier.arrowParens": "always",
+  "tsserver.npm": "/usr/bin/npm",
+  "eslint.autoFixOnSave": false,
+  "diagnostic.checkCurrentLine": true,
+  "eslint.enable": false,
+  "eslint.nodePath": "/usr/local/lib/node_modules/",
+  "npm.binPath": "~/.nvm/versions/node/v12.18.2/bin/npm",
+  "eslint.filetypes": [
+    "javascript",
+    "typescript",
+    "typescriptreact",
+    "javascriptreact"
+  ],
+  "eslint.options": {
+    "env": {
+      "browser": true,
+      "node": true
+    }
+  },
+  "tsserver.reportStyleChecksAsWarnings": true,
+  "pairs.enableCharacters": ["(", "[", "{", "<", "\"", "'"],
+  "diagnostic.warningSign": ">>"
+}
