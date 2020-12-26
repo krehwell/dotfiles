@@ -190,7 +190,7 @@ nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
-nnoremap <leader>u :UndotreeShow<CR>
+nnoremap <leader>u :UndotreeToggle<CR>
 nnoremap <silent> <Leader>pv :Fern . -drawer -reveal=% -width=27 -toggle<CR><C-w>=
 nnoremap <silent> <Leader>- :vertical resize -10<CR>
 nnoremap <silent> <Leader>= :vertical resize +10<CR>
