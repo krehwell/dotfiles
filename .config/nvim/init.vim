@@ -1,26 +1,29 @@
 filetype plugin indent on
 syntax on
 
-" Windows Area ==========
+
+" ========== Windows Area ==========
 " ----- WIN 10 SCREEN - BUF(at start) FIX -----
 set t_ut=""
 set t_md=
 set t_u7=
 
+
+" ----- NOAUTOCOMMENT TO ALL FILES -----
 augroup AutoCommetDisable
   autocmd!
   " autocmd BufEnter * silent! lcd %:p:h
   autocmd FileType * set formatoptions-=cro
 augroup END
 
+
 " ----- MY VAR ------
 nnoremap <localleader>i :vsplit $INIT<cr>
 let $INIT="$HOME/.config/nvim/init.vim"
 
-" ----- ALL SET -----
-" set noshowcmd
+
+" ----- ALL SETs -----
 " set cursorlineopt=number
-" set timeoutlen=500
 " set autochdir                                                    " set the curr dir to opened buf
 set backspace=2
 set backspace=indent,eol,start
@@ -49,45 +52,45 @@ set noshowmode
 set splitright
 set splitbelow
 autocmd ColorScheme * highlight! link SignColumn LineNr          
+nnoremap <F3> :set invpaste paste?<CR>
+set pastetoggle=<F3>
+set showmode
 
 " ----- VIM PLUG ----- 
 call plug#begin('~/vim/plugged')
-" ------
-Plug 'morhetz/gruvbox'
-Plug 'Yggdroot/indentLine'
-Plug 'lambdalisue/fern.vim'
-Plug 'lambdalisue/fern-git-status.vim'
-Plug 'jremmen/vim-ripgrep'
-Plug 'itchyny/lightline.vim'
-Plug 'mbbill/undotree'
+" -----
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'mg979/vim-visual-multi'
-" Plug 'narajaon/onestatus'
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
+" ----- FUZZY SEARCH PLUG -----
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'jremmen/vim-ripgrep'
 Plug 'ctrlpvim/ctrlp.vim'
+" ----- GIT PLUG -----
+Plug 'lambdalisue/fern-git-status.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 Plug 'rbong/vim-flog'
-Plug 'pangloss/vim-javascript'
-Plug 'chemzqm/vim-jsx-improve'
-Plug 'maxmellon/vim-jsx-pretty'
-Plug 'sheerun/vim-polyglot'
+" ----- STATUS/HELPER/NAVIGATION PLUG -----
+" Plug 'narajaon/onestatus'
+Plug 'itchyny/lightline.vim'
+Plug 'Yggdroot/indentLine'
+Plug 'mg979/vim-visual-multi'
+Plug 'lambdalisue/fern.vim'
+Plug 'mbbill/undotree'
+" ----- COLORSCHEME PLUG -----
+Plug 'morhetz/gruvbox'
+Plug 'senran101604/neotrix.vim'
 " Plug 'pineapplegiant/spaceduck'
-Plug 'yuezk/vim-js'
-" ----- PHP THINGS -----
-Plug 'shawncplus/phpcomplete.vim'
-Plug 'arnaud-lb/vim-php-namespace'
-Plug 'stephpy/vim-php-cs-fixer'
-Plug 'phpactor/phpactor', {'for': 'php', 'branch': 'master', 'do': 'composer install --no-dev -o'}
 call plug#end()
 
+
 " ----- GIT -----
+let g:gitgutter_map_keys=0                                         " prevent default key binding
 set diffopt+=vertical
-let g:gitgutter_map_keys=0
 nmap [c <Plug>(GitGutterPrevHunk)
 nmap ]c <Plug>(GitGutterNextHunk)
 nnoremap gs :Gstatus<CR>
+
 
 " ----- FUZZY SEARCH -----
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
@@ -103,7 +106,6 @@ endif
 if executable('ag')
   let g:rg_derive_root='true'
 endif
-
 " Default options are --nogroup --column --color | Ag fuzzy settings
 " nnoremap <silent><C-p> :FZF<CR>
 nnoremap <C-f> :Ag<Cr>
@@ -119,8 +121,6 @@ command! -bang -nargs=* Ag
       \   <bang>0
       \ )
 
-" ----- LIGHTLINE SETTTINGS -----
-let g:lightline = {'colorscheme': 'gruvbox'}
 
 " ----- COC SETUP -----
 " tab to scroll thru completion
@@ -173,17 +173,25 @@ nmap <silent> gr <Plug>(coc-references)
 nnoremap <leader>e :call CocAction('diagnosticNext')<CR>
 nnoremap <leader>E :call CocAction('diagnosticPrevious')<CR>
 
+
+" ----- LIGHTLINE SETTTINGS -----
+" let g:lightline = {'colorscheme': ''}
+
+
 " ----- THEME SETUP -----
 " let g:gruvbox_termcolors='256'
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_bold= '0'
+let g:neotrix_dark_contrast = "retro"
 set background=dark
 set termguicolors
 colorscheme gruvbox
 
+
 " ----- LEADER KEY -----
 let mapleader = " "
 let maplocalleader = "\\"
+
 
 " ----- SHORTCUT -----
 nnoremap <leader>h :wincmd h<CR>
@@ -201,26 +209,23 @@ nnoremap <Leader>n :noh<CR>
 " CONTROLLING VIM-TAB || C-CONTROL
 nnoremap <C-k> :tabprevious<CR>                                                      
 nnoremap <C-j> :tabnext<CR>
-nnoremap <F3> :set invpaste paste?<CR>
-set pastetoggle=<F3>
-set showmode
 
 " MAPPING MOVEMENT
+inoremap <M-;> <esc>v$<esc>`>a;<esc>`<a
+inoremap <c-b> <esc><right>dwi
+inoremap <c-u> <esc>vawUe
+inoremap <silent> jj <c-o>:call search('}\\|)\\|]\\|>\\|"', 'cW')<cr><Right>
+inoremap jk <esc>
+inoremap {<CR> {<CR>}<Esc>O<BS><Tab>
 nnoremap <M-j> ddp
 nnoremap <M-k> ddkP
-inoremap <c-u> <esc>vawUe
 vnoremap " <esc>`>i"<esc>`<i"<esc>lv`>l<esc>l
 vnoremap ' <esc>`>i'<esc>`<i'<esc>lv`>l<esc>l
 vnoremap ( <esc>`>i)<esc>`<i(<esc>lv`>l<esc>l
 vnoremap ) <esc>`>i)<esc>`<i(<esc>lv`>l<esc>l
-vnoremap [ <esc>`>i]<esc>`<i[<esc>lv`>l<esc>l
 vnoremap <leader>{ <esc>`>i}<esc>`<i{<esc>lv`>l<esc>l
-inoremap <M-;> <esc>v$<esc>`>a;<esc>`<a
-inoremap jk <esc>
-inoremap {<CR> {<CR>}<Esc>O<BS><Tab>
+vnoremap [ <esc>`>i]<esc>`<i[<esc>lv`>l<esc>l
 vnoremap w e
-inoremap <c-b> <esc><right>dwi
-inoremap <silent> jj <c-o>:call search('}\\|)\\|]\\|>\\|"', 'cW')<cr><Right>
 
 " SESSION BUFFER CONTROLLER
 nnoremap <localleader>s :mksession! ~\vim_session<cr>
@@ -232,14 +237,11 @@ iabbrev /* /*  */<esc>bhhi<del>
 
 " ----- BOILERPLATES -----
 nnoremap <leader>,html :-1read $HOME/boilerplates/skeleton.html<CR>3j2wf>a
-nnoremap <leader>,exp :-1read $HOME/boilerplates/expressServer.js<CR>4j
-nnoremap <leader>,con :-1read $HOME/boilerplates/mongoConnect.js<CR>4j
 " nnoremap ,com :-1read $HOME/templates/.comment.js<CR>2wa
 
-" BUFFER COPY BY MEH
-" copy global
+" GLOBAL BUFFER COPY/PASTE
 vnoremap <localleader>c :w! ~/.vimbufferz<CR>
 vnoremap <localleader>c :.w! ~/.vimbufferz<CR>
 nnoremap <localleader>v :r ~/.vimbufferz<CR>
 " copy line without linebreak
-nnoremap Y 0vg_y
+nnoremap Y 0vg_y 

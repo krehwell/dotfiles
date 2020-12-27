@@ -22,5 +22,6 @@
   },
   "tsserver.reportStyleChecksAsWarnings": true,
   "pairs.enableCharacters": ["(", "[", "{", "<", "\"", "'"],
-  "diagnostic.warningSign": ">>"
+  "diagnostic.warningSign": ">>",
+  "javascript.suggestionActions.enabled": false
 }
