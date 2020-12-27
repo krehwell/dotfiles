@@ -6,8 +6,6 @@
 !/.config/
 /.config/**/
 !.config/nvim/
-/.config/nvim/after/**/
-!.config/nvim/after/ftplugin/
 
 !/boilerplates/
 
