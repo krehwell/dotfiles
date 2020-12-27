@@ -6,6 +6,8 @@
 !/.config/
 /.config/**/
 !.config/nvim/
+/.config/nvim/after/**/
+!.config/nvim/after/ftplugin/
 
 !/boilerplates/
 
@@ -15,5 +17,4 @@
 !.screenrc
 !.gitignore
 !.profile
-!/manualconfig
 !readme.md
