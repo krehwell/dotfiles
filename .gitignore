@@ -1,11 +1,15 @@
 # Ignore all files
 /*
-.config/nvim/.netrwhist
 
 # Unignore nvim folder
 !/.config/
 /.config/**/
 !.config/nvim/
+!.config/nvim/*
+/.config/nvim/colors/
+/.config/nvim/.netrwhist
+!.config/nvim/after/*
+!.config/nvim/after/ftplugin/
 
 !/boilerplates/
 
