@@ -18,4 +18,4 @@ call plug#end()
 
 
 " ----- SHOURTCUT -----
-inoremap ecc echo "";<esc>hi
+inoremap ecc echo " <br/>";<esc>3bhi

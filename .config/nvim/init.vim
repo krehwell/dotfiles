@@ -79,7 +79,7 @@ Plug 'lambdalisue/fern.vim'
 Plug 'mbbill/undotree'
 " ----- COLORSCHEME PLUG -----
 Plug 'morhetz/gruvbox'
-Plug 'senran101604/neotrix.vim'
+Plug 'senran101604/neotrix.vim', {'branch': 'main'}
 " Plug 'pineapplegiant/spaceduck'
 call plug#end()
 
@@ -182,7 +182,6 @@ nnoremap <leader>E :call CocAction('diagnosticPrevious')<CR>
 " let g:gruvbox_termcolors='256'
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_bold= '0'
-let g:neotrix_dark_contrast = "retro"
 set background=dark
 set termguicolors
 colorscheme gruvbox
