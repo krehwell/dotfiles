@@ -8,10 +8,10 @@ Copy all the compile script (`.exe`) to: `%AppData%\Microsoft\Windows\Start Menu
 
 ## Basic Command
 
-`!` = `alt`
-`+` = `shift`
-`^` = `ctrl`
-e.g: `!+f1` = `alt + shift + ctrl + f1`
+`!` = `alt`  
+`+` = `shift`  
+`^` = `ctrl`  
+e.g. `!+^f1` = `alt + shift + ctrl + f1`
 
 ## Basic Scripting
 
