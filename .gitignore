@@ -3,6 +3,7 @@
 
 # Unignore nvim folder
 !/.config/
+!/AutoHotKey/
 /.config/**/
 !.config/nvim/
 !.config/nvim/*
