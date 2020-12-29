@@ -2,6 +2,7 @@
 colorscheme gruvbox
 
 
+" ----- REMOVE AUTO COMMENT -----
 augroup UnAutoComment
   autocmd!
   autocmd bufenter set formatoptions-=cro

@@ -1,8 +1,12 @@
 set colorcolumn=
 
+
+" ----- VARIABLE -----
 let $VIMBROWSER='!/mnt/c/Program\ Files\ \(x86\)/BraveSoftware/Brave-Browser/Application/brave.exe'
 let $OPENBROWSER='nnoremap <F5> :'. $VIMBROWSER .' file://wsl\%24/Ubuntu-20.04%:p<CR>'
 
+
+" ----- .md OPENER -----
 augroup OpenMdFile
   autocmd!
   autocmd BufEnter *md echom "Press F5 to Open .md File"
@@ -10,9 +14,8 @@ augroup OpenMdFile
   autocmd BufEnter *.md exe $OPENBROWSER
 augroup END
 
+
 " ----- VIM PLUG ----- 
 call plug#begin('~/vim/plugged')
 " ----- MARKDOWN PLUG -----
 call plug#end()
-
-let vim_markdown_preview_hotkey='<C-m>'

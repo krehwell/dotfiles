@@ -1,5 +1,12 @@
+" ----- COLORSCHEME -----
 let g:neotrix_dark_contrast = "retro"
 colorscheme neotrix
+
+
+" ----- ERROR HIGHLIGHTING -----
+" hi! CocErrorSign guifg=#d1666a
+" hi! CocInfoSign guibg=#353b45
+" hi! CocWarningSign guifg=#d1666a
 
 
 " ----- VIM PLUG ----- 
