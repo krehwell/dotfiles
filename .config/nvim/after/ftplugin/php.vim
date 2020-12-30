@@ -5,7 +5,7 @@ colorscheme gruvbox
 " ----- REMOVE AUTO COMMENT -----
 augroup UnAutoComment
   autocmd!
-  autocmd bufenter set formatoptions-=cro
+  autocmd bufenter *.php :set formatoptions=qctnj1
 augroup END
 
 
