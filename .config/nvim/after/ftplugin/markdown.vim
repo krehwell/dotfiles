@@ -9,7 +9,7 @@ let $OPENBROWSER='nnoremap <F5> :'. $VIMBROWSER .' file://wsl\%24/Ubuntu-20.04%:
 " ----- .md OPENER -----
 augroup OpenMdFile
   autocmd!
-  autocmd BufEnter *md echom "Press F5 to Open .md File"
+  autocmd BufEnter *.md echom "Press F5 to Open .md File"
   " Trying to make a keybind to open brave from here
   autocmd BufEnter *.md exe $OPENBROWSER
 augroup END
