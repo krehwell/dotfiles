@@ -80,8 +80,11 @@ Plug 'mbbill/undotree'
 " ----- COLORSCHEME PLUG -----
 Plug 'morhetz/gruvbox'
 Plug 'senran101604/neotrix.vim', {'branch': 'main'}
+Plug 'shaeinst/MonoAron'
 " Plug 'pineapplegiant/spaceduck'
 call plug#end()
+
+vnoremap <leader>c :OSCYank<CR>
 
 
 " ----- GIT -----
