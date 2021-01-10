@@ -17,6 +17,18 @@ augroup AutoCommetDisable
 augroup END
 
 
+" ----- TRIM ANY TRAILING WHITESPACES -----
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+
+augroup TrimWhitespaceOnSave
+    autocmd!
+    autocmd BufWritePre * :call TrimWhitespace()
+augroup END
+
 " ----- MY VAR ------
 nnoremap <localleader>i :vsplit $INIT<cr>
 let $INIT="$HOME/.config/nvim/init.vim"
@@ -51,7 +63,7 @@ set wildmenu                                                       " shows sugge
 set noshowmode
 set splitright
 set splitbelow
-autocmd ColorScheme * highlight! link SignColumn LineNr          
+autocmd ColorScheme * highlight! link SignColumn LineNr
 nnoremap <F3> :set invpaste paste?<CR>
 set pastetoggle=<F3>
 set showmode
@@ -70,7 +82,7 @@ set foldminlines=5
 set foldcolumn=0
 
 
-" ----- VIM PLUG ----- 
+" ----- VIM PLUG -----
 call plug#begin('~/vim/plugged')
 " -----
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -231,7 +243,7 @@ nnoremap <silent> <Leader>9 :resize +3<CR>
 nnoremap <Leader>n :noh<CR>
 
 " CONTROLLING VIM-TAB || C-CONTROL
-nnoremap <C-k> :tabprevious<CR>                                                      
+nnoremap <C-k> :tabprevious<CR>
 nnoremap <C-j> :tabnext<CR>
 
 " MAPPING EDITING
@@ -245,7 +257,7 @@ vnoremap w e
 
 " SESSION BUFFER CONTROLLER
 nnoremap <localleader>s :mksession! ~\vim_session<cr>
-nnoremap <localleader>o :source ~\vim_session<cr> 
+nnoremap <localleader>o :source ~\vim_session<cr>
 nnoremap <localleader>a ggVG
 
 iabbrev /* /*  */<esc>bhhi<del>
@@ -259,4 +271,4 @@ vnoremap <localleader>c :w! ~/.vimbufferz<CR>
 vnoremap <localleader>c :.w! ~/.vimbufferz<CR>
 nnoremap <localleader>v :r ~/.vimbufferz<CR>
 " copy line without linebreak
-nnoremap Y 0vg_y 
+nnoremap Y 0vg_y
