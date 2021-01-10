@@ -28,7 +28,7 @@ let $INIT="$HOME/.config/nvim/init.vim"
 set backspace=2
 set backspace=indent,eol,start
 set colorcolumn=80
-set hidden        " coc ask me to do this
+set hidden                                                         " coc ask me to do this
 set ignorecase
 set incsearch
 set laststatus=2
@@ -56,6 +56,20 @@ nnoremap <F3> :set invpaste paste?<CR>
 set pastetoggle=<F3>
 set showmode
 
+
+" ------ FOLDING ------
+" Folding
+set foldmethod=indent
+" Don't fold anything by default - I'll close the folds myself
+set foldlevel=99
+" Don't bother folding small blocks
+set foldminlines=5
+" Autoclose folds when moving out of them
+" set foldclose=all
+" Fold column
+set foldcolumn=0
+
+
 " ----- VIM PLUG ----- 
 call plug#begin('~/vim/plugged')
 " -----
@@ -70,21 +84,29 @@ Plug 'lambdalisue/fern-git-status.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'rbong/vim-flog'
-" ----- STATUS/HELPER/NAVIGATION PLUG -----
+" ----- STATUS/HELPER -----
 " Plug 'narajaon/onestatus'
 Plug 'itchyny/lightline.vim'
-Plug 'Yggdroot/indentLine'
-Plug 'mg979/vim-visual-multi'
 Plug 'lambdalisue/fern.vim'
 Plug 'mbbill/undotree'
+Plug 'alvan/vim-closetag'
+" ----- MOVEMENT/NAVIGATION PLUG -----
+Plug 'Yggdroot/indentLine'
+Plug 'mg979/vim-visual-multi'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
 " ----- COLORSCHEME PLUG -----
+Plug 'sheerun/vim-polyglot'
 Plug 'morhetz/gruvbox'
-Plug 'senran101604/neotrix.vim', {'branch': 'main'}
 Plug 'shaeinst/MonoAron'
-" Plug 'pineapplegiant/spaceduck'
+Plug 'pineapplegiant/spaceduck'
+Plug 'senran101604/neotrix.vim', {'branch': 'main'}
+Plug 'Matsuuu/pinkmare', {'branch': 'main'}
 call plug#end()
 
-vnoremap <leader>c :OSCYank<CR>
+
+" ----- CLOSE TAG -----
+let g:closetag_filenames = '*.js, *.jsx'
 
 
 " ----- GIT -----
@@ -195,7 +217,7 @@ let mapleader = " "
 let maplocalleader = "\\"
 
 
-" ----- SHORTCUT -----
+" ----- SHORTCUT BASIC -----
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
@@ -212,29 +234,20 @@ nnoremap <Leader>n :noh<CR>
 nnoremap <C-k> :tabprevious<CR>                                                      
 nnoremap <C-j> :tabnext<CR>
 
-" MAPPING MOVEMENT
+" MAPPING EDITING
 inoremap <M-;> <esc>v$<esc>`>a;<esc>`<a
 inoremap <c-b> <esc><right>dwi
-inoremap <c-u> <esc>vawUe
 inoremap <silent> jj <c-o>:call search('}\\|)\\|]\\|>\\|"', 'cW')<cr><Right>
-inoremap jk <esc>
 inoremap {<CR> {<CR>}<Esc>O<BS><Tab>
 nnoremap <M-j> ddp
 nnoremap <M-k> ddkP
-vnoremap " <esc>`>i"<esc>`<i"<esc>lv`>l<esc>l
-vnoremap ' <esc>`>i'<esc>`<i'<esc>lv`>l<esc>l
-vnoremap ( <esc>`>i)<esc>`<i(<esc>lv`>l<esc>l
-vnoremap ) <esc>`>i)<esc>`<i(<esc>lv`>l<esc>l
-vnoremap <leader>{ <esc>`>i}<esc>`<i{<esc>lv`>l<esc>l
-vnoremap [ <esc>`>i]<esc>`<i[<esc>lv`>l<esc>l
 vnoremap w e
 
 " SESSION BUFFER CONTROLLER
 nnoremap <localleader>s :mksession! ~\vim_session<cr>
 nnoremap <localleader>o :source ~\vim_session<cr> 
-
 nnoremap <localleader>a ggVG
-iabbrev <// </<C-X><C-O>
+
 iabbrev /* /*  */<esc>bhhi<del>
 
 " ----- BOILERPLATES -----
