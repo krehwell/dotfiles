@@ -9,7 +9,7 @@ let g:neotrix_dark_contrast = "retro"
 " hi! CocWarningSign guifg=#d1666a
 
 
-" ----- VIM PLUG ----- 
+" ----- VIM PLUG -----
 call plug#begin('~/vim/plugged')
 " ----- JAVACRIPT PLUG -----
 Plug 'pangloss/vim-javascript'

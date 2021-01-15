@@ -1,6 +1,5 @@
 {
   "coc.preferences.formatOnSaveFiletypes": ["css", "html"],
-  "prettier.printWidth": 80,
   "prettier.arrowParens": "always",
   "tsserver.npm": "/usr/bin/npm",
   "eslint.autoFixOnSave": false,
