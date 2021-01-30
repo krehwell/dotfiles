@@ -2,13 +2,6 @@ filetype plugin indent on
 syntax on
 
 
-" ========== Windows Area ==========
-" ----- WIN 10 SCREEN - BUF(at start) FIX -----
-set t_ut=""
-set t_md=
-set t_u7=
-
-
 " ----- NOAUTOCOMMENT TO ALL FILES -----
 augroup AutoCommetDisable
   autocmd!
@@ -51,15 +44,15 @@ set nobuflisted
 set nocompatible                                                   " should be good for vim to act normal
 set noswapfile                                                     " no swp file
 set nowrap
-set nu                                                             " number shows
+" set nu                                                             " number shows
+" set relativenumber
 set path+=**                                                       " dir path search
-set relativenumber
 " set signcolumn=yes:1
 set smartcase
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab autoindent smartindent       " own indenting
 set title
 set ttimeoutlen=0
-set updatetime=300
+set updatetime=100
 set undodir=~/.vim/undodir                                         " undotree dir
 set undofile                                                       " to be able to save history of undo tree
 set wildmenu                                                       " shows suggestion in tab :
@@ -70,6 +63,7 @@ autocmd ColorScheme * highlight! link SignColumn LineNr
 nnoremap <F3> :set invpaste paste?<CR>
 set pastetoggle=<F3>
 set showmode
+set scrolloff=5
 
 
 " ------ FOLDING ------
@@ -95,30 +89,30 @@ Plug 'junegunn/fzf.vim'
 Plug 'jremmen/vim-ripgrep'
 Plug 'ctrlpvim/ctrlp.vim'
 " ----- GIT PLUG -----
-Plug 'lambdalisue/fern-git-status.vim'
 Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
+" Plug 'airblade/vim-gitgutter'
 Plug 'rbong/vim-flog'
 " ----- STATUS/HELPER -----
 " Plug 'narajaon/onestatus'
 Plug 'itchyny/lightline.vim'
-Plug 'lambdalisue/fern.vim'
 Plug 'mbbill/undotree'
-Plug 'alvan/vim-closetag'
+" ----- DIR TREE -----
+" Plug 'lambdalisue/fern-git-status.vim'
+Plug 'lambdalisue/fern.vim'
+Plug 'ryanoasis/vim-devicons'
+Plug 'lambdalisue/fern-renderer-devicons.vim'
+Plug 'lambdalisue/fern-hijack.vim'
 " ----- MOVEMENT/NAVIGATION PLUG -----
-Plug 'Yggdroot/indentLine'
+" Plug 'Yggdroot/indentLine'
 Plug 'mg979/vim-visual-multi'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+Plug 'alvan/vim-closetag'
 " ----- COLORSCHEME PLUG -----
 Plug 'sheerun/vim-polyglot'
 Plug 'morhetz/gruvbox'
-Plug 'shaeinst/MonoAron'
-Plug 'pineapplegiant/spaceduck'
 Plug 'senran101604/neotrix.vim', {'branch': 'main'}
-Plug 'Matsuuu/pinkmare', {'branch': 'main'}
-Plug 'arthurealike/vim-J'
-Plug 'antoinemadec/FixCursorHold.nvim'
+Plug 'ayu-theme/ayu-vim'
 call plug#end()
 
 
@@ -126,16 +120,18 @@ call plug#end()
 let g:cursorhold_updatetime = 100
 
 
-" ----- GIT -----
-let g:gitgutter_map_keys=0                                         " prevent default key binding
-set diffopt+=vertical
-nmap [c <Plug>(GitGutterPrevHunk)
-nmap ]c <Plug>(GitGutterNextHunk)
-nnoremap gs :Gstatus<CR>
+" ----- LET CLOSETAG ON REACT FILE -----
+let g:closetag_filenames = '*.js, *.jsx, *.tsx'
+" ----- `<Link>` will be closed while `<link>` won't -----
+let g:closetag_emptyTags_caseSensitive = 1
 
 
 " ----- LIGHTLINE SETTTINGS -----
 " let g:lightline = {'colorscheme': ''}
+
+
+" ----- FERN CONFIG -----
+let g:fern#renderer = "devicons"
 
 
 " ----- THEME SETUP -----
@@ -143,6 +139,7 @@ nnoremap gs :Gstatus<CR>
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_bold= '0'
 set background=dark
+" let ayucolor="mirage"
 set termguicolors
 colorscheme gruvbox
 
@@ -157,7 +154,7 @@ nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
-nnoremap <leader>u :UndotreeToggle<CR>
+nnoremap <leader>u :UndotreeToggle<CR>:UndotreeFocus<CR>
 nnoremap <silent> <Leader>pv :Fern . -drawer -reveal=% -width=27 -toggle<CR>
 nnoremap <silent> <Leader>- :vertical resize -10<CR>
 nnoremap <silent> <Leader>= :vertical resize +10<CR>
@@ -183,11 +180,14 @@ nnoremap <localleader>s :mksession! ~\vim_session<cr>
 nnoremap <localleader>o :source ~\vim_session<cr>
 nnoremap <localleader>a ggVG
 
+" CD TO CURRENT BUFFER's DIR | lcd -> for cding the current buffer only to the current dir
+nnoremap <localleader>cd :cd %:p:h
+nnoremap <localleader>lcd :lcd %:p:h
+
 iabbrev /* /*  */<esc>bhhi<del>
 
 " ----- BOILERPLATES -----
 nnoremap <leader>,html :-1read $HOME/boilerplates/skeleton.html<CR>3j2wf>a
-" nnoremap ,com :-1read $HOME/templates/.comment.js<CR>2wa
 
 " GLOBAL BUFFER COPY/PASTE
 vnoremap <localleader>c :w! ~/.vimbufferz<CR>
