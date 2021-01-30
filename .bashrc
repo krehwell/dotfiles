@@ -18,16 +18,23 @@ export LD_LIBRARY_PATH="$(echo "$LD_LIBRARY_PATH" | python -c "import sys; path 
 export PATH=$PATH:/mnt/c/Windows/System32
 alias sex='/mnt/c/Windows/explorer.exe .'
 alias code='/mnt/c/Users/kel/AppData/Local/Programs/Microsoft\ VS\ Code/bin/code'
+alias cmd=cmd.exe
 
 # END WINDOWS AREA ==============
 
 
 # ----- BEHAVIOUR -----
 bind '"\t":menu-complete'
+bind '"\t":menu-complete'
 alias :q='exit'
-export TERM=xterm-256color 
+export TERM=xterm-256color
 alias vim=nvim
 alias ls='ls --color'
+
+
+# ----- COMPLETION ON CERTAIN FILE FORMAT -----
+complete -f -X '!*.@(ts)' tsc
+complete -f -X '!*.@(js)' node
 
 
 # ----- FUZZY SEARCH -----
@@ -47,8 +54,28 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 
+# COWSAY
+# RUN ALL POSSIBLE COWSAY AVATAR
+# fortune | cowsay -f `ls -1 /usr/share/cowsay/cows/ | sort -R | head -1` -n
+
+# ONLY ANIMAL
+cows[1]=bud-frogs
+cows[2]=tux
+cows[3]=moose
+cows[4]=tux
+cows[5]=www
+cows[6]=default
+
+declare -i MAX=${#cows[@]}
+if [ ! $MAX -gt 0 ]; then
+  MAX=6
+fi
+
+cowsay -f ${cows[$[ ( $RANDOM % $MAX )  + 1 ]]} `fortune`
+
+
 # ----- KEL FINISH ADD HERE -----
-# ----- REFER PS1 BELOW FOR ONE KEL CONFIG -----
+# ----- REFER BELOW FOR KEL PS1 CONFIG -----
 
 
 # don't put duplicate lines or lines starting with space in the history.
