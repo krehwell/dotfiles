@@ -1,12 +1,20 @@
 {
   "coc.preferences.formatOnSaveFiletypes": ["css", "html"],
-  "prettier.arrowParens": "always",
-  "tsserver.npm": "/usr/bin/npm",
-  "eslint.autoFixOnSave": false,
+  "pairs.enableCharacters": ["(", "[", "{", "<", "\"", "'", "`"],
   "diagnostic.checkCurrentLine": true,
-  "eslint.enable": false,
-  "eslint.nodePath": "/usr/local/lib/node_modules/",
+  "diagnostic.warningSign": ">>",
+  "prettier.arrowParens": "always",
+  "prettier.jsxBracketSameLine": true,
+
+  "javascript.suggestionActions.enabled": false,
+
   "npm.binPath": "~/.nvm/versions/node/v12.18.2/bin/npm",
+  "tsserver.npm": "/usr/bin/npm",
+  "tsserver.reportStyleChecksAsWarnings": true,
+
+  "eslint.enable": false,
+  "eslint.autoFixOnSave": false,
+  "eslint.nodePath": "/usr/local/lib/node_modules/",
   "eslint.filetypes": [
     "javascript",
     "typescript",
@@ -18,9 +26,5 @@
       "browser": true,
       "node": true
     }
-  },
-  "tsserver.reportStyleChecksAsWarnings": true,
-  "pairs.enableCharacters": ["(", "[", "{", "<", "\"", "'"],
-  "diagnostic.warningSign": ">>",
-  "javascript.suggestionActions.enabled": false
+  }
 }
