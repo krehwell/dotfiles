@@ -26,6 +26,7 @@ alias cmd=cmd.exe
 # ----- BEHAVIOUR -----
 bind '"\t":menu-complete'
 bind '"\t":menu-complete'
+bind 'set completion-ignore-case on'
 alias :q='exit'
 export TERM=xterm-256color
 alias vim=nvim
