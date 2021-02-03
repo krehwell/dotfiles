@@ -3,8 +3,11 @@
   "pairs.enableCharacters": ["(", "[", "{", "<", "\"", "'", "`"],
   "diagnostic.checkCurrentLine": true,
   "diagnostic.warningSign": ">>",
+
   "prettier.arrowParens": "always",
   "prettier.jsxBracketSameLine": true,
+  "prettier.printWidth": 120,
+  "prettier.bracketSpacing": true,
 
   "javascript.suggestionActions.enabled": false,
 

@@ -32,6 +32,12 @@ export TERM=xterm-256color
 alias vim=nvim
 alias ls='ls --color'
 
+mkcdir ()
+{
+    mkdir -p -- "$1" &&
+      cd -P -- "$1"
+}
+
 
 # ----- COMPLETION ON CERTAIN FILE FORMAT -----
 complete -f -X '!*.@(ts)' tsc
