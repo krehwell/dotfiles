@@ -49,7 +49,7 @@ set nowrap
 set path+=**                                                       " dir path search
 " set signcolumn=yes:1
 set smartcase
-set tabstop=2 softtabstop=2 shiftwidth=2 expandtab autoindent smartindent       " own indenting
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab autoindent smartindent       " own indenting
 set title
 set ttimeoutlen=0
 set updatetime=100

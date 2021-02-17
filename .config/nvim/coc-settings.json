@@ -6,8 +6,9 @@
 
   "prettier.arrowParens": "always",
   "prettier.jsxBracketSameLine": true,
-  "prettier.printWidth": 120,
+  "prettier.printWidth": 80,
   "prettier.bracketSpacing": true,
+  "prettier.tabWidth": 4,
 
   "javascript.suggestionActions.enabled": false,
 
