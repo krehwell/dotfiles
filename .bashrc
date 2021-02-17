@@ -49,7 +49,7 @@ complete -f -X '!*.@(js)' node
 if type ag &> /dev/null; then
       export FZF_DEFAULT_COMMAND='ag -p ~/node_modules -g ""'
 fi
-#refer rg over ag
+# prefer rg over ag
 if type rg &> /dev/null; then
       export FZF_DEFAULT_COMMAND='rg --files --hidden'
 fi
@@ -79,6 +79,10 @@ if [ ! $MAX -gt 0 ]; then
 fi
 
 cowsay -f ${cows[$[ ( $RANDOM % $MAX )  + 1 ]]} `fortune`
+
+
+# ----- CRYPTO RATE -----
+coinmon -f btc,bch
 
 
 # ----- KEL FINISH ADD HERE -----
