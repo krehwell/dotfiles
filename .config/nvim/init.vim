@@ -23,6 +23,13 @@ augroup TrimWhitespaceOnSave
 augroup END
 
 
+" ----- CONVERT 4 SPACES TO 2 SPACES -----
+fun! Four2Two() range
+  '<,'>s;^\(\s\+\);\=repeat(' ', len(submatch(0))/2);g
+  norm!gv
+endfun
+
+
 " ----- MY VAR ------
 nnoremap <localleader>i :vsplit $INIT<cr>
 let $INIT="$HOME/.config/nvim/init.vim"
