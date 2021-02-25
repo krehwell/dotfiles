@@ -25,8 +25,12 @@ augroup END
 
 " ----- CONVERT 4 SPACES TO 2 SPACES -----
 fun! Four2Two() range
-  '<,'>s;^\(\s\+\);\=repeat(' ', len(submatch(0))/2);g
-  norm!gv
+    set expandtab
+    set shiftwidth=4
+    retab
+    '<,'>normal! ==
+    '<,'>s;^\(\s\+\);\=repeat(' ', len(submatch(0))/2);g
+    norm!gv
 endfun
 
 
@@ -44,7 +48,9 @@ set colorcolumn=80
 set hidden                                                         " coc ask me to do this
 set ignorecase
 set incsearch
-set laststatus=2
+if exists('$TMUX')
+    set laststatus=0
+endif
 set nobackup                                                       " no backup file
 set nowritebackup
 set nobuflisted
@@ -103,6 +109,7 @@ Plug 'rbong/vim-flog'
 " Plug 'narajaon/onestatus'
 Plug 'itchyny/lightline.vim'
 Plug 'mbbill/undotree'
+Plug 'vimpostor/vim-tpipeline'
 " ----- DIR TREE -----
 " Plug 'lambdalisue/fern-git-status.vim'
 Plug 'lambdalisue/fern.vim'
@@ -134,7 +141,19 @@ let g:closetag_emptyTags_caseSensitive = 1
 
 
 " ----- LIGHTLINE SETTTINGS -----
-" let g:lightline = {'colorscheme': ''}
+" let g:lightline = {'colorscheme': 'argonaut'}
+" 'right': [ [ 'lineinfo' ], ['percent'], ['filetype']]
+let g:lightline = {
+      \ 'colorscheme': 'gruvbox',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
+      \   'right': [['filetype']]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'FugitiveHead'
+      \ }
+      \ }
 
 
 " ----- FERN CONFIG -----
