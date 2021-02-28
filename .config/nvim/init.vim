@@ -57,7 +57,7 @@ set nobuflisted
 set nocompatible                                                   " should be good for vim to act normal
 set noswapfile                                                     " no swp file
 set nowrap
-" set nu                                                             " number shows
+set nu                                                             " number shows
 " set relativenumber
 set path+=**                                                       " dir path search
 " set signcolumn=yes:1
@@ -158,6 +158,10 @@ let g:lightline = {
 
 " ----- FERN CONFIG -----
 let g:fern#renderer = "devicons"
+augroup fern-custom
+  autocmd! *
+  autocmd FileType fern setlocal nonu
+augroup END
 
 
 " ----- THEME SETUP -----
