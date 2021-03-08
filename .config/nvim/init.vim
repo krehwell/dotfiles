@@ -147,8 +147,8 @@ let g:lightline = {
       \ 'colorscheme': 'gruvbox',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
-      \   'right': [['filetype']]
+      \             [ 'gitbranch', 'filename', 'modified' ] ],
+      \   'right': []
       \ },
       \ 'component_function': {
       \   'gitbranch': 'FugitiveHead'
