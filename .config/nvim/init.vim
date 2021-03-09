@@ -219,6 +219,14 @@ iabbrev /* /*  */<esc>bhhi<del>
 " ----- BOILERPLATES -----
 nnoremap <leader>,html :-1read $HOME/boilerplates/skeleton.html<CR>3j2wf>a
 
+" ----- LINE HIGHLIGHT -----
+" define line highlight color
+highlight LineHighlight ctermbg=darkgray guibg=black
+" highlight the current line
+nnoremap <silent> <localleader>h :call matchadd('LineHighlight', '\%'.line('.').'l')<CR>
+" clear all the highlighted lines
+nnoremap <silent> <localleader>H :call clearmatches()<CR>
+
 " GLOBAL BUFFER COPY/PASTE
 vnoremap <localleader>c :w! ~/.vimbufferz<CR>
 vnoremap <localleader>c :.w! ~/.vimbufferz<CR>
