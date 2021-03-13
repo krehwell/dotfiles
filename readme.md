@@ -23,6 +23,7 @@ some of needed command to have
 - `ln -s <command>` : allowing shortcut to go to some dir or file
 - `Ag & Rg` : fuzzy search (install using `apt-get install`)
 - `git <command>` : git of course
+- `git config --global core.autocrlf true` : to ignore detecting endline type between windows and linux
 
 #### 2. `.bashrc`
 
