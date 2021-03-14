@@ -5,12 +5,19 @@
 !/.config/
 !/AutoHotKey/
 /.config/**/
+/.config/*
 !.config/nvim/
 !.config/nvim/*
 /.config/nvim/colors/
 /.config/nvim/.netrwhist
 !.config/nvim/after/*
 !.config/nvim/after/ftplugin/
+
+# Unignore nvim folder | i3 region
+!.config/i3/
+!.config/i3status/
+!.config/alacritty/
+!.config/fontconfig/
 
 !/boilerplates/
 
