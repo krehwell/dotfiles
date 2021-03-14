@@ -16,7 +16,7 @@ export PATH="$(echo "$PATH" | python -c "import sys; path = sys.stdin.read().spl
 export LD_LIBRARY_PATH="$(echo "$LD_LIBRARY_PATH" | python -c "import sys; path = sys.stdin.read().split(':'); path = [pp for pp in path if '/mnt/c' not in pp]; print(':'.join(path))")"
 
 export PATH=$PATH:/mnt/c/Windows/System32
-alias sex='/mnt/c/Windows/explorer.exe .'
+alias sex='nautilus . &'
 alias code='/mnt/c/Users/kel/AppData/Local/Programs/Microsoft\ VS\ Code/bin/code'
 alias cmd=cmd.exe
 

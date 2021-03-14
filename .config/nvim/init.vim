@@ -30,7 +30,8 @@ fun! Four2Two() range
     retab
     '<,'>normal! ==
     '<,'>s;^\(\s\+\);\=repeat(' ', len(submatch(0))/2);g
-    norm!gv
+    set shiftwidth=4
+    norm!gv>
 endfun
 
 
@@ -111,7 +112,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'mbbill/undotree'
 Plug 'vimpostor/vim-tpipeline'
 " ----- DIR TREE -----
-" Plug 'lambdalisue/fern-git-status.vim'
+Plug 'lambdalisue/fern-git-status.vim'
 Plug 'lambdalisue/fern.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'lambdalisue/fern-renderer-devicons.vim'
