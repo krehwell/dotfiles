@@ -37,7 +37,7 @@ endfun
 
 " ----- MY VAR ------
 nnoremap <localleader>i :vsplit $INIT<cr>
-let $INIT="$HOME/.config/nvim/init.vim"
+let $init="$HOME/.config/nvim/init.vim"
 
 
 " ----- ALL SETs -----
@@ -111,6 +111,7 @@ Plug 'rbong/vim-flog'
 Plug 'itchyny/lightline.vim'
 Plug 'mbbill/undotree'
 Plug 'vimpostor/vim-tpipeline'
+Plug 'ojroques/vim-oscyank'
 " ----- DIR TREE -----
 Plug 'lambdalisue/fern-git-status.vim'
 Plug 'lambdalisue/fern.vim'
@@ -178,6 +179,11 @@ colorscheme gruvbox
 " ----- LEADER KEY -----
 let mapleader = " "
 let maplocalleader = "\\"
+
+
+" ----- OSCYANK CONFIG -----
+vnoremap <leader>y :OSCYank<CR>
+vnoremap <leader>c :OSCYank<CR>
 
 
 " ----- SHORTCUT BASIC -----
