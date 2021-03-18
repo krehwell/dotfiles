@@ -1,0 +1,68 @@
+configuration {
+  display-drun: "";
+  display-window: "";
+  display-windowcd: "";
+  display-ssh: "";
+  show-icons: true;
+  drun-display-format: "{icon} {name} {comment}";
+}
+
+* {
+  font: "NotoMono Nerd Font 12";
+  background-color: #3b4252;
+  border-color: #3b4252;
+  text-color: #d8dee9;
+  width: 680px;
+  height: 465px;
+  location: 0;
+  spacing: 0;
+}
+
+inputbar {
+  border: 0 0 1px 0;
+  children: [prompt,entry];
+}
+
+prompt {
+  padding: 0px 13px 0px 13px;
+  border: 0 1px 0 0;
+  vertical-align: 0.5;
+}
+
+textbox {
+  background-color: #3b4252;
+  border: 0 0 1px 0;
+  border-color: #3b4252;
+  padding: 8px 13px;
+
+}
+
+entry {
+  padding: 13px;
+}
+
+listview {
+  cycle: false;
+  margin: 0 0 -1px 0;
+  scrollbar: false;
+}
+
+element {
+  border: 0 0 1px 0;
+  padding: 4px;
+}
+
+element-text {
+  expand: true;
+  vertical-align: 0.5;
+  padding: 0px 13px;
+}
+
+element selected {
+  background-color: #5e81ac;
+}
+
+element-icon {
+    size: 30px;
+    border: 0px;
+}

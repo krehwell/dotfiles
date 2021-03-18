@@ -13,7 +13,8 @@
 !.config/nvim/after/*
 !.config/nvim/after/ftplugin/
 
-# Unignore nvim folder | i3 region
+# Unignore folder | i3 region
+!.config/*
 !.config/i3/
 !.config/i3status/
 !.config/alacritty/
