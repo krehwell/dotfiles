@@ -31,6 +31,7 @@ alias :q='exit'
 export TERM=xterm-256color
 alias vim=nvim
 alias ls='ls --color'
+alias pacman='sudo pacman'
 
 mkcdir ()
 {

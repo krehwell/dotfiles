@@ -2,7 +2,7 @@
 /*
 
 # Unignore nvim folder
-!/.config/
+# !/.config/
 !/AutoHotKey/
 /.config/**/
 /.config/*
@@ -18,6 +18,8 @@
 !.config/i3status/
 !.config/alacritty/
 !.config/fontconfig/
+!.config/rofi/
+!.config/polybar/
 
 !/boilerplates/
 
