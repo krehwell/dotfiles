@@ -139,13 +139,9 @@ interface = wlp3s0
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
-;label-connected = %essid%
-label-connected = %{A1:nm-connection-editor:}%essid%%{A}
 
-format-disconnected =
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
+label-connected = %{A1:gnome-control-center wifi &:}%essid%%{A}
+label-disconnected = %{A1:gnome-control-center wifi &:}no-wifi%{A}
 
 ramp-signal-0 = 睊
 ramp-signal-1 = 
@@ -162,10 +158,7 @@ format-connected-underline = #55aa55
 format-connected-prefix = "  "
 label-connected = %local_ip%
 
-format-disconnected =
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
+format-disconnected = no-connection(eth)
 
 [module/date]
 type = custom/script

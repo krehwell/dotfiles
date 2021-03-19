@@ -37,7 +37,7 @@ endfun
 
 " ----- MY VAR ------
 nnoremap <localleader>i :vsplit $INIT<cr>
-let $init="$HOME/.config/nvim/init.vim"
+let $INIT="~/.config/nvim/init.vim"
 
 
 " ----- ALL SETs -----
@@ -159,6 +159,7 @@ let g:lightline = {
 
 
 " ----- FERN CONFIG -----
+let g:fern_renderer_devicons_disable_warning = 1
 let g:fern#renderer = "devicons"
 augroup fern-custom
   autocmd! *
