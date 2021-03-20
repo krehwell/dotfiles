@@ -13,6 +13,9 @@ augroup END
 " ----- TRIM ANY TRAILING WHITESPACES -----
 fun! TrimWhitespace()
     let l:save = winsaveview()
+    if &ft =~ 'txt\|markdown'
+        return
+    endif
     keeppatterns %s/\s\+$//e
     call winrestview(l:save)
 endfun
