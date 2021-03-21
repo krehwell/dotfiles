@@ -5,7 +5,7 @@ Guide from myself, for myself, to myself in development using i3 and Arch Linux
 ## Main Tools
 
 - [Bash](https://github.com/krehwell/dotfiles/#Bash): un-zsh guy `.bashrc | .profile | .screenrc`
-- Vim(neovim): lit editor `init.vim | .config/*`
+- Vim(neovim): lit editor `init.vim`
 - Coc: language server `coc-settings.json`
 - Tmux: terminal multiplexer `.tmux.conf | Onestatus(vim plugin)`
 - Alacritty: a sexy terminal
@@ -30,7 +30,7 @@ some of needed command to have
 ```
 alias vim=nvim :                            # alias nvim to vim
 alias ls='ls --color'                       # alias `ls` to have color
-alias sex='nautilus .'   # alias open explorer windows in current pwd
+alias sex='nautilus .'                      # alias open file manager
 alias :q='exit'                             # alias `:q` to exit terminal just like vim (this is faster)
 ```
 
