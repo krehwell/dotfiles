@@ -36,7 +36,7 @@ alias :q='exit'                             # alias `:q` to exit terminal just l
 
 #### 3. `.profile`
 
-- nothing to see here I guess
+- nothing to see here I guess.
 
 #### 4. `.screenrc`
 
@@ -44,7 +44,7 @@ alias :q='exit'                             # alias `:q` to exit terminal just l
 
 #### 5. `.tmux.conf`
 
-- a better terminal multiplexer. the only plugin used is [tmux-resurrect](https://github.com/tmux-plugins/tmux-resurrect)
+- a better terminal multiplexer. the only plugin used is [tmux-resurrect](https://github.com/tmux-plugins/tmux-resurrect).
 
 #### 6. `boilerplates/`
 
@@ -52,4 +52,4 @@ alias :q='exit'                             # alias `:q` to exit terminal just l
 
 #### 7. `.config/`
 
-- this is where all the modification to each UI and UX for the system
+- this is where all the modification to each UI and UX for the system.
