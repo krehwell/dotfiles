@@ -1,6 +1,6 @@
-# WSL Development Environment
+# i3 Development Environment
 
-Guide from myself, for myself, to myself in development using Windows subsystem for Linux
+Guide from myself, for myself, to myself in development using i3 and Arch Linux
 
 ## Main Tools
 
@@ -8,8 +8,7 @@ Guide from myself, for myself, to myself in development using Windows subsystem 
 - Vim(neovim): lit editor `init.vim | .config/*`
 - Coc: language server `coc-settings.json`
 - Tmux: terminal multiplexer `.tmux.conf | Onestatus(vim plugin)`
-- Wsltty: the slut of wsl [wsltty download](https://github.com/mintty/wsltty) | currently I am back to wsl default terminal
-- AutoHotKey: windows scripting [ahk donwload](https://www.autohotkey.com/)
+- Alacritty: a sexy terminal
 - Consolas NF: the one ungay powerline font
 
 ### Bash
@@ -21,7 +20,7 @@ important setup:
 some of needed command to have
 
 - `ln -s <command>` : allowing shortcut to go to some dir or file
-- `Ag & Rg` : fuzzy search (install using `apt-get install`)
+- `Ag & Rg` : fuzzy search (install using `aur`)
 - `git <command>` : git of course
 
 #### 2. `.bashrc`
@@ -31,16 +30,8 @@ some of needed command to have
 ```
 alias vim=nvim :                            # alias nvim to vim
 alias ls='ls --color'                       # alias `ls` to have color
-alias sex='/mnt/c/Windows/explorer.exe .'   # alias open explorer windows in current pwd
-alias code='/mnt/c/Users/kel/AppData/Local/Programs/Microsoft\ VS\ Code/bin/code'     # alias open vscode in current pws
+alias sex='nautilus .'   # alias open explorer windows in current pwd
 alias :q='exit'                             # alias `:q` to exit terminal just like vim (this is faster)
-```
-
-- allowing `explorer.exe` && `Vscode to integrate`
-
-```
-export PATH="$(echo "$PATH" | python -c "import sys; path = sys.stdin.read().split(':'); path = [pp for pp in path if '/mnt/c' not in pp]; print(':'.join(path))")"`
-export LD_LIBRARY_PATH="$(echo "$LD_LIBRARY_PATH" | python -c "import sys; path = sys.stdin.read().split(':'); path = [pp for pp in path if '/mnt/c' not in pp]; print(':'.join(path))")"
 ```
 
 #### 3. `.profile`
@@ -53,8 +44,12 @@ export LD_LIBRARY_PATH="$(echo "$LD_LIBRARY_PATH" | python -c "import sys; path 
 
 #### 5. `.tmux.conf`
 
-- I am following geohotz tmux configuration here
+- a better terminal multiplexer. the only plugin used is [tmux-resurrect](https://github.com/tmux-plugins/tmux-resurrect)
 
 #### 6. `boilerplates/`
 
 - this is where all my boilerplates are, remap key binding in vim to access it later to get started with it. see my `init.vim` configuration (at the end section).
+
+#### 7. `.config/`
+
+- this is where all the modification to each UI and UX for the system

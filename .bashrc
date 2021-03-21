@@ -10,25 +10,17 @@ esac
 
 #----- " KEL ADD HERE " -----
 
-# WINDOWS AREA ==============
-
 export PATH="$(echo "$PATH" | python -c "import sys; path = sys.stdin.read().split(':'); path = [pp for pp in path if '/mnt/c' not in pp]; print(':'.join(path))")"
 export LD_LIBRARY_PATH="$(echo "$LD_LIBRARY_PATH" | python -c "import sys; path = sys.stdin.read().split(':'); path = [pp for pp in path if '/mnt/c' not in pp]; print(':'.join(path))")"
-
-export PATH=$PATH:/mnt/c/Windows/System32
-alias sex='nautilus . &'
-alias code='/mnt/c/Users/kel/AppData/Local/Programs/Microsoft\ VS\ Code/bin/code'
-alias cmd=cmd.exe
-
-# END WINDOWS AREA ==============
-
 
 # ----- BEHAVIOUR -----
 bind '"\t":menu-complete'
 bind '"\t":menu-complete'
 bind 'set completion-ignore-case on'
-alias :q='exit'
 export TERM=xterm-256color
+alias :q='exit'
+alias sex='nautilus . &'
+alias cmd=cmd.exe
 alias vim=nvim
 alias ls='ls --color'
 alias pacman='sudo pacman'
