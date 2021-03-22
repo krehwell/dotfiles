@@ -106,7 +106,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'jremmen/vim-ripgrep'
 Plug 'ctrlpvim/ctrlp.vim'
 " ----- GIT PLUG -----
-" Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 " Plug 'airblade/vim-gitgutter'
 Plug 'rbong/vim-flog'
 " ----- STATUS/HELPER -----
@@ -211,6 +211,7 @@ nnoremap <C-j> :tabnext<CR>
 inoremap <M-;> <esc>v$<esc>`>a;<esc>`<a
 inoremap <c-b> <esc><right>dwi
 inoremap <silent> jj <c-o>:call search('}\\|)\\|]\\|>\\|"', 'cW')<cr><Right>
+nnoremap <leader>sr :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
 inoremap {<CR> {<CR>}<Esc>O<BS><Tab>
 nnoremap <M-j> ddp
 nnoremap <M-k> ddkP
@@ -222,8 +223,8 @@ nnoremap <localleader>o :source ~\vim_session<cr>
 nnoremap <localleader>a ggVG
 
 " CD TO CURRENT BUFFER's DIR | lcd -> for cding the current buffer only to the current dir
-nnoremap <localleader>cd :cd %:p:h
-nnoremap <localleader>lcd :lcd %:p:h
+nnoremap <localleader>cd :cd %:p:h<CR>
+nnoremap <localleader>lcd :lcd %:p:h<CR>
 
 iabbrev /* /*  */<esc>bhhi<del>
 
