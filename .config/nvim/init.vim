@@ -46,6 +46,8 @@ let $INIT="~/.config/nvim/init.vim"
 " ----- ALL SETs -----
 " set cursorlineopt=number
 " set autochdir                                                    " set the curr dir to opened buf
+set exrc
+" set secure
 set backspace=2
 set backspace=indent,eol,start
 set colorcolumn=80

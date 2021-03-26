@@ -41,7 +41,7 @@ font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
 
 modules-left = filesystem cpu memory xkeyboard wifi
-modules-right = my-text-label pulseaudio calendar power
+modules-right = arch pulseaudio calendar power
 modules-center = i3
 
 [module/xwindow]
@@ -68,7 +68,7 @@ mount-0 = /
 label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
 label-unmounted = %mountpoint% not mounted
 
-[module/my-text-label]
+[module/arch]
 type = custom/text
 content = Arch Linux
 ; 
