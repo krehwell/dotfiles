@@ -199,6 +199,8 @@ nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
 nnoremap <leader>u :UndotreeToggle<CR>:UndotreeFocus<CR>
 nnoremap <silent> <Leader>pv :Fern . -drawer -reveal=% -width=27 -toggle<CR>
+" reindexing node tree on current file buffer
+nnoremap <silent> <Leader>pp :Fern . -drawer -reveal=% -width=27 -toggle<CR>:Fern . -drawer -reveal=% -width=27 -toggle<CR><C-w>l
 nnoremap <silent> <Leader>- :vertical resize -10<CR>
 nnoremap <silent> <Leader>= :vertical resize +10<CR>
 nnoremap <silent> <Leader>0 :resize -3<CR>
