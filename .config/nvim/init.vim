@@ -98,6 +98,10 @@ set foldminlines=5
 set foldcolumn=0
 
 
+" ----- POLYGOT CONFIG -----
+let g:polyglot_disabled = ['autoindent']
+
+
 " ----- VIM PLUG -----
 call plug#begin('~/vim/plugged')
 " -----
@@ -138,7 +142,7 @@ call plug#end()
 
 
 " ----- FIX CURSOR HOLD ----
-let g:cursorhold_updatetime = 100
+" let g:cursorhold_updatetime = 100
 
 
 " ----- LET CLOSETAG ON REACT FILE -----
