@@ -71,7 +71,7 @@ set smartcase
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab autoindent smartindent       " own indenting
 set title
 set ttimeoutlen=0
-set updatetime=100
+set updatetime=10
 set undodir=~/.vim/undodir                                         " undotree dir
 set undofile                                                       " to be able to save history of undo tree
 set wildmenu                                                       " shows suggestion in tab :
@@ -83,6 +83,7 @@ nnoremap <F3> :set invpaste paste?<CR>
 set pastetoggle=<F3>
 set showmode
 set scrolloff=5
+set shortmess+=F
 
 
 " ------ FOLDING ------
@@ -142,7 +143,7 @@ call plug#end()
 
 
 " ----- FIX CURSOR HOLD ----
-" let g:cursorhold_updatetime = 100
+let g:cursorhold_updatetime = 10
 
 
 " ----- LET CLOSETAG ON REACT FILE -----
