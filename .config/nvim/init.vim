@@ -134,6 +134,7 @@ Plug 'mg979/vim-visual-multi'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'alvan/vim-closetag'
+Plug 'wfxr/minimap.vim'
 " ----- COLORSCHEME PLUG -----
 Plug 'sheerun/vim-polyglot'
 Plug 'morhetz/gruvbox'
@@ -144,6 +145,11 @@ call plug#end()
 
 " ----- FIX CURSOR HOLD ----
 let g:cursorhold_updatetime = 10
+
+
+" ----- MINIMAP -----
+nnoremap <silent><Leader>m :MinimapToggle<CR>
+let g:minimap_width=10
 
 
 " ----- LET CLOSETAG ON REACT FILE -----

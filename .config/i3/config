@@ -149,11 +149,6 @@ bindsym $mod+v split v
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+t layout tabbed
-bindsym $mod+Shift+s layout toggle split
-
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 # change focus between tiling / floating windows
@@ -164,6 +159,16 @@ bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
+
+# ----- KEL TAB -----
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+t layout tabbed
+bindsym $mod+Shift+s layout toggle split
+
+force_focus_wrapping yes
+bindsym $mod+Tab exec i3-switch-tabs right
+bindsym $mod+Shift+Tab exec i3-switch-tabs left
 
 
 # ----- KEL i3 WINDOW MANAGEMENT -----
