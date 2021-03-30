@@ -232,32 +232,26 @@ label-separator = "  "
 label-open-padding = 1
 label-close-padding = 1
 
-menu-0-0 = poweroff
-menu-0-0-exec = menu-open-1
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-2
 menu-1-0 = confirm
-menu-1-0-exec = poweroff &
+menu-1-0-exec = reboot &
 menu-1-1 = cancel
 menu-1-1-exec = menu-open-0
 
-menu-0-1 = reboot
-menu-0-1-exec = menu-open-2
+menu-0-1 = poweroff
+menu-0-1-exec = menu-open-1
 menu-2-0 = confirm
-menu-2-0-exec = reboot &
+menu-2-0-exec = poweroff &
 menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
 
-menu-0-2 = lock
-menu-0-2-exec = xflock4
-
-menu-0-3 = logout
-menu-0-3-exec = menu-open-3
+menu-0-2 = logout
+menu-0-2-exec = menu-open-3
 menu-3-0 = logout
 menu-3-0-exec = i3-msg exit
 menu-3-1 = cancel
 menu-3-1-exec = menu-open-0
-
-menu-0-4 = switch user
-menu-0-4-exec = dm-tool switch-to-greeter
 
 [settings]
 screenchange-reload = true
