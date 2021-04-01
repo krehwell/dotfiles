@@ -114,7 +114,7 @@ Plug 'jremmen/vim-ripgrep'
 Plug 'ctrlpvim/ctrlp.vim'
 " ----- GIT PLUG -----
 Plug 'tpope/vim-fugitive'
-" Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
 Plug 'rbong/vim-flog'
 " ----- STATUS/HELPER -----
 " Plug 'narajaon/onestatus'
@@ -190,6 +190,7 @@ let g:gruvbox_bold= '0'
 set background=dark
 " let ayucolor="mirage"
 set termguicolors
+let g:gitgutter_override_sign_column_highlight=1
 colorscheme gruvbox
 
 
