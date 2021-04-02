@@ -135,6 +135,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'alvan/vim-closetag'
 Plug 'wfxr/minimap.vim'
+Plug 'airblade/vim-current-search-match'
 " ----- COLORSCHEME PLUG -----
 Plug 'sheerun/vim-polyglot'
 Plug 'morhetz/gruvbox'
