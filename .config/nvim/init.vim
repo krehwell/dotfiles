@@ -84,6 +84,7 @@ set pastetoggle=<F3>
 set showmode
 set scrolloff=5
 set shortmess+=F
+set mouse=a
 
 
 " ------ FOLDING ------
@@ -141,6 +142,8 @@ Plug 'sheerun/vim-polyglot'
 Plug 'morhetz/gruvbox'
 Plug 'senran101604/neotrix.vim', {'branch': 'main'}
 Plug 'ayu-theme/ayu-vim'
+Plug 'tjdevries/colorbuddy.vim'
+Plug 'tjdevries/gruvbuddy.nvim'
 call plug#end()
 
 
@@ -193,6 +196,7 @@ set background=dark
 set termguicolors
 let g:gitgutter_override_sign_column_highlight=1
 colorscheme gruvbox
+hi Normal guibg=NONE ctermbg=NONE
 
 
 " ----- LEADER KEY -----
@@ -233,11 +237,13 @@ inoremap {<CR> {<CR>}<Esc>O<BS><Tab>
 nnoremap <M-j> ddp
 nnoremap <M-k> ddkP
 vnoremap w e
+vnoremap $ $<left>
 
 " SESSION BUFFER CONTROLLER
 nnoremap <localleader>s :mksession! ~\vim_session<cr>
 nnoremap <localleader>o :source ~\vim_session<cr>
-nnoremap <localleader>a ggVG
+nnoremap <localleader>b :bprevious<CR>
+nnoremap <localleader>n :bnext<CR>
 
 " CD TO CURRENT BUFFER's DIR | lcd -> for cding the current buffer only to the current dir
 nnoremap <localleader>cd :cd %:p:h<CR>
