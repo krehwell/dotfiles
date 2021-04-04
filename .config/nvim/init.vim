@@ -195,6 +195,10 @@ set background=dark
 " let ayucolor="mirage"
 set termguicolors
 let g:gitgutter_override_sign_column_highlight=1
+nnoremap gu :GitGutterUndoHunk<CR>
+nnoremap g] :GitGutterNextHunk<CR>
+nnoremap g[ :GitGutterPrevHunk<CR>
+nnoremap gp :GitGutterPreviewHunk<CR>
 colorscheme gruvbox
 hi Normal guibg=NONE ctermbg=NONE
 
