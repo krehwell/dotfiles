@@ -164,6 +164,8 @@ nnoremap <localleader>n :bnext<CR>
 nnoremap <localleader>cd :cd %:p:h<CR>
 nnoremap <localleader>lcd :lcd %:p:h<CR>
 
+nnoremap <localleader>a ggVG
+
 iabbrev /* /*  */<esc>bhhi<del>
 
 " ----- BOILERPLATES -----
