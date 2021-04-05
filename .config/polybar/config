@@ -70,7 +70,7 @@ label-unmounted = %mountpoint% not mounted
 
 [module/arch]
 type = custom/text
-content = Arch Linux
+content =  Arch Linux
 ; 
 
 

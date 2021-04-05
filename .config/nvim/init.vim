@@ -108,6 +108,8 @@ Plug 'senran101604/neotrix.vim', {'branch': 'main'}
 Plug 'ayu-theme/ayu-vim'
 Plug 'tjdevries/colorbuddy.vim'
 Plug 'tjdevries/gruvbuddy.nvim'
+Plug 'chriskempson/base16-vim'
+Plug 'joshdick/onedark.vim'
 call plug#end()
 
 
