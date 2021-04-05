@@ -101,26 +101,21 @@ label-visible = %index%
 label-urgent = %name%
 label-urgent-padding = 2
 
-[module/xbacklight]
-type = internal/xbacklight
 
-format = <label> <bar>
-label = BL
+[module/backlight]
+type = custom/script
+interval = 0.2
+exec = ~/utils/backlight.sh
 
-bar-width = 10
-bar-indicator = |
-bar-indicator-foreground = #fff
-bar-indicator-font = 2
-bar-fill = ─
-bar-fill-font = 2
-bar-fill-foreground = #9f78e1
-bar-empty = ─
-bar-empty-font = 2
+scroll-up = exec light -A 5
+scroll-down = exec light -U 5
 
-[module/backlight-acpi]
-inherit = module/xbacklight
-type = internal/backlight
-card = intel_backlight
+format-prefix = " "
+
+label = %output%
+label-foreground = ${colors.fg}
+format-padding = 1
+
 
 [module/cpu]
 type = internal/cpu

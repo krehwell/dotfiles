@@ -120,6 +120,7 @@ Plug 'rbong/vim-flog'
 " ----- STATUS/HELPER -----
 " Plug 'narajaon/onestatus'
 Plug 'itchyny/lightline.vim'
+" Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
 Plug 'mbbill/undotree'
 Plug 'vimpostor/vim-tpipeline'
 Plug 'ojroques/vim-oscyank'
@@ -127,6 +128,7 @@ Plug 'ojroques/vim-oscyank'
 Plug 'lambdalisue/fern-git-status.vim'
 Plug 'lambdalisue/fern.vim'
 Plug 'ryanoasis/vim-devicons'
+Plug 'kyazdani42/nvim-web-devicons' " lua
 Plug 'lambdalisue/fern-renderer-devicons.vim'
 Plug 'lambdalisue/fern-hijack.vim'
 " ----- MOVEMENT/NAVIGATION PLUG -----
