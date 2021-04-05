@@ -1,43 +1,6 @@
 filetype plugin indent on
 syntax on
 
-
-" ----- NOAUTOCOMMENT TO ALL FILES -----
-augroup AutoCommetDisable
-  autocmd!
-  " autocmd BufEnter * silent! lcd %:p:h
-  autocmd FileType * set formatoptions-=cro
-augroup END
-
-
-" ----- TRIM ANY TRAILING WHITESPACES -----
-fun! TrimWhitespace()
-    let l:save = winsaveview()
-    if &ft =~ 'txt\|markdown'
-        return
-    endif
-    keeppatterns %s/\s\+$//e
-    call winrestview(l:save)
-endfun
-
-augroup TrimWhitespaceOnSave
-    autocmd!
-    autocmd BufWritePre * :call TrimWhitespace()
-augroup END
-
-
-" ----- CONVERT 4 SPACES TO 2 SPACES -----
-fun! Four2Two() range
-    set expandtab
-    set shiftwidth=4
-    retab
-    '<,'>normal! ==
-    '<,'>s;^\(\s\+\);\=repeat(' ', len(submatch(0))/2);g
-    set shiftwidth=4
-    norm!gv>
-endfun
-
-
 " ----- MY VAR ------
 nnoremap <localleader>i :vsplit $INIT<cr>
 let $INIT="~/.config/nvim/init.vim"
@@ -78,7 +41,6 @@ set wildmenu                                                       " shows sugge
 set noshowmode
 set splitright
 set splitbelow
-autocmd ColorScheme * highlight! link SignColumn LineNr
 nnoremap <F3> :set invpaste paste?<CR>
 set pastetoggle=<F3>
 set showmode
@@ -98,10 +60,6 @@ set foldminlines=5
 " set foldclose=all
 " Fold column
 set foldcolumn=0
-
-
-" ----- POLYGOT CONFIG -----
-let g:polyglot_disabled = ['autoindent']
 
 
 " ----- VIM PLUG -----
@@ -153,56 +111,10 @@ call plug#end()
 let g:cursorhold_updatetime = 10
 
 
-" ----- MINIMAP -----
-nnoremap <silent><Leader>m :MinimapToggle<CR>
-let g:minimap_width=10
-
-
 " ----- LET CLOSETAG ON REACT FILE -----
 let g:closetag_filenames = '*.js, *.jsx, *.tsx'
 " ----- `<Link>` will be closed while `<link>` won't -----
 let g:closetag_emptyTags_caseSensitive = 1
-
-
-" ----- LIGHTLINE SETTTINGS -----
-" let g:lightline = {'colorscheme': 'argonaut'}
-" 'right': [ [ 'lineinfo' ], ['percent'], ['filetype']]
-let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'filename', 'modified' ] ],
-      \   'right': []
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'FugitiveHead'
-      \ }
-      \ }
-
-
-" ----- FERN CONFIG -----
-let g:fern_renderer_devicons_disable_warning = 1
-let g:fern#renderer = "devicons"
-augroup fern-custom
-  autocmd! *
-  autocmd FileType fern setlocal nonu
-augroup END
-
-
-" ----- THEME SETUP -----
-" let g:gruvbox_termcolors='256'
-let g:gruvbox_contrast_dark='hard'
-let g:gruvbox_bold= '0'
-set background=dark
-" let ayucolor="mirage"
-set termguicolors
-let g:gitgutter_override_sign_column_highlight=1
-nnoremap gu :GitGutterUndoHunk<CR>
-nnoremap g] :GitGutterNextHunk<CR>
-nnoremap g[ :GitGutterPrevHunk<CR>
-nnoremap gp :GitGutterPreviewHunk<CR>
-colorscheme gruvbox
-hi Normal guibg=NONE ctermbg=NONE
 
 
 " ----- LEADER KEY -----

@@ -9,8 +9,10 @@ set diffopt+=vertical
 
 
 " ----- NEXT/PREV GO TO GIT ACTION -----
-nmap [c <Plug>(GitGutterPrevHunk)
-nmap ]c <Plug>(GitGutterNextHunk)
+nnoremap gu :GitGutterUndoHunk<CR>
+nnoremap g] :GitGutterNextHunk<CR>
+nnoremap g[ :GitGutterPrevHunk<CR>
+nnoremap gp :GitGutterPreviewHunk<CR>
 
 
 " ----- GIT KEY BINDING -----
