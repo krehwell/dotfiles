@@ -1,6 +1,7 @@
 filetype plugin indent on
 syntax on
 
+
 " ----- MY VAR ------
 nnoremap <localleader>i :vsplit $INIT<cr>
 let $INIT="~/.config/nvim/init.vim"
@@ -9,7 +10,7 @@ let $INIT="~/.config/nvim/init.vim"
 " ----- ALL SETs -----
 " set cursorlineopt=number
 " set autochdir                                                    " set the curr dir to opened buf
-set exrc
+set exrc                                                           " allow local init.vim
 " set secure
 set backspace=2
 set backspace=indent,eol,start
@@ -49,6 +50,10 @@ set shortmess+=F
 set mouse=a
 
 
+" ----- FIX CURSOR HOLD ----
+let g:cursorhold_updatetime = 10
+
+
 " ------ FOLDING ------
 " Folding
 set foldmethod=indent
@@ -77,8 +82,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'rbong/vim-flog'
 " ----- STATUS/HELPER -----
 " Plug 'narajaon/onestatus'
-Plug 'itchyny/lightline.vim'
 " Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
+Plug 'itchyny/lightline.vim'
 Plug 'mbbill/undotree'
 Plug 'vimpostor/vim-tpipeline'
 Plug 'ojroques/vim-oscyank'
@@ -98,7 +103,6 @@ Plug 'alvan/vim-closetag'
 Plug 'wfxr/minimap.vim'
 Plug 'airblade/vim-current-search-match'
 " ----- COLORSCHEME PLUG -----
-Plug 'sheerun/vim-polyglot'
 Plug 'morhetz/gruvbox'
 Plug 'senran101604/neotrix.vim', {'branch': 'main'}
 Plug 'ayu-theme/ayu-vim'
@@ -107,11 +111,7 @@ Plug 'tjdevries/gruvbuddy.nvim'
 call plug#end()
 
 
-" ----- FIX CURSOR HOLD ----
-let g:cursorhold_updatetime = 10
-
-
-" ----- LET CLOSETAG ON REACT FILE -----
+" ----- LET CLOSETAG ON REACT FILE | NO ONE REALLY KNOWS WHY THIS SHIT MUST BE PUT HERE OTHERWISE DOESN'T WORK -----
 let g:closetag_filenames = '*.js, *.jsx, *.tsx'
 " ----- `<Link>` will be closed while `<link>` won't -----
 let g:closetag_emptyTags_caseSensitive = 1
@@ -120,11 +120,6 @@ let g:closetag_emptyTags_caseSensitive = 1
 " ----- LEADER KEY -----
 let mapleader = " "
 let maplocalleader = "\\"
-
-
-" ----- OSCYANK CONFIG -----
-vnoremap <leader>y :OSCYank<CR>
-vnoremap <leader>c :OSCYank<CR>
 
 
 " ----- SHORTCUT BASIC -----
@@ -151,7 +146,7 @@ inoremap <M-;> <esc>v$<esc>`>a;<esc>`<a
 inoremap <c-b> <esc><right>dwi
 inoremap <silent> jj <c-o>:call search('}\\|)\\|]\\|>\\|"', 'cW')<cr><Right>
 nnoremap <leader>sr :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
-inoremap {<CR> {<CR>}<Esc>O<BS><Tab>
+" inoremap {<CR> {<CR>}<Esc>O<BS><Tab>
 nnoremap <M-j> ddp
 nnoremap <M-k> ddkP
 vnoremap w e
