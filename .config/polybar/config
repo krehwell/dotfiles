@@ -89,6 +89,8 @@ label-mode-padding = 5
 ; focused = Active workspace on focused monitor
 label-focused = %name%
 label-focused-padding = 2
+label-focused-foreground = #0a81f5
+;#F87060
 
 unfocused = Inactive workspace on any monitor
 label-unfocused = %name%
