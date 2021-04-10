@@ -154,6 +154,9 @@ nnoremap <M-k> ddkP
 vnoremap w e
 vnoremap $ $<left>
 
+" calculator
+nnoremap Q 0yt=A<C-r>=<C-r>"<CR><Esc>
+
 " SESSION BUFFER CONTROLLER
 nnoremap <localleader>s :mksession! ~\vim_session<cr>
 nnoremap <localleader>o :source ~\vim_session<cr>

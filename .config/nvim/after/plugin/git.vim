@@ -1,5 +1,15 @@
 " ----- GIT -----
 
+" ----- CYCLE THRU HUNK -----
+function! GitGutterNextHunkCycle()
+    let line = line('.')
+    silent! GitGutterNextHunk
+    if line('.') == line
+        1
+        GitGutterNextHunk
+    endif
+endfunction
+
 " ----- PREVENT DEFAULT KEY BINDING -----
 let g:gitgutter_map_keys=0
 
@@ -10,7 +20,7 @@ set diffopt+=vertical
 
 " ----- NEXT/PREV GO TO GIT ACTION -----
 nnoremap gu :GitGutterUndoHunk<CR>
-nnoremap g] :GitGutterNextHunk<CR>
+nnoremap g] :call GitGutterNextHunkCycle()<CR>
 nnoremap g[ :GitGutterPrevHunk<CR>
 nnoremap gp :GitGutterPreviewHunk<CR>
 

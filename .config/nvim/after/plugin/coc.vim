@@ -96,3 +96,8 @@ nmap <silent> gr <Plug>(coc-references)
 " ----- JUMP TO ERROR -----
 nnoremap <leader>e :call CocAction('diagnosticNext')<CR>
 nnoremap <leader>E :call CocAction('diagnosticPrevious')<CR>
+
+
+" ----- FIX ACTION -----
+nmap <leader>qf <Plug>(coc-fix-current)
+nmap <leader>ac <Plug>(coc-codeaction)
