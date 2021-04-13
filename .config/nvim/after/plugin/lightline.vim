@@ -9,10 +9,37 @@ let g:lightline = {
       \   'right': []
       \ },
       \ 'component_function': {
-      \   'gitbranch': 'FugitiveHead'
+      \   'gitbranch': 'FugitiveHead',
+      \   'filename': 'LightLineFilenameAndLastPathOnly'
       \ }
       \ }
 
+function! LightLineFilenameAndPath()
+    let name = ""
+    let subs = split(expand('%'), "/")
+    let i = 1
+    for s in subs
+        let parent = name
+        if  i == len(subs)
+            let name = parent . '/' . s
+        elseif i == 1
+            let name = s
+        else
+            let name = parent . '/' . strpart(s, 0, 2)
+        endif
+        let i += 1
+    endfor
+    return name
+endfunction
+
+function! LightLineFilenameAndLastPathOnly()
+    let filenameonly = expand('%:t:r')
+    if filenameonly ==? "index"
+        return remove(split(expand("%:h"), "/"), -1) . "/" . expand("%:t")
+    else
+        return expand("%:t")
+    endif
+endfunction
 
 " ----- COLOR -----
 autocmd VimEnter * call SetupLightlineColors()

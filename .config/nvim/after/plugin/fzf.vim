@@ -22,6 +22,8 @@ let g:ctrlp_working_path_mode = 'ra'
 " Default options are --nogroup --column --color
 " nnoremap <silent><C-p> :FZF<CR>
 nnoremap <C-f> :Ag<Cr>
+cnoremap ls CtrlPBuffer<Cr>
+
 " nnoremap <C-g> :GFiles<Cr>
 
 let s:ag_options = ' --one-device --skip-vcs-ignores --smart-case --ignore node_modules'
