@@ -102,6 +102,7 @@ Plug 'tpope/vim-surround'
 Plug 'alvan/vim-closetag'
 Plug 'wfxr/minimap.vim'
 Plug 'airblade/vim-current-search-match'
+Plug 'tpope/vim-commentary'
 " ----- COLORSCHEME PLUG -----
 Plug 'morhetz/gruvbox'
 Plug 'senran101604/neotrix.vim', {'branch': 'main'}
@@ -117,6 +118,11 @@ call plug#end()
 let g:closetag_filenames = '*.js, *.jsx, *.tsx'
 " ----- `<Link>` will be closed while `<link>` won't -----
 let g:closetag_emptyTags_caseSensitive = 1
+
+" ----- FERN CONFIG -----
+" disable warning on small screen
+let g:fern_renderer_devicons_disable_warning = 1
+let g:fern#renderer = "devicons"
 
 
 " ----- LEADER KEY -----

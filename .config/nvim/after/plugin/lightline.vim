@@ -35,11 +35,11 @@ function! TabFilenameAndLastPath(n)
         endif
     endfor
     let i = index(bufnames, bufname)
-    if strlen(bufname) && i >= 0 && buffullnames[i] != buffullname
-        return substitute(buffullname, '.*/\([^/]\+/\)', '\1', '')
-    else
-        return strlen(bufname) ? bufname : '[No Name]'
-    endif
+    " if strlen(bufname) && i >= 0 && buffullnames[i] != buffullname
+    return substitute(buffullname, '.*/\([^/]\+/\)', '\1', '')
+    " else
+        " return strlen(bufname) ? bufname : '[No Name]'
+    " endif
 endfunction
 
 function! FilenameAndPath()
