@@ -102,7 +102,7 @@ type = internal/cpu
 [module/memory]
 format-prefix = "mem: "
 interval = 2
-label = %percentage_used%%
+label = %{A1:gnome-control-center config &:}%percentage_used%%{A}
 type = internal/memory
 
 

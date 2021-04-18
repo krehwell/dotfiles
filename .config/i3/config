@@ -3,11 +3,7 @@ set $mod Mod4
 set $alt Mod1
 
 
-# ----- KEL i3 FONT -----
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-font pango:Consolas NF 11
-
+# ----- DONT KNOW SHIT ABOUT THIS -----
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -24,18 +20,22 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
+# ----- END OF DONT KNOW SHIT ABOUT THIS -----
+
+
+# ----- KEL i3 FONT -----
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font pango:Consolas NF 11
+
 
 # ----- KEL VOLUME -----
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +3% && $refresh_i3status
-# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -3% && $refresh_i3status
-# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-# bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-
-
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +3% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -3% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 
 # ----- KEL TERMINAL -----
@@ -61,6 +61,12 @@ for_window [class="vokoscreenNG"] floating enable
 # ----- KEL MONITOR -----
 for_window [class="Arandr"] floating enable
 bindsym $mod+p exec arandr
+
+
+# ----- KEL SCREEN SHOT -----
+# bindsym $mod+y			            exec --no-startup-id flameshot gui -p ~/Pics/screenshots
+# bindsym $mod+Shift+y		            exec --no-startup-id flameshot full -p ~/Pics/screenshots
+bindsym Print exec flameshot gui
 
 
 # ----- KEL i3-GNOME -----
@@ -107,25 +113,6 @@ gaps outer $outer_gaps
 # border_radius 2
 
 
-# ----- KEL SCREEN SHOT -----
-# bindsym $mod+y			            exec --no-startup-id flameshot gui -p ~/Pics/screenshots
-# bindsym $mod+Shift+y		            exec --no-startup-id flameshot full -p ~/Pics/screenshots
-bindsym Print exec flameshot gui
-
-
-# change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
-
-
 # ----- KEL CHANGE TO USE VIM BINDING -----
 # move focused window
 bindsym $mod+Shift+h move left
@@ -141,6 +128,18 @@ bindsym $mod+Shift+Right move right
 
 
 # ----- KEL WINDOW MODE -----
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
 # split in horizontal orientation
 bindsym $mod+Shift+v split h
 # split in vertical orientation
@@ -172,6 +171,9 @@ bindsym $mod+Shift+Tab exec i3-switch-tabs left
 
 
 # ----- KEL i3 WINDOW MANAGEMENT -----
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
 # define workspace
 set $ws1 "1"
 set $ws2 "2"
