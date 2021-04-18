@@ -16,6 +16,9 @@ set $alt Mod1
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
+# start with gnome keyring
+# exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
+
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
@@ -252,6 +255,10 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+
+
+# ----- KEL NOTIFICATION -----
+exec --no-startup-id dunst
 
 
 # ----- KEL STATUS BAR -----
