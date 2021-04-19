@@ -20,21 +20,34 @@
 ; BAR
 ; =================================================
 
+
+[colors]
+background = #161B1A
+foreground = #ebdbb2
+red = #CC241D
+green = #98971A
+yellow = #D79921
+blue = #458588
+teal = #B16286
+magenta = #689D6A
+gray = #928374
+
+
 [bar/bar]
 border-left-size = 10
 border-right-size = 10
 bottom = true
 fixed-center = true
 font-0 = Hack Nerd Font : size=10.5;2
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = siji:pixelsize=10;1
+font-1 = scientifica:fontformat=truetype:size=11:antialias=false;0
+font-2 = siji:pixelsize=13;1
 height = 24
 line-size = 0
 module-margin-center = 3
 module-margin-left = 3
 modules-center = i3
-modules-left = filesystem cpu memory wifi xkeyboard
-modules-right = arch pulseaudio calendar power
+modules-left = filesystem separator cpu separator memory separator wifi separator xkeyboard
+modules-right = arch backlight pulseaudio calendar power
 monitor = ${env:MONITOR:}
 offset-x = 0%
 offset-y = 0%
@@ -43,6 +56,9 @@ padding-right = 2
 radius-top = 12.0
 width = 100%
 
+background = ${colors.background}
+foreground = ${colors.foreground}
+
 
 ; =================================================
 ; ARCH TEXT
@@ -50,7 +66,7 @@ width = 100%
 
 [module/arch]
 ; 
-content =  Arch Linux
+content = %{F#CC241D}%{F-} Arch Linux
 type = custom/text
 
 
@@ -66,7 +82,9 @@ type = custom/text
 format = <label-state> <label-mode>
 index-sort = true
 label-focused = %name%
-label-focused-foreground = #0a81f5
+label-foreground = ${colors.gray}
+label-focused-foreground = ${colors.foreground}
+label-unfocused-foreground = ${colors.gray}
 label-focused-padding = 2
 label-mode-padding = 5
 label-unfocused = %name%
@@ -83,27 +101,41 @@ wrapping-scroll = false
 
 
 ; =================================================
+; SEPERATOR
+; =================================================
+[module/separator]
+type = custom/text
+content = |
+content-foreground = ${colors.red}
+
+
+; =================================================
 ; MACHINE COMPONENT
 ; =================================================
 
 [module/filesystem]
 interval = 25
-label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
+label-mounted = %{F#458588}%mountpoint%%{F-}%{F#458588}:%{F-} %percentage_used%%
 label-unmounted = %mountpoint% not mounted
+label-mounted-foreground = ${colors.foreground}
 mount-0 = /
 type = internal/fs
 
 [module/cpu]
-format-prefix = " "
+format-prefix = ": "
 interval = 2
 label = %percentage: %%
 type = internal/cpu
+format-prefix-foreground = ${colors.magenta}
+format-foreground = ${colors.foreground}
 
 [module/memory]
 format-prefix = "mem: "
 interval = 2
 label = %{A1:gnome-control-center config &:}%percentage_used%%{A}
 type = internal/memory
+format-prefix-foreground = ${colors.green}
+format-foreground = ${colors.foreground}
 
 
 ; =================================================
@@ -116,11 +148,16 @@ interface = wlp3s0
 interval = 3.0
 label-connected = %{A1:gnome-control-center wifi &:}%essid%%{A}
 label-disconnected = %{A1:gnome-control-center wifi &:}no-wifi%{A}
-ramp-signal-0 = 睊
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
+format-connected-underline = ${colors.foreground}
+format-prefix-foreground = ${colors.yellow}
+
+
+ramp-signal-0 = "睊:"
+ramp-signal-1 = "wifi:"
+ramp-signal-2 = "wifi:"
+ramp-signal-3 = "wifi:"
+ramp-signal-4 = "wifi:"
+ramp-signal-foreground = ${colors.teal}
 type = internal/network
 
 
@@ -147,6 +184,9 @@ click-left = ~/utils/calendar-popup.sh --popup &
 exec = ~/utils/calendar-popup.sh
 interval = 5
 type = custom/script
+format-background = ${colors.background}
+format-foreground = ${colors.foreground}
+format-prefix-foreground = ${colors.blue}
 
 
 ; =================================================
@@ -154,9 +194,9 @@ type = custom/script
 ; =================================================
 
 [module/pulseaudio]
-bar-volume-empty = ─
+bar-volume-empty = -
 bar-volume-empty-font = 2
-bar-volume-fill = ─
+bar-volume-fill = -
 bar-volume-fill-font = 2
 bar-volume-gradient = false
 bar-volume-indicator = |
@@ -165,7 +205,10 @@ bar-volume-width = 10
 format-volume = <label-volume> <bar-volume>
 label-muted = 🔇 muted
 label-muted-foreground = #666
-label-volume =  %percentage%%
+format-volume-prefix = " "
+label-volume = %percentage%%
+label-volume-foreground = ${root.blue}
+format-volume-prefix-foreground = ${colors.blue}
 type = internal/pulseaudio
 
 
@@ -183,6 +226,7 @@ label-foreground = ${colors.fg}
 scroll-down = exec light -U 5
 scroll-up = exec light -A 5
 type = custom/script
+format-prefix-foreground = ${colors.yellow}
 
 
 ; =================================================
@@ -193,8 +237,11 @@ type = custom/script
 type = custom/menu
 expand-right = true
 label-open = 
+label-open-foreground = ${colors.magenta}
 label-close = 
+label-close-foreground = ${colors.red}
 label-separator = "  "
+label-separator-foreground = ${colors.red}
 label-open-padding = 1
 label-close-padding = 1
 
@@ -230,11 +277,14 @@ type = internal/xwindow
 
 [module/xkeyboard]
 blacklist-0 = num lock
-format-prefix = " "
+format-prefix = "kebs: "
 label-indicator-margin = 1
 label-indicator-padding = 2
 label-layout = %layout%
 type = internal/xkeyboard
+label-indicator-background = ${colors.teal}
+label-indicator-underline = ${colors.yellow}
+format-prefix-foreground = ${colors.yellow}
 
 
 ; =================================================
@@ -291,3 +341,6 @@ screenchange-reload = true
 enable-ipc = true
 margin-bottom = 0
 margin-top = 0
+
+; support line higlighted on vim
+; vim:set ft=dosini:
