@@ -44,6 +44,11 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 
+# ----- KEL BRIGHTNESS -----
+bindsym XF86MonBrightnessUp exec "xbacklight -inc 20; notify-send 'Brightness up'"
+bindsym XF86MonBrightnessDown exec "xbacklight -dec 20; notify-send 'Brightness down'"
+
+
 # ----- KEL TERMINAL -----
 set $term --no-startup-id alacritty
 bindsym $mod+Return 		         exec $term
@@ -62,6 +67,7 @@ bindsym $mod+o exec --no-startup-id $term -e nvim ~/.config/i3/config
 for_window [class="Yad" title="yad-calendar"] floating enable
 for_window [class="gnome-system-monitor"] floating enable
 for_window [class="vokoscreenNG"] floating enable
+for_window [class="Nitrogen"] floating enable
 
 
 # ----- KEL MONITOR -----

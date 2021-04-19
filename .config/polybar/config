@@ -32,6 +32,15 @@ teal = #B16286
 magenta = #689D6A
 gray = #928374
 
+; background = ${xrdb:color0}
+; foreground = ${xrdb:color15}
+; red = ${xrdb:color1}
+; green = ${xrdb:color2}
+; yellow = ${xrdb:color3}
+; blue = ${xrdb:color4}
+; teal = ${xrdb:color5}
+; magenta = ${xrdb:color6}
+; gray = ${xrdb:color8}
 
 [bar/bar]
 border-left-size = 10
