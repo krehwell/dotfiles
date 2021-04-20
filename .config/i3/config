@@ -59,6 +59,10 @@ bindsym $mod+Shift+Return	       exec $term --working-directory $(xcwd)
 bindsym $mod+e exec --no-startup-id nautilus
 
 
+# ----- KEL WALLPAPER -----
+exec --no-startup-id nitrogen --restore
+
+
 # ----- KEL OPEN i3 CONFIG -----
 bindsym $mod+o exec --no-startup-id $term -e nvim ~/.config/i3/config
 

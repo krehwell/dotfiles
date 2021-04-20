@@ -1,0 +1,35 @@
+#define bg #282828
+#define fg #EBDBB2
+#define bgH #161B1A
+#define redH #CC241D
+#define greenH #98971A
+#define yellowH #D79921
+#define blueH #458588
+#define purpleH #B16286
+#define aquaH #689D6A
+#define grayH #A89984
+#define gray #928374
+#define red #FB4934
+#define green #B8BB26
+#define yellow #FABD2F
+#define blue #83A598
+#define purple #D3869B
+#define aqua #8EC07C
+
+*.foreground:  fg
+*.background:  bgH
+*.color1:      redH
+*.color2:      greenH
+*.color3:      yellowH
+*.color4:      blueH
+*.color5:      purpleH
+*.color6:      aquaH
+*.color7:      grayH
+*.color8:      gray
+*.color9:      red
+*.color10:     green
+*.color11:     yellow
+*.color12:     blue
+*.color13:     purple
+*.color14:     aqua
+*.color15:     fg

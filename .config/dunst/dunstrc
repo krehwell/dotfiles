@@ -36,18 +36,18 @@
     context = ctrl+shift+period
 
 [urgency_low]
-    background = "#282828"
+    background = "#1d2021"
     foreground = "#ebdbb2"
     timeout = 5
 
 [urgency_normal]
-    background = "#282828"
+    background = "#1d2021"
     foreground = "#ebdbb2"
     timeout = 20
 
 [urgency_critical]
-    background = "#282828"
+    background = "#1d2021"
     foreground = "#ebdbb2"
-    timeout = 0
+    timeout = 5
 
 # vim: ft=cfg
