@@ -195,7 +195,7 @@ draw_bold_text_with_bright_colors: true
 colors:
   # Default colors
   primary:
-    background: '0x1d2021'
+    background: '0x161b1a'
     foreground: '0xd5c4a1'
 
   # Colors the cursor will use if `custom_cursor_colors` is true
@@ -205,7 +205,7 @@ colors:
 
   # Normal colors
   normal:
-    black:   '0x1d2021'
+    black:   '0x161b1a'
     red:     '0xfb4934'
     green:   '0xb8bb26'
     yellow:  '0xfabd2f'
@@ -311,7 +311,7 @@ draw_bold_text_with_bright_colors: false
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
 # background_opacity: 1.0
-background_opacity: 0.8
+background_opacity: 1
 
 selection:
   save_to_clipboard: true

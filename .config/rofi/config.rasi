@@ -8,10 +8,9 @@ configuration {
 }
 
 * {
-  font: "NotoMono Nerd Font 12";
-  background-color: #3b4252;
-  border-color: #3b4252;
-  text-color: #d8dee9;
+  font: "NotoMono Nerd Font 12.5";
+  background-color: #1d2021;
+  text-color: #EBDBB2;
   width: 680px;
   height: 465px;
   location: 0;
@@ -30,9 +29,9 @@ prompt {
 }
 
 textbox {
-  background-color: #3b4252;
+  background-color: #161B1A;
   border: 0 0 1px 0;
-  border-color: #3b4252;
+  border-color: #161B1A;
   padding: 8px 13px;
 
 }
@@ -59,7 +58,8 @@ element-text {
 }
 
 element selected {
-  background-color: #5e81ac;
+  background-color: #A99884;
+  color: white;
 }
 
 element-icon {
