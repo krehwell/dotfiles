@@ -36,17 +36,17 @@
     context = ctrl+shift+period
 
 [urgency_low]
-    background = "#1d2021"
+    background = "#282828"
     foreground = "#ebdbb2"
     timeout = 5
 
 [urgency_normal]
-    background = "#1d2021"
+    background = "#282828"
     foreground = "#ebdbb2"
     timeout = 20
 
 [urgency_critical]
-    background = "#1d2021"
+    background = "#282828"
     foreground = "#ebdbb2"
     timeout = 5
 
