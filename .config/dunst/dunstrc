@@ -27,7 +27,7 @@
 
 [frame]
     width = 1
-    color = "#83a598"
+    color = "#FABD2F"
 
 [shortcuts]
     close = ctrl+space

@@ -75,7 +75,8 @@ foreground = ${colors.foreground}
 
 [module/arch]
 ; 
-content = %{F#CC241D}%{F-} Arch Linux
+content = %{F#CC241D}%{F-}%{A1:gnome-tweaks:} Arch Linux%{A}
+;content = %{A1:firefox:}%{A1:chromium:}This opens chromium%{A} and this one firefox%{A}
 type = custom/text
 
 
@@ -133,7 +134,7 @@ type = internal/fs
 [module/cpu]
 format-prefix = ": "
 interval = 2
-label = %percentage: %%
+label = %{A1:gnome-system-monitor &:}%percentage: %%{A}
 type = internal/cpu
 format-prefix-foreground = ${colors.magenta}
 format-foreground = ${colors.foreground}
@@ -141,7 +142,7 @@ format-foreground = ${colors.foreground}
 [module/memory]
 format-prefix = "mem: "
 interval = 2
-label = %{A1:gnome-control-center config &:}%percentage_used%%{A}
+label = %{A1:gnome-system-monitor &:}%percentage_used%%{A}
 type = internal/memory
 format-prefix-foreground = ${colors.green}
 format-foreground = ${colors.foreground}

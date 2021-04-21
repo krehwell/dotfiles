@@ -28,7 +28,7 @@ set nocompatible                                                   " should be g
 set noswapfile                                                     " no swp file
 set nowrap
 set nu                                                             " number shows
-" set relativenumber
+set relativenumber
 set path+=**                                                       " dir path search
 " set signcolumn=yes:1
 set smartcase
