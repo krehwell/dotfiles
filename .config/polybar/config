@@ -34,12 +34,12 @@
 
 background = ${xrdb:background}
 foreground = ${xrdb:foreground}
-red = ${xrdb:color1}
-green = ${xrdb:color2}
-yellow = ${xrdb:color3}
-blue = ${xrdb:color4}
-teal = ${xrdb:color5}
-magenta = ${xrdb:color6}
+red = ${xrdb:color9}
+green = ${xrdb:color10}
+yellow = ${xrdb:color11}
+blue = ${xrdb:color12}
+teal = ${xrdb:color13}
+magenta = ${xrdb:color14}
 gray = ${xrdb:color8}
 
 [bar/bar]
@@ -75,7 +75,7 @@ foreground = ${colors.foreground}
 
 [module/arch]
 ; 
-content = %{F#CC241D}%{F-}%{A1:gnome-tweaks:} Arch Linux%{A}
+content = %{F#FB4934}%{F-}%{A1:gnome-tweaks:} Arch Linux%{A}
 ;content = %{A1:firefox:}%{A1:chromium:}This opens chromium%{A} and this one firefox%{A}
 type = custom/text
 
