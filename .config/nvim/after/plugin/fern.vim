@@ -7,7 +7,7 @@ let g:fern#renderer = "devicons"
 " ----- NO NUMBER PLEASE ON FERN BUF -----
 augroup fern-custom
     autocmd! *
-    autocmd FileType fern setlocal nonu
+    autocmd FileType fern setlocal nonu norelativenumber
 augroup END
 
 

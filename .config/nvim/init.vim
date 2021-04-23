@@ -115,15 +115,18 @@ Plug 'joshdick/onedark.vim'
 call plug#end()
 
 
-" ----- LET CLOSETAG ON REACT FILE | NO ONE REALLY KNOWS WHY THIS SHIT MUST BE PUT HERE OTHERWISE DOESN'T WORK -----
+" START FOR SOME REASON THIS CONFIG SHOULD BE HERE -----#####
+
+" let closetag on react file -----
 let g:closetag_filenames = '*.js, *.jsx, *.tsx'
-" ----- `<Link>` will be closed while `<link>` won't -----
+" `<Link>` will be closed while `<link>` won't -----
 let g:closetag_emptyTags_caseSensitive = 1
 
-" ----- FERN CONFIG -----
 " disable warning on small screen
 let g:fern_renderer_devicons_disable_warning = 1
 let g:fern#renderer = "devicons"
+
+" END FOR SOME REASON THIS CONFIG SHOULD BE HERE -----#####
 
 
 " ----- LEADER KEY -----
