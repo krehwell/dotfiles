@@ -19,7 +19,7 @@ set hidden                                                         " coc ask me 
 set ignorecase
 set incsearch
 if exists('$TMUX')
-    set laststatus=0
+    set laststatus=0                                               " no statusline when tmux in
 endif
 set nobackup                                                       " no backup file
 set nowritebackup
