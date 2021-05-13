@@ -112,6 +112,7 @@ Plug 'tjdevries/colorbuddy.vim'
 Plug 'tjdevries/gruvbuddy.nvim'
 Plug 'chriskempson/base16-vim'
 Plug 'joshdick/onedark.vim'
+Plug 'pbrisbin/vim-colors-off'
 call plug#end()
 
 

@@ -2,7 +2,7 @@
 " let g:lightline = {'colorscheme': 'argonaut'}
 " 'right': [ [ 'lineinfo' ], ['percent'], ['filetype']]
 let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
+      \ 'colorscheme': 'PaperColor',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'filename', 'modified' ] ],

@@ -14,10 +14,10 @@ let g:gitgutter_override_sign_column_highlight=1
 
 " ----- GRUVBOX ------
 " ----- SYNTAX ENABLE -----
-" let g:gruvbox_termcolors='256'
+let g:gruvbox_termcolors='256'
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_bold= '0'
-colorscheme gruvbox
+colorscheme off
 
 
 " ----- BASE 16 ONE DARK -----
