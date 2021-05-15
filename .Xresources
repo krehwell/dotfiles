@@ -2,6 +2,7 @@
 #define bg #282828
 #define fg #EBDBB2
 #define bgH #161B1A
+#define black #010101
 #define redH #CC241D
 #define greenH #98971A
 #define yellowH #D79921
@@ -38,6 +39,7 @@
 
 *.foreground:  fg
 *.background:  bgH
+*.color0:      black
 *.color1:      redH
 *.color2:      greenH
 *.color3:      yellowH
