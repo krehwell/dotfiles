@@ -5,19 +5,23 @@ set background=dark
 set termguicolors
 
 
-" ----- BG CONFIG -----
-" ----- NO COLOR ON LINE NUMBER -----
-autocmd ColorScheme * highlight! link SignColumn LineNr
-" ---- git gutter remove bg color -----
-let g:gitgutter_override_sign_column_highlight=1
-
-
 " ----- GRUVBOX ------
 " ----- SYNTAX ENABLE -----
 let g:gruvbox_termcolors='256'
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_bold= '0'
 colorscheme off
+
+
+" ----- BG CONFIG -----
+" ----- NO COLOR ON LINE NUMBER -----
+autocmd ColorScheme * highlight! link SignColumn LineNr
+" ---- git gutter remove bg color -----
+let g:gitgutter_override_sign_column_highlight=1
+" ---- custom git gutter color -----
+highlight GitGutterAdd    guifg=#10A778 ctermfg=2
+highlight GitGutterChange guifg=#A89C14 ctermfg=3
+highlight GitGutterDelete guifg=#C30771 ctermfg=1
 
 
 " ----- BASE 16 ONE DARK -----

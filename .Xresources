@@ -1,3 +1,4 @@
+! GRUVBOX
 #define bg #282828
 #define fg #EBDBB2
 #define bgH #161B1A
@@ -15,6 +16,25 @@
 #define blue #83A598
 #define purple #D3869B
 #define aqua #8EC07C
+
+! OFF
+! #define bg      #282828
+! #define fg      #F1F1F1
+! #define bgH     #161B1A
+! #define redH    #C6C6C6
+! #define greenH  #C6C6C6
+! #define yellowH #C6C6C6
+! #define blueH   #C6C6C6
+! #define purpleH #C6C6C6
+! #define aquaH   #C6C6C6
+! #define grayH   #C6C6C6
+! #define gray    #C6C6C6
+! #define red     #C30771
+! #define green   #C6C6C6
+! #define yellow  #C6C6C6
+! #define blue    #C6C6C6
+! #define purple  #C6C6C6
+! #define aqua    #C6C6C6
 
 *.foreground:  fg
 *.background:  bgH
