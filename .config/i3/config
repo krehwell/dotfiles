@@ -1,4 +1,4 @@
-# ----- KEL MOD KEY -----
+# ----- MOD KEY -----
 set $mod Mod4
 set $alt Mod1
 
@@ -29,13 +29,13 @@ exec --no-startup-id nm-applet
 # ----- END OF DONT KNOW SHIT ABOUT THIS -----
 
 
-# ----- KEL i3 FONT -----
+# ----- i3 FONT -----
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 font pango:Consolas NF 11
 
 
-# ----- KEL VOLUME -----
+# ----- VOLUME -----
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +3% && $refresh_i3status
@@ -44,48 +44,48 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 
-# ----- KEL BRIGHTNESS -----
+# ----- BRIGHTNESS -----
 bindsym XF86MonBrightnessUp exec "xbacklight -inc 20; notify-send 'Brightness up'"
 bindsym XF86MonBrightnessDown exec "xbacklight -dec 20; notify-send 'Brightness down'"
 
 
-# ----- KEL TERMINAL -----
+# ----- TERMINAL -----
 set $term --no-startup-id alacritty
 bindsym $mod+Return 		         exec $term
 bindsym $mod+Shift+Return	       exec $term --working-directory $(xcwd)
 
 
-# ----- KEL FILEMANAGER -----
+# ----- FILEMANAGER -----
 bindsym $mod+e exec --no-startup-id nautilus
 
 
-# ----- KEL WALLPAPER -----
+# ----- WALLPAPER -----
 exec --no-startup-id nitrogen --restore
 
 
-# ----- KEL OPEN i3 CONFIG -----
+# ----- OPEN i3 CONFIG -----
 bindsym $mod+o exec --no-startup-id $term -e nvim ~/.config/i3/config
 
 
-# ----- KEL FLOATING ENABLE -----
+# ----- FLOATING ENABLE -----
 for_window [class="Yad" title="yad-calendar"] floating enable
 for_window [class="gnome-system-monitor"] floating enable
 for_window [class="vokoscreenNG"] floating enable
 for_window [class="Nitrogen"] floating enable
 
 
-# ----- KEL MONITOR -----
+# ----- MONITOR -----
 for_window [class="Arandr"] floating enable
 bindsym $mod+p exec arandr
 
 
-# ----- KEL SCREEN SHOT -----
+# ----- SCREEN SHOT -----
 # bindsym $mod+y			            exec --no-startup-id flameshot gui -p ~/Pics/screenshots
 # bindsym $mod+Shift+y		            exec --no-startup-id flameshot full -p ~/Pics/screenshots
 bindsym Print exec flameshot gui
 
 
-# ----- KEL i3-GNOME -----
+# ----- i3-GNOME -----
 exec --no-startup-id /usr/lib/gsd-xsettings
 exec_always --no-startup-id gnome-power-manager
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
@@ -96,18 +96,19 @@ exec --no-startup-id gnome-flashback
 
 # kill focused window
 bindsym $mod+q kill
+bindsym --release button2 kill
 
 
-# ----- KEL DMENU -----
+# ----- DMENU -----
 bindsym $mod+d exec rofi -show drun
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 
-# ----- KEL AUTO TILING -----
+# ----- AUTO TILING -----
 exec_always --no-startup-id autotiling
 
 
-# ----- KEL WINDOW BORDER COLOR -----
+# ----- WINDOW BORDER COLOR -----
 client.focused          #abb2bf #abb2bf #0c0c0c #F87060   #abb2bf
 client.focused_inactive #333333 #222222 #ffffff #484e50   #5f676a
 client.unfocused        #333333 #222222 #888888 #292d2e   #222222
@@ -116,7 +117,7 @@ client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 client.background       #ffffff
 
 
-# ----- KEL GAPS -----
+# ----- GAPS -----
 smart_gaps on
 smart_borders on
 set $inner_gaps 5
@@ -129,7 +130,7 @@ gaps outer $outer_gaps
 # border_radius 2
 
 
-# ----- KEL CHANGE TO USE VIM BINDING -----
+# ----- CHANGE TO USE VIM BINDING -----
 # move focused window
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
@@ -143,7 +144,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 
-# ----- KEL WINDOW MODE -----
+# ----- WINDOW MODE -----
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -175,7 +176,7 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-# ----- KEL TAB -----
+# ----- TAB -----
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+t layout tabbed
@@ -186,7 +187,7 @@ bindsym $mod+Tab exec i3-switch-tabs right
 bindsym $mod+Shift+Tab exec i3-switch-tabs left
 
 
-# ----- KEL i3 WINDOW MANAGEMENT -----
+# ----- i3 WINDOW MANAGEMENT -----
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -227,7 +228,7 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 
-# ----- KEL SESSION MANAGEMENT - LOGOUT | SHUTDOWN -----
+# ----- SESSION MANAGEMENT - LOGOUT | SHUTDOWN -----
 mode "exit: [l]ogout  | [r]eboot  | [s]hutdown " {
   bindsym l exec i3-msg exit
   bindsym r exec systemctl reboot
@@ -242,7 +243,7 @@ bindsym $mod+Shift+r restart
 # bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 
-# ----- KEL i3 RESIZE -----
+# ----- i3 RESIZE -----
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
 
@@ -270,11 +271,11 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 
-# ----- KEL NOTIFICATION -----
+# ----- NOTIFICATION -----
 exec --no-startup-id dunst
 
 
-# ----- KEL STATUS BAR -----
+# ----- STATUS BAR -----
 # bar {
 #         status_command i3status
 # }

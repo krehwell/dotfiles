@@ -35,7 +35,7 @@ set smartcase
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab autoindent smartindent       " own indenting
 set title
 set ttimeoutlen=0
-set updatetime=10
+" set updatetime=10
 set undodir=~/.vim/undodir                                         " undotree dir
 set undofile                                                       " to be able to save history of undo tree
 set wildmenu                                                       " shows suggestion in tab :
@@ -52,7 +52,7 @@ set noequalalways
 
 
 " ----- FIX CURSOR HOLD ----
-let g:cursorhold_updatetime = 10
+let g:cursorhold_updatetime = 100
 
 
 " ------ FOLDING ------
@@ -95,6 +95,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'kyazdani42/nvim-web-devicons' " lua
 Plug 'lambdalisue/fern-renderer-devicons.vim'
 Plug 'lambdalisue/fern-hijack.vim'
+Plug 'antoinemadec/FixCursorHold.nvim'
 " ----- MOVEMENT/NAVIGATION PLUG -----
 " Plug 'Yggdroot/indentLine'
 Plug 'mg979/vim-visual-multi'

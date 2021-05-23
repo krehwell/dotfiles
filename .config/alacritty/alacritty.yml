@@ -1,26 +1,26 @@
 background_opacity: 1
 colors:
   bright:
-    black: '#928374'
-    blue: '#83A598'
-    cyan: '#8EC07C'
-    green: '#B8BB26'
-    magenta: '#D3869B'
-    red: '#FB4934'
-    white: '#EBDBB2'
-    yellow: '#FABD2F'
+    black: '#696969'
+    blue: '#696969'
+    cyan: '#696969'
+    green: '#696969'
+    magenta: '#696969'
+    red: '#696969'
+    white: '#F1F1F1'
+    yellow: '#696969'
   normal:
-    black: '#010101'
-    blue: '#458588'
-    cyan: '#689D6A'
-    green: '#98971A'
-    magenta: '#B16286'
-    red: '#CC241D'
-    white: '#A89984'
-    yellow: '#D79921'
+    black: '#212121'
+    blue: '#696969'
+    cyan: '#696969'
+    green: '#C6C6C6'
+    magenta: '#696969'
+    red: '#C6C6C6'
+    white: '#696969'
+    yellow: '#696969'
   primary:
     background: '#161B1A'
-    foreground: '#EBDBB2'
+    foreground: '#F1F1F1'
 draw_bold_text_with_bright_colors: false
 env:
   TERM: xterm-256color

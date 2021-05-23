@@ -278,16 +278,21 @@ menu-3-1-exec = menu-open-0
 
 
 ; =================================================
-; KEYBOARD LAYOUT
+; CURRENT WINDOW NAME
 ; =================================================
 
 [module/xwindow]
 label = %title:0:30:...%
 type = internal/xwindow
 
+
+; =================================================
+; KEYBOARD LAYOUT
+; =================================================
+
 [module/xkeyboard]
 blacklist-0 = num lock
-format-prefix = "kebs: "
+format-prefix = %{A1:gnome-control-center accessibility &:}kebs:
 label-indicator-margin = 1
 label-indicator-padding = 2
 label-layout = %layout%

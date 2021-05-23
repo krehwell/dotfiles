@@ -1,24 +1,6 @@
-###################################
-#
-# Config file created with
-# bash wrapper
-#
-###################################
-###################################
-#
-# Config file created with
-# bash wrapper
-#
-###################################
-###################################
-#
-# Config file created with
-# bash wrapper
-#
-###################################
 
 [global]
-    font = Monospace 11
+    font = "Hack Nerd Font"
     allow_markup = yes
     format = "<b>%s</b>\n%b"
     sort = yes
@@ -55,16 +37,18 @@
     context = ctrl+shift+period
 
 [urgency_low]
-    background = "#212121"
-    foreground = "#f1f1f1"
+    background = "#121212"
+    foreground = "#888888"
     timeout = 5
 
 [urgency_normal]
-    background = "#212121"
+    background = "#121212"
     foreground = "#f1f1f1"
     timeout = 20
 
 [urgency_critical]
-    background = "#212121"
-    foreground = "#C30771"
+    background = "#ff3366"
+    foreground = "#f1f1f1"
     timeout = 5
+
+# vim: ft=cfg

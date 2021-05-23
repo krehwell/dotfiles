@@ -18,25 +18,45 @@
 ! #define purple #D3869B
 ! #define aqua #8EC07C
 
-OFF
-#define bg      #282828
+! OFF
+! #define bg      #282828
+! #define fg      #F1F1F1
+! #define bgH     #161B1A
+! #define black   #212121
+! #define redH    #C30771
+! #define greenH  #10A778
+! #define yellowH #A89C14
+! #define blueH   #008EC4
+! #define purpleH #523C79
+! #define aquaH   #20A5BA
+! #define grayH   #B2B2B2
+! #define gray    #C6C6C6
+! #define red     #E32791
+! #define green   #5FD7A7
+! #define yellow  #F3E430
+! #define blue    #20BBFC
+! #define purple  #6855DE
+! #define aqua    #4FB8CC
+
+! OFF | but really is off
+#define bg      #121212
 #define fg      #F1F1F1
 #define bgH     #161B1A
 #define black   #212121
-#define redH    #C30771
-#define greenH  #10A778
-#define yellowH #A89C14
-#define blueH   #008EC4
-#define purpleH #523C79
-#define aquaH   #20A5BA
-#define grayH   #B2B2B2
-#define gray    #C6C6C6
-#define red     #E32791
-#define green   #5FD7A7
-#define yellow  #F3E430
-#define blue    #20BBFC
-#define purple  #6855DE
-#define aqua    #4FB8CC
+#define redH    #212121
+#define greenH  #212121
+#define yellowH #696969
+#define blueH   #696969
+#define purpleH #696969
+#define aquaH   #696969
+#define grayH   #696969
+#define gray    #696969
+#define red     #696969
+#define green   #696969
+#define yellow  #696969
+#define blue    #696969
+#define purple  #696969
+#define aqua    #696969
 
 *.foreground:  fg
 *.background:  bgH
