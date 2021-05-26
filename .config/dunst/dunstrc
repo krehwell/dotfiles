@@ -10,7 +10,9 @@
     show_age_threshold = 60
     word_wrap = yes
     ignore_newline = no
-    geometry = "200x5-6+30"
+    # The geometry of the window:
+    #   [{width}]x{height}[+/-{x}+/-{y}]
+    geometry = "350x5-30+20"
     transparency = 0
     idle_threshold = 120
     monitor = 0

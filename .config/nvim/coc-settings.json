@@ -10,7 +10,7 @@
   "prettier.bracketSpacing": true,
   "prettier.tabWidth": 4,
 
-  "javascript.suggestionActions.enabled": false,
+  "javascript.suggestionActions.enabled": true,
 
   "npm.binPath": "~/.nvm/versions/node/v12.18.2/bin/npm",
   "tsserver.npm": "/usr/bin/npm",
