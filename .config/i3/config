@@ -60,7 +60,7 @@ bindsym $mod+e exec --no-startup-id nautilus
 
 
 # ----- WALLPAPER -----
-exec --no-startup-id nitrogen --restore
+# exec --no-startup-id nitrogen --restore
 
 
 # ----- OPEN i3 CONFIG -----
