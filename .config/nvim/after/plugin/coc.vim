@@ -100,7 +100,7 @@ nnoremap <leader>E :call CocAction('diagnosticPrevious')<CR>
 
 " ----- FIX ACTION -----
 nmap <leader>qf <Plug>(coc-fix-current)
-nmap <leader>ac <Plug>(coc-codeaction)
+nmap <leader>ca <Plug>(coc-codeaction)
 
 
 " ----- COLOR ------
