@@ -35,7 +35,7 @@ set smartcase
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab autoindent smartindent       " own indenting
 set title
 set ttimeoutlen=0
-" set updatetime=10
+set updatetime=10
 set undodir=~/.vim/undodir                                         " undotree dir
 set undofile                                                       " to be able to save history of undo tree
 set wildmenu                                                       " shows suggestion in tab :
@@ -144,8 +144,9 @@ nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
 nnoremap <leader>u :UndotreeToggle<CR>:UndotreeFocus<CR>
 nnoremap <silent> <Leader>pv :Fern . -drawer -reveal=% -width=27 -toggle<CR>
+nnoremap <silent> <Leader>pp :Fern . -drawer -reveal=% -width=27<CR>
 " reindexing node tree on current file buffer
-nnoremap <silent> <Leader>pp :Fern . -drawer -reveal=% -width=27 -toggle<CR>:Fern . -drawer -reveal=% -width=27 -toggle<CR><C-w>l
+nnoremap <silent> <Leader>pr :Fern . -drawer -reveal=% -width=27 -toggle<CR>:Fern . -drawer -reveal=% -width=27 -toggle<CR><C-w>l
 nnoremap <silent> <Leader>- :vertical resize -10<CR>
 nnoremap <silent> <Leader>= :vertical resize +10<CR>
 nnoremap <silent> <Leader>0 :resize -3<CR>

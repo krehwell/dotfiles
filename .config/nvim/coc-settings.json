@@ -3,6 +3,7 @@
   "pairs.enableCharacters": ["(", "[", "{", "<", "\"", "'", "`"],
   "diagnostic.checkCurrentLine": true,
   "diagnostic.warningSign": ">>",
+  "diagnostic.refreshOnInsertMode": true,
 
   "prettier.arrowParens": "always",
   "prettier.jsxBracketSameLine": true,
@@ -10,7 +11,7 @@
   "prettier.bracketSpacing": true,
   "prettier.tabWidth": 4,
 
-  "javascript.suggestionActions.enabled": true,
+  "javascript.suggestionActions.enabled": false,
 
   "npm.binPath": "~/.nvm/versions/node/v12.18.2/bin/npm",
   "tsserver.npm": "/usr/bin/npm",

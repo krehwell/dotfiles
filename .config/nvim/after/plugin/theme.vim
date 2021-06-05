@@ -22,6 +22,11 @@ let g:gitgutter_override_sign_column_highlight=1
 highlight GitGutterAdd    guifg=#10A778 ctermfg=2
 highlight GitGutterChange guifg=#A89C14 ctermfg=3
 highlight GitGutterDelete guifg=#C30771 ctermfg=1
+" TESTING BELOW GUTTER
+hi! GitGutterAdd guifg=#10A778 ctermfg=2
+hi! GitGutterChange guifg=#A89C14 ctermfg=3
+hi! GitGutterDelete guifg=#C30771 ctermfg=1
+hi! GitGutterChangeDelete guifg=#C30771 ctermfg=1
 
 
 " ----- BASE 16 ONE DARK -----
@@ -30,7 +35,7 @@ highlight GitGutterDelete guifg=#C30771 ctermfg=1
 " colorscheme onedark
 " " ----- LINE SPLITTER ------
 " highlight VertSplit guibg=bg guifg=bg
-" set fillchars+=vert:┆
+set fillchars+=vert:┆
 
 
 " ----- AYU -----
