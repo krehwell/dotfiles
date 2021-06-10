@@ -16,6 +16,7 @@ colorscheme off
 " ----- BG CONFIG -----
 " ----- NO COLOR ON LINE NUMBER -----
 autocmd ColorScheme * highlight! link SignColumn LineNr
+highlight CursorLineNr cterm=NONE ctermbg=NONE ctermfg=NONE guibg=NONE
 " ---- git gutter remove bg color -----
 let g:gitgutter_override_sign_column_highlight=1
 " ---- custom git gutter color -----

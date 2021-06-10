@@ -10,7 +10,7 @@ let g:lightline = {
       \ },
       \ 'component_function': {
       \   'gitbranch': 'FugitiveHead',
-      \   'filename': 'FilenameAndLastPath'
+      \   'filename': 'FilenameAndPath'
       \ },
       \ 'tab_component_function': {
       \   'filename': 'TabFilenameAndLastPath',

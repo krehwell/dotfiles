@@ -11,7 +11,6 @@ let $INIT="~/.config/nvim/init.vim"
 " set cursorlineopt=number
 " set autochdir                                                    " set the curr dir to opened buf
 set exrc                                                           " allow local init.vim
-" set secure
 set backspace=2
 set backspace=indent,eol,start
 set colorcolumn=80
@@ -115,6 +114,7 @@ Plug 'tjdevries/gruvbuddy.nvim'
 Plug 'chriskempson/base16-vim'
 Plug 'joshdick/onedark.vim'
 Plug 'pbrisbin/vim-colors-off'
+Plug 'junegunn/goyo.vim'
 call plug#end()
 
 
@@ -202,3 +202,22 @@ vnoremap <localleader>c :.w! ~/.vimbufferz<CR>
 nnoremap <localleader>v :r ~/.vimbufferz<CR>
 " copy line without linebreak
 nnoremap Y 0vg_y
+
+
+" MAKE SURE THIS ALWAYS IN THE END
+" ----- RE-EXECUTE NECCESSARY FILE WHILE SO %; THEME -----
+let g:vim_home = get(g:, 'vim_home', expand('~/.config/nvim/'))
+
+" Load all vim configs {{{1
+let config_list = [
+            \ 'after/plugin/theme.vim',
+            \]
+
+for files in config_list
+    for f in glob(g:vim_home.files, 1, 1)
+        exec 'source' f
+    endfor
+endfor
+
+" Set at the end to work around 'exrc'
+set secure

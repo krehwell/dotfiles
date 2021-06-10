@@ -106,3 +106,6 @@ nmap <leader>ca <Plug>(coc-codeaction)
 " ----- COLOR ------
 nnoremap <localleader>cp :call CocAction('colorPresentation')<CR>
 nnoremap <localleader>cs :call CocAction('pickColor')<CR>
+
+" ----- YANK -----
+nnoremap <silent> <C-y> :<C-u>CocList yank<cr>

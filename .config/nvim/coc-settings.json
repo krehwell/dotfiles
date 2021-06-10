@@ -31,5 +31,7 @@
       "browser": true,
       "node": true
     }
-  }
+  },
+
+  "yank.highlight.enable": false
 }
