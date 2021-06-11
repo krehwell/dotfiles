@@ -50,7 +50,7 @@ bindsym XF86MonBrightnessDown exec "xbacklight -dec 20; notify-send 'Brightness 
 
 
 # ----- TERMINAL -----
-set $term --no-startup-id alacritty
+set $term --no-startup-id kitty
 bindsym $mod+Return 		         exec $term
 bindsym $mod+Shift+Return	       exec $term --working-directory $(xcwd)
 
