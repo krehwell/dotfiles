@@ -5,6 +5,12 @@ function fish_vi_key_bindings --description 'vi-like key bindings for fish'
         return 1
     end
 
+    # Set the cursor shapes for the different vi modes.
+    set fish_cursor_default     block      blink
+    set fish_cursor_insert      line       blink
+    set fish_cursor_replace_one underscore blink
+    set fish_cursor_visual      block
+
     # Erase all bindings if not explicitly requested otherwise to
     # allow for hybrid bindings.
     # This needs to be checked here because if we are called again
