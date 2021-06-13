@@ -13,9 +13,9 @@ colors:
     black: '#212121'
     blue: '#696969'
     cyan: '#696969'
-    green: '#C6C6C6'
+    green: '#F1F1F1'
     magenta: '#696969'
-    red: '#C6C6C6'
+    red: '#F1F1F1'
     white: '#696969'
     yellow: '#696969'
   primary:

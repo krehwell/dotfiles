@@ -1,8 +1,8 @@
 " ----- LIGHTLINE SETTTINGS -----
 " let g:lightline = {'colorscheme': 'argonaut'}
 " 'right': [ [ 'lineinfo' ], ['percent'], ['filetype']]
+"'colorscheme': 'off',
 let g:lightline = {
-      \ 'colorscheme': 'PaperColor',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'filename', 'modified' ] ],
@@ -43,9 +43,15 @@ function! TabFilenameAndLastPath(n)
 endfunction
 
 function! FilenameAndPath()
+    " If its tree explorer then show name as this
+    if &ft == 'fern'
+        return "Fern Tree"
+    else
+
     let name = ""
     let subs = split(expand('%'), "/")
     let i = 1
+
     for s in subs
         let parent = name
         if  i == len(subs)
@@ -53,11 +59,11 @@ function! FilenameAndPath()
         elseif i == 1
             let name = s
         else
-            let name = parent . '/' . strpart(s, 0, 2)
+            let name = parent . '/' . strpart(s, 0)
         endif
         let i += 1
     endfor
-    return name
+    return substitute(name, '.*/\([^/]\+/\)', '\1', '')
 endfunction
 
 function! FilenameAndLastPath()
@@ -70,16 +76,3 @@ function! FilenameAndLastPath()
 endfunction
 " ----- END OF COOL FILENAME FUNCTION -----
 
-
-" ----- COLOR -----
-autocmd VimEnter * call SetupLightlineColors()
-function SetupLightlineColors() abort
-  " transparent background in statusbar
-  let l:palette = lightline#palette()
-
-  let l:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
-  let l:palette.inactive.middle = l:palette.normal.middle
-  let l:palette.tabline.middle = l:palette.normal.middle
-
-  call lightline#colorscheme()
-endfunction
