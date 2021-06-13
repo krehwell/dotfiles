@@ -138,20 +138,19 @@ let maplocalleader = "\\"
 
 
 " ----- SHORTCUT BASIC -----
-nnoremap <leader>h :wincmd h<CR>
-nnoremap <leader>j :wincmd j<CR>
-nnoremap <leader>k :wincmd k<CR>
-nnoremap <leader>l :wincmd l<CR>
+nnoremap <silent> <leader>h :wincmd h<CR>
+nnoremap <silent> <leader>j :wincmd j<CR>
+nnoremap <silent> <leader>k :wincmd k<CR>
+nnoremap <silent> <leader>l :wincmd l<CR>
 nnoremap <leader>u :UndotreeToggle<CR>:UndotreeFocus<CR>
 nnoremap <silent> <Leader>pv :Fern . -drawer -reveal=% -width=27 -toggle<CR>
-nnoremap <silent> <Leader>pp :Fern . -drawer -reveal=% -width=27<CR>
 " reindexing node tree on current file buffer
-nnoremap <silent> <Leader>pr :Fern . -drawer -reveal=% -width=27 -toggle<CR>:Fern . -drawer -reveal=% -width=27 -toggle<CR><C-w>l
+nnoremap <silent> <Leader>pr :Fern . -drawer -reveal=% -width=27 -toggle<CR>:Fern . -drawer -reveal=% -width=27 -toggle<CR><C-w><C-p>
 nnoremap <silent> <Leader>- :vertical resize -10<CR>
 nnoremap <silent> <Leader>= :vertical resize +10<CR>
 nnoremap <silent> <Leader>0 :resize -3<CR>
 nnoremap <silent> <Leader>9 :resize +3<CR>
-nnoremap <Leader>n :noh<CR>
+nnoremap <silent> <Leader>n :noh<CR>
 
 " CONTROLLING VIM-TAB || C-CONTROL
 nnoremap <C-k> :tabprevious<CR>
