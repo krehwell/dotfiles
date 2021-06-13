@@ -39,6 +39,8 @@ hi! GitGutterChange guifg=#A89C14 ctermfg=3
 hi! GitGutterDelete guifg=#C30771 ctermfg=1
 hi! GitGutterChangeDelete guifg=#C30771 ctermfg=1
 
+hi! CtrlPMatch ctermbg=235 ctermfg=250 guibg=NONE guifg=#5FD7A7 cterm=NONE gui=NONE
+
 
 " " ----- LINE SPLITTER ------
 " highlight VertSplit guibg=bg guifg=bg
