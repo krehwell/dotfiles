@@ -10,7 +10,7 @@ augroup fern-custom
     autocmd FileType fern setlocal nonu norelativenumber
     " Super cool trick to reopen fern and rewent to prev file
     au BufLeave * if &ft ==# 'fern' | nnoremap <silent> <Leader>pp :Fern . -drawer -reveal=% -width=27<CR> | endif
-    autocmd FileType fern nnoremap <silent> <Leader>pp <C-w><C-p>
+    au BufEnter * if &ft ==# 'fern' | nnoremap <silent> <Leader>pp <C-w><C-p> | endif
 augroup END
 
 nnoremap <silent> <Leader>ee :<C-u>Fern <C-r>=<SID>smart_path()<CR><CR>
