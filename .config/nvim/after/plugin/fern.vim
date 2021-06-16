@@ -13,7 +13,7 @@ augroup fern-custom
     au BufEnter * if &ft ==# 'fern' | nnoremap <silent> <Leader>pp <C-w><C-p> | endif
 augroup END
 
-nnoremap <silent> <Leader>ee :<C-u>Fern <C-r>=<SID>smart_path()<CR><CR>
+" nnoremap <silent> <Leader>ee :<C-u>Fern <C-r>=<SID>smart_path()<CR><CR>
 
 " Return a parent directory of the current buffer when the buffer is a file.
 " Otherwise it returns a current working directory.

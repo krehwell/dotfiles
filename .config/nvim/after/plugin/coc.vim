@@ -108,4 +108,4 @@ nnoremap <localleader>cp :call CocAction('colorPresentation')<CR>
 nnoremap <localleader>cs :call CocAction('pickColor')<CR>
 
 " ----- YANK -----
-nnoremap <silent> <C-y> :<C-u>CocList yank<cr>
+nnoremap <silent> <leader>y :<C-u>CocList yank<cr>

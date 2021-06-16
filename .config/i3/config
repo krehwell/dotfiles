@@ -16,7 +16,7 @@ set $alt Mod1
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
-# gnome think I guee
+# gnome things I guess
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # start with gnome keyring
@@ -27,6 +27,10 @@ exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
 exec --no-startup-id nm-applet
 
 # ----- END OF DONT KNOW SHIT ABOUT THIS -----
+
+
+# ----- DISABLE MIDDLE-MOUSE PASTE -----
+exec --no-startup-id xmousepasteblock &
 
 
 # ----- i3 FONT -----
