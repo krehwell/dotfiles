@@ -12,3 +12,7 @@ alias txxx='tmux kill-server'
 alias ls='ptls'
 alias mkdir='ptmkdir'
 alias touch='pttouch'
+
+# ST use
+# alias load="kill -USR1 $(pidof st)"
+# alias  use="xrdb merge"
