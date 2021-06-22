@@ -204,7 +204,7 @@ nnoremap Y 0vg_y
 
 
 " MAKE SURE THIS ALWAYS IN THE END
-" ----- RE-EXECUTE NECCESSARY FILE WHILE SO %; THEME -----
+" ----- RE-EXECUTE NECCESSARY FILE WHILE SOURCE % { THEME }-----
 let g:vim_home = get(g:, 'vim_home', expand('~/.config/nvim/'))
 
 " Load all vim configs {{{1
