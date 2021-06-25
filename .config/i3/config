@@ -71,11 +71,12 @@ bindsym $mod+e exec --no-startup-id nautilus
 bindsym $mod+o exec --no-startup-id $term -e nvim ~/.config/i3/config
 
 
-# ----- FLOATING ENABLE -----
+# ----- APPS WINDOW DEFAULT FLOATING ENABLE -----
 for_window [class="Yad" title="yad-calendar"] floating enable
 for_window [class="gnome-system-monitor"] floating enable
 for_window [class="vokoscreenNG"] floating enable
 for_window [class="Nitrogen"] floating enable
+for_window [class="Eog"] floating enable
 
 
 # ----- MONITOR -----
