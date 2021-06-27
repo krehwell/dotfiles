@@ -67,7 +67,7 @@ set foldminlines=5
 set foldcolumn=0
 
 
-" ----- VIM PLUG ------
+" ----- VIM PLUG -----
 call plug#begin('~/vim/plugged')
 " -----
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
