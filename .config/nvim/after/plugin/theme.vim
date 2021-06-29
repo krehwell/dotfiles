@@ -43,15 +43,15 @@ hi! GitGutterChangeDelete guifg=#C30771 ctermfg=1
 hi! CtrlPMatch ctermbg=235 ctermfg=250 guibg=NONE guifg=#5FD7A7 cterm=NONE gui=NONE
 
 " Lighline color
-" autocmd VimEnter * call SetupLightlineColors()
-" function SetupLightlineColors() abort
-"   " transparent background in statusbar
-"   let l:palette = lightline#palette()
-"   let l:palette.normal.middle = [ [ '#444444', '#444444', '696969', '696969' ] ]
-"   let l:palette.inactive.middle = l:palette.normal.middle
-"   let l:palette.tabline.middle = l:palette.normal.middle
-"   call lightline#colorscheme()
-" endfunction
+autocmd VimEnter * call SetupLightlineColors()
+function SetupLightlineColors() abort
+  " transparent background in statusbar
+  let l:palette = lightline#palette()
+  let l:palette.normal.middle = [ [ '#444444', '#444444', '696969', '696969' ] ]
+  let l:palette.inactive.middle = l:palette.normal.middle
+  let l:palette.tabline.middle = l:palette.normal.middle
+  call lightline#colorscheme()
+endfunction
 
 
 " " ----- LINE SPLITTER ------

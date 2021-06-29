@@ -1,7 +1,7 @@
 " ----- LIGHTLINE SETTTINGS -----
 " let g:lightline = {'colorscheme': 'argonaut'}
 " 'right': [ [ 'lineinfo' ], ['percent'], ['filetype']]
-"'colorscheme': 'off',
+" \ 'colorscheme': 'wombat',
 let g:lightline = {
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
