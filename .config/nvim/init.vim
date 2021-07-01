@@ -47,7 +47,8 @@ set showmode
 set scrolloff=5
 set shortmess+=F
 set mouse=nc
-set noequalalways
+set eadirection=ver
+" set noequalalways
 
 
 " ----- FIX CURSOR HOLD ----
