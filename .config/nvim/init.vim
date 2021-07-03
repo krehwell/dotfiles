@@ -2,7 +2,7 @@ filetype plugin indent on
 syntax on
 
 
-" ----- MY VAR ------
+" ----- MY VAR ------=
 nnoremap <localleader>i :vsplit $INIT<cr>
 let $INIT="~/.config/nvim/init.vim"
 
