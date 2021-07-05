@@ -13,9 +13,18 @@ augroup fern-custom
     au BufEnter * if &ft ==# 'fern' | nnoremap <silent> <Leader>pp <C-w><C-p> | endif
 augroup END
 
+fun! FernRedraw()
+    " Doesnt work? why?
+    if &buftype ==? 'TERMINAL'
+        return
+    endif
+    call feedkeys("\<Plug>(fern-action-redraw)")
+endfun
+
 augroup fern-redraw
     autocmd! *
-    autocmd BufEnter * call feedkeys("\<Plug>(fern-action-redraw)")
+    " autocmd BufEnter * call feedkeys("\<Plug>(fern-action-redraw)")
+    " au BufEnter * call FernRedraw()
 augroup END
 
 " nnoremap <silent> <Leader>ee :<C-u>Fern <C-r>=<SID>smart_path()<CR><CR>
