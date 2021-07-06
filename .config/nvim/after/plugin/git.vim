@@ -26,6 +26,6 @@ nnoremap gp :GitGutterPreviewHunk<CR>
 
 
 " ----- GIT KEY BINDING -----
-nnoremap gs :Gstatus<CR>
+nnoremap gs :Git<CR>
 nnoremap gh :diffget //2<CR>
 nnoremap gl :diffget //3<CR>
