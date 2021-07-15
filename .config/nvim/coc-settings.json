@@ -1,37 +1,37 @@
 {
-  "coc.preferences.formatOnSaveFiletypes": ["css", "html"],
-  "pairs.enableCharacters": ["(", "[", "{", "<", "\"", "'", "`"],
-  "diagnostic.checkCurrentLine": true,
-  "diagnostic.warningSign": ">>",
-  "diagnostic.refreshOnInsertMode": true,
+    "coc.preferences.formatOnSaveFiletypes": ["css", "html"],
+    "pairs.enableCharacters": ["(", "[", "{", "<", "\"", "'", "`"],
+    "diagnostic.checkCurrentLine": true,
+    "diagnostic.warningSign": ">>",
+    "diagnostic.refreshOnInsertMode": true,
 
-  "prettier.arrowParens": "always",
-  "prettier.jsxBracketSameLine": true,
-  "prettier.printWidth": 80,
-  "prettier.bracketSpacing": true,
-  "prettier.tabWidth": 4,
+    "prettier.arrowParens": "always",
+    "prettier.jsxBracketSameLine": true,
+    "prettier.printWidth": 80,
+    "prettier.bracketSpacing": true,
+    "prettier.tabWidth": 4,
 
-  "javascript.suggestionActions.enabled": false,
+    "javascript.suggestionActions.enabled": false,
 
-  "npm.binPath": "~/.nvm/versions/node/v12.18.2/bin/npm",
-  "tsserver.npm": "/usr/bin/npm",
-  "tsserver.reportStyleChecksAsWarnings": true,
+    "npm.binPath": "~/.nvm/versions/node/v12.18.2/bin/npm",
+    "tsserver.npm": "/usr/bin/npm",
+    "tsserver.reportStyleChecksAsWarnings": true,
 
-  "eslint.enable": false,
-  "eslint.autoFixOnSave": false,
-  "eslint.nodePath": "/usr/local/lib/node_modules/",
-  "eslint.filetypes": [
-    "javascript",
-    "typescript",
-    "typescriptreact",
-    "javascriptreact"
-  ],
-  "eslint.options": {
-    "env": {
-      "browser": true,
-      "node": true
-    }
-  },
+    "eslint.enable": false,
+    "eslint.autoFixOnSave": false,
+    "eslint.nodePath": "/usr/local/lib/node_modules/",
+    "eslint.filetypes": [
+        "javascript",
+        "typescript",
+        "typescriptreact",
+        "javascriptreact"
+    ],
+    "eslint.options": {
+        "env": {
+            "browser": true,
+            "node": true
+        }
+    },
 
-  "yank.highlight.enable": false
+    "yank.highlight.enable": false
 }
