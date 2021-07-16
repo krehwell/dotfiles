@@ -13,13 +13,12 @@
 
     "javascript.suggestionActions.enabled": false,
 
-    "npm.binPath": "~/.nvm/versions/node/v12.18.2/bin/npm",
     "tsserver.npm": "/usr/bin/npm",
     "tsserver.reportStyleChecksAsWarnings": true,
+    "tsserver.implicitProjectConfig.checkJs": false,
 
-    "eslint.enable": false,
+    "eslint.enable": true,
     "eslint.autoFixOnSave": false,
-    "eslint.nodePath": "/usr/local/lib/node_modules/",
     "eslint.filetypes": [
         "javascript",
         "typescript",
