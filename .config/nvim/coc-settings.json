@@ -17,7 +17,7 @@
     "tsserver.reportStyleChecksAsWarnings": true,
     "tsserver.implicitProjectConfig.checkJs": false,
 
-    "eslint.enable": true,
+    "eslint.enable": false,
     "eslint.autoFixOnSave": false,
     "eslint.filetypes": [
         "javascript",
