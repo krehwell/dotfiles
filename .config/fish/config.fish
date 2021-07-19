@@ -10,7 +10,7 @@ alias txxx='tmux kill-server'
 # nvm use v14.11.0
 
 # prettier sh | PtSH - https://github.com/jszczerbinsky/ptSh dsfasdfsdafdsafddfdd
-alias ls='ptls'
+# alias ls='ptls'
 alias mkdir='ptmkdir'
 alias touch='pttouch'
 
