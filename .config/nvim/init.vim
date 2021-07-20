@@ -72,59 +72,53 @@ set foldcolumn=0
 call plug#begin('~/vim/plugged')
 " -----
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'OmniSharp/omnisharp-vim'
 " ----- FUZZY SEARCH PLUG -----
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'jremmen/vim-ripgrep'
-Plug 'ctrlpvim/ctrlp.vim'
-" ----- GIT PLUG -----
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
-Plug 'rbong/vim-flog'
-" ----- STATUS/HELPER -----
-" Plug 'narajaon/onestatus'
-" Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
-Plug 'itchyny/lightline.vim'
-Plug 'mbbill/undotree'
-Plug 'vimpostor/vim-tpipeline'
-Plug 'ojroques/vim-oscyank'
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Plug 'junegunn/fzf.vim'
+" Plug 'jremmen/vim-ripgrep'
+" Plug 'ctrlpvim/ctrlp.vim'
 " telescope
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+" ----- GIT PLUG -----
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+" Plug 'rbong/vim-flog'
+" ----- STATUS/HELPER -----
+Plug 'itchyny/lightline.vim'
+Plug 'mbbill/undotree'
+Plug 'vimpostor/vim-tpipeline'
 " ----- DIR TREE -----
 Plug 'lambdalisue/fern-git-status.vim'
 Plug 'lambdalisue/fern.vim'
-Plug 'ryanoasis/vim-devicons'
-Plug 'kyazdani42/nvim-web-devicons' " lua
-Plug 'lambdalisue/fern-renderer-devicons.vim'
+" Plug 'ryanoasis/vim-devicons' - fern used this
+" Plug 'kyazdani42/nvim-web-devicons'
+" Plug 'lambdalisue/fern-renderer-devicons.vim'
 Plug 'lambdalisue/fern-hijack.vim'
-Plug 'antoinemadec/FixCursorHold.nvim'
 " ----- MOVEMENT/NAVIGATION PLUG -----
 " Plug 'Yggdroot/indentLine'
 Plug 'mg979/vim-visual-multi'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'alvan/vim-closetag'
-Plug 'wfxr/minimap.vim'
-Plug 'airblade/vim-current-search-match'
 Plug 'tpope/vim-commentary'
+Plug 'alvan/vim-closetag'
+" Plug 'wfxr/minimap.vim'
+Plug 'airblade/vim-current-search-match'
+" ----- VIM CORE HELPER -----
+Plug 'antoinemadec/FixCursorHold.nvim'
+Plug 'ojroques/vim-oscyank'
 " ----- COLORSCHEME PLUG -----
 Plug 'morhetz/gruvbox'
 Plug 'senran101604/neotrix.vim', {'branch': 'main'}
-Plug 'ayu-theme/ayu-vim'
 Plug 'tjdevries/colorbuddy.vim'
-Plug 'tjdevries/gruvbuddy.nvim'
-Plug 'chriskempson/base16-vim'
-Plug 'joshdick/onedark.vim'
 Plug 'pbrisbin/vim-colors-off'
 Plug 'junegunn/goyo.vim'
 call plug#end()
 
 
-" START FOR SOME REASON THIS CONFIG SHOULD BE HERE -----#####
+" START OF - FOR SOME REASON THIS CONFIG SHOULD BE HERE
 
 " let closetag on react file -----
 let g:closetag_filenames = '*.js, *.jsx, *.tsx'
@@ -135,7 +129,7 @@ let g:closetag_emptyTags_caseSensitive = 1
 let g:fern_renderer_devicons_disable_warning = 1
 let g:fern#renderer = "devicons"
 
-" END FOR SOME REASON THIS CONFIG SHOULD BE HERE -----#####
+" END OF - FOR SOME REASON THIS CONFIG SHOULD BE HERE
 
 
 " ----- LEADER KEY -----
@@ -143,7 +137,8 @@ let mapleader = " "
 let maplocalleader = "\\"
 
 
-" ----- SHORTCUT BASIC -----
+" ----- MAPPING KEYS -----
+" SHORTCUT BASIC
 nnoremap <silent> <leader>h :wincmd h<CR>
 nnoremap <silent> <leader>j :wincmd j<CR>
 nnoremap <silent> <leader>k :wincmd k<CR>
@@ -159,37 +154,36 @@ nnoremap <silent> <Leader>0 :resize -3<CR>
 nnoremap <silent> <Leader>9 :resize +3<CR>
 nnoremap <silent> <Leader>n :noh<CR>
 
-" CONTROLLING VIM-TAB || C-CONTROL
+" TAB SWITCHER
 nnoremap <C-k> :tabprevious<CR>
 nnoremap <C-j> :tabnext<CR>
 
-" MAPPING EDITING
+" EDITING
+iabbrev /* /*  */<esc>bhhi<del>
 inoremap <M-;> <esc>v$<esc>`>a;<esc>`<a
 inoremap <c-b> <esc><right>dwi
 inoremap <silent> jj <c-o>:call search('}\\|)\\|]\\|>\\|"', 'cW')<cr><Right>
-nnoremap <leader>sr :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
-" inoremap {<CR> {<CR>}<Esc>O<BS><Tab>
 nnoremap <M-j> ddp
 nnoremap <M-k> ddkP
-vnoremap w e
+nnoremap <leader>sr :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
+nnoremap <localleader>a ggVG
 vnoremap $ $<left>
+vnoremap <M-j> :m '>+1<CR>gv=gv
+vnoremap <M-k> :m '>-2<CR>gv=gv
+vnoremap w e
 
-" calculator
+" CALCULATOR
 nnoremap Q 0yt=A<C-r>=<C-r>"<CR><Esc>
 
 " SESSION BUFFER CONTROLLER
-nnoremap <localleader>s :mksession! ~\vim_session<cr>
-nnoremap <localleader>o :source ~\vim_session<cr>
 nnoremap <localleader>b :bprevious<CR>
 nnoremap <localleader>n :bnext<CR>
+nnoremap <localleader>o :source ~\vim_session<cr>
+nnoremap <localleader>s :mksession! ~\vim_session<cr>
 
 " CD TO CURRENT BUFFER's DIR | lcd -> for cding the current buffer only to the current dir
 nnoremap <localleader>cd :cd %:p:h<CR>
 nnoremap <localleader>lcd :lcd %:p:h<CR>
-
-nnoremap <localleader>a ggVG
-
-iabbrev /* /*  */<esc>bhhi<del>
 
 " ----- BOILERPLATES -----
 nnoremap <leader>,html :-1read $HOME/boilerplates/skeleton.html<CR>3j2wf>a
@@ -201,13 +195,6 @@ highlight LineHighlight ctermbg=darkgray guibg=black
 nnoremap <silent> <localleader>h :call matchadd('LineHighlight', '\%'.line('.').'l')<CR>
 " clear all the highlighted lines
 nnoremap <silent> <localleader>H :call clearmatches()<CR>
-
-" GLOBAL BUFFER COPY/PASTE
-vnoremap <localleader>c :w! ~/.vimbufferz<CR>
-vnoremap <localleader>c :.w! ~/.vimbufferz<CR>
-nnoremap <localleader>v :r ~/.vimbufferz<CR>
-" copy line without linebreak
-nnoremap Y 0vg_y
 
 
 " MAKE SURE THIS ALWAYS IN THE END
@@ -230,5 +217,8 @@ set secure
 
 " TELESCOPE
 lua << EOF
-require("telescope").setup{
+require('telescope').setup{
+    defaults = {
+        prompt_prefix = "> "
+    }
 }

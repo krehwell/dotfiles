@@ -1,3 +1,10 @@
+" ----- VIM PLUG -----
+call plug#begin('~/vim/plugged')
+" ----- C# PLUG -----
+Plug 'OmniSharp/omnisharp-vim'
+call plug#end()
+
+
 " ----- GO TO REMAP -----
 nmap <silent> <buffer> gd <Plug>(omnisharp_go_to_definition)
 nmap <silent> <buffer> gi <Plug>(omnisharp_find_implementations)

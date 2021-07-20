@@ -61,4 +61,3 @@ set fillchars+=vert:┆
 
 " ----- NO BG | PREFER NO BG FOR GRUVBOX AND ONDARK -----
 hi Normal guibg=NONE ctermbg=NONE
-
