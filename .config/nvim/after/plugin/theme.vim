@@ -3,20 +3,12 @@ set background=dark
 set termguicolors
 
 
-" Base 16 OneDark
-" let base16colorspace=256
-" colorscheme base16-onedark
-" colorscheme onedark
-
-" Ayu
-" let ayucolor="mirage"
-
-" Gruvbox
+" ----- Gruvbox
 let g:gruvbox_termcolors='256'
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_bold= '0'
 
-" OFF
+" ----- OFF
 colorscheme off
 
 
@@ -26,7 +18,7 @@ autocmd ColorScheme * highlight! link SignColumn LineNr
 highlight CursorLineNr cterm=NONE ctermbg=NONE ctermfg=NONE guibg=NONE
 
 
-" ----- GIT GUTTER COLOR CONFIG -----
+" ----- GIT GUTTER COLOR CONFIG
 " Git Gutter remove bg color
 let g:gitgutter_override_sign_column_highlight=1
 
@@ -39,10 +31,26 @@ hi! GitGutterChange guifg=#A89C14 ctermfg=3
 hi! GitGutterDelete guifg=#C30771 ctermfg=1
 hi! GitGutterChangeDelete guifg=#C30771 ctermfg=1
 
-" CtrlP highlight match
+" ----- CtrlP highlight match
 hi! CtrlPMatch ctermbg=235 ctermfg=250 guibg=NONE guifg=#5FD7A7 cterm=NONE gui=NONE
 
-" Lighline color
+" ----- Telescope highlight
+" highlight TelescopeSelection      guifg=#D79921 gui=bold " Selected item
+" highlight TelescopeSelectionCaret guifg=#CC241D          " Selection caret
+" highlight TelescopeMultiSelection guifg=#928374          " Multisections
+" highlight TelescopeNormal         guibg=#00000           " Floating windows created by telescope
+" ----- Border highlight groups
+" highlight TelescopeBorder         guifg=#ffffff
+" highlight TelescopePromptBorder   guifg=#ffffff
+" highlight TelescopeResultsBorder  guifg=#ffffff
+" highlight TelescopePreviewBorder  guifg=#ffffff
+" Highlight characters your input matches
+highlight TelescopeMatching       guifg=#5FD7A7
+" Color the prompt prefix
+" highlight TelescopePromptPrefix   guifg=red
+
+
+" ----- Lighline color
 autocmd VimEnter * call SetupLightlineColors()
 function SetupLightlineColors() abort
   " transparent background in statusbar
