@@ -1,3 +1,4 @@
+" ----- GOYO SETTTINGS -----
 function! s:goyo_enter()
     set nu
     set relativenumber

@@ -11,7 +11,7 @@ let g:coc_global_extensions = [
   \ ]
 
 
-" ----- TAB TO SCROLL THRU COMPLETION -----
+" ----- TAB TO SCROLL THRU COMPLETION
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
@@ -23,13 +23,13 @@ function! s:check_back_space() abort
 endfunction
 
 
-" ----- CODE PRETTIER -----
+" ----- CODE PRETTIER
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 vmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
-" ----- FORMATTING SELECTED CODE -----
+" ----- FORMATTING SELECTED CODE
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 augroup mygroup
@@ -41,7 +41,7 @@ augroup mygroup
 augroup end
 
 
-" ----- <C-space> TO TRIGGER COMPLETION -----
+" ----- <C-space> TO TRIGGER COMPLETION
 if has('nvim')
   inoremap <silent><expr> <c-space> coc#refresh()
 else
@@ -49,11 +49,11 @@ else
 endif
 
 
-" ----- HIGHLIGHT SYMBOL-REFERENCES ON HOLDING CURSOR -----
+" ----- HIGHLIGHT SYMBOL-REFERENCES ON HOLDING CURSOR
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 
-" ----- SHOW DOCUMENTATION ON <SHIFT-k> -----
+" ----- SHOW DOCUMENTATION ON <SHIFT-k>
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -70,7 +70,7 @@ if has('nvim-0.4.0') || has('patch-8.2.0750')
 endif
 
 
-" ----- CHANGE INSIDE/AROUND FUNCTION/CLASS -----
+" ----- CHANGE INSIDE/AROUND FUNCTION/CLASS
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
 xmap if <Plug>(coc-funcobj-i)
 omap if <Plug>(coc-funcobj-i)
@@ -82,30 +82,30 @@ xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
 
 
-" ----- RENAMING <F2> -----
+" ----- RENAMING <F2>
 nmap <f2> <Plug>(coc-rename)
 
 
-" ----- CODE NAVIGATION -----
+" ----- CODE NAVIGATION
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 
-" ----- JUMP TO ERROR -----
+" ----- JUMP TO ERROR
 nnoremap <leader>e :call CocAction('diagnosticNext')<CR>
 nnoremap <leader>E :call CocAction('diagnosticPrevious')<CR>
 
 
-" ----- FIX ACTION -----
+" ----- FIX ACTION
 nmap <leader>qf <Plug>(coc-fix-current)
 nmap <leader>ca <Plug>(coc-codeaction)
 
 
-" ----- COLOR ------
+" ----- COLOR
 nnoremap <localleader>cp :call CocAction('colorPresentation')<CR>
 nnoremap <localleader>cs :call CocAction('pickColor')<CR>
 
-" ----- YANK -----
+" ----- YANK
 nnoremap <silent> <leader>y :<C-u>CocList yank<cr>

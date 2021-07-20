@@ -1,6 +1,6 @@
 " ----- GIT -----
 
-" ----- CYCLE THRU HUNK -----
+" ----- CYCLE THRU HUNK
 function! GitGutterNextHunkCycle()
     let line = line('.')
     silent! GitGutterNextHunk
@@ -10,15 +10,15 @@ function! GitGutterNextHunkCycle()
     endif
 endfunction
 
-" ----- PREVENT DEFAULT KEY BINDING -----
+" ----- PREVENT DEFAULT KEY BINDING
 let g:gitgutter_map_keys=0
 
 
-" ----- PREFER SPLIT IN VERTICAL INSTEAD -----
+" ----- PREFER SPLIT IN VERTICAL INSTEAD
 set diffopt+=vertical
 
 
-" ----- NEXT/PREV GO TO GIT ACTION -----
+" ----- NEXT/PREV GO TO GIT ACTION
 nnoremap gu :GitGutterUndoHunk<CR>
 nnoremap g] :call GitGutterNextHunkCycle()<CR>
 nnoremap g[ :GitGutterPrevHunk<CR>

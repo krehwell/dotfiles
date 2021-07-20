@@ -17,8 +17,9 @@ let g:lightline = {
       \ },
       \ }
 
+" ----- LIST OF UTILITIES FUNCTIONS -----
 
-" ----- COOL FILENAME FUNCTION -----
+" ----- COOL FILENAME FUNCTION
 function! TabFilenameAndLastPath(n)
     let buflist = tabpagebuflist(a:n)
     let winnr = tabpagewinnr(a:n)
@@ -74,5 +75,5 @@ function! FilenameAndLastPath()
         return expand("%:t")
     endif
 endfunction
-" ----- END OF COOL FILENAME FUNCTION -----
+" ----- END OF COOL FILENAME FUNCTION
 

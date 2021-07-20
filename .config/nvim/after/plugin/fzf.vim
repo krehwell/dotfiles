@@ -1,7 +1,7 @@
 " ----- FUZZY SEARCH -----
 
 
-" ----- CRTL-P CONFIG -----
+" ----- CRTL-P CONFIG
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 let g:ctrlp_custom_ignore = {
             \ 'dir':  '\.git$\|\.yardoc\|public$|log\|tmp$',
@@ -48,7 +48,7 @@ endfunction
 command! -nargs=0 Ls :CtrlPBuffer
 
 
-" ----- FZF CONFIG -----
+" ----- FZF CONFIG
 " Default options are --nogroup --column --color
 " nnoremap <silent><C-p> :FZF<CR>
 " USED - nnoremap <C-f> :Ag<Cr>
