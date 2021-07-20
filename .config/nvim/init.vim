@@ -111,10 +111,9 @@ Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'ojroques/vim-oscyank'
 " ----- COLORSCHEME PLUG -----
 Plug 'morhetz/gruvbox'
-Plug 'senran101604/neotrix.vim', {'branch': 'main'}
-Plug 'tjdevries/colorbuddy.vim'
+" Plug 'tjdevries/colorbuddy.vim'
 Plug 'pbrisbin/vim-colors-off'
-Plug 'junegunn/goyo.vim'
+" Plug 'junegunn/goyo.vim'
 call plug#end()
 
 
