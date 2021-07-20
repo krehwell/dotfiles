@@ -76,7 +76,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Plug 'junegunn/fzf.vim'
 " Plug 'jremmen/vim-ripgrep'
-" Plug 'ctrlpvim/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 " telescope
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -93,7 +93,7 @@ Plug 'vimpostor/vim-tpipeline'
 " ----- DIR TREE -----
 Plug 'lambdalisue/fern-git-status.vim'
 Plug 'lambdalisue/fern.vim'
-" Plug 'ryanoasis/vim-devicons' - fern used this
+Plug 'ryanoasis/vim-devicons' " - fern used this
 " Plug 'kyazdani42/nvim-web-devicons'
 " Plug 'lambdalisue/fern-renderer-devicons.vim'
 Plug 'lambdalisue/fern-hijack.vim'
@@ -221,3 +221,4 @@ require('telescope').setup{
         prompt_prefix = "> "
     }
 }
+require('telescope').load_extension('fzf')
