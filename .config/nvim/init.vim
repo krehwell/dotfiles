@@ -89,6 +89,11 @@ Plug 'itchyny/lightline.vim'
 Plug 'mbbill/undotree'
 Plug 'vimpostor/vim-tpipeline'
 Plug 'ojroques/vim-oscyank'
+" telescope
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 " ----- DIR TREE -----
 Plug 'lambdalisue/fern-git-status.vim'
 Plug 'lambdalisue/fern.vim'
@@ -222,3 +227,8 @@ endfor
 
 " Set at the end to work around 'exrc'
 set secure
+
+" TELESCOPE
+lua << EOF
+require("telescope").setup{
+}
