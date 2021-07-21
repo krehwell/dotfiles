@@ -76,8 +76,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Plug 'junegunn/fzf.vim'
 " Plug 'jremmen/vim-ripgrep'
-Plug 'ctrlpvim/ctrlp.vim'
-" telescope
+" Plug 'ctrlpvim/ctrlp.vim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
@@ -93,26 +92,26 @@ Plug 'vimpostor/vim-tpipeline'
 " ----- DIR TREE -----
 Plug 'lambdalisue/fern-git-status.vim'
 Plug 'lambdalisue/fern.vim'
-Plug 'ryanoasis/vim-devicons' " - fern used this
-" Plug 'kyazdani42/nvim-web-devicons'
+" Plug 'ryanoasis/vim-devicons' " - fern used this
 " Plug 'lambdalisue/fern-renderer-devicons.vim'
 Plug 'lambdalisue/fern-hijack.vim'
+Plug 'kyazdani42/nvim-web-devicons'
 " ----- MOVEMENT/NAVIGATION PLUG -----
-" Plug 'Yggdroot/indentLine'
 Plug 'mg979/vim-visual-multi'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'alvan/vim-closetag'
-" Plug 'wfxr/minimap.vim'
 Plug 'airblade/vim-current-search-match'
+" Plug 'Yggdroot/indentLine'
+" Plug 'wfxr/minimap.vim'
 " ----- VIM CORE HELPER -----
 Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'ojroques/vim-oscyank'
 " ----- COLORSCHEME PLUG -----
 Plug 'morhetz/gruvbox'
-" Plug 'tjdevries/colorbuddy.vim'
 Plug 'pbrisbin/vim-colors-off'
+" Plug 'tjdevries/colorbuddy.vim'
 " Plug 'junegunn/goyo.vim'
 call plug#end()
 
