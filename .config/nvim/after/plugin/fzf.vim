@@ -4,7 +4,7 @@
 " ----- TELESCOPE -----
 nnoremap <C-f> :Telescope live_grep<CR>
 nnoremap <C-g> :Telescope grep_string search=
-nnoremap <C-p> :Telescope git_files<CR>
+nnoremap <C-p> :lua require'fallback-findfiles'.project_files()<CR>
 command! -nargs=0 Ls :Telescope buffers
 
 
