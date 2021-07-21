@@ -136,7 +136,7 @@ let maplocalleader = "\\"
 
 
 " ----- MAPPING KEYS -----
-" SHORTCUT BASIC
+" ----- SHORTCUT BASIC
 nnoremap <silent> <leader>h :wincmd h<CR>
 nnoremap <silent> <leader>j :wincmd j<CR>
 nnoremap <silent> <leader>k :wincmd k<CR>
@@ -152,11 +152,11 @@ nnoremap <silent> <Leader>0 :resize -3<CR>
 nnoremap <silent> <Leader>9 :resize +3<CR>
 nnoremap <silent> <Leader>n :noh<CR>
 
-" TAB SWITCHER
+" ----- TAB SWITCHER
 nnoremap <C-k> :tabprevious<CR>
 nnoremap <C-j> :tabnext<CR>
 
-" EDITING
+" ----- EDITING
 iabbrev /* /*  */<esc>bhhi<del>
 inoremap <M-;> <esc>v$<esc>`>a;<esc>`<a
 inoremap <c-b> <esc><right>dwi
@@ -170,16 +170,16 @@ vnoremap <M-j> :m '>+1<CR>gv=gv
 vnoremap <M-k> :m '>-2<CR>gv=gv
 vnoremap w e
 
-" CALCULATOR
+" ----- CALCULATOR
 nnoremap Q 0yt=A<C-r>=<C-r>"<CR><Esc>
 
-" SESSION BUFFER CONTROLLER
+" ----- SESSION BUFFER CONTROLLER
 nnoremap <localleader>b :bprevious<CR>
 nnoremap <localleader>n :bnext<CR>
 nnoremap <localleader>o :source ~\vim_session<cr>
 nnoremap <localleader>s :mksession! ~\vim_session<cr>
 
-" CD TO CURRENT BUFFER's DIR | lcd -> for cding the current buffer only to the current dir
+" ----- CD TO CURRENT BUFFER's DIR | lcd -> for cding the current buffer only to the current dir
 nnoremap <localleader>cd :cd %:p:h<CR>
 nnoremap <localleader>lcd :lcd %:p:h<CR>
 
@@ -196,10 +196,10 @@ nnoremap <silent> <localleader>H :call clearmatches()<CR>
 
 
 " MAKE SURE THIS ALWAYS IN THE END
-" ----- RE-EXECUTE NECCESSARY FILE WHILE SOURCE % { THEME }-----
+" ----- RE-EXECUTE NECCESSARY FILE WHILE SOURCE % { THEME } -----
 let g:vim_home = get(g:, 'vim_home', expand('~/.config/nvim/'))
 
-" Load all vim configs {{{1
+" Re-Load all necessary vim configs
 let config_list = [
             \ 'after/plugin/theme.vim',
             \]
