@@ -35,6 +35,8 @@ hi! GitGutterChangeDelete guifg=#C30771 ctermfg=1
 hi! CtrlPMatch ctermbg=235 ctermfg=250 guibg=NONE guifg=#5FD7A7 cterm=NONE gui=NONE
 
 " ----- Telescope highlight
+" Highlight characters your input matches
+highlight TelescopeMatching       guifg=#5FD7A7
 " highlight TelescopeSelection      guifg=#D79921 gui=bold " Selected item
 " highlight TelescopeSelectionCaret guifg=#CC241D          " Selection caret
 " highlight TelescopeMultiSelection guifg=#928374          " Multisections
@@ -44,8 +46,6 @@ hi! CtrlPMatch ctermbg=235 ctermfg=250 guibg=NONE guifg=#5FD7A7 cterm=NONE gui=N
 " highlight TelescopePromptBorder   guifg=#ffffff
 " highlight TelescopeResultsBorder  guifg=#ffffff
 " highlight TelescopePreviewBorder  guifg=#ffffff
-" Highlight characters your input matches
-highlight TelescopeMatching       guifg=#5FD7A7
 " Color the prompt prefix
 " highlight TelescopePromptPrefix   guifg=red
 
