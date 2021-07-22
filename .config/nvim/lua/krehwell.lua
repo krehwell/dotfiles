@@ -1,13 +1,14 @@
 local action_state = require('telescope.actions.state')
+local actions = require('telescope.actions')
 
 require("telescope").setup {
     defaults = {
         -- Your defaults config goes in here
         mappings = {
             i = {
-                ["<c-[>"] = require('telescope.actions').close,
+                ["<c-[>"] = actions.close,
             }
-        }
+        },
     },
     pickers = {
         -- Your special builtin config goes in here
@@ -17,10 +18,10 @@ require("telescope").setup {
             previewer = false,
             mappings = {
                 i = {
-                    ["<c-d>"] = "delete_buffer",
+                    ["<c-@>"] = actions.delete_buffer,
                 },
                 n = {
-                    ["<c-d>"] = require("telescope.actions").delete_buffer,
+                    ["<c-@>"] = actions.delete_buffer,
                 }
             }
         },

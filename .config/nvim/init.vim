@@ -73,8 +73,8 @@ call plug#begin('~/vim/plugged')
 " -----
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " ----- FUZZY SEARCH PLUG -----
-" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-" Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 " Plug 'jremmen/vim-ripgrep'
 " Plug 'ctrlpvim/ctrlp.vim'
 Plug 'nvim-lua/popup.nvim'
@@ -215,4 +215,4 @@ set secure
 
 
 " ----- LUA SOURCE -----
-lua require("kel")
+lua require("krehwell")
