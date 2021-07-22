@@ -1,6 +1,7 @@
 " ----- THEME SETUP -----
 set background=dark
 set termguicolors
+command! -nargs=0 Colors :Telescope colorscheme
 
 
 " ----- Gruvbox
@@ -9,6 +10,7 @@ let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_bold= '0'
 
 " ----- OFF
+let g:colors_off_a_little=1
 colorscheme off
 
 
@@ -22,21 +24,17 @@ highlight CursorLineNr cterm=NONE ctermbg=NONE ctermfg=NONE guibg=NONE
 " Git Gutter remove bg color
 let g:gitgutter_override_sign_column_highlight=1
 
-highlight GitGutterAdd    guifg=#10A778 ctermfg=2
-highlight GitGutterChange guifg=#A89C14 ctermfg=3
-highlight GitGutterDelete guifg=#C30771 ctermfg=1
-
-hi! GitGutterAdd guifg=#10A778 ctermfg=2
-hi! GitGutterChange guifg=#A89C14 ctermfg=3
-hi! GitGutterDelete guifg=#C30771 ctermfg=1
-hi! GitGutterChangeDelete guifg=#C30771 ctermfg=1
+" hi! GitGutterAdd guifg=#10A778 ctermfg=2
+" hi! GitGutterChange guifg=#A89C14 ctermfg=3
+" hi! GitGutterDelete guifg=#C30771 ctermfg=1
+" hi! GitGutterChangeDelete guifg=#C30771 ctermfg=1
 
 " ----- CtrlP highlight match
-hi! CtrlPMatch ctermbg=235 ctermfg=250 guibg=NONE guifg=#5FD7A7 cterm=NONE gui=NONE
+" hi! CtrlPMatch ctermbg=235 ctermfg=250 guibg=NONE guifg=#5FD7A7 cterm=NONE gui=NONE
 
 " ----- Telescope highlight
 " Highlight characters your input matches
-highlight TelescopeMatching       guifg=#5FD7A7
+" highlight TelescopeMatching       guifg=#5FD7A7
 " highlight TelescopeSelection      guifg=#D79921 gui=bold " Selected item
 " highlight TelescopeSelectionCaret guifg=#CC241D          " Selection caret
 " highlight TelescopeMultiSelection guifg=#928374          " Multisections

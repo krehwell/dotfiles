@@ -355,3 +355,5 @@ screenchange-reload = true
 [global/wm]
 enable-ipc = true
 margin-bottom = 0
+
+; vim:set ft=dosini:
