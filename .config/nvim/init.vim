@@ -2,7 +2,7 @@ filetype plugin indent on
 syntax on
 
 
-" ----- MY VAR ------
+" ----- CUSTOM LOCAL VAR ------
 nnoremap <localleader>i :vsplit $INIT<cr>
 let $INIT="~/.config/nvim/init.vim"
 
@@ -73,8 +73,8 @@ call plug#begin('~/vim/plugged')
 " -----
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " ----- FUZZY SEARCH PLUG -----
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Plug 'junegunn/fzf.vim'
 " Plug 'jremmen/vim-ripgrep'
 " Plug 'ctrlpvim/ctrlp.vim'
 Plug 'nvim-lua/popup.nvim'
@@ -93,7 +93,7 @@ Plug 'vimpostor/vim-tpipeline'
 Plug 'lambdalisue/fern-git-status.vim'
 Plug 'lambdalisue/fern.vim'
 " Plug 'ryanoasis/vim-devicons' " - fern used this
-" Plug 'lambdalisue/fern-renderer-devicons.vim'
+" Plug 'lambdalisue/fern-renderer-devicons.vim' " - fern used this
 Plug 'lambdalisue/fern-hijack.vim'
 Plug 'kyazdani42/nvim-web-devicons'
 " ----- MOVEMENT/NAVIGATION PLUG -----
@@ -116,7 +116,7 @@ Plug 'pbrisbin/vim-colors-off'
 call plug#end()
 
 
-" START OF - FOR SOME REASON THIS CONFIG SHOULD BE HERE
+" ----- START OF - FOR SOME REASON THIS CONFIG SHOULD BE HERE
 
 " let closetag on react file -----
 let g:closetag_filenames = '*.js, *.jsx, *.tsx'
@@ -127,7 +127,7 @@ let g:closetag_emptyTags_caseSensitive = 1
 let g:fern_renderer_devicons_disable_warning = 1
 let g:fern#renderer = "devicons"
 
-" END OF - FOR SOME REASON THIS CONFIG SHOULD BE HERE
+" ------ END OF - FOR SOME REASON THIS CONFIG SHOULD BE HERE
 
 
 " ----- LEADER KEY -----
@@ -183,8 +183,10 @@ nnoremap <localleader>s :mksession! ~\vim_session<cr>
 nnoremap <localleader>cd :cd %:p:h<CR>
 nnoremap <localleader>lcd :lcd %:p:h<CR>
 
+
 " ----- BOILERPLATES -----
 nnoremap <leader>,html :-1read $HOME/boilerplates/skeleton.html<CR>3j2wf>a
+
 
 " ----- LINE HIGHLIGHT -----
 " define line highlight color
@@ -195,8 +197,8 @@ nnoremap <silent> <localleader>h :call matchadd('LineHighlight', '\%'.line('.').
 nnoremap <silent> <localleader>H :call clearmatches()<CR>
 
 
-" MAKE SURE THIS ALWAYS IN THE END
 " ----- RE-EXECUTE NECCESSARY FILE WHILE SOURCE % { THEME } -----
+" MAKE SURE THIS ALWAYS IN THE END
 let g:vim_home = get(g:, 'vim_home', expand('~/.config/nvim/'))
 
 " Re-Load all necessary vim configs
@@ -210,7 +212,8 @@ for files in config_list
     endfor
 endfor
 
-" Set at the end to work around 'exrc'
+
+" ----- ENABLING 'exrc' | local .nvimrc -----
 set secure
 
 
