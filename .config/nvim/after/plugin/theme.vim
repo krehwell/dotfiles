@@ -24,30 +24,6 @@ highlight CursorLineNr cterm=NONE ctermbg=NONE ctermfg=NONE guibg=NONE
 " Git Gutter remove bg color
 let g:gitgutter_override_sign_column_highlight=1
 
-" hi! GitGutterAdd guifg=#10A778 ctermfg=2
-" hi! GitGutterChange guifg=#A89C14 ctermfg=3
-" hi! GitGutterDelete guifg=#C30771 ctermfg=1
-" hi! GitGutterChangeDelete guifg=#C30771 ctermfg=1
-
-" ----- CtrlP highlight match
-" hi! CtrlPMatch ctermbg=235 ctermfg=250 guibg=NONE guifg=#5FD7A7 cterm=NONE gui=NONE
-
-" ----- Telescope highlight
-" Highlight characters your input matches
-" highlight TelescopeMatching       guifg=#5FD7A7
-" highlight TelescopeSelection      guifg=#D79921 gui=bold " Selected item
-" highlight TelescopeSelectionCaret guifg=#CC241D          " Selection caret
-" highlight TelescopeMultiSelection guifg=#928374          " Multisections
-" highlight TelescopeNormal         guibg=#00000           " Floating windows created by telescope
-" ----- Border highlight groups
-" highlight TelescopeBorder         guifg=#ffffff
-" highlight TelescopePromptBorder   guifg=#ffffff
-" highlight TelescopeResultsBorder  guifg=#ffffff
-" highlight TelescopePreviewBorder  guifg=#ffffff
-" Color the prompt prefix
-" highlight TelescopePromptPrefix   guifg=red
-
-
 " ----- Lighline color
 autocmd VimEnter * call SetupLightlineColors()
 function SetupLightlineColors() abort
