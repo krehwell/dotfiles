@@ -4,7 +4,7 @@
 
 ![Rofi](https://i.imgur.com/PAKvkpv.png)
 
-![Vim with nautilus](https://i.imgur.com/PrRQPkE.png)
+![Vim Telescope Neofetch Nautilus Fish](https://i.imgur.com/q3GAAai.png)
 
-![Vim Tmux Telescope](https://i.imgur.com/V2E0tLm.png)
+![Vim Full Split](https://i.imgur.com/AehfUda.png)
 
