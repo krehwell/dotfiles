@@ -58,7 +58,7 @@ set nocompatible                                                   " should be g
 set noswapfile                                                     " no swp file
 set nowrap
 set nu                                                             " number shows
-" set relativenumber
+set relativenumber
 set path+=**                                                       " dir path search
 " set signcolumn=yes:1
 set smartcase
@@ -122,6 +122,7 @@ Plug 'mg979/vim-visual-multi'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'alvan/vim-closetag'
+Plug 'pbrisbin/vim-colors-off'
 " ----- COLORSCHEME PLUG -----
 Plug 'sheerun/vim-polyglot'
 Plug 'morhetz/gruvbox'
@@ -143,8 +144,8 @@ let g:closetag_emptyTags_caseSensitive = 1
 " ----- LIGHTLINE SETTTINGS -----
 " let g:lightline = {'colorscheme': 'argonaut'}
 " 'right': [ [ 'lineinfo' ], ['percent'], ['filetype']]
+" \ 'colorscheme': 'gruvbox',
 let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'filename', 'modified' ] ],
@@ -158,6 +159,8 @@ let g:lightline = {
 
 " ----- FERN CONFIG -----
 let g:fern#renderer = "devicons"
+let g:fern_renderer_devicons_disable_warning = 1
+
 augroup fern-custom
   autocmd! *
   autocmd FileType fern setlocal nonu
@@ -171,7 +174,7 @@ let g:gruvbox_bold= '0'
 set background=dark
 " let ayucolor="mirage"
 set termguicolors
-colorscheme gruvbox
+colorscheme off
 
 
 " ----- LEADER KEY -----

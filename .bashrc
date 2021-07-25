@@ -17,7 +17,7 @@ export LD_LIBRARY_PATH="$(echo "$LD_LIBRARY_PATH" | python -c "import sys; path 
 
 export PATH=$PATH:/mnt/c/Windows/System32
 alias sex='/mnt/c/Windows/explorer.exe .'
-alias code='/mnt/c/Users/kel/AppData/Local/Programs/Microsoft\ VS\ Code/bin/code'
+alias code='/mnt/c/Users/FAHRI/AppData/Local/Programs/Microsoft\ VS\ Code/bin/code'
 alias cmd=cmd.exe
 
 # END WINDOWS AREA ==============
@@ -56,9 +56,18 @@ fi
 
 
 # NVM CONTROL
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+if [ -s "$HOME/.nvm/nvm.sh" ] && [ ! "$(type -t __init_nvm)" = function ]; then
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+  declare -a __node_commands=('nvm' 'node' 'npm' 'yarn' 'gulp' 'grunt' 'webpack')
+  function __init_nvm() {
+    for i in "${__node_commands[@]}"; do unalias $i; done
+    . "$NVM_DIR"/nvm.sh
+    unset __node_commands
+    unset -f __init_nvm
+  }
+  for i in "${__node_commands[@]}"; do alias $i='__init_nvm && '$i; done
+fi
 
 
 # COWSAY
@@ -82,7 +91,7 @@ cowsay -f ${cows[$[ ( $RANDOM % $MAX )  + 1 ]]} `fortune`
 
 
 # ----- CRYPTO RATE -----
-coinmon -f btc,bch
+# coinmon -f btc,bch
 
 
 # ----- KEL FINISH ADD HERE -----
@@ -240,3 +249,10 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+export DISPLAY=$(ip route | awk '/^default/{print $3; exit}'):0
+export LIBGL_ALWAYS_INDIRECT=1
+
+# fnm
+export PATH=/home/krehwell/.fnm:$PATH
+eval "`fnm env`"
