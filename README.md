@@ -1,4 +1,4 @@
-# Distruction-Free Dotfiles
+# Distraction-Free Dotfiles
 
 ![Desktop Background](https://i.imgur.com/6Tqy5tQ.png)
 

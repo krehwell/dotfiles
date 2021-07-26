@@ -70,9 +70,11 @@ set foldcolumn=0
 
 " ----- VIM PLUG -----
 call plug#begin('~/vim/plugged')
-" -----
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" ----- FUZZY SEARCH PLUG -----
+" ----- LSP
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-compe'
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" ----- FUZZY SEARCH PLUG
 " Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Plug 'junegunn/fzf.vim'
 " Plug 'jremmen/vim-ripgrep'
@@ -81,22 +83,22 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-" ----- GIT PLUG -----
+" ----- GIT PLUG
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 " Plug 'rbong/vim-flog'
-" ----- STATUS/HELPER -----
+" ----- STATUS/HELPER
 Plug 'itchyny/lightline.vim'
 Plug 'mbbill/undotree'
 Plug 'vimpostor/vim-tpipeline'
-" ----- DIR TREE -----
+" ----- DIR TREE
 Plug 'lambdalisue/fern-git-status.vim'
 Plug 'lambdalisue/fern.vim'
 " Plug 'ryanoasis/vim-devicons' " - fern used this
 " Plug 'lambdalisue/fern-renderer-devicons.vim' " - fern used this
 Plug 'lambdalisue/fern-hijack.vim'
 Plug 'kyazdani42/nvim-web-devicons'
-" ----- MOVEMENT/NAVIGATION PLUG -----
+" ----- MOVEMENT/NAVIGATION PLUG
 Plug 'mg979/vim-visual-multi'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
@@ -108,7 +110,7 @@ Plug 'airblade/vim-current-search-match'
 " ----- VIM CORE HELPER -----
 Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'ojroques/vim-oscyank'
-" ----- COLORSCHEME PLUG -----
+" ----- COLORSCHEME PLUG
 Plug 'morhetz/gruvbox'
 Plug 'pbrisbin/vim-colors-off'
 " Plug 'tjdevries/colorbuddy.vim'
