@@ -71,9 +71,10 @@ set foldcolumn=0
 " ----- VIM PLUG -----
 call plug#begin('~/vim/plugged')
 " ----- LSP
-Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/nvim-compe'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neovim/nvim-lspconfig'
+" Plug 'hrsh7th/nvim-compe'
+" Plug 'folke/lsp-colors.nvim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " ----- FUZZY SEARCH PLUG
 " Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Plug 'junegunn/fzf.vim'
@@ -116,6 +117,32 @@ Plug 'pbrisbin/vim-colors-off'
 " Plug 'tjdevries/colorbuddy.vim'
 " Plug 'junegunn/goyo.vim'
 call plug#end()
+
+
+" LSP config (the mappings used in the default file don't quite work right)
+" nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
+" nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
+" nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
+" nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
+" nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
+" nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+" nnoremap <silent> <space>E <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+" nnoremap <silent> <space>e <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+" lua << EOF
+" local function on_attach(client, bufnr)
+" -- Find the clients capabilities
+" if client.resolved_capabilities.document_highlight then
+"     vim.api.nvim_exec([[
+"     hi LspReferenceRead cterm=bold ctermbg=red guibg=Purple
+"     hi LspReferenceText cterm=bold ctermbg=red guibg=Purple
+"     hi LspReferenceWrite cterm=bold ctermbg=red guibg=Purple
+"     ]], false)
+"     cmd 'autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()'
+"     cmd 'autocmd CursorHoldI <buffer> lua vim.lsp.buf.document_highlight()'
+"     cmd 'autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()'
+" end
+" end
+" EOF
 
 
 " ----- START OF - FOR SOME REASON THIS CONFIG SHOULD BE HERE
@@ -221,3 +248,5 @@ set secure
 
 " ----- LUA SOURCE -----
 lua require("krehwell")
+lua require("lsp/lsp-config")
+lua require("lsp-compe")
