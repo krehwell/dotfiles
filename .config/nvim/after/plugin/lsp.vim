@@ -16,9 +16,13 @@ lua << EOF
 EOF
 
 " ----- LUA SOURCE -----
-lua require("telescope-config")
 lua require("lsp/tsserver")
+lua require("lsp/cssls")
+lua require("lsp/html")
+lua require("lsp/ccls")
 lua require("lsp/vimls")
+
+lua require("telescope-config")
 lua require("lsp-compe")
 
 endif
