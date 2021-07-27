@@ -10,8 +10,8 @@ M.project_files = function()
             prompt_position = 'bottom',
         },
     }) -- define options here
-  local ok = pcall(require'telescope.builtin'.git_files, opts)
-  if not ok then require'telescope.builtin'.find_files(opts) end
+    local ok = pcall(require'telescope.builtin'.git_files, opts)
+    if not ok then require'telescope.builtin'.find_files(opts) end
 end
 
 return M

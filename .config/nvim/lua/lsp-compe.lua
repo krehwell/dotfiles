@@ -1,3 +1,5 @@
+--- LSP Autocompletion Config | https://github.com/hrsh7th/nvim-compe
+-- below code copied from https://www.chrisatmachine.com/Neovim/27-native-lsp/
 vim.o.completeopt = "menuone,noselect"
 
 require'compe'.setup {
@@ -27,6 +29,7 @@ require'compe'.setup {
         treesitter = true;
     };
 }
+
 local t = function(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
