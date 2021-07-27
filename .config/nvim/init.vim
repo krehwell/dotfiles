@@ -73,6 +73,7 @@ call plug#begin('~/vim/plugged')
 " ----- LSP
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-compe'
+Plug 'hrsh7th/vim-vsnip'  " lsp error handler on tab not found any suggest
 Plug 'folke/lsp-colors.nvim'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " ----- FUZZY SEARCH PLUG
@@ -117,24 +118,6 @@ Plug 'pbrisbin/vim-colors-off'
 " Plug 'tjdevries/colorbuddy.vim'
 " Plug 'junegunn/goyo.vim'
 call plug#end()
-
-
-" LSP config (the mappings used in the default file don't quite work right)
-nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> <space>E <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
-nnoremap <silent> <space>e <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
-" autocmd CursorHold   * lua vim.lsp.buf.document_highlight()
-" autocmd CursorHoldI  * lua vim.lsp.buf.document_highlight()
-" autocmd CursorMoved  * lua vim.lsp.buf.clear_references()
-" autocmd CursorMovedI * lua vim.lsp.buf.clear_references()
-lua << EOF
--- write lua here
-EOF
 
 
 " ----- START OF - FOR SOME REASON THIS CONFIG SHOULD BE HERE
@@ -236,10 +219,3 @@ endfor
 
 " ----- ENABLING 'exrc' | local .nvimrc -----
 set secure
-
-
-" ----- LUA SOURCE -----
-lua require("telescope-config")
-lua require("lsp/tsserver")
-lua require("lsp/vimls")
-lua require("lsp-compe")
