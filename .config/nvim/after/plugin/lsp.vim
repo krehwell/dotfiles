@@ -20,7 +20,7 @@ EOF
 lua require("telescope-config")
 lua require("lsp-compe")
 lua require("lsp-sumneko")
-lua require("lsp-color")
+lua require("lsp-diagnostic")
 
 lua require("lsp/tsserver")
 lua require("lsp/cssls")
