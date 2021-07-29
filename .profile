@@ -32,3 +32,5 @@ fi
 # else
 #         export TERM='xterm-color'
 # fi
+
+alias luamake=/home/krehwell/Documentz/lua-language-server/3rd/luamake/luamake

@@ -35,6 +35,12 @@ function SetupLightlineColors() abort
   call lightline#colorscheme()
 endfunction
 
+" ----- Lsp color
+" hi LspDiagnosticsVirtualTextError guifg=red gui=bold,italic,underline
+" hi LspDiagnosticsVirtualTextWarning guifg=orange gui=bold,italic,underline
+" hi LspDiagnosticsVirtualTextInformation guifg=yellow gui=bold,italic,underline
+" hi LspDiagnosticsVirtualTextHint guifg=green gui=bold,italic,underline
+
 
 " " ----- LINE SPLITTER ------
 " highlight VertSplit guibg=bg guifg=bg
