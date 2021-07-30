@@ -18,10 +18,10 @@ require("telescope").setup {
             previewer = false,
             mappings = {
                 i = {
-                    ["<c-@>"] = actions.delete_buffer,
+                    ["<c-d>"] = actions.delete_buffer,
                 },
                 n = {
-                    ["<c-@>"] = actions.delete_buffer,
+                    ["<c-d>"] = actions.delete_buffer,
                 }
             }
         },
