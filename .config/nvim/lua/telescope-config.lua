@@ -1,3 +1,4 @@
+require('telescope').load_extension('media_files')
 local action_state = require('telescope.actions.state')
 local actions = require('telescope.actions')
 
@@ -30,7 +31,13 @@ require("telescope").setup {
         }
     },
     extensions = {
-        -- Your extension config goes in here
+        media_files = {
+            -- filetypes whitelist
+            -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
+            -- filetypes = {"png", "webp", "jpg", "jpeg"},
+            find_cmd = "rg" -- find command (defaults to `fd`)
+        }
     }
 }
+
 require('telescope').load_extension('fzf')

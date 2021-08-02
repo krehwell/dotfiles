@@ -35,7 +35,7 @@ font:
     family: Consolas NF
     style: Italic
   normal:
-    family: Consolas NF
+    family: Material Regular
     style: Regular
   offset:
     x: 0

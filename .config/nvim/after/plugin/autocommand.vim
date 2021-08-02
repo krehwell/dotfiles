@@ -34,7 +34,7 @@ fun! Four2Two() range
 endfun
 
 
-"     Vim folding commands (za -> toggle fold)
+"   Vim folding commands (za -> toggle fold)
     " ---------------------------------
     " zf#j creates a fold from the cursor down # lines.
     " zf/ string creates a fold from the cursor to string .
@@ -52,7 +52,7 @@ endfun
     " zE deletes all folds.
     " [z move to start of open fold.
     " ]z move to end of open fold.
-" ----- SWAG FOLD-----
+" ----- SWAG FOLD
 function! MyFoldText()
     let line = getline(v:foldstart)
     let foldedlinecount = v:foldend - v:foldstart + 1
