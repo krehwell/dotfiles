@@ -220,3 +220,7 @@ endfor
 
 " ----- ENABLING 'exrc' | local .nvimrc -----
 set secure
+
+
+" ----- LUA SOURCE -----
+lua require("telescope-config")
