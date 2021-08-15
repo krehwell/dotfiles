@@ -71,11 +71,13 @@ set foldcolumn=0
 " ----- VIM PLUG -----
 call plug#begin('~/vim/plugged')
 " ----- LSP
-" Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/nvim-compe'
+Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+Plug 'neovim/nvim-lspconfig'
+" Plug 'hrsh7th/nvim-compe'
 Plug 'hrsh7th/vim-vsnip'  " lsp error handler on tab not found any suggest
 Plug 'folke/lsp-colors.nvim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " ----- FUZZY SEARCH PLUG
 " Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Plug 'junegunn/fzf.vim'

@@ -18,7 +18,11 @@ EOF
 
 " ----- LUA SOURCE -----
 lua require("telescope-config")
-lua require("lsp-compe")
+
+if has_key(plugs, "nvim-compe")
+    lua require("lsp-compe")
+endif
+
 lua require("lsp-sumneko")
 lua require("lsp-diagnostic")
 
