@@ -23,7 +23,7 @@ if has_key(plugs, "nvim-compe")
     lua require("lsp-compe")
 endif
 
-lua require("lsp-sumneko")
+lua require("lua-ls")
 lua require("lsp-diagnostic")
 
 lua require("lsp/tsserver")
@@ -33,4 +33,8 @@ lua require("lsp/ccls")
 lua require("lsp/vimls")
 lua require("lsp/sumneko_lua")
 
+endif
+
+if has_key(plugs, "coq_nvim")
+    :COQnow
 endif
