@@ -8,9 +8,14 @@ let g:lightline = {
       \             [ 'gitbranch', 'filename', 'modified' ] ],
       \   'right': []
       \ },
+      \ 'inactive': {
+          \   'left': [ [ 'filename', 'gitversion' ] ],
+          \   'right': [ [ 'lineinfo' ], [ 'percent' ] ]
+          \ },
       \ 'component_function': {
       \   'gitbranch': 'FugitiveHead',
-      \   'filename': 'FilenameAndPath'
+      \   'filename': 'FilenameAndPath',
+      \   'gitversion': 'LightLineGitversion',
       \ },
       \ 'tab_component_function': {
       \   'filename': 'TabFilenameAndLastPath',
@@ -48,23 +53,23 @@ function! FilenameAndPath()
     if &ft == 'fern'
         return "Fern Tree"
     else
+        let name = ""
+        let subs = split(expand('%'), "/")
+        let i = 1
 
-    let name = ""
-    let subs = split(expand('%'), "/")
-    let i = 1
-
-    for s in subs
-        let parent = name
-        if  i == len(subs)
-            let name = parent . '/' . s
-        elseif i == 1
-            let name = s
-        else
-            let name = parent . '/' . strpart(s, 0)
-        endif
-        let i += 1
-    endfor
-    return substitute(name, '.*/\([^/]\+/\)', '\1', '')
+        for s in subs
+            let parent = name
+            if  i == len(subs)
+                let name = parent . '/' . s
+            elseif i == 1
+                let name = s
+            else
+                let name = parent . '/' . strpart(s, 0)
+            endif
+            let i += 1
+        endfor
+        return substitute(name, '.*/\([^/]\+/\)', '\1', '')
+    endif
 endfunction
 
 function! FilenameAndLastPath()
@@ -77,3 +82,18 @@ function! FilenameAndLastPath()
 endfunction
 " ----- END OF COOL FILENAME FUNCTION
 
+
+function! LightLineGitversion()
+    let fullname = expand('%')
+    let gitversion = ''
+    if fullname =~? 'fugitive://.*/\.git//0/.*'
+        let gitversion = 'git index'
+    elseif fullname =~? 'fugitive://.*/\.git//2/.*'
+        let gitversion = 'git target'
+    elseif fullname =~? 'fugitive://.*/\.git//3/.*'
+        let gitversion = 'git merge'
+    elseif &diff == 1
+        let gitversion = 'working copy'
+    endif
+    return gitversion
+endfunction
