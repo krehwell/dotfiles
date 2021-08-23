@@ -51,8 +51,8 @@
 #define aquaH   #696969
 #define grayH   #696969
 #define gray    #696969
-#define red     #696969
-#define green   #696969
+#define red     #E32791
+#define green   #5FD7A7
 #define yellow  #696969
 #define blue    #696969
 #define purple  #696969

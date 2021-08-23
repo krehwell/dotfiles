@@ -17,7 +17,9 @@ lua << EOF
 EOF
 
 " ----- LUA SOURCE -----
-lua require("telescope-config")
+if has_key(plugs, "telescope.nvim")
+    lua require("telescope-config")
+endif
 
 if has_key(plugs, "nvim-compe")
     lua require("lsp-compe")
