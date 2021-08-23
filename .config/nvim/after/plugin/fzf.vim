@@ -18,8 +18,12 @@ if has_key(plugs, "fzf.vim")
         endif
         let g:ctrlp_working_path_mode = 'ra'
 
+        " MAPPING CtrlPBuffer
+        command! -nargs=0 Ls :CtrlPBuffer
+
     elseif has_key(plugs, "telescope.nvim")
         nnoremap <C-p> :lua require'telescope-fallback-findfiles'.project_files()<CR>
+        command! -nargs=0 Ls :Telescope buffers
     endif
 
 " DELETE BUFFER ON CTRL-P BUFFER
@@ -48,9 +52,6 @@ function! s:DeleteMarkedBuffers()
     " refresh ctrlp
     exec "normal \<F5>"
 endfunction
-
-" MAPPING CtrlPBuffer
-command! -nargs=0 Ls :CtrlPBuffer
 
 
 " ----- FZF CONFIG
