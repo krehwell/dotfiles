@@ -60,3 +60,21 @@ function! MyFoldText()
 endfunction
 set foldtext=MyFoldText()
 set fillchars=fold:\
+
+
+" ----- SHOW STATUS LINE WHEN GIT DIFF EVEN WHEN TMUX ON -----
+fun! StatusLineOnGitDiff()
+    if exists('$TMUX') && &diff == 0
+        set laststatus=0                                               " no statusline when tmux in
+    elseif &diff
+        set laststatus=2
+    elseif exists('$TMUX')
+        set laststatus=0                                               " no statusline when tmux in
+    endif
+endfun
+
+" Last status checker on vim diff
+augroup DiffStatusLineAction
+    autocmd!
+    autocmd BufEnter * :call StatusLineOnGitDiff()
+augroup END
