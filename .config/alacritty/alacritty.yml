@@ -17,7 +17,7 @@ colors:
     magenta: '#696969'
     red: '#E32791'
     white: '#696969'
-    yellow: '#696969'
+    yellow: '#F3E430'
   primary:
     background: '#161B1A'
     foreground: '#F1F1F1'
