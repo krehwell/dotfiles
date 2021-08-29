@@ -32,5 +32,17 @@
         }
     },
 
-    "yank.highlight.enable": false
+    "yank.highlight.enable": false,
+    "cSpell.userWords": [
+      "Knowt",
+      "Mixpanel",
+      "PPTs",
+      "Unauth",
+      "Walkthrough",
+      "couchbase",
+      "graphiql",
+      "mygroup",
+      "upsert",
+      "uuidv"
+    ]
 }

@@ -42,7 +42,7 @@ endfunction
 " hi LspDiagnosticsVirtualTextHint guifg=green gui=bold,italic,underline
 
 
-" " ----- LINE SPLITTER ------
+" ----- LINE SPLITTER ------
 " highlight VertSplit guibg=bg guifg=bg
 set fillchars+=vert:┆
 

@@ -105,6 +105,7 @@ Plug 'lambdalisue/fern.vim'
 " Plug 'lambdalisue/fern-renderer-devicons.vim' " - fern used this
 Plug 'lambdalisue/fern-hijack.vim'
 Plug 'kyazdani42/nvim-web-devicons'
+Plug 'jparise/vim-graphql'
 " ----- MOVEMENT/NAVIGATION PLUG
 Plug 'mg979/vim-visual-multi'
 Plug 'tpope/vim-repeat'

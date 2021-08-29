@@ -32,15 +32,23 @@
 ; magenta = #689D6A
 ; gray = #928374
 
+; for off only
 background = ${xrdb:background}
 foreground = ${xrdb:foreground}
-red = ${xrdb:color9}
-green = ${xrdb:color10}
-yellow = ${xrdb:color11}
-blue = ${xrdb:color12}
-teal = ${xrdb:color13}
-magenta = ${xrdb:color14}
+red = ${xrdb:color8}
+green = ${xrdb:color8}
+yellow = ${xrdb:color8}
+blue = ${xrdb:color8}
+teal = ${xrdb:color8}
+magenta = ${xrdb:color8}
 gray = ${xrdb:color8}
+; red = ${xrdb:color9}
+; green = ${xrdb:color10}
+; yellow = ${xrdb:color11}
+; blue = ${xrdb:color12}
+; teal = ${xrdb:color13}
+; magenta = ${xrdb:color14}
+; gray = ${xrdb:color8}
 
 [bar/bar]
 border-left-size = 10
