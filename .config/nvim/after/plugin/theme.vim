@@ -24,7 +24,7 @@ highlight CursorLineNr cterm=NONE ctermbg=NONE ctermfg=NONE guibg=NONE
 " Git Gutter remove bg color
 let g:gitgutter_override_sign_column_highlight=1
 
-" ----- Lighline color
+" ----- Lightline color
 autocmd VimEnter * call SetupLightlineColors()
 function SetupLightlineColors() abort
   " transparent background in statusbar
@@ -42,10 +42,11 @@ endfunction
 " hi LspDiagnosticsVirtualTextHint guifg=green gui=bold,italic,underline
 
 
+
 " ----- LINE SPLITTER ------
 " highlight VertSplit guibg=bg guifg=bg
 set fillchars+=vert:┆
 
 
-" ----- NO BG | PREFER NO BG FOR GRUVBOX AND ONDARK -----
+" ----- NO BG | PREFER NO BG FOR GRUVBOX AND ONEDARK -----
 hi Normal guibg=NONE ctermbg=NONE

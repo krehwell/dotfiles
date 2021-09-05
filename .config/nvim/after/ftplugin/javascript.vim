@@ -8,6 +8,13 @@ Plug 'yuezk/vim-js'
 call plug#end()
 
 
+"----- KEYWORDS
+function! HighlightAnnotations()
+    syn keyword jsCommentTodo contained OVERVIEW NOTE IMPORTANT WARNING WHY REMEMBER
+endfunction
+autocmd Syntax * call HighlightAnnotations()
+
+
 " ----- SHOURTCUT -----
 inoremap cll console.log();<esc>hi
 " nnoremap <leader>,exp :-1read $HOME/boilerplates/expressServer.js<CR>4j
