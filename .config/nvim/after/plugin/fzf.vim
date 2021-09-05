@@ -20,10 +20,12 @@ if has_key(plugs, "fzf.vim")
 
         " MAPPING CtrlPBuffer
         command! -nargs=0 Ls :CtrlPBuffer
+        command! -nargs=0 LS :CtrlPBuffer
 
     elseif has_key(plugs, "telescope.nvim")
         nnoremap <C-p> :lua require'telescope-fallback-findfiles'.project_files()<CR>
         command! -nargs=0 Ls :Telescope buffers
+        command! -nargs=0 LS :Telescope buffers
     endif
 
 " DELETE BUFFER ON CTRL-P BUFFER
@@ -79,6 +81,7 @@ nnoremap <C-f> :Telescope grep_string search=<CR>
 nnoremap <C-g> :Telescope grep_string search=
 nnoremap <C-p> :lua require'telescope-fallback-findfiles'.project_files()<CR>
 command! -nargs=0 Ls :Telescope buffers
+command! -nargs=0 LS :Telescope buffers
 
 endif " closing if scope
 

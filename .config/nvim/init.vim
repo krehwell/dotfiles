@@ -156,8 +156,8 @@ nnoremap <silent> <Plug>(my-fern-toggle) :Fern . -drawer -reveal=% -width=27 -to
 nmap <Leader>pv <Plug>(my-fern-toggle)<Plug>(fern-action-zoom:reset)
 " reindexing node tree on current file buffer
 nnoremap <silent> <Leader>pr :Fern . -drawer -reveal=% -width=27 -toggle<CR>:Fern . -drawer -reveal=% -width=27 -toggle<CR><C-w><C-p>
-nnoremap <silent> <Leader>- :vertical resize -10<CR>
-nnoremap <silent> <Leader>= :vertical resize +10<CR>
+nnoremap <silent> <Leader>- :vertical resize -15<CR>
+nnoremap <silent> <Leader>= :vertical resize +15<CR>
 nnoremap <silent> <Leader>0 :resize -3<CR>
 nnoremap <silent> <Leader>9 :resize +3<CR>
 nnoremap <silent> <Leader>n :noh<CR>

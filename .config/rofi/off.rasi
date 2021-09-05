@@ -33,7 +33,6 @@ textbox {
   border: 0 0 1px 0;
   border-color: #161B1A;
   padding: 8px 13px;
-
 }
 
 entry {
@@ -42,8 +41,8 @@ entry {
 
 listview {
   cycle: false;
-  margin: 0 0 -1px 0;
-  scrollbar: false;
+  margin: 0 0 0 5px;
+  scrollbar: true;
 }
 
 element {
