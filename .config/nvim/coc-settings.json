@@ -1,5 +1,5 @@
 {
-    "coc.preferences.formatOnSaveFiletypes": ["css", "html"],
+    "coc.preferences.formatOnSaveFiletypes": ["css"],
     "pairs.enableCharacters": ["(", "[", "{", "<", "\"", "'", "`"],
     "diagnostic.checkCurrentLine": true,
     "diagnostic.warningSign": ">>",
@@ -7,7 +7,7 @@
 
     "prettier.arrowParens": "always",
     "prettier.jsxBracketSameLine": true,
-    "prettier.printWidth": 80,
+    "prettier.printWidth": 120,
     "prettier.bracketSpacing": true,
     "prettier.tabWidth": 4,
 
@@ -34,19 +34,28 @@
 
     "yank.highlight.enable": false,
     "cSpell.userWords": [
+      "Autoload",
+      "Fastify",
       "Knowt",
       "Mixpanel",
       "Objs",
       "PPTs",
       "Unauth",
       "Walkthrough",
+      "bgcolor",
+      "boomify",
       "callsign",
       "couchbase",
       "flexbox",
       "graphiql",
       "gruvbox",
+      "krehwell",
       "mygroup",
+      "spacetime",
+      "typebox",
       "upsert",
-      "uuidv"
+      "uuidv",
+      "valign",
+      "yakuza"
     ]
 }

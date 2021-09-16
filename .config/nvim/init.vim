@@ -13,7 +13,7 @@ let $INIT="~/.config/nvim/init.vim"
 set exrc                                                           " allow local init.vim
 set backspace=2
 set backspace=indent,eol,start
-set colorcolumn=80
+set colorcolumn=120
 set hidden                                                         " coc ask me to do this
 set ignorecase
 set incsearch
