@@ -14,6 +14,12 @@ let g:coc_global_extensions = [
             \ ]
 
 
+" ----- FILE MAP -----
+let g:coc_filetype_map = {
+      \ 'xhtml': 'html',
+      \ }
+
+
 " ----- TAB TO SCROLL THRU COMPLETION
 inoremap <silent><expr> <TAB>
             \ pumvisible() ? "\<C-n>" :
@@ -97,8 +103,10 @@ nmap <silent> gr <Plug>(coc-references)
 
 
 " ----- JUMP TO ERROR
-nnoremap <leader>e :call CocAction('diagnosticNext')<CR>
-nnoremap <leader>E :call CocAction('diagnosticPrevious')<CR>
+nmap <silent> <leader>e <plug>(coc-diagnostic-next-error)
+nmap <silent> <leader>E <plug>(coc-diagnostic-prev-error)
+nmap <silent> <leader>w <plug>(coc-diagnostic-next)
+nmap <silent> <leader>W <plug>(coc-diagnostic-prev)
 
 
 " ----- FIX ACTION
