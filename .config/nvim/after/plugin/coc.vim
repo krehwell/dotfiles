@@ -75,8 +75,8 @@ endfunction
 " REMAP <C-j> AND <C-k> FOR SCROLL FLOAT WINDOWS/POPUPS.
 nnoremap <nowait><expr> <C-j> coc#float#has_scroll() ? coc#float#scroll(1) : ":tabnext\<CR>"
 nnoremap <nowait><expr> <C-k> coc#float#has_scroll() ? coc#float#scroll(0) : ":tabprevious\<CR>"
-inoremap <nowait><expr> <C-j> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-inoremap <nowait><expr> <C-k> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+inoremap <nowait><expr> <C-j> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : ""
+inoremap <nowait><expr> <C-k> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : ""
 
 
 " ----- CHANGE INSIDE/AROUND FUNCTION/CLASS
