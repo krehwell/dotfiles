@@ -11,6 +11,8 @@ nnoremap <silent> <space>E <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <silent> <space>e <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 inoremap <silent><expr> <C-Space> compe#complete()
 command! -nargs=0 Prettier :lua vim.lsp.buf.formatting()
+command! -nargs=0 PRettier :lua vim.lsp.buf.formatting()
+command! -nargs=0 PREttier :lua vim.lsp.buf.formatting()
 
 lua << EOF
 -- write lua here
