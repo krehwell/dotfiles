@@ -8,7 +8,7 @@ case $- in
       *) return;;
 esac
 
-#----- " KEL ADD HERE " -----
+#----- KEL ADD HERE -----
 
 export PATH="$(echo "$PATH" | python -c "import sys; path = sys.stdin.read().split(':'); path = [pp for pp in path if '/mnt/c' not in pp]; print(':'.join(path))")"
 export LD_LIBRARY_PATH="$(echo "$LD_LIBRARY_PATH" | python -c "import sys; path = sys.stdin.read().split(':'); path = [pp for pp in path if '/mnt/c' not in pp]; print(':'.join(path))")"
@@ -88,10 +88,6 @@ if [ ! $MAX -gt 0 ]; then
 fi
 
 cowsay -f ${cows[$[ ( $RANDOM % $MAX )  + 1 ]]} `fortune`
-
-
-# ----- CRYPTO RATE -----
-# coinmon -f btc,bch
 
 
 # ----- KEL FINISH ADD HERE -----
