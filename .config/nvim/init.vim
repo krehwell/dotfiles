@@ -179,7 +179,7 @@ vnoremap $ $<left>
 vnoremap <M-j> :m '>+1<CR>gv=gv
 vnoremap <M-k> :m '>-2<CR>gv=gv
 vnoremap w e
-vnoremap <C-k>c <esc>`<i/* <esc>`>3<right>a */
+vnoremap <C-k>c <esc>`<i/* <esc>`>3<right>a */<esc>
 
 " ----- CALCULATOR
 nnoremap Q 0yt=A<C-r>=<C-r>"<CR><Esc>
