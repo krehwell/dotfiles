@@ -189,6 +189,7 @@ nnoremap <localleader>b :bprevious<CR>
 nnoremap <localleader>n :bnext<CR>
 nnoremap <localleader>o :source ~\vim_session<cr>
 nnoremap <localleader>s :mksession! ~\vim_session<cr>
+" cnoremap b# b#\|bd
 
 " ----- CD TO CURRENT BUFFER's DIR | lcd -> for cding the current buffer only to the current dir
 nnoremap <localleader>cd :cd %:p:h<CR>

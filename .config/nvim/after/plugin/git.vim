@@ -46,7 +46,8 @@ nnoremap gp :GitGutterPreviewHunk<CR>
 nnoremap gs :Git<CR>
 nnoremap gh :diffget //2<CR>
 nnoremap gl :diffget //3<CR>
-cnoremap GIT git
-cnoremap GIt git
-cnoremap Gti git
-cnoremap GTi git
+cnoremap GIT Git
+cnoremap GIt Git
+cnoremap Gti Git
+cnoremap GTi Git
+cnoremap git Git
