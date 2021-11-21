@@ -29,7 +29,7 @@ set nowrap
 set nu                                                             " number shows
 set relativenumber
 set path+=**                                                       " dir path search
-" set signcolumn=yes:1
+set signcolumn=yes:1
 set smartcase
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab autoindent smartindent       " own indenting
 set title
@@ -68,6 +68,7 @@ set foldminlines=5
 set foldcolumn=0
 
 
+" spell:disable
 " ----- VIM PLUG -----
 call plug#begin('~/vim/plugged')
 " ----- LSP
@@ -124,6 +125,7 @@ Plug 'pbrisbin/vim-colors-off'
 " Plug 'tjdevries/colorbuddy.vim'
 " Plug 'junegunn/goyo.vim'
 call plug#end()
+" spell:enable
 
 
 " ----- START OF - FOR SOME REASON THIS CONFIG SHOULD BE HERE
