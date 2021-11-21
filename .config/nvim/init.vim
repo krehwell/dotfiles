@@ -142,6 +142,10 @@ let g:fern#renderer = "devicons"
 " ------ END OF - FOR SOME REASON THIS CONFIG SHOULD BE HERE
 
 
+" ------ TMUX STATUS LINE TO LEFT INSTEAD
+let g:tpipeline_autoembed = 0
+
+
 " ----- LEADER KEY -----
 let mapleader = " "
 let maplocalleader = "\\"
