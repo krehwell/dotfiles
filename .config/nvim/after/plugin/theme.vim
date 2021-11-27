@@ -18,6 +18,8 @@ colorscheme off
 " no color on line number
 autocmd ColorScheme * highlight! link SignColumn LineNr
 highlight CursorLineNr cterm=NONE ctermbg=NONE ctermfg=NONE guibg=NONE
+" highlight! link CocUnusedHighlight Comment
+highlight! CocUnusedHighlight guifg=#696969 ctermfg=248
 
 
 " ----- GIT GUTTER COLOR CONFIG

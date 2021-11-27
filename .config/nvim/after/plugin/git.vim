@@ -27,6 +27,13 @@ function! GitGutterPrevHunkCycle()
     endif
 endfunction
 
+
+" ----- GIT STATUS TOGGLE
+augroup FugitiveToggle
+    autocmd Filetype fugitive nnoremap <buffer> gs :q<cr>
+augroup END
+
+
 " ----- PREVENT DEFAULT KEY BINDING
 let g:gitgutter_map_keys=0
 
