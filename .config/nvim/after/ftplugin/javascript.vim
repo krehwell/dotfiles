@@ -8,9 +8,9 @@ Plug 'yuezk/vim-js'
 call plug#end()
 
 
-"----- KEYWORDS
+"----- KEYWORDS - highlight this keywords
 function! HighlightAnnotations()
-    syn keyword jsCommentTodo contained OVERVIEW NOTE IMPORTANT WARNING WHY REMEMBER
+    syn keyword jsCommentTodo contained OVERVIEW NOTE IMPORTANT WARNING WHY REMEMBER SUGGESTION
 endfunction
 autocmd Syntax * call HighlightAnnotations()
 

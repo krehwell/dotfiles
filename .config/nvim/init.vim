@@ -114,6 +114,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'alvan/vim-closetag'
 Plug 'airblade/vim-current-search-match'
+Plug 'isomoar/vim-css-to-inline'
 " Plug 'Yggdroot/indentLine'
 " Plug 'wfxr/minimap.vim'
 " ----- VIM CORE HELPER -----

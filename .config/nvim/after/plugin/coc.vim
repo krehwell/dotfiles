@@ -33,11 +33,14 @@ endfunction
 
 
 " ----- CODE PRETTIER
+" cSpell:disable
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 command! -nargs=0 PRettier :CocCommand prettier.formatFile
 command! -nargs=0 PREttier :CocCommand prettier.formatFile
 command! -nargs=0 PERttier :CocCommand prettier.formatFile
 command! -nargs=0 Perttier :CocCommand prettier.formatFile
+command! -nargs=0 Perttiere :CocCommand prettier.formatFile
+" cSpell:enable
 
 vmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
