@@ -15,7 +15,7 @@ endfunction
 autocmd Syntax * call HighlightAnnotations()
 
 
-" ----- SHOURTCUT -----
+" ----- SHORTCUT -----
 inoremap cll console.log();<esc>hi
 " nnoremap <leader>,exp :-1read $HOME/boilerplates/expressServer.js<CR>4j
 " nnoremap <leader>,con :-1read $HOME/boilerplates/mongoConnect.js<CR>4j

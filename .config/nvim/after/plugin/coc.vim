@@ -42,12 +42,10 @@ command! -nargs=0 Perttier :CocCommand prettier.formatFile
 command! -nargs=0 Perttiere :CocCommand prettier.formatFile
 " cSpell:enable
 
-vmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
 " ----- FORMATTING SELECTED CODE
 xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+vmap <leader>f  <Plug>(coc-format-selected)
+nnoremap <leader>f :CocCommand prettier.formatFile<CR>
 augroup mygroup
     autocmd!
     " Setup formatexpr specified filetype(s).

@@ -11,5 +11,5 @@ call plug#end()
 " let b:coc_root_patterns = ['.git', '.env']
 
 
-" ----- SHOURTCUT -----
+" ----- SHORTCUT -----
 inoremap cll console.log();<esc>hi

@@ -123,6 +123,7 @@ Plug 'ojroques/vim-oscyank'
 " ----- COLORSCHEME PLUG
 Plug 'morhetz/gruvbox'
 Plug 'pbrisbin/vim-colors-off'
+Plug 'cocopon/iceberg.vim'
 " Plug 'tjdevries/colorbuddy.vim'
 " Plug 'junegunn/goyo.vim'
 call plug#end()
