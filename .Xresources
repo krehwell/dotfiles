@@ -1,5 +1,3 @@
-Xft.dpi: 150
-
 ! GRUVBOX
 ! #define bg #282828
 ! #define fg #EBDBB2
@@ -78,3 +76,5 @@ Xft.dpi: 150
 *.color13:     purple
 *.color14:     aqua
 *.color15:     fg
+
+Xft.dpi: 150

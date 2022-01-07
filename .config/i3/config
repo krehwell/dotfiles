@@ -16,7 +16,7 @@ set $alt Mod1
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
-# gnome things I guess
+# gnome things I guess -- allow gui auth popup
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # start with gnome keyring
