@@ -1,1 +1,1 @@
-xrdb -load ~/.Xresources
+xrdb ~/.Xresources
