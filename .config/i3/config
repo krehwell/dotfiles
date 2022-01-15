@@ -49,8 +49,8 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 
 
 # ----- BRIGHTNESS -----
-bindsym XF86MonBrightnessUp exec "xbacklight -inc 20; notify-send 'Brightness up'"
-bindsym XF86MonBrightnessDown exec "xbacklight -dec 20; notify-send 'Brightness down'"
+bindsym XF86MonBrightnessUp exec "light -A 5; notify-send 'Brightness up'"
+bindsym XF86MonBrightnessDown exec "light -U 5; notify-send 'Brightness down'"
 
 
 # ----- TERMINAL -----

@@ -17,7 +17,7 @@
     "tsserver.reportStyleChecksAsWarnings": true,
     "tsserver.implicitProjectConfig.checkJs": false,
 
-    "eslint.enable": false,
+    "eslint.enable": true,
     "eslint.autoFixOnSave": false,
     "eslint.filetypes": [
         "javascript",
@@ -52,6 +52,7 @@
       "Walkthrough",
       "Zwitterion",
       "bgcolor",
+      "birthdate",
       "boomify",
       "btns",
       "callsign",
@@ -67,6 +68,7 @@
       "krehwell",
       "lightgray",
       "lightgreen",
+      "macbook",
       "minmax",
       "moar",
       "mygroup",
@@ -85,6 +87,7 @@
       "upsert",
       "uuidv",
       "valign",
+      "walktrhu",
       "yakuza",
       "yuza"
     ]
