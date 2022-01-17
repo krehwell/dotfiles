@@ -94,6 +94,7 @@ Plug 'nvim-telescope/telescope-media-files.nvim'
 " ----- GIT PLUG
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+" Plug 'mhinz/vim-signify'
 " Plug 'rbong/vim-flog'
 " ----- STATUS/HELPER
 Plug 'itchyny/lightline.vim'
