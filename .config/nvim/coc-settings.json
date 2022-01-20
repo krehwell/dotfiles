@@ -4,6 +4,7 @@
     "diagnostic.checkCurrentLine": true,
     "diagnostic.warningSign": ">>",
     "diagnostic.refreshOnInsertMode": true,
+    "diagnostic.displayByAle": true,
 
     "prettier.arrowParens": "always",
     "prettier.jsxBracketSameLine": true,
