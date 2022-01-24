@@ -105,6 +105,11 @@ bindsym $mod+q kill
 bindsym --release button2 kill
 
 
+# ----- DUNTS NOTIFICATION -----
+bindsym $mod+x exec dunstctl close
+bindsym $mod+Shift+x exec dunstctl close-all
+
+
 # ----- DMENU -----
 bindsym $mod+d exec rofi -show drun
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
