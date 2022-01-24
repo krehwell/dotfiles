@@ -123,6 +123,7 @@ Plug 'tpope/vim-commentary'
 Plug 'alvan/vim-closetag'
 Plug 'airblade/vim-current-search-match'
 Plug 'isomoar/vim-css-to-inline'
+Plug 'AndrewRadev/switch.vim'
 " Plug 'Yggdroot/indentLine'
 " Plug 'wfxr/minimap.vim'
 " ----- VIM CORE HELPER -----
@@ -154,6 +155,10 @@ let g:fern#renderer = "devicons"
 
 " ------ TMUX STATUS LINE TO LEFT INSTEAD
 let g:tpipeline_autoembed = 0
+
+
+" ----- VIM-TOGGLE MAP
+let g:switch_mapping = "+"
 
 
 " ----- LEADER KEY -----
