@@ -1,4 +1,4 @@
-background_opacity: 1
+window.opacity: 1
 colors:
   bright:
     black: '#696969'

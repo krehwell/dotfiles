@@ -8,7 +8,7 @@ let $INIT="~/.config/nvim/init.vim"
 
 
 " ----- CUSTOM ALE FLAG -----
-let g:ale_disable_lsp = 1    " disable ale, we set 'diagnostic.displayByAle' to coc instead
+" let g:ale_disable_lsp = 1    " disable ale, we set 'diagnostic.displayByAle' to coc instead
 " let g:ale_set_highlights = 0
 " let g:ale_set_signs = 0
 
@@ -85,7 +85,7 @@ call plug#begin('~/vim/plugged')
 Plug 'hrsh7th/vim-vsnip'  " lsp error handler on tab not found any suggest
 Plug 'folke/lsp-colors.nvim'
 Plug 'folke/lua-dev.nvim'
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " ----- FUZZY SEARCH PLUG
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
