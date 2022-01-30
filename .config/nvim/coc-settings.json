@@ -1,5 +1,7 @@
 {
     "coc.preferences.formatOnSaveFiletypes": ["css"],
+    "coc.preferences.colorSupport": true,
+
     "pairs.enableCharacters": ["(", "[", "{", "<", "\"", "'", "`"],
     "diagnostic.checkCurrentLine": true,
     "diagnostic.warningSign": ">>",
