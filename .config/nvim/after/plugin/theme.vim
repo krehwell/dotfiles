@@ -28,7 +28,7 @@ highlight! CocUnusedHighlight ctermfg=248 guifg=#595959
 let g:gitgutter_override_sign_column_highlight=1
 
 " ----- Lightline color
-" autocmd VimEnter * call SetupLightlineColors()
+autocmd VimEnter * call SetupLightlineColors()
 function SetupLightlineColors() abort
   " transparent background in statusbar
   let l:palette = lightline#palette()
