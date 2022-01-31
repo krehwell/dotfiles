@@ -104,9 +104,10 @@ Plug 'airblade/vim-gitgutter'
 " Plug 'mhinz/vim-signify'
 " Plug 'rbong/vim-flog'
 " ----- STATUS/HELPER
+Plug 'vimpostor/vim-tpipeline'
+" Plug 'vim-airline/vim-airline'
 Plug 'itchyny/lightline.vim'
 Plug 'mbbill/undotree'
-Plug 'vimpostor/vim-tpipeline'
 " ----- DIR TREE
 Plug 'lambdalisue/fern-git-status.vim'
 Plug 'lambdalisue/fern.vim'
@@ -155,6 +156,11 @@ let g:fern#renderer = "devicons"
 
 " ------ TMUX STATUS LINE TO LEFT INSTEAD
 let g:tpipeline_autoembed = 0
+" tpipeline comes bundled with its own custom minimal statusline seen above
+" let g:tpipeline_statusline = '%!tpipeline#stl#airline()'
+" let g:tpipeline_statusline = '%f'
+" You can also use standard statusline syntax, see :help stl
+let g:tpipeline_cursormoved = 1
 
 
 " ----- VIM-TOGGLE MAP
