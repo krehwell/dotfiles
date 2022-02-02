@@ -78,13 +78,6 @@ set foldcolumn=0
 " ----- VIM PLUG -----
 call plug#begin('~/vim/plugged')
 " ----- LSP
-" Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
-" Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
-" Plug 'neovim/nvim-lspconfig'
-" Plug 'hrsh7th/nvim-compe'
-Plug 'hrsh7th/vim-vsnip'  " lsp error handler on tab not found any suggest
-Plug 'folke/lsp-colors.nvim'
-Plug 'folke/lua-dev.nvim'
 " Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " ----- FUZZY SEARCH PLUG
@@ -92,7 +85,6 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'jremmen/vim-ripgrep'
 " Plug 'ctrlpvim/ctrlp.vim'
-
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
@@ -133,7 +125,6 @@ Plug 'ojroques/vim-oscyank'
 " ----- COLORSCHEME PLUG
 Plug 'morhetz/gruvbox'
 Plug 'pbrisbin/vim-colors-off'
-Plug 'cocopon/iceberg.vim'
 " Plug 'tjdevries/colorbuddy.vim'
 " Plug 'junegunn/goyo.vim'
 call plug#end()
@@ -154,7 +145,7 @@ let g:fern#renderer = "devicons"
 " ------ END OF - FOR SOME REASON THIS CONFIG SHOULD BE HERE
 
 
-" ------ TMUX STATUS LINE TO LEFT INSTEAD
+" ------ TMUX STATUS LINE
 let g:tpipeline_autoembed = 0
 " tpipeline comes bundled with its own custom minimal statusline seen above
 " let g:tpipeline_statusline = '%!tpipeline#stl#airline()'
@@ -236,7 +227,7 @@ nnoremap <silent> <localleader>h :call matchadd('LineHighlight', '\%'.line('.').
 nnoremap <silent> <localleader>H :call clearmatches()<CR>
 
 
-" ----- RE-EXECUTE NECCESSARY FILE WHILE SOURCE % { THEME } -----
+" ----- RE-EXECUTE NECESSARY FILE WHILE SOURCE % { THEME } -----
 " MAKE SURE THIS ALWAYS IN THE END
 let g:vim_home = get(g:, 'vim_home', expand('~/.config/nvim/'))
 

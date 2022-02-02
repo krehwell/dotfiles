@@ -1,7 +1,7 @@
 " ----- FUZZY SEARCH -----
 
 if has_key(plugs, "fzf.vim")
-" ----- CRTL-P CONFIG
+    " ----- CRTL-P CONFIG
     if has_key(plugs, "ctrlp.vim")
         let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
         let g:ctrlp_custom_ignore = {
