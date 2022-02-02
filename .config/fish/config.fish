@@ -1,6 +1,6 @@
 # ----- BEHAVIOUR -----
 alias :q='exit'
-alias sex='nautilus . &'
+alias sex='explorer.exe . &'
 alias cmd=cmd.exe
 alias vim=nvim
 # alias ls='ls --color'
