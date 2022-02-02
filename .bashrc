@@ -19,7 +19,7 @@ bind '"\t":menu-complete'
 bind 'set completion-ignore-case on'
 export TERM=xterm-256color
 alias :q='exit'
-alias sex='explorer.exe . &'
+alias sex='explorer.exe . || nautilus . &'
 alias cmd=cmd.exe
 alias vim=nvim
 alias ls='ls --color'
