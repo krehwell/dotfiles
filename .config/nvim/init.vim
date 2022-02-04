@@ -11,7 +11,6 @@ let $INIT="~/.config/nvim/init.vim"
 " let g:ale_disable_lsp = 1    " disable ale, we set 'diagnostic.displayByAle' to coc instead
 " let g:ale_set_highlights = 0
 " let g:ale_set_signs = 0
-" sync
 
 
 " ----- ALL SETs -----
