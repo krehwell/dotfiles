@@ -21,6 +21,7 @@ highlight CursorLineNr cterm=NONE ctermbg=NONE ctermfg=NONE guibg=NONE
 " highlight! link CocUnusedHighlight Comment
 " highlight! CocUnusedHighlight ctermfg=7 ctermbg=242 guifg=LightGrey guibg=DarkGrey
 highlight! CocUnusedHighlight ctermfg=248 guifg=#595959
+hi VertSplit guibg=bg guifg=bg ctermbg=bg ctermfg=bg
 
 
 " ----- GIT GUTTER COLOR CONFIG
