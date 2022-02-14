@@ -28,6 +28,10 @@ hi VertSplit guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
 " ----- GIT GUTTER COLOR CONFIG
 " Git Gutter remove bg color
 let g:gitgutter_override_sign_column_highlight=1
+hi! GitGutterAdd guifg=#10A778 ctermfg=2
+hi! GitGutterChange guifg=#A89C14 ctermfg=3
+hi! GitGutterDelete guifg=#C30771 ctermfg=1
+hi! GitGutterChangeDelete guifg=#C30771 ctermfg=1
 
 " ----- Lightline color
 autocmd VimEnter * call SetupLightlineColors()
