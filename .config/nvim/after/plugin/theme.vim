@@ -11,7 +11,8 @@ let g:gruvbox_bold= '0'
 
 " ----- OFF
 let g:colors_off_a_little=1
-colorscheme off
+let g:monochrome_italic_comments = 1
+colorscheme monochrome
 
 
 " ----- BG CONFIG -----
@@ -21,7 +22,7 @@ highlight CursorLineNr cterm=NONE ctermbg=NONE ctermfg=NONE guibg=NONE
 " highlight! link CocUnusedHighlight Comment
 " highlight! CocUnusedHighlight ctermfg=7 ctermbg=242 guifg=LightGrey guibg=DarkGrey
 highlight! CocUnusedHighlight ctermfg=248 guifg=#595959
-hi VertSplit guibg=bg guifg=bg ctermbg=bg ctermfg=bg
+hi VertSplit guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
 
 
 " ----- GIT GUTTER COLOR CONFIG

@@ -1,6 +1,9 @@
 {
     "coc.preferences.formatOnSaveFiletypes": ["css"],
     "coc.preferences.colorSupport": true,
+    "highlight.colors.enable": true,
+    "highlight.disableLanguages": [],
+    "highlight.colorNames.enable": true,
 
     "pairs.enableCharacters": ["(", "[", "{", "<", "\"", "'", "`"],
     "diagnostic.checkCurrentLine": true,
@@ -75,6 +78,7 @@
       "lightgray",
       "lightgreen",
       "macbook",
+      "middlewares",
       "minmax",
       "moar",
       "mygroup",

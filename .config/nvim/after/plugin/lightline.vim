@@ -1,8 +1,9 @@
 " ----- LIGHTLINE SETTTINGS -----
-" let g:lightline = {'colorscheme': 'argonaut'}
+" let g:lightline = {'colorscheme': 'nord'}
 " 'right': [ [ 'lineinfo' ], ['percent'], ['filetype']]
 " \ 'colorscheme': 'wombat',
 let g:lightline = {
+      \ 'colorscheme': 'nord',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'filename', 'modified' ] ],
