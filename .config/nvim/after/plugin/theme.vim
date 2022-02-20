@@ -12,7 +12,7 @@ let g:gruvbox_bold= '0'
 " ----- OFF
 let g:colors_off_a_little=1
 let g:monochrome_italic_comments = 1
-colorscheme monochrome
+colorscheme off
 
 
 " ----- BG CONFIG -----
