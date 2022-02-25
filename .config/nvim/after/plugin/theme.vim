@@ -44,12 +44,11 @@ function SetupLightlineColors() abort
   call lightline#colorscheme()
 endfunction
 
-" ----- Lsp color
-" hi LspDiagnosticsVirtualTextError guifg=red gui=bold,italic,underline
-" hi LspDiagnosticsVirtualTextWarning guifg=orange gui=bold,italic,underline
-" hi LspDiagnosticsVirtualTextInformation guifg=yellow gui=bold,italic,underline
-" hi LspDiagnosticsVirtualTextHint guifg=green gui=bold,italic,underline
-
+" ----- COC sign
+" CocErrorSign   xxx ctermfg=9 guifg=#ff0000
+" CocWarningSign xxx ctermfg=130 guifg=#ff922b
+" CocInfoSign    xxx ctermfg=11 guifg=#fab005
+" CocHintSign    xxx ctermfg=12 guifg=#15aabf
 
 
 " ----- LINE SPLITTER ------

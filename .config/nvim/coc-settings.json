@@ -1,6 +1,5 @@
 {
     "coc.preferences.formatOnSaveFiletypes": ["css"],
-    "coc.preferences.colorSupport": true,
     "highlight.colors.enable": true,
     "highlight.disableLanguages": [],
     "highlight.colorNames.enable": true,
@@ -18,6 +17,10 @@
     "prettier.tabWidth": 4,
 
     "javascript.suggestionActions.enabled": false,
+    "javascript.showUnused": false,
+
+    "typescript.suggestionActions.enabled": false,
+    "typescript.showUnused": false,
 
     "tsserver.npm": "/usr/bin/npm",
     "tsserver.reportStyleChecksAsWarnings": true,
