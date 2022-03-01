@@ -31,6 +31,7 @@ endfunction
 " ----- GIT STATUS TOGGLE
 augroup FugitiveToggle
     autocmd Filetype fugitive nnoremap <buffer> gs :q<cr>
+    autocmd Filetype fugitiveblame nnoremap <buffer> gb :q<cr>
 augroup END
 
 
@@ -58,3 +59,4 @@ cnoremap GIt Git
 cnoremap Gti Git
 cnoremap GTi Git
 cnoremap git Git
+nnoremap gb :Git blame<CR>
