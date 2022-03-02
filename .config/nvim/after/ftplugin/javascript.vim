@@ -14,7 +14,7 @@ call plug#end()
 
 "----- KEYWORDS - highlight this keywords
 function! HighlightAnnotations()
-    syn keyword jsCommentTodo contained OVERVIEW NOTE IMPORTANT WARNING WHY REMEMBER SUGGESTION BUG
+    syn keyword jsCommentTodo contained OVERVIEW NOTE IMPORTANT WARNING WHY REMEMBER SUGGESTION BUG TEMP
 endfunction
 autocmd Syntax * call HighlightAnnotations()
 
