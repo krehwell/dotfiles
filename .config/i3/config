@@ -87,7 +87,7 @@ bindsym $mod+p exec arandr
 # ----- SCREEN SHOT -----
 # bindsym $mod+y			            exec --no-startup-id flameshot gui -p ~/Pics/screenshots
 # bindsym $mod+Shift+y		            exec --no-startup-id flameshot full -p ~/Pics/screenshots
-bindsym Print exec flameshot gui -p ~/Pictures/Screenshots
+bindsym Print exec flameshot gui -p ~/Pictures/Screenshots -c
 bindsym Shift+Print exec flameshot full -c -p ~/Pictures/Screenshots
 
 
