@@ -57,6 +57,11 @@ set eadirection=ver
 set noequalalways
 
 
+" ----- TESTING -----
+autocmd VimLeavePre * :call coc#rpc#kill()
+autocmd VimLeave * if get(g:, 'coc_process_pid', 0) | call system('kill -9 -'.g:coc_process_pid) | endif
+
+
 " ----- FIX CURSOR HOLD ----
 let g:cursorhold_updatetime = 100
 
