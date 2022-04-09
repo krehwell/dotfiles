@@ -5,6 +5,7 @@
     "diagnostic.checkCurrentLine": true,
     "diagnostic.warningSign": ">>",
     "diagnostic.refreshOnInsertMode": true,
+    "colors.filetypes": ["*"],
     // "diagnostic.displayByAle": true,
 
     "prettier.arrowParens": "always",
