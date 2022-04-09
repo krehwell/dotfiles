@@ -1,8 +1,5 @@
 {
     "coc.preferences.formatOnSaveFiletypes": ["css"],
-    "highlight.colors.enable": true,
-    "highlight.disableLanguages": [],
-    "highlight.colorNames.enable": true,
 
     "pairs.enableCharacters": ["(", "[", "{", "<", "\"", "'", "`"],
     "diagnostic.checkCurrentLine": true,
@@ -41,7 +38,6 @@
         }
     },
 
-    "yank.highlight.enable": false,
     "cSpell.userWords": [
       "Alacritty",
       "Autoload",
@@ -66,7 +62,6 @@
       "Walkthrough",
       "Zwitterion",
       "aliceblue",
-      "bgcolor",
       "birthdate",
       "blueviolet",
       "boomify",
