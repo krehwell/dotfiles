@@ -33,10 +33,10 @@
         "javascriptreact"
     ],
     "eslint.options": {
-        "env": {
-            "browser": true,
-            "node": true
-        }
+        // "env": {
+        //     "browser": true,
+        //     "node": true
+        // }
     },
 
     "cSpell.userWords": [
