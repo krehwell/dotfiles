@@ -172,10 +172,10 @@ let maplocalleader = "\\"
 
 " ----- MAPPING KEYS -----
 " ----- SHORTCUT BASIC
-nnoremap <silent> <leader>h :wincmd h<CR>
-nnoremap <silent> <leader>j :wincmd j<CR>
-nnoremap <silent> <leader>k :wincmd k<CR>
-nnoremap <silent> <leader>l :wincmd l<CR>
+" nnoremap <silent> <leader>h :wincmd h<CR>
+" nnoremap <silent> <leader>j :wincmd j<CR>
+" nnoremap <silent> <leader>k :wincmd k<CR>
+" nnoremap <silent> <leader>l :wincmd l<CR>
 nnoremap <leader>u :UndotreeToggle<CR>:UndotreeFocus<CR>
 nnoremap <silent> <Plug>(my-fern-toggle) :Fern . -drawer -reveal=% -width=27 -toggle<CR>
 nmap <Leader>pv <Plug>(my-fern-toggle)<Plug>(fern-action-zoom:reset)
