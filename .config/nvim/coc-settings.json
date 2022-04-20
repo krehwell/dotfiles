@@ -20,9 +20,9 @@
     "typescript.suggestionActions.enabled": false,
     "typescript.showUnused": false,
 
-    "tsserver.npm": "/usr/bin/npm",
+    // "tsserver.npm": "/usr/bin/npm",
     "tsserver.reportStyleChecksAsWarnings": true,
-    "tsserver.implicitProjectConfig.checkJs": false,
+    // "tsserver.implicitProjectConfig.checkJs": false,
 
     "eslint.enable": true,
     "eslint.autoFixOnSave": false,
