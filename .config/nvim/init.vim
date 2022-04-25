@@ -43,7 +43,7 @@ set ttimeoutlen=0
 set updatetime=10
 set undodir=~/.vim/undodir                                         " undotree dir
 set undofile                                                       " to be able to save history of undo tree
-set wildmenu                                                       " shows suggestion in tab :
+set wildmenu                                                       " shows suggestion in :
 set noshowmode
 set splitright
 set splitbelow
