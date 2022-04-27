@@ -6,7 +6,7 @@ require("telescope").setup {
         -- Your defaults config goes in here
         mappings = {
             i = {
-                ["<c-[>"] = actions.close,
+                ["<c-["] = actions.close,
             }
         },
     },

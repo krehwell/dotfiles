@@ -12,6 +12,7 @@ let g:coc_global_extensions = [
             \ 'coc-css',
             \ 'coc-highlight',
             \ 'coc-spell-checker',
+            \ 'coc-sumneko-lua',
             \ ]
 
 
