@@ -8,7 +8,7 @@
     "colors.filetypes": ["*"],
     // "diagnostic.displayByAle": true,
 
-    "prettier.arrowParens": "always",
+    // "prettier.arrowParens": "always",
     "prettier.jsxBracketSameLine": true,
     "prettier.printWidth": 120,
     "prettier.bracketSpacing": true,
