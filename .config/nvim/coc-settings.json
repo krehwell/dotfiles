@@ -19,8 +19,8 @@
     "javascript.suggest.completeJSDocs": true,
     "javascript.implementationsCodeLens.enable": true,
 
-    "typescript.suggestionActions.enabled": false,
-    "typescript.showUnused": false,
+    // "typescript.suggestionActions.enabled": false,
+    // "typescript.showUnused": false,
 
     // "tsserver.npm": "/usr/bin/npm",
     "tsserver.reportStyleChecksAsWarnings": true,
