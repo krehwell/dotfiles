@@ -1,5 +1,5 @@
 #!/bin/sh
 
-DATE="$(date +"  %a, %d %b   %H:%M")"
+DATE="$(date +"  %a, %d %b  羽%H:%M")"
 
 echo "$DATE"

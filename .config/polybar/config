@@ -60,8 +60,8 @@ font-1 = scientifica:fontformat=truetype:size=11:antialias=false;0
 font-2 = siji:pixelsize=13;1
 height = 24
 line-size = 0
-module-margin-center = 3
-module-margin-left = 3
+module-margin-center = 2
+module-margin-left = 2
 modules-center = i3
 modules-left = filesystem separator cpu separator memory separator wifi separator xkeyboard
 modules-right = arch backlight pulseaudio calendar power
@@ -258,10 +258,10 @@ label-open = 
 label-open-foreground = ${colors.magenta}
 label-close = 
 label-close-foreground = ${colors.red}
-label-separator = "  "
+label-separator = " "
 label-separator-foreground = ${colors.red}
-label-open-padding = 1
-label-close-padding = 1
+label-open-padding = 0
+label-close-padding = 0
 
 menu-0-0 = poweroff
 menu-0-0-exec = menu-open-1
