@@ -125,7 +125,7 @@ Plug 'AndrewRadev/switch.vim'
 " Plug 'wfxr/minimap.vim'
 " ----- VIM CORE HELPER -----
 Plug 'antoinemadec/FixCursorHold.nvim'
-Plug 'ojroques/vim-oscyank'
+Plug 'ojroques/vim-oscyank', {'branch': 'main'}
 " ----- COLORSCHEME PLUG
 Plug 'sheerun/vim-polyglot'
 Plug 'fxn/vim-monochrome'
