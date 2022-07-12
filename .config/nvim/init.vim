@@ -127,7 +127,7 @@ Plug 'AndrewRadev/switch.vim'
 Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'ojroques/vim-oscyank', {'branch': 'main'}
 " ----- COLORSCHEME PLUG
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
 Plug 'fxn/vim-monochrome'
 Plug 'arcticicestudio/nord-vim'
 Plug 'morhetz/gruvbox'
