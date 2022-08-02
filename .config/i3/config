@@ -33,6 +33,10 @@ exec --no-startup-id nm-applet
 exec --no-startup-id xmousepasteblock &
 
 
+# ----- KEYBOARD REPEAT KEY RATE -----
+exec --no-startup-id xset r rate 200 50
+
+
 # ----- i3 FONT -----
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
