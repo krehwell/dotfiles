@@ -1,5 +1,7 @@
 {
     "coc.preferences.formatOnSaveFiletypes": ["css"],
+    "suggest.noselect": true,
+    "suggest.enablePreselect": false,
 
     "pairs.enableCharacters": ["(", "[", "{", "<", "\"", "'", "`"],
     "diagnostic.checkCurrentLine": true,
