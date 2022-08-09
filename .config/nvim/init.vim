@@ -127,7 +127,7 @@ Plug 'AndrewRadev/switch.vim'
 Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'ojroques/vim-oscyank', {'branch': 'main'}
 " ----- COLORSCHEME PLUG
-" Plug 'sheerun/vim-polyglot'
+Plug 'sheerun/vim-polyglot'
 Plug 'fxn/vim-monochrome'
 Plug 'arcticicestudio/nord-vim'
 Plug 'morhetz/gruvbox'
@@ -178,7 +178,7 @@ let maplocalleader = "\\"
 " nnoremap <silent> <leader>l :wincmd l<CR>
 nnoremap <leader>u :UndotreeToggle<CR>:UndotreeFocus<CR>
 nnoremap <silent> <Plug>(my-fern-toggle) :Fern . -drawer -reveal=% -width=27 -toggle<CR>
-nmap <Leader>pv <Plug>(my-fern-toggle)<Plug>(fern-action-zoom:reset)
+nmap <c-b> <Plug>(my-fern-toggle)<Plug>(fern-action-zoom:reset)
 nnoremap <silent> <Leader>pr :Fern . -drawer -reveal=% -width=27 -toggle<CR>:Fern . -drawer -reveal=% -width=27 -toggle<CR><C-w><C-p>
 nnoremap <silent> <Leader>- :vertical resize -15<CR>
 nnoremap <silent> <Leader>= :vertical resize +15<CR>
@@ -187,8 +187,10 @@ nnoremap <silent> <Leader>8 :resize +3<CR>
 nnoremap <silent> <Leader>n :noh<CR>
 
 " ----- TAB SWITCHER
-nnoremap <C-k> :tabprevious<CR>
-nnoremap <C-j> :tabnext<CR>
+nnoremap <c-w><c-w>k :tabprevious<CR>
+nnoremap <c-w><c-w><c-k> :tabprevious<CR>
+nnoremap <c-w><c-w>j :tabnext<CR>
+nnoremap <c-w><c-w><c-j> :tabnext<CR>
 
 " ----- EDITING
 iabbrev /* /*  */<esc>bhhi<del>
