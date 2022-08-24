@@ -33,6 +33,10 @@ exec --no-startup-id nm-applet
 exec --no-startup-id xmousepasteblock &
 
 
+# ----- KEYBOARD REPEAT KEY RATE -----
+exec --no-startup-id xset r rate 200 50
+
+
 # ----- i3 FONT -----
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -87,7 +91,7 @@ bindsym $mod+p exec arandr
 # ----- SCREEN SHOT -----
 # bindsym $mod+y			            exec --no-startup-id flameshot gui -p ~/Pics/screenshots
 # bindsym $mod+Shift+y		            exec --no-startup-id flameshot full -p ~/Pics/screenshots
-bindsym Print exec flameshot gui -p ~/Pictures/Screenshots -c
+bindsym Print exec flameshot gui
 bindsym Shift+Print exec flameshot full -c -p ~/Pictures/Screenshots
 
 

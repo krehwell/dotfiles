@@ -1,5 +1,7 @@
 {
     "coc.preferences.formatOnSaveFiletypes": ["css"],
+    "suggest.noselect": true,
+    "suggest.enablePreselect": false,
 
     "pairs.enableCharacters": ["(", "[", "{", "<", "\"", "'", "`"],
     "diagnostic.checkCurrentLine": true,
@@ -45,6 +47,7 @@
       "PDFs",
       "PPTs",
       "Photoshop",
+      "Quizlet",
       "Roboto",
       "Strikethrough",
       "Swipeable",
@@ -54,6 +57,7 @@
       "Walkthrough",
       "Zwitterion",
       "aliceblue",
+      "ascendingly",
       "birthdate",
       "blueviolet",
       "btns",
@@ -82,6 +86,7 @@
       "noindex",
       "noopener",
       "noreferrer",
+      "nums",
       "overscroll",
       "palegoldenrod",
       "palegreen",

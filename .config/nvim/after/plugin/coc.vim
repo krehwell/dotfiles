@@ -1,3 +1,8 @@
+" ----- SOME SERVERS HAVE ISSUES WITH BACKUP FILES, SEE ON COC docs
+set nobackup
+set nowritebackup
+
+
 " ----- COC SETUP -----
 if has_key(plugs, "coc.nvim") " Check if coc exist - closing scope is at the very bottom
 
@@ -22,16 +27,24 @@ let g:coc_filetype_map = {
       \ }
 
 
+" ----- MAKE <CR> TO ACCEPT SELECTED COMPLETION ITEM OR NOTIFY COC.NVIM TO FORMAT
+" ----- <C-G>U BREAKS CURRENT UNDO, PLEASE MAKE YOUR OWN CHOICE.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+
 " ----- TAB TO SCROLL THRU COMPLETION
 inoremap <silent><expr> <TAB>
-            \ pumvisible() ? "\<C-n>" :
-            \ <SID>check_back_space() ? "\<TAB>" :
-            \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+      \ coc#pum#visible() ? coc#pum#next(1):
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
 
 
 " ----- CODE PRETTIER
@@ -79,11 +92,16 @@ function! s:show_documentation()
     endif
 endfunction
 
-" REMAP <C-j> AND <C-k> FOR SCROLL FLOAT WINDOWS/POPUPS.
-nnoremap <nowait><expr> <C-j> coc#float#has_scroll() ? coc#float#scroll(1) : ":tabnext\<CR>"
-nnoremap <nowait><expr> <C-k> coc#float#has_scroll() ? coc#float#scroll(0) : ":tabprevious\<CR>"
-inoremap <nowait><expr> <C-j> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : ""
-inoremap <nowait><expr> <C-k> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : ""
+
+" ----- REMAP <C-J> AND <C-K> FOR SCROLL FLOAT WINDOWS/POPUPS.
+if has('nvim-0.4.0') || has('patch-8.2.0750')
+  nnoremap <silent><nowait><expr> <C-j> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-j>"
+  nnoremap <silent><nowait><expr> <C-k> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-k>"
+  inoremap <silent><nowait><expr> <C-j> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  inoremap <silent><nowait><expr> <C-k> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+  vnoremap <silent><nowait><expr> <C-j> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-j>"
+  vnoremap <silent><nowait><expr> <C-k> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-k>"
+endif
 
 
 " ----- CHANGE INSIDE/AROUND FUNCTION/CLASS
