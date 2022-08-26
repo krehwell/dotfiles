@@ -8,7 +8,7 @@
     "diagnostic.warningSign": ">>",
     "diagnostic.refreshOnInsertMode": true,
     "colors.filetypes": ["*"],
-    // "diagnostic.displayByAle": true,
+    // "diagnostic.displayByAle": false,
 
     // "prettier.arrowParens": "always",
     "prettier.jsxBracketSameLine": true,
@@ -38,6 +38,7 @@
       "Consolas",
       "Dropzone",
       "Fastify",
+      "Flippable",
       "Gifs",
       "ISBNs",
       "Knowt",
