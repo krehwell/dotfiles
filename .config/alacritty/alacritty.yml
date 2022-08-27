@@ -54,12 +54,12 @@ key_bindings:
 - action: ResetFontSize
   key: Key0
   mods: Control
-- action: IncreaseFontSize
+- action: none
   key: Equals
   mods: Control
 - action: IncreaseFontSize
   key: Plus
-  mods: Control
+  mods: Control|Shift
 - action: DecreaseFontSize
   key: Minus
   mods: Control
