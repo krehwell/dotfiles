@@ -67,7 +67,7 @@ set foldmethod=indent
 " Don't fold anything by default - I'll close the folds myself
 set foldlevel=99
 " Don't bother folding small blocks
-set foldminlines=5
+" set foldminlines=5
 " Autoclose folds when moving out of them
 " set foldclose=all
 " Fold column
