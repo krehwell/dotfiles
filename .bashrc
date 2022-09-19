@@ -13,6 +13,14 @@ esac
 export PATH="$(echo "$PATH" | python -c "import sys; path = sys.stdin.read().split(':'); path = [pp for pp in path if '/mnt/c' not in pp]; print(':'.join(path))")"
 export LD_LIBRARY_PATH="$(echo "$LD_LIBRARY_PATH" | python -c "import sys; path = sys.stdin.read().split(':'); path = [pp for pp in path if '/mnt/c' not in pp]; print(':'.join(path))")"
 
+export PATH=$PATH:/mnt/c/Windows/System32
+alias sex='/mnt/c/Windows/explorer.exe .'
+alias code='/mnt/c/Users/FAHRI/AppData/Local/Programs/Microsoft\ VS\ Code/bin/code'
+alias cmd=cmd.exe
+
+# END WINDOWS AREA ==============
+
+
 # ----- BEHAVIOUR -----
 bind '"\t":menu-complete'
 bind '"\t":menu-complete'
@@ -50,18 +58,18 @@ fi
 
 
 # NVM CONTROL
-# if [ -s "$HOME/.nvm/nvm.sh" ] && [ ! "$(type -t __init_nvm)" = function ]; then
-#   export NVM_DIR="$HOME/.nvm"
-#   [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
-#   declare -a __node_commands=('nvm' 'node' 'npm' 'yarn' 'gulp' 'grunt' 'webpack')
-#   function __init_nvm() {
-#     for i in "${__node_commands[@]}"; do unalias $i; done
-#     . "$NVM_DIR"/nvm.sh
-#     unset __node_commands
-#     unset -f __init_nvm
-#   }
-#   for i in "${__node_commands[@]}"; do alias $i='__init_nvm && '$i; done
-# fi
+if [ -s "$HOME/.nvm/nvm.sh" ] && [ ! "$(type -t __init_nvm)" = function ]; then
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+  declare -a __node_commands=('nvm' 'node' 'npm' 'yarn' 'gulp' 'grunt' 'webpack')
+  function __init_nvm() {
+    for i in "${__node_commands[@]}"; do unalias $i; done
+    . "$NVM_DIR"/nvm.sh
+    unset __node_commands
+    unset -f __init_nvm
+  }
+  for i in "${__node_commands[@]}"; do alias $i='__init_nvm && '$i; done
+fi
 
 
 # COWSAY
@@ -82,6 +90,10 @@ if [ ! $MAX -gt 0 ]; then
 fi
 
 cowsay -f ${cows[$[ ( $RANDOM % $MAX )  + 1 ]]} `fortune`
+
+
+# ----- CRYPTO RATE -----
+# coinmon -f btc,bch
 
 
 # ----- KEL FINISH ADD HERE -----
@@ -240,6 +252,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# Add colors to Terminal
-export CLICOLOR=1
-export LSCOLORS=ExFxBxDxCxegedabagacad
+export DISPLAY=$(ip route | awk '/^default/{print $3; exit}'):0
+export LIBGL_ALWAYS_INDIRECT=1
+
+# fnm
+export PATH=/home/krehwell/.fnm:$PATH
+eval "`fnm env`"
