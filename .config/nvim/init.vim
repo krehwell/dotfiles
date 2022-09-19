@@ -78,6 +78,7 @@ set foldcolumn=0
 " ----- VIM PLUG -----
 call plug#begin('~/vim/plugged')
 " ----- LSP
+Plug 'fatih/vim-go'
 " Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " ----- FUZZY SEARCH PLUG
