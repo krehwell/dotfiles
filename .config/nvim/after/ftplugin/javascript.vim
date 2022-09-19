@@ -1,6 +1,6 @@
 " ----- VIM PLUG -----
 call plug#begin('~/vim/plugged')
-" ----- JAVACRIPT PLUG -----
+" ----- JAVASCRIPT PLUG -----
 " Plug 'pangloss/vim-javascript'
 Plug 'chemzqm/vim-jsx-improve'
 Plug 'maxmellon/vim-jsx-pretty'

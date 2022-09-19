@@ -78,7 +78,7 @@ set foldcolumn=0
 " ----- VIM PLUG -----
 call plug#begin('~/vim/plugged')
 " ----- LSP
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go' " for some reason, this lsp can't be in ftplugin/go.vim
 " Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " ----- FUZZY SEARCH PLUG
@@ -113,7 +113,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'alvan/vim-closetag'
-Plug 'isomoar/vim-css-to-inline'
+Plug 'isomoar/vim-css-to-inline' " for some reason, this lsp can't be in ftplugin/javascript.vim
 " Plug 'airblade/vim-current-search-match'
 " Plug 'AndrewRadev/switch.vim'
 " Plug 'Yggdroot/indentLine'
