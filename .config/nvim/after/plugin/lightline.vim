@@ -1,3 +1,7 @@
+if !has_key(plugs, "lightline.vim")
+    finish
+endif
+
 " ----- LIGHTLINE SETTTINGS -----
 " let g:lightline = {'colorscheme': 'nord'}
 " 'right': [ [ 'lineinfo' ], ['percent'], ['filetype']]

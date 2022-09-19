@@ -4,7 +4,9 @@ set nowritebackup
 
 
 " ----- COC SETUP -----
-if has_key(plugs, "coc.nvim") " Check if coc exist - closing scope is at the very bottom
+if !has_key(plugs, "coc.nvim")
+  finish
+endif
 
 " ----- PLUGIN REST ASSURE
 let g:coc_global_extensions = [
@@ -149,4 +151,3 @@ nnoremap <localleader>cs :call CocAction('pickColor')<CR>
 " ----- YANK
 nnoremap <silent> <leader>y :<C-u>CocList yank<cr>
 
-endif " closing if scope

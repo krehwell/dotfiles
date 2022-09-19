@@ -107,16 +107,15 @@ Plug 'lambdalisue/fern.vim'
 " Plug 'lambdalisue/fern-renderer-devicons.vim' " - fern used this
 Plug 'lambdalisue/fern-hijack.vim'
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'jparise/vim-graphql'
 " ----- MOVEMENT/NAVIGATION PLUG
 Plug 'mg979/vim-visual-multi'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'alvan/vim-closetag'
-Plug 'airblade/vim-current-search-match'
 Plug 'isomoar/vim-css-to-inline'
-Plug 'AndrewRadev/switch.vim'
+" Plug 'airblade/vim-current-search-match'
+" Plug 'AndrewRadev/switch.vim'
 " Plug 'Yggdroot/indentLine'
 " Plug 'wfxr/minimap.vim'
 " ----- VIM CORE HELPER -----
@@ -136,12 +135,12 @@ call plug#end()
 
 " ----- START OF - FOR SOME REASON THIS CONFIG SHOULD BE HERE
 
-" let closetag on react file -----
+" CLOSETAG THINGS - let closetag on react file -----
 let g:closetag_filenames = '*.js, *.jsx, *.tsx'
 " `<Link>` will be closed while `<link>` won't -----
 let g:closetag_emptyTags_caseSensitive = 1
 
-" disable warning on small screen
+" FERN THINGS - disable warning on small screen
 let g:fern_renderer_devicons_disable_warning = 1
 let g:fern#renderer = "devicons"
 
@@ -149,16 +148,16 @@ let g:fern#renderer = "devicons"
 
 
 " ------ TMUX STATUS LINE
-let g:tpipeline_autoembed = 0
+" let g:tpipeline_autoembed = 0
 " tpipeline comes bundled with its own custom minimal statusline seen above
 " let g:tpipeline_statusline = '%!tpipeline#stl#airline()'
 " let g:tpipeline_statusline = '%f'
 " You can also use standard statusline syntax, see :help stl
-let g:tpipeline_cursormoved = 1
+" let g:tpipeline_cursormoved = 1
 
 
 " ----- VIM-TOGGLE MAP
-let g:switch_mapping = "+"
+" let g:switch_mapping = "+
 
 
 " ----- LEADER KEY -----
@@ -168,10 +167,6 @@ let maplocalleader = "\\"
 
 " ----- MAPPING KEYS -----
 " ----- SHORTCUT BASIC
-" nnoremap <silent> <leader>h :wincmd h<CR>
-" nnoremap <silent> <leader>j :wincmd j<CR>
-" nnoremap <silent> <leader>k :wincmd k<CR>
-" nnoremap <silent> <leader>l :wincmd l<CR>
 nnoremap <leader>u :UndotreeToggle<CR>:UndotreeFocus<CR>
 nnoremap <silent> <Plug>(my-fern-toggle) :Fern . -drawer -reveal=% -width=27 -toggle<CR>
 nmap <leader>pv <Plug>(my-fern-toggle)<Plug>(fern-action-zoom:reset)
@@ -218,15 +213,6 @@ nnoremap <localleader>lcd :lcd %:p:h<CR>
 
 " ----- BOILERPLATES -----
 nnoremap <leader>,html :-1read $HOME/boilerplates/skeleton.html<CR>3j2wf>a
-
-
-" ----- LINE HIGHLIGHT -----
-" define line highlight color
-highlight LineHighlight ctermbg=darkgray guibg=black
-" highlight the current line
-nnoremap <silent> <localleader>h :call matchadd('LineHighlight', '\%'.line('.').'l')<CR>
-" clear all the highlighted lines
-nnoremap <silent> <localleader>H :call clearmatches()<CR>
 
 
 " ----- RE-EXECUTE NECESSARY FILE WHILE SOURCE % { THEME } -----

@@ -34,7 +34,9 @@ hi! GitGutterDelete guifg=#C30771 ctermfg=1
 hi! GitGutterChangeDelete guifg=#C30771 ctermfg=1
 
 " ----- Lightline color
-autocmd VimEnter * call SetupLightlineColors()
+if has_key(plugs, "lightline.vim")
+  autocmd VimEnter * call SetupLightlineColors()
+endif
 function SetupLightlineColors() abort
   " transparent background in statusbar
   let l:palette = lightline#palette()
@@ -54,6 +56,15 @@ endfunction
 " ----- LINE SPLITTER ------
 " highlight VertSplit guibg=bg guifg=bg
 set fillchars+=vert:┆
+
+
+" ----- LINE HIGHLIGHT -----
+" define line highlight color
+highlight LineHighlight ctermbg=darkgray guibg=black
+" highlight the current line
+nnoremap <silent> <localleader>h :call matchadd('LineHighlight', '\%'.line('.').'l')<CR>
+" clear all the highlighted lines
+nnoremap <silent> <localleader>H :call clearmatches()<CR>
 
 
 " ----- NO BG | PREFER NO BG FOR GRUVBOX AND ONEDARK -----
