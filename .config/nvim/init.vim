@@ -148,12 +148,12 @@ let g:fern#renderer = "devicons"
 
 
 " ------ TMUX STATUS LINE
-" let g:tpipeline_autoembed = 0
+let g:tpipeline_autoembed = 0
 " tpipeline comes bundled with its own custom minimal statusline seen above
 " let g:tpipeline_statusline = '%!tpipeline#stl#airline()'
 " let g:tpipeline_statusline = '%f'
 " You can also use standard statusline syntax, see :help stl
-" let g:tpipeline_cursormoved = 1
+let g:tpipeline_cursormoved = 1
 
 
 " ----- VIM-TOGGLE MAP
