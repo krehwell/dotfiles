@@ -8,16 +8,19 @@ if has_key(plugs, "coc.nvim") " Check if coc exist - closing scope is at the ver
 
 " ----- PLUGIN REST ASSURE
 let g:coc_global_extensions = [
-            \ 'coc-pairs',
             \ 'coc-tsserver',
             \ 'coc-eslint',
             \ 'coc-prettier',
             \ 'coc-json',
             \ 'coc-html',
             \ 'coc-css',
+            \ 'coc-go',
+            \ 'coc-vimlsp',
+            \ 'coc-pairs',
             \ 'coc-highlight',
             \ 'coc-spell-checker',
             \ 'coc-sumneko-lua',
+            \ 'coc-clangd'
             \ ]
 
 
