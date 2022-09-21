@@ -17,7 +17,7 @@ function fish_greeting
         end
     end
 
-    set -l toon (random choice {default,bud-frogs,dragon,dragon-and-cow,elephant,moose,stegosaurus,tux,vader,bunny})
+    set -l toon (random choice {default,bud-frogs,elephant,moose,tux,vader,bunny})
     if which fortune > /dev/null
         fortune -s | cowsay -f $toon
     else
