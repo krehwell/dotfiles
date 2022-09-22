@@ -200,6 +200,10 @@ vnoremap <C-k>c <esc>`<i/* <esc>`>3<right>a */<esc>
 nnoremap Q 0yt=A<C-r>=<C-r>"<CR><Esc>
 
 " ----- SESSION BUFFER CONTROLLER
+command! -nargs=0 LsWipeInactive :call WipeoutInactiveBufs()
+command! -nargs=0 LsWipeInactive :call WipeoutInactiveBufs()
+command! -nargs=0 LSWipeInactive :call WipeoutInactiveBufs()
+command! -nargs=0 LSwipeInactive :call WipeoutInactiveBufs()
 nnoremap <localleader>b :bprevious<CR>
 nnoremap <localleader>n :bnext<CR>
 nnoremap <localleader>o :source ~\vim_session<cr>

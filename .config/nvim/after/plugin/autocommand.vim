@@ -1,3 +1,5 @@
+" cSpell:disable
+
 " ----- NOAUTOMOVESCREEN ON SWITCH BUFFER -----
 " Save current view settings on a per-window, per-buffer basis.
 function! AutoSaveWinView()
@@ -29,9 +31,9 @@ endif
 
 " ----- NOAUTOCOMMENT TO ALL FILES -----
 augroup AutoCommetDisable
-  autocmd!
-  " autocmd BufEnter * silent! lcd %:p:h
-  autocmd FileType * set formatoptions-=cro
+    autocmd!
+    " autocmd BufEnter * silent! lcd %:p:h
+    autocmd FileType * set formatoptions-=cro
 augroup END
 
 
@@ -51,36 +53,24 @@ fun! TrimWhitespace()
 endfun
 
 
-" ----- CONVERT 4 SPACES TO 2 SPACES -----
-fun! Four2Two() range
-    set expandtab
-    set shiftwidth=4
-    retab
-    '<,'>normal! ==
-    '<,'>s;^\(\s\+\);\=repeat(' ', len(submatch(0))/2);g
-    set shiftwidth=4
-    norm!gv>
-endfun
-
-
 "   Vim folding commands (za -> toggle fold)
-    " ---------------------------------
-    " zf#j creates a fold from the cursor down # lines.
-    " zf/ string creates a fold from the cursor to string .
-    " zj moves the cursor to the next fold.
-    " zk moves the cursor to the previous fold.
-    " za toggle a fold at the cursor.
-    " zo opens a fold at the cursor.
-    " zO opens all folds at the cursor.
-    " zc closes a fold under cursor.
-    " zm increases the foldlevel by one.
-    " zM closes all open folds.
-    " zr decreases the foldlevel by one.
-    " zR decreases the foldlevel to zero -- all folds will be open.
-    " zd deletes the fold at the cursor.
-    " zE deletes all folds.
-    " [z move to start of open fold.
-    " ]z move to end of open fold.
+" ---------------------------------
+" zf#j creates a fold from the cursor down # lines.
+" zf/ string creates a fold from the cursor to string .
+" zj moves the cursor to the next fold.
+" zk moves the cursor to the previous fold.
+" za toggle a fold at the cursor.
+" zo opens a fold at the cursor.
+" zO opens all folds at the cursor.
+" zc closes a fold under cursor.
+" zm increases the foldlevel by one.
+" zM closes all open folds.
+" zr decreases the foldlevel by one.
+" zR decreases the foldlevel to zero -- all folds will be open.
+" zd deletes the fold at the cursor.
+" zE deletes all folds.
+" [z move to start of open fold.
+" ]z move to end of open fold.
 " ----- SWAG FOLD
 function! MyFoldText()
     let line = getline(v:foldstart)
@@ -107,3 +97,24 @@ augroup DiffStatusLineAction
     autocmd!
     autocmd BufEnter * :call StatusLineOnGitDiff()
 augroup END
+
+" ----- DELETE BUFFER EXCEPT THE ONEs OPENED ON WINDOWS OR TABS -----
+function! WipeoutInactiveBufs()
+    "From tabpagebuflist() help, get a list of all buffers in all tabs
+    let tablist = []
+    for i in range(tabpagenr('$'))
+        call extend(tablist, tabpagebuflist(i + 1))
+    endfor
+
+    "Below originally inspired by Hara Krishna Dara and Keith Roberts
+    "http://tech.groups.yahoo.com/group/vim/message/56425
+    let nWipeouts = 0
+    for i in range(1, bufnr('$'))
+        if bufexists(i) && !getbufvar(i,"&mod") && index(tablist, i) == -1
+        "bufno exists AND isn't modified AND isn't in the list of buffers open in windows and tabs
+            silent exec 'bwipeout' i
+            let nWipeouts = nWipeouts + 1
+        endif
+    endfor
+    echomsg nWipeouts . ' buffer(s) wiped out'
+endfunction
