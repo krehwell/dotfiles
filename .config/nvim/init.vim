@@ -78,7 +78,7 @@ set foldcolumn=0
 " ----- VIM PLUG -----
 call plug#begin('~/vim/plugged')
 " ----- LSP
-Plug 'fatih/vim-go' " for some reason, this lsp can't be in ftplugin/go.vim
+" Plug 'fatih/vim-go' " for some reason, this lsp can't be in ftplugin/go.vim
 " Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " ----- FUZZY SEARCH PLUG
@@ -201,7 +201,7 @@ nnoremap Q 0yt=A<C-r>=<C-r>"<CR><Esc>
 
 " ----- SESSION BUFFER CONTROLLER
 command! -nargs=0 LsWipeInactive :call WipeoutInactiveBufs()
-command! -nargs=0 LsWipeInactive :call WipeoutInactiveBufs()
+command! -nargs=0 LswipeInactive :call WipeoutInactiveBufs()
 command! -nargs=0 LSWipeInactive :call WipeoutInactiveBufs()
 command! -nargs=0 LSwipeInactive :call WipeoutInactiveBufs()
 nnoremap <localleader>b :bprevious<CR>
