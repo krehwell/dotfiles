@@ -22,7 +22,8 @@ let g:coc_global_extensions = [
             \ 'coc-highlight',
             \ 'coc-spell-checker',
             \ 'coc-sumneko-lua',
-            \ 'coc-clangd'
+            \ 'coc-clangd',
+            \ 'coc-calc'
             \ ]
 
 

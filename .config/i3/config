@@ -34,7 +34,7 @@ exec --no-startup-id xmousepasteblock &
 
 
 # ----- KEYBOARD REPEAT KEY RATE -----
-exec --no-startup-id xset r rate 150 60
+exec --no-startup-id xset r rate 150 80
 
 
 # ----- i3 FONT -----
