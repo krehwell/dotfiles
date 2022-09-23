@@ -118,3 +118,20 @@ function! WipeoutInactiveBufs()
     endfor
     echomsg nWipeouts . ' buffer(s) wiped out'
 endfunction
+command! -nargs=0 LsWipeInactive :call WipeoutInactiveBufs()
+command! -nargs=0 LswipeInactive :call WipeoutInactiveBufs()
+command! -nargs=0 LSWipeInactive :call WipeoutInactiveBufs()
+command! -nargs=0 LSwipeInactive :call WipeoutInactiveBufs()
+
+" Quick fix remove per selected
+function! RemoveQFItem()
+    let curqfidx = line('.') - 1
+    let qfall = getqflist()
+    call remove(qfall, curqfidx)
+    call setqflist(qfall, 'r')
+    execute curqfidx + 1 . "cfirst"
+    :copen
+endfunction
+:command! RemoveQFItem :call RemoveQFItem()
+" Use map <buffer> to only map dd in the quickfix window. Requires +localmap
+autocmd FileType qf map <buffer> dd :RemoveQFItem<cr>
