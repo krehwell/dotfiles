@@ -15,13 +15,14 @@ if has_key(plugs, "fzf.vim")
     " ----- FZF config
     let s:ag_options = ' --one-device --skip-vcs-ignores --smart-case --ignore node_modules'
     let g:agprg='ag -S --nocolor --nogroup --column --ignore node_modules --ignore "./public/stylesheets/*"'
+    let $FZF_DEFAULT_OPTS="--bind \"ctrl-j:preview-down,ctrl-k:preview-up\""
 
     command! -bang -nargs=* Ag
                 \ call fzf#vim#ag(
                 \   <q-args>,
                 \   s:ag_options,
                 \  <bang>0 ? fzf#vim#with_preview('up:60%')
-                \        : fzf#vim#with_preview('right:50%', '?'),
+                \        : fzf#vim#with_preview('right:65%', '?'),
                 \   <bang>0
                 \ )
 endif
