@@ -6,7 +6,7 @@ M.project_files = function()
         previewer = false,
         layout_strategies = "vertical",
         layout_config = {
-            height = 9,
+            height = 11,
         },
     }) -- define options here
     local ok = pcall(require'telescope.builtin'.git_files, opts)
