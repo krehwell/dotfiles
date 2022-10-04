@@ -10,13 +10,12 @@ esac
 
 #----- KEL ADD HERE -----
 
-export PATH="$(echo "$PATH" | python -c "import sys; path = sys.stdin.read().split(':'); path = [pp for pp in path if '/mnt/c' not in pp]; print(':'.join(path))")"
-export LD_LIBRARY_PATH="$(echo "$LD_LIBRARY_PATH" | python -c "import sys; path = sys.stdin.read().split(':'); path = [pp for pp in path if '/mnt/c' not in pp]; print(':'.join(path))")"
-
-export PATH=$PATH:/mnt/c/Windows/System32
-alias sex='/mnt/c/Windows/explorer.exe .'
-alias code='/mnt/c/Users/FAHRI/AppData/Local/Programs/Microsoft\ VS\ Code/bin/code'
-alias cmd=cmd.exe
+# export PATH="$(echo "$PATH" | python -c "import sys; path = sys.stdin.read().split(':'); path = [pp for pp in path if '/mnt/c' not in pp]; print(':'.join(path))")"
+# export LD_LIBRARY_PATH="$(echo "$LD_LIBRARY_PATH" | python -c "import sys; path = sys.stdin.read().split(':'); path = [pp for pp in path if '/mnt/c' not in pp]; print(':'.join(path))")"
+# export PATH=$PATH:/mnt/c/Windows/System32
+# alias code='/mnt/c/Users/FAHRI/AppData/Local/Programs/Microsoft\ VS\ Code/bin/code'
+# alias sex='/mnt/c/Windows/explorer.exe .'
+# alias cmd=cmd.exe
 
 # END WINDOWS AREA ==============
 

@@ -32,3 +32,6 @@ fi
 # else
 #         export TERM='xterm-color'
 # fi
+
+export GOPATH="$HOME/go"
+PATH="$GOPATH/bin:$PATH"
