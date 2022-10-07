@@ -1,3 +1,6 @@
+setlocal includeexpr=substitute(v:fname,'^@\/',getcwd().'/','')
+setlocal isfname+=@-@
+
 " ----- VIM PLUG -----
 call plug#begin('~/vim/plugged')
 " ----- JAVASCRIPT PLUG -----
