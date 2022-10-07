@@ -133,7 +133,7 @@ content-foreground = ${colors.red}
 
 [module/filesystem]
 interval = 25
-label-mounted = %{F#FFFFFF}%mountpoint%%{F-}%{F#FFFFFF}:%{F-} %percentage_used%%
+label-mounted = %{A1:baobab &:}%{F#FFFFFF}%mountpoint%%{F-}%{F#FFFFFF}:%{F-} %percentage_used%%{A}
 label-unmounted = %mountpoint% not mounted
 label-mounted-foreground = ${colors.foreground}
 mount-0 = /
