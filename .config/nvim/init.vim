@@ -57,7 +57,7 @@ set eadirection=ver
 set noequalalways
 
 
-" ----- FIX CURSOR HOLD ----
+" ----- FIX SLUGGIST CURSOR HOLD ----
 let g:cursorhold_updatetime = 100
 
 
