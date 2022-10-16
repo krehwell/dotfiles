@@ -27,7 +27,7 @@ require("telescope").setup {
                 }
             },
             layout_config = {
-                width = 105,
+                width = 115,
                 height= 22,
             },
         },
