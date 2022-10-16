@@ -22,8 +22,6 @@ let g:coc_global_extensions = [
             \ 'coc-highlight',
             \ 'coc-spell-checker',
             \ 'coc-sumneko-lua',
-            \ 'coc-clangd',
-            \ 'coc-calc'
             \ ]
 
 
@@ -52,21 +50,10 @@ inoremap <silent><expr> <TAB>
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
 
-
-" ----- CODE PRETTIER
-" cSpell:disable
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-command! -nargs=0 PRettier :CocCommand prettier.formatFile
-command! -nargs=0 PREttier :CocCommand prettier.formatFile
-command! -nargs=0 PERttier :CocCommand prettier.formatFile
-command! -nargs=0 Perttier :CocCommand prettier.formatFile
-command! -nargs=0 Perttiere :CocCommand prettier.formatFile
-" cSpell:enable
-
 " ----- FORMATTING SELECTED CODE
 xmap <leader>f  <Plug>(coc-format-selected)
 vmap <leader>f  <Plug>(coc-format-selected)
-nnoremap <leader>f :CocCommand prettier.formatFile<CR>
+nnoremap <leader>f :call CocAction('runCommand', 'editor.action.formatDocument')<CR>
 augroup mygroup
     autocmd!
     " Setup formatexpr specified filetype(s).
@@ -143,6 +130,7 @@ nmap <silent> <leader>W <plug>(coc-diagnostic-prev)
 " ----- FIX ACTION
 nmap qf <Plug>(coc-fix-current)
 nmap ca <Plug>(coc-codeaction-selected)
+nmap <leader>cl  <Plug>(coc-codelens-action)
 
 
 " ----- COLOR

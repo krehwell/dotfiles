@@ -25,7 +25,11 @@ require("telescope").setup {
                 n = {
                     ["<c-d>"] = actions.delete_buffer,
                 }
-            }
+            },
+            layout_config = {
+                width = 105,
+                height= 22,
+            },
         },
         find_files = {
             -- theme = "get_ivy"
