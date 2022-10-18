@@ -175,7 +175,7 @@ nnoremap <silent> <Leader>- :vertical resize -15<CR>
 nnoremap <silent> <Leader>= :vertical resize +15<CR>
 nnoremap <silent> <Leader>9 :resize -3<CR>
 nnoremap <silent> <Leader>8 :resize +3<CR>
-nnoremap <silent> <Leader>n :noh<CR>
+nnoremap <silent><esc> <esc>:noh<CR><esc>
 
 " ----- TAB SWITCHER
 nnoremap <c-w><c-k> :tabprevious<CR>
