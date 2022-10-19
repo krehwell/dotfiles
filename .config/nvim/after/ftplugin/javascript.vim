@@ -1,3 +1,4 @@
+" cspell:disable
 setlocal includeexpr=substitute(v:fname,'^@\/',getcwd().'/','')
 setlocal isfname+=@-@
 
@@ -23,6 +24,19 @@ autocmd Syntax * call HighlightAnnotations()
 
 
 " ----- SHORTCUT -----
-inoremap cll console.log("", )<esc>hhhi
+function! JumpToSyntax()
+  inoremap <C-[> <C-C>:iunmap<CR>
+  execute "norm! $"
+  :startinsert
+endfunction
+
+function! WriteConsoleLog()
+  inoremap <C-[> <esc>:call JumpToSyntax()<CR>
+  execute "norm! iconsole.log(\"\", )"
+  execute "norm! hhh"
+  :startinsert
+endfunction
+
+inoremap cll <esc>:call WriteConsoleLog()<CR>
 " nnoremap <leader>,exp :-1read $HOME/boilerplates/expressServer.js<CR>4j
 " nnoremap <leader>,con :-1read $HOME/boilerplates/mongoConnect.js<CR>4j
