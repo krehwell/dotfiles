@@ -25,7 +25,7 @@ autocmd Syntax * call HighlightAnnotations()
 
 " ----- SHORTCUT -----
 function! JumpToSyntax()
-  inoremap <C-[> <C-C>:iunmap<CR>
+  inoremap <C-[> <C-C>
   execute "norm! $"
   :startinsert
 endfunction
