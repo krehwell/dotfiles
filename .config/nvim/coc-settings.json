@@ -9,7 +9,7 @@
 
     "diagnostic.checkCurrentLine": true,
     "diagnostic.warningSign": ">>",
-    "diagnostic.refreshOnInsertMode": true,
+    "diagnostic.refreshOnInsertMode": false,
     // "diagnostic.displayByAle": false,
 
     // "prettier.arrowParens": "always",
@@ -18,18 +18,19 @@
     "prettier.bracketSpacing": true,
     "prettier.tabWidth": 4,
 
-    "javascript.suggestionActions.enabled": false,
-    "javascript.showUnused": false,
+    "javascript.suggestionActions.enabled": true,
+    "javascript.showUnused": true,
     "javascript.suggest.completeJSDocs": true,
     "javascript.implementationsCodeLens.enable": true,
-    "tsserver.tsdk": "node_modules/typescript/lib",
 
-    // "typescript.suggestionActions.enabled": false,
-    // "typescript.showUnused": false,
+    "typescript.suggestionActions.enabled": true,
+    "typescript.showUnused": true,
+    "typescript.suggest.completeJSDocs": true,
+    "typescript.implementationsCodeLens.enable": true,
 
-    // "tsserver.npm": "/usr/bin/npm",
     "tsserver.reportStyleChecksAsWarnings": true,
-    // "tsserver.implicitProjectConfig.checkJs": false,
+    "tsserver.enableJavascript": true,
+    "tsserver.implicitProjectConfig.checkJs": true,
 
     "eslint.enable": true,
     "eslint.autoFixOnSave": false,
