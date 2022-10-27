@@ -1,5 +1,11 @@
 " cspell:disable
-setlocal includeexpr=substitute(v:fname,'^@\/',getcwd().'/','')
+function! SubPathsWithDots()
+  let pathFromRootStr = expand('%:h')
+  let pathToDotsStr = substitute(expand('%:h'), '\w\+', "..", "g")
+  echo pathFromRootStr
+  return pathToDotsStr . '/'
+endfunction
+setlocal includeexpr=substitute(v:fname,'^@\/',SubCurrPathWithDots(),'')
 setlocal isfname+=@-@
 
 " ----- VIM PLUG -----

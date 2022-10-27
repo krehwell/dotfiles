@@ -52,7 +52,7 @@ set pastetoggle=<F3>
 set showmode
 set scrolloff=5
 set shortmess+=F
-set mouse=nc
+set mouse-=anc
 set eadirection=ver
 set noequalalways
 
