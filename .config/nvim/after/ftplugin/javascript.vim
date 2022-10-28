@@ -32,15 +32,17 @@ autocmd Syntax * call HighlightAnnotations()
 " ----- SHORTCUT -----
 function! JumpToSummary()
   inoremap <C-[> <C-C>
+  execute "norm! `[v`.y"
   execute "norm! 02f\""
-  execute "norm! ."
+  execute "norm! P"
 endfunction
 
 function! WriteConsoleLog()
   inoremap <C-[> <esc>:call JumpToSummary()<CR>
   execute "norm! iconsole.log(\"\", )"
-  execute "norm! ==$"
-  :startinsert
+  execute "norm! ==0"
+  call searchpos(")")
+  call feedkeys("i")
 endfunction
 
 inoremap <silent> cll <esc>:call WriteConsoleLog()<CR>
