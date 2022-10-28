@@ -34,7 +34,7 @@ endfunction
 function! WriteConsoleLog()
   inoremap <C-[> <esc>:call JumpToSummary()<CR>
   execute "norm! iconsole.log(\"\", )"
-  execute "norm! =="
+  execute "norm! ==$"
   :startinsert
 endfunction
 
