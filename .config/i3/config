@@ -75,6 +75,10 @@ bindsym $mod+e exec --no-startup-id nautilus
 bindsym $mod+o exec --no-startup-id $term -e nvim ~/.config/i3/config
 
 
+# ----- OPEN EMOJI -----
+bindsym $mod+period exec --no-startup-id gnome-characters
+
+
 # ----- APPS WINDOW DEFAULT FLOATING ENABLE, use `xprop` to detect it -----
 for_window [class="Yad" title="yad-calendar"] floating enable
 for_window [class="gnome-system-monitor"] floating enable
@@ -82,6 +86,7 @@ for_window [class="vokoscreenNG"] floating enable
 for_window [class="Nitrogen"] floating enable
 for_window [class="Eog"] floating enable
 for_window [class="SimpleScreenRecorder"] floating enable
+for_window [class="org.gnome.Character"] floating enable
 
 
 # ----- MONITOR -----
