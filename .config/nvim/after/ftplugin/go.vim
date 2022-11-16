@@ -11,5 +11,3 @@ let g:go_doc_balloon = 1
 
 " add missing import on save
 autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
-
-inoremap cll fmt.Println("", )<esc>i
