@@ -194,12 +194,8 @@ vnoremap $ $<left>
 vnoremap <M-j> :m '>+1<CR>gv=gv
 vnoremap <M-k> :m '>-2<CR>gv=gv
 vnoremap w e
-" Commenting
-vnoremap <C-K>c :call ToggleComment()<cr>
-function! ToggleComment()
-    execute "norm! `>a */"
-    execute "norm! `<i/* "
-endfunction
+" commenting block with /* code */
+vnoremap <C-K>c c/* <C-R>" */<Esc>
 
 
 " ----- CALCULATOR
