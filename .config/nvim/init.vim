@@ -194,7 +194,13 @@ vnoremap $ $<left>
 vnoremap <M-j> :m '>+1<CR>gv=gv
 vnoremap <M-k> :m '>-2<CR>gv=gv
 vnoremap w e
-vnoremap <C-k>c <esc>`<i/* <esc>`>3<right>a */<esc>
+" Commenting
+vnoremap <C-K>c :call ToggleComment()<cr>
+function! ToggleComment()
+    execute "norm! `>a */"
+    execute "norm! `<i/* "
+endfunction
+
 
 " ----- CALCULATOR
 nnoremap Q 0yt=A<C-r>=<C-r>"<CR><Esc>
