@@ -190,6 +190,7 @@ nnoremap <M-j> ddp
 nnoremap <M-k> ddkP
 nnoremap <leader>sr :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
 nnoremap <localleader>a ggVG
+vnoremap b B
 vnoremap $ $<left>
 vnoremap <M-j> :m '>+1<CR>gv=gv
 vnoremap <M-k> :m '>-2<CR>gv=gv
