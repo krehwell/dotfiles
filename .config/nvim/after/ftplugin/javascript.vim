@@ -13,7 +13,7 @@ call plug#begin('~/vim/plugged')
 " ----- JAVASCRIPT PLUG -----
 Plug 'chemzqm/vim-jsx-improve'
 Plug 'maxmellon/vim-jsx-pretty'
-" Plug 'yuezk/vim-js'
+Plug 'yuezk/vim-js' " for jsdoc highlighting, this plugin work better
 call plug#end()
 
 

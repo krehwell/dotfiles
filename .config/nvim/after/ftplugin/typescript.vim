@@ -4,11 +4,9 @@ setlocal isfname+=@-@
 " ----- VIM PLUG -----
 call plug#begin('~/vim/plugged')
 " ----- JAVASCRIPT PLUG -----
-" Plug 'pangloss/vim-javascript'
 Plug 'chemzqm/vim-jsx-improve'
 Plug 'maxmellon/vim-jsx-pretty'
-" Plug 'yuezk/vim-js'
-Plug 'leafgarland/typescript-vim'
+Plug 'yuezk/vim-js' " for jsdoc highlighting, this plugin work better
 call plug#end()
 
 
