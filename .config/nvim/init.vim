@@ -169,7 +169,7 @@ let maplocalleader = "\\"
 " ----- SHORTCUT BASIC
 nnoremap <leader>u :UndotreeToggle<CR>:UndotreeFocus<CR>
 nnoremap <silent> <Plug>(my-fern-toggle) :Fern . -drawer -reveal=% -width=27 -toggle<CR>
-nmap <leader>pv <Plug>(my-fern-toggle)<Plug>(fern-action-zoom:reset)
+nnoremap <c-b> <Plug>(my-fern-toggle)<Plug>(fern-action-zoom:reset)
 nnoremap <silent> <Leader>pr :Fern . -drawer -reveal=% -width=27 -toggle<CR>:Fern . -drawer -reveal=% -width=27 -toggle<CR><C-w><C-p>
 nnoremap <silent> <Leader>- :vertical resize -15<CR>
 nnoremap <silent> <Leader>= :vertical resize +15<CR>
