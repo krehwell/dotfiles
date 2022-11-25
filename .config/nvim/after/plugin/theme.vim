@@ -17,24 +17,14 @@ colorscheme off
 
 " ----- BG CONFIG -----
 " no color on line number
-autocmd ColorScheme * highlight! link SignColumn LineNr
-highlight CursorLineNr cterm=NONE ctermbg=NONE ctermfg=NONE guibg=NONE
-" highlight! link CocUnusedHighlight Comment
-" highlight! CocUnusedHighlight ctermfg=7 ctermbg=242 guifg=LightGrey guibg=DarkGrey
-highlight! CocUnusedHighlight ctermfg=248 guifg=#595959
-hi VertSplit guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
-
-
-" ----- GIT GUTTER COLOR CONFIG
-" Git Gutter remove bg color
-" let g:gitgutter_override_sign_column_highlight=1
-" hi! GitGutterAdd guifg=#10A778 ctermfg=2
-" hi! GitGutterChange guifg=#A89C14 ctermfg=3
-" hi! GitGutterDelete guifg=#C30771 ctermfg=1
-" hi! GitGutterChangeDelete guifg=#C30771 ctermfg=1
+" autocmd ColorScheme * highlight! link SignColumn LineNr
+" highlight CursorLineNr cterm=NONE ctermbg=NONE ctermfg=NONE guibg=NONE
 
 
 " ----- COC sign
+" highlight! link CocUnusedHighlight Comment
+" highlight! CocUnusedHighlight ctermfg=7 ctermbg=242 guifg=LightGrey guibg=DarkGrey
+" highlight! CocUnusedHighlight ctermfg=248 guifg=#595959
 " CocErrorSign   xxx ctermfg=9 guifg=#ff0000
 " CocWarningSign xxx ctermfg=130 guifg=#ff922b
 " CocInfoSign    xxx ctermfg=11 guifg=#fab005
@@ -43,6 +33,7 @@ hi VertSplit guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
 
 " ----- LINE SPLITTER ------
 " highlight VertSplit guibg=bg guifg=bg
+hi VertSplit guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
 set fillchars+=vert:┆
 
 

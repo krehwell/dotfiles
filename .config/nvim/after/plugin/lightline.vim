@@ -7,7 +7,7 @@ endif
 " 'right': [ [ 'lineinfo' ], ['percent'], ['filetype']]
 " \ 'colorscheme': 'wombat',
 let g:lightline = {
-      \ 'colorscheme': 'nord',
+      \ 'colorscheme': 'one',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'filename', 'modified' ] ],
