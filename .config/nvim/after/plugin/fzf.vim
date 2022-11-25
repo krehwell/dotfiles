@@ -68,4 +68,3 @@ if has_key(plugs, "ctrlp.vim")
     command! -nargs=0 LS :CtrlPBuffer
     let g:ctrlp_buffer_func = { 'enter': 'CtrlPBDelete' }
 endif
-

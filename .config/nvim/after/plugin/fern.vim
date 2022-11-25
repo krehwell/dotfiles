@@ -21,5 +21,4 @@ augroup END
 augroup fern-redraw
   autocmd! *
   autocmd BufWritePost * call feedkeys("\<Plug>(fern-action-redraw)")
-  autocmd BufEnter * call feedkeys("\<Plug>(fern-action-redraw)")
 augroup END

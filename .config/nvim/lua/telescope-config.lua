@@ -14,6 +14,7 @@ require("telescope").setup {
     pickers = {
         -- Your special builtin config goes in here
         buffers = {
+            initial_mode = "insert",
             ignore_current_buffer = true,
             sort_lastused = true,
             theme = "dropdown",
