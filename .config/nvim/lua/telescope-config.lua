@@ -28,14 +28,14 @@ require("telescope").setup {
             },
             layout_config = {
                 width = 115,
-                height= 22,
+                height = 22,
             },
         },
         find_files = {
             -- theme = "get_ivy"
         }
     },
-    extensions = { }
+    extensions = {}
 }
 
 require('telescope').load_extension('fzf')
