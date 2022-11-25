@@ -32,12 +32,11 @@ endif
 " ----- NOAUTOCOMMENT TO ALL FILES -----
 augroup AutoCommetDisable
     autocmd!
-    " autocmd BufEnter * silent! lcd %:p:h
     autocmd FileType * set formatoptions-=cro
 augroup END
 
 
-" ----- TRIM ANY TRAILING WHITESPACES -----
+" ----- TRIM ANY TRAILING WHITESPACES ON SAVE -----
 augroup TrimWhitespaceOnSave
     autocmd!
     autocmd BufWritePre * :call TrimWhitespace()
@@ -81,7 +80,7 @@ set foldtext=MyFoldText()
 set fillchars=fold:\
 
 
-" ----- SHOW STATUS LINE WHEN GIT DIFF EVEN WHEN TMUX ON -----
+" ----- SHOW STATUS LINE ON GIT DIFF OR EVEN WHEN TMUX ON -----
 fun! StatusLineOnGitDiff()
     if exists('$TMUX') && &diff == 0
         set laststatus=0                                               " no statusline when tmux in
@@ -97,6 +96,7 @@ augroup DiffStatusLineAction
     autocmd!
     autocmd BufEnter * :call StatusLineOnGitDiff()
 augroup END
+
 
 " ----- DELETE BUFFER EXCEPT THE ONEs OPENED ON WINDOWS OR TABS -----
 function! WipeoutInactiveBufs()
@@ -123,7 +123,8 @@ command! -nargs=0 LswipeInactive :call WipeoutInactiveBufs()
 command! -nargs=0 LSWipeInactive :call WipeoutInactiveBufs()
 command! -nargs=0 LSwipeInactive :call WipeoutInactiveBufs()
 
-" Quick fix remove per selected
+
+" ----- QUICK FIX REMOVE SELECTED ITEM -----
 function! RemoveQFItem()
     let curqfidx = line('.') - 1
     let qfall = getqflist()
