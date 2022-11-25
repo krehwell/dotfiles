@@ -27,24 +27,12 @@ hi VertSplit guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
 
 " ----- GIT GUTTER COLOR CONFIG
 " Git Gutter remove bg color
-let g:gitgutter_override_sign_column_highlight=1
-hi! GitGutterAdd guifg=#10A778 ctermfg=2
-hi! GitGutterChange guifg=#A89C14 ctermfg=3
-hi! GitGutterDelete guifg=#C30771 ctermfg=1
-hi! GitGutterChangeDelete guifg=#C30771 ctermfg=1
+" let g:gitgutter_override_sign_column_highlight=1
+" hi! GitGutterAdd guifg=#10A778 ctermfg=2
+" hi! GitGutterChange guifg=#A89C14 ctermfg=3
+" hi! GitGutterDelete guifg=#C30771 ctermfg=1
+" hi! GitGutterChangeDelete guifg=#C30771 ctermfg=1
 
-" ----- Lightline color
-if has_key(plugs, "lightline.vim")
-  autocmd VimEnter * call SetupLightlineColors()
-endif
-function SetupLightlineColors() abort
-  " transparent background in statusbar
-  let l:palette = lightline#palette()
-  let l:palette.normal.middle = [ [ '#444444', '#444444', '696969', '696969' ] ]
-  let l:palette.inactive.middle = l:palette.normal.middle
-  let l:palette.tabline.middle = l:palette.normal.middle
-  call lightline#colorscheme()
-endfunction
 
 " ----- COC sign
 " CocErrorSign   xxx ctermfg=9 guifg=#ff0000

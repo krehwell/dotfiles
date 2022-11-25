@@ -20,17 +20,17 @@ let g:lightline = {
       \ 'component_function': {
       \   'gitbranch': 'FugitiveHead',
       \   'filename': 'FilenameAndPath',
-      \   'gitversion': 'LightLineGitversion',
+      \   'gitversion': 'BufferNameOnGitDiff',
       \ },
       \ 'tab_component_function': {
-      \   'filename': 'TabFilenameAndLastPath',
+      \   'filename': 'BufferNameOnTab',
       \ },
       \ }
 
 " ----- LIST OF UTILITIES FUNCTIONS -----
 
 " ----- COOL FILENAME FUNCTION
-function! TabFilenameAndLastPath(n)
+function! BufferNameOnTab(n)
     let buflist = tabpagebuflist(a:n)
     let winnr = tabpagewinnr(a:n)
     let bufnum = buflist[winnr - 1]
@@ -77,18 +77,7 @@ function! FilenameAndPath()
     endif
 endfunction
 
-function! FilenameAndLastPath()
-    let filenameonly = expand('%:t:r')
-    if filenameonly ==? "index"
-        return remove(split(expand("%:h"), "/"), -1) . "/" . expand("%:t")
-    else
-        return expand("%:t")
-    endif
-endfunction
-" ----- END OF COOL FILENAME FUNCTION
-
-
-function! LightLineGitversion()
+function! BufferNameOnGitDiff()
     let fullname = expand('%')
     let gitversion = ''
     if fullname =~? 'fugitive://.*/\.git//0/.*'
