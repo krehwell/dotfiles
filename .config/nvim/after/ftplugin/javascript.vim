@@ -11,14 +11,9 @@ setlocal isfname+=@-@
 " ----- VIM PLUG -----
 call plug#begin('~/vim/plugged')
 " ----- JAVASCRIPT PLUG -----
-" Plug 'pangloss/vim-javascript'
 Plug 'chemzqm/vim-jsx-improve'
 Plug 'maxmellon/vim-jsx-pretty'
-Plug 'yuezk/vim-js'
-Plug 'heavenshell/vim-jsdoc', {
-  \ 'for': ['javascript', 'javascript.jsx','typescript'],
-  \ 'do': 'make install'
-  \}
+" Plug 'yuezk/vim-js'
 call plug#end()
 
 

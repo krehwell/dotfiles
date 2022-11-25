@@ -124,11 +124,8 @@ Plug 'ojroques/vim-oscyank', {'branch': 'main'}
 " ----- COLORSCHEME PLUG
 Plug 'sheerun/vim-polyglot'
 Plug 'fxn/vim-monochrome'
-Plug 'arcticicestudio/nord-vim'
 Plug 'morhetz/gruvbox'
 Plug 'pbrisbin/vim-colors-off'
-" Plug 'tjdevries/colorbuddy.vim'
-" Plug 'junegunn/goyo.vim'
 call plug#end()
 " spell:enable
 
@@ -145,6 +142,10 @@ let g:fern_renderer_devicons_disable_warning = 1
 let g:fern#renderer = "devicons"
 
 " ------ END OF - FOR SOME REASON THIS CONFIG SHOULD BE HERE
+
+
+" ----- POLYGOT CONFIGURATION
+let g:polyglot_disabled = ['autoindent']
 
 
 " ------ TMUX STATUS LINE

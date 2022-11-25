@@ -7,13 +7,8 @@ call plug#begin('~/vim/plugged')
 " Plug 'pangloss/vim-javascript'
 Plug 'chemzqm/vim-jsx-improve'
 Plug 'maxmellon/vim-jsx-pretty'
-Plug 'yuezk/vim-js'
-Plug 'heavenshell/vim-jsdoc', {
-  \ 'for': ['javascript', 'javascript.jsx','typescript'],
-  \ 'do': 'make install'
-  \}
+" Plug 'yuezk/vim-js'
 Plug 'leafgarland/typescript-vim'
-" Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
 call plug#end()
 
 
