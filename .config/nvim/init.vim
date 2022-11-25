@@ -13,6 +13,10 @@ let $INIT="~/.config/nvim/init.vim"
 " let g:ale_set_signs = 0
 
 
+" ----- POLYGOT CONFIGURATION <-- NOTE: this must be defined before polygon plugin is loaded
+let g:polyglot_disabled = ['autoindent']
+
+
 " ----- ALL SETs -----
 " set cursorlineopt=number
 " set autochdir                                                    " set the curr dir to opened buf
@@ -142,10 +146,6 @@ let g:fern_renderer_devicons_disable_warning = 1
 let g:fern#renderer = "devicons"
 
 " ------ END OF - FOR SOME REASON THIS CONFIG SHOULD BE HERE
-
-
-" ----- POLYGOT CONFIGURATION
-let g:polyglot_disabled = ['autoindent']
 
 
 " ------ TMUX STATUS LINE
