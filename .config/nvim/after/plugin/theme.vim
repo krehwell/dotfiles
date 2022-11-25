@@ -22,9 +22,8 @@ colorscheme off
 
 
 " ----- COC sign
-" highlight! link CocUnusedHighlight Comment
-" highlight! CocUnusedHighlight ctermfg=7 ctermbg=242 guifg=LightGrey guibg=DarkGrey
-" highlight! CocUnusedHighlight ctermfg=248 guifg=#595959
+highlight! link CocUnusedHighlight Comment
+highlight! CocUnusedHighlight ctermfg=248 guifg=#595959
 " CocErrorSign   xxx ctermfg=9 guifg=#ff0000
 " CocWarningSign xxx ctermfg=130 guifg=#ff922b
 " CocInfoSign    xxx ctermfg=11 guifg=#fab005

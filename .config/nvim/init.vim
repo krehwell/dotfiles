@@ -127,8 +127,8 @@ Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'ojroques/vim-oscyank', {'branch': 'main'}
 " ----- COLORSCHEME PLUG
 Plug 'sheerun/vim-polyglot'
-Plug 'fxn/vim-monochrome'
-Plug 'morhetz/gruvbox'
+" Plug 'fxn/vim-monochrome'
+" Plug 'morhetz/gruvbox'
 Plug 'pbrisbin/vim-colors-off'
 call plug#end()
 " spell:enable
