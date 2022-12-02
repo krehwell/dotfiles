@@ -62,7 +62,7 @@ set noequalalways
 
 
 " ----- FIX SLUGGIST CURSOR HOLD ----
-let g:cursorhold_updatetime = 100
+let g:cursorhold_updatetime = 300
 
 
 " ------ FOLDING ------
@@ -126,7 +126,7 @@ Plug 'isomoar/vim-css-to-inline' " for some reason, this lsp can't be in ftplugi
 Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'ojroques/vim-oscyank', {'branch': 'main'}
 " ----- COLORSCHEME PLUG
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
 " Plug 'fxn/vim-monochrome'
 " Plug 'morhetz/gruvbox'
 Plug 'pbrisbin/vim-colors-off'

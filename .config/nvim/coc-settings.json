@@ -4,7 +4,7 @@
     "suggest.noselect": true,
     "suggest.enablePreselect": false,
 
-    "colors.filetypes": ["*"],
+    "colors.enable": true,
     "pairs.enableCharacters": ["(", "[", "{", "<", "\"", "'", "`"],
 
     "diagnostic.checkCurrentLine": true,
@@ -13,7 +13,7 @@
     // "diagnostic.displayByAle": false,
 
     // "prettier.arrowParens": "always",
-    "prettier.jsxBracketSameLine": true,
+    // "prettier.jsxBracketSameLine": true,
     "prettier.printWidth": 120,
     "prettier.bracketSpacing": true,
     "prettier.tabWidth": 4,
@@ -26,14 +26,22 @@
     "typescript.suggestionActions.enabled": true,
     "typescript.showUnused": true,
     "typescript.suggest.completeJSDocs": true,
-    "typescript.implementationsCodeLens.enable": true,
+    // "typescript.implementationsCodeLens.enable": true,
 
     "tsserver.reportStyleChecksAsWarnings": true,
     "tsserver.enableJavascript": true,
     "tsserver.implicitProjectConfig.checkJs": true,
+    "tsserver.disableAutomaticTypeAcquisition": true,
+    "tsserver.useSyntaxServer": "always", // performance matter
+    "tsserver.log": "off", // performance matter
+    "tsserver.trace.server": "off", // performance matter
+    "tsserver.maxTsServerMemory": 5000, // performance matter
+    "tsserver.enableTracing": false, // performance matter
 
     "eslint.enable": true,
     "eslint.autoFixOnSave": false,
+
+    // "codeLens.enable": false,
 
     "cSpell.userWords": [
         "Alacritty",
