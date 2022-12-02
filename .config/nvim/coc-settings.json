@@ -21,7 +21,7 @@
     "javascript.suggestionActions.enabled": true,
     "javascript.showUnused": true,
     "javascript.suggest.completeJSDocs": true,
-    "javascript.implementationsCodeLens.enable": true,
+    // "javascript.implementationsCodeLens.enable": true,
 
     "typescript.suggestionActions.enabled": true,
     "typescript.showUnused": true,
@@ -29,10 +29,10 @@
     // "typescript.implementationsCodeLens.enable": true,
 
     "tsserver.reportStyleChecksAsWarnings": true,
-    "tsserver.enableJavascript": true,
+    // "tsserver.enableJavascript": true,
     "tsserver.implicitProjectConfig.checkJs": true,
     "tsserver.disableAutomaticTypeAcquisition": true,
-    "tsserver.useSyntaxServer": "always", // performance matter
+    "tsserver.useSyntaxServer": "auto", // performance matter
     "tsserver.log": "off", // performance matter
     "tsserver.trace.server": "off", // performance matter
     "tsserver.maxTsServerMemory": 5000, // performance matter
