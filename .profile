@@ -25,13 +25,5 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-# KEL ADD HERE
-# ----- " ADDING COLOR 265 " -----
-# if [ -e /usr/share/terminfo/x/xterm-256color ]; then
-#         export TERM='xterm-256color'
-# else
-#         export TERM='xterm-color'
-# fi
-
 export GOPATH="$HOME/go"
 PATH="$GOPATH/bin:$PATH"
