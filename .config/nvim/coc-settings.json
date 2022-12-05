@@ -1,11 +1,12 @@
 {
-    "coc.preferences.formatOnSaveFiletypes": ["css"],
+    "coc.preferences.formatOnSave": false,
 
     "suggest.noselect": true,
     "suggest.enablePreselect": false,
 
     "colors.enable": true,
-    "pairs.enableCharacters": ["(", "[", "{", "<", "\"", "'", "`"],
+    // "pairs.enableBackspace": true,
+    // "pairs.enableCharacters": ["(", "[", "{", "<", "'", "\"", "`"],
 
     "diagnostic.checkCurrentLine": true,
     "diagnostic.warningSign": ">>",
@@ -15,22 +16,28 @@
     // "prettier.arrowParens": "always",
     // "prettier.jsxBracketSameLine": true,
     "prettier.printWidth": 120,
-    "prettier.bracketSpacing": true,
     "prettier.tabWidth": 4,
+    "prettier.semi": true,
+    "prettier.bracketSpacing": true,
+    "prettier.bracketSameLine": true,
+    "prettier.arrowParens": "avoid",
 
-    "javascript.suggestionActions.enabled": true,
+    "javascript.suggestionActions.enabled": false,
     "javascript.showUnused": true,
     "javascript.suggest.completeJSDocs": true,
-    // "javascript.implementationsCodeLens.enable": true,
+    "javascript.implementationsCodeLens.enabled": false,
+    // "javascript.validate.enable": false,
 
-    "typescript.suggestionActions.enabled": true,
-    "typescript.showUnused": true,
-    "typescript.suggest.completeJSDocs": true,
-    // "typescript.implementationsCodeLens.enable": true,
+    "typescript.suggestionActions.enabled": false,
+    // "typescript.showUnused": true,
+    // "typescript.suggest.completeJSDocs": true,
+    "typescript.implementationsCodeLens.enabled": false,
+    "typescript.suggest.autoImports": false,
+    // "typescript.validate.enable": false,
 
     "tsserver.reportStyleChecksAsWarnings": true,
     // "tsserver.enableJavascript": true,
-    "tsserver.implicitProjectConfig.checkJs": true,
+    "tsserver.implicitProjectConfig.checkJs": false,
     "tsserver.disableAutomaticTypeAcquisition": true,
     "tsserver.useSyntaxServer": "auto", // performance matter
     "tsserver.log": "off", // performance matter
@@ -38,10 +45,8 @@
     "tsserver.maxTsServerMemory": 5000, // performance matter
     "tsserver.enableTracing": false, // performance matter
 
-    "eslint.enable": true,
+    "eslint.enable": false,
     "eslint.autoFixOnSave": false,
-
-    // "codeLens.enable": false,
 
     "cSpell.userWords": [
         "Alacritty",

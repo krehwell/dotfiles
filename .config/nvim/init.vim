@@ -126,7 +126,7 @@ Plug 'isomoar/vim-css-to-inline' " for some reason, this lsp can't be in ftplugi
 Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'ojroques/vim-oscyank', {'branch': 'main'}
 " ----- COLORSCHEME PLUG
-" Plug 'sheerun/vim-polyglot'
+Plug 'sheerun/vim-polyglot'
 " Plug 'fxn/vim-monochrome'
 " Plug 'morhetz/gruvbox'
 Plug 'pbrisbin/vim-colors-off'
@@ -178,9 +178,6 @@ nnoremap <silent> <Leader>9 :resize -3<CR>
 nnoremap <silent> <Leader>8 :resize +3<CR>
 nnoremap <silent><esc> <esc>:noh<CR><esc>
 
-" ----- TAB SWITCHER
-nnoremap <c-w><c-k> :tabprevious<CR>
-nnoremap <c-w><c-j> :tabnext<CR>
 
 " ----- EDITING
 iabbrev /* /*  */<esc>bhhi<del>
