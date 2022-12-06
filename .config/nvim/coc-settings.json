@@ -10,6 +10,7 @@
 
     "diagnostic.checkCurrentLine": true,
     "diagnostic.warningSign": ">>",
+    "diagnostic.enableSign": false, // since we have virtualText
     "diagnostic.refreshOnInsertMode": false,
     "diagnostic.virtualText": true,
     "diagnostic.displayByAle": false,
