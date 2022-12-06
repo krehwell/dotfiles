@@ -11,10 +11,10 @@
     "diagnostic.checkCurrentLine": true,
     "diagnostic.warningSign": ">>",
     "diagnostic.refreshOnInsertMode": false,
-    // "diagnostic.displayByAle": false,
+    "diagnostic.virtualText": true,
+    "diagnostic.displayByAle": false,
+    "diagnostic.virtualTextCurrentLineOnly": false,
 
-    // "prettier.arrowParens": "always",
-    // "prettier.jsxBracketSameLine": true,
     "prettier.printWidth": 120,
     "prettier.tabWidth": 4,
     "prettier.semi": true,
@@ -23,29 +23,27 @@
     "prettier.arrowParens": "avoid",
 
     "javascript.suggestionActions.enabled": false,
-    "javascript.showUnused": true,
-    "javascript.suggest.completeJSDocs": true,
+    "javascript.showUnused": false,
     "javascript.implementationsCodeLens.enabled": false,
-    // "javascript.validate.enable": false,
 
     "typescript.suggestionActions.enabled": false,
-    // "typescript.showUnused": true,
-    // "typescript.suggest.completeJSDocs": true,
+    "typescript.showUnused": false,
     "typescript.implementationsCodeLens.enabled": false,
+    "typescript.suggest.completeFunctionCalls": false,
+    "typescript.preferences.autoImportFileExcludePatterns": ["node_modules/@*"],
     "typescript.suggest.autoImports": false,
-    // "typescript.validate.enable": false,
 
-    "tsserver.reportStyleChecksAsWarnings": true,
+    // "tsserver.reportStyleChecksAsWarnings": true,
     // "tsserver.enableJavascript": true,
-    "tsserver.implicitProjectConfig.checkJs": false,
-    "tsserver.disableAutomaticTypeAcquisition": true,
+    // "tsserver.implicitProjectConfig.checkJs": false,
+    // "tsserver.disableAutomaticTypeAcquisition": true,
     "tsserver.useSyntaxServer": "auto", // performance matter
+    "tsserver.maxTsServerMemory": 6000, // performance matter
     "tsserver.log": "off", // performance matter
     "tsserver.trace.server": "off", // performance matter
-    "tsserver.maxTsServerMemory": 5000, // performance matter
     "tsserver.enableTracing": false, // performance matter
 
-    "eslint.enable": false,
+    "eslint.enable": true,
     "eslint.autoFixOnSave": false,
 
     "cSpell.userWords": [

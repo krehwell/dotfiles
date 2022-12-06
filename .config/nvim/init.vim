@@ -8,9 +8,9 @@ let $INIT="~/.config/nvim/init.vim"
 
 
 " ----- CUSTOM ALE FLAG -----
-" let g:ale_disable_lsp = 1    " disable ale, we set 'diagnostic.displayByAle' to coc instead
-" let g:ale_set_highlights = 0
-" let g:ale_set_signs = 0
+let g:ale_disable_lsp = 1    " disable ale, we set 'diagnostic.displayByAle' to coc instead
+let g:ale_set_highlights = 0
+let g:ale_set_signs = 0
 
 
 " ----- POLYGOT CONFIGURATION <-- NOTE: this must be defined before polygon plugin is loaded
@@ -83,7 +83,7 @@ set foldcolumn=0
 call plug#begin('~/vim/plugged')
 " ----- LSP
 " Plug 'fatih/vim-go' " for some reason, this lsp can't be in ftplugin/go.vim
-" Plug 'dense-analysis/ale'
+Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " ----- FUZZY SEARCH PLUG
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
