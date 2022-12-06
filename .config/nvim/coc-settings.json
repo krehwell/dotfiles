@@ -1,6 +1,4 @@
 {
-    "coc.preferences.formatOnSave": false,
-
     "suggest.noselect": true,
     "suggest.enablePreselect": false,
 

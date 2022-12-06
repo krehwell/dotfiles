@@ -7,10 +7,11 @@ nnoremap <localleader>i :vsplit $INIT<cr>
 let $INIT="~/.config/nvim/init.vim"
 
 
-" ----- CUSTOM ALE FLAG -----
+" ----- CUSTOM ALE FLAG | TODO: move ale config to ftplugin? -----
 let g:ale_disable_lsp = 1    " disable ale, we set 'diagnostic.displayByAle' to coc instead
 let g:ale_set_highlights = 0
 let g:ale_set_signs = 0
+let g:ale_lint_on_insert_leave = 1
 
 
 " ----- POLYGOT CONFIGURATION <-- NOTE: this must be defined before polygon plugin is loaded
@@ -51,8 +52,6 @@ set wildmenu                                                       " shows sugge
 set noshowmode
 set splitright
 set splitbelow
-nnoremap <F3> :set invpaste paste?<CR>
-set pastetoggle=<F3>
 set showmode
 set scrolloff=5
 set shortmess+=F
@@ -169,9 +168,7 @@ let maplocalleader = "\\"
 " ----- MAPPING KEYS -----
 " ----- SHORTCUT BASIC
 nnoremap <leader>u :UndotreeToggle<CR>:UndotreeFocus<CR>
-nnoremap <silent> <Plug>(my-fern-toggle) :Fern . -drawer -reveal=% -width=27 -toggle<CR>
 nnoremap <c-b> <Plug>(my-fern-toggle)<Plug>(fern-action-zoom:reset)
-nnoremap <silent> <Leader>pr :Fern . -drawer -reveal=% -width=27 -toggle<CR>:Fern . -drawer -reveal=% -width=27 -toggle<CR><C-w><C-p>
 nnoremap <silent> <Leader>- :vertical resize -15<CR>
 nnoremap <silent> <Leader>= :vertical resize +15<CR>
 nnoremap <silent> <Leader>9 :resize -3<CR>
@@ -196,9 +193,6 @@ vnoremap w e
 " commenting block with /* code */
 vnoremap <C-K>c c/* <C-R>" */<Esc>
 
-
-" ----- CALCULATOR
-nnoremap Q 0yt=A<C-r>=<C-r>"<CR><Esc>
 
 " ----- SESSION BUFFER CONTROLLER
 nnoremap <localleader>b :bprevious<CR>
