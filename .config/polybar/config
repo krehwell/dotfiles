@@ -55,9 +55,7 @@ border-left-size = 10
 border-right-size = 10
 bottom = true
 fixed-center = true
-font-0 = Hack Nerd Font : size=10.5;2
-font-1 = scientifica:fontformat=truetype:size=11:antialias=false;0
-font-2 = siji:pixelsize=13;1
+font-0 = Consolas NF : size=10.5;2
 height = 24
 line-size = 0
 module-margin-center = 2
@@ -198,8 +196,8 @@ type = internal/network
 ; =================================================
 
 [module/calendar]
-click-left = ~/utils/calendar-popup.sh --popup &
-exec = ~/utils/calendar-popup.sh
+click-left = ~/.config/polybar/utils/calendar.sh --popup &
+exec = ~/.config/polybar/utils/calendar-popup.sh
 interval = 5
 type = custom/script
 format-background = ${colors.background}
@@ -235,7 +233,7 @@ type = internal/pulseaudio
 ; =================================================
 
 [module/backlight]
-exec = ~/utils/backlight.sh
+exec = ~/.config/polybar/utils/backlight.sh
 format-padding = 1
 format-prefix = " "
 interval = 0.2
