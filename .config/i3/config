@@ -2,31 +2,13 @@
 set $mod Mod4
 set $alt Mod1
 
-
-# ----- DONT KNOW SHIT ABOUT THIS -----
-
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
-
-# The combination of xss-lock, nm-applet and pactl is a popular choice, so
-# they are included here as an example. Modify as you see fit.
-
+# ----- NETWORK DEFAULT CONFIG -----
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-
-# gnome things I guess
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-
-# start with gnome keyring
-exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
-
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
-
-# ----- END OF DONT KNOW SHIT ABOUT THIS -----
 
 
 # ----- DISABLE MIDDLE-MOUSE PASTE -----
@@ -94,7 +76,7 @@ for_window [class="Arandr"] floating enable
 bindsym $mod+p exec arandr
 
 
-# ----- SCREEN SHOT -----
+# ----- SCREENSHOT -----
 # bindsym $mod+y			            exec --no-startup-id flameshot gui -p ~/Pics/screenshots
 # bindsym $mod+Shift+y		            exec --no-startup-id flameshot full -p ~/Pics/screenshots
 bindsym Print exec flameshot gui
@@ -102,12 +84,14 @@ bindsym Shift+Print exec flameshot full -c -p ~/Pictures/Screenshots
 
 
 # ----- i3-GNOME -----
+# --- GNOME things I guess ---
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=ssh,secrets,pkcs11
+# --- other i3-GNOMRE related ---
 exec --no-startup-id /usr/lib/gsd-xsettings
 exec_always --no-startup-id gnome-power-manager
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id gnome-flashback
-#exec --no-startup-id /usr/bin/gnome-screensaver
-#dbus-send --type=method_call --dest=org.gnome.ScreenSaver /org/gnome/ScreenSaver org.gnome.ScreenSaver.Lock
 
 
 # kill focused window
@@ -143,8 +127,7 @@ smart_gaps on
 smart_borders on
 set $inner_gaps 5
 set $outer_gaps 3
-
-#---Gaps---#
+# --- Gaps ---
 for_window [class="^.*"] border pixel 3
 gaps inner $inner_gaps
 gaps outer $outer_gaps
@@ -298,7 +281,9 @@ exec --no-startup-id dunst
 
 # ----- STATUS BAR -----
 # bar {
-#         status_command i3status
+#     status_command i3status
 # }
+
+
 # ----- POLYBAR -----
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
