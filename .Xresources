@@ -1,44 +1,4 @@
-! GRUVBOX
-! #define bg #282828
-! #define fg #EBDBB2
-! #define bgH #161B1A
-! #define black #010101
-! #define redH #CC241D
-! #define greenH #98971A
-! #define yellowH #D79921
-! #define blueH #458588
-! #define purpleH #B16286
-! #define aquaH #689D6A
-! #define grayH #A89984
-! #define gray #928374
-! #define red #FB4934
-! #define green #B8BB26
-! #define yellow #FABD2F
-! #define blue #83A598
-! #define purple #D3869B
-! #define aqua #8EC07C
-
-! OFF
-! #define bg      #282828
-! #define fg      #F1F1F1
-! #define bgH     #161B1A
-! #define black   #212121
-! #define redH    #C30771
-! #define greenH  #10A778
-! #define yellowH #A89C14
-! #define blueH   #008EC4
-! #define purpleH #523C79
-! #define aquaH   #20A5BA
-! #define grayH   #B2B2B2
-! #define gray    #C6C6C6
-! #define red     #E32791
-! #define green   #5FD7A7
-! #define yellow  #F3E430
-! #define blue    #20BBFC
-! #define purple  #6855DE
-! #define aqua    #4FB8CC
-
-! OFF | but really is off
+! OFF colorscheme
 #define bg      #121212
 #define fg      #F1F1F1
 #define bgH     #161B1A
