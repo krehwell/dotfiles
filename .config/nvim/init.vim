@@ -168,6 +168,7 @@ let maplocalleader = "\\"
 " ----- MAPPING KEYS -----
 " ----- SHORTCUT BASIC
 nnoremap <leader>u :UndotreeToggle<CR>:UndotreeFocus<CR>
+nnoremap <silent> <Plug>(my-fern-toggle) :Fern . -drawer -reveal=% -width=27 -toggle<CR>
 nnoremap <c-b> <Plug>(my-fern-toggle)<Plug>(fern-action-zoom:reset)
 nnoremap <silent> <Leader>- :vertical resize -15<CR>
 nnoremap <silent> <Leader>= :vertical resize +15<CR>
@@ -183,7 +184,6 @@ inoremap <c-b> <esc><right>dwi
 inoremap <silent> jj <c-o>:call search('}\\|)\\|]\\|>\\|"', 'cW')<cr><Right>
 nnoremap <M-j> ddp
 nnoremap <M-k> ddkP
-nnoremap <leader>sr :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
 nnoremap <localleader>a ggVG
 vnoremap b B
 vnoremap $ $<left>
@@ -199,7 +199,6 @@ nnoremap <localleader>b :bprevious<CR>
 nnoremap <localleader>n :bnext<CR>
 nnoremap <localleader>o :source ~\vim_session<cr>
 nnoremap <localleader>s :mksession! ~\vim_session<cr>
-" cnoremap b# b#\|bd
 
 " ----- CD TO CURRENT BUFFER's DIR | lcd -> for cding the current buffer only to the current dir
 nnoremap <localleader>cd :cd %:p:h<CR>
@@ -207,7 +206,7 @@ nnoremap <localleader>lcd :lcd %:p:h<CR>
 
 
 " ----- BOILERPLATES -----
-nnoremap <leader>,html :-1read $HOME/boilerplates/skeleton.html<CR>3j2wf>a
+" nnoremap <leader>,html :-1read $HOME/boilerplates/skeleton.html<CR>3j2wf>a
 
 
 " ----- RE-EXECUTE NECESSARY FILE WHILE SOURCE % { THEME } -----

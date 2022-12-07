@@ -2,6 +2,7 @@
 set $mod Mod4
 set $alt Mod1
 
+
 # ----- NETWORK DEFAULT CONFIG -----
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
@@ -42,7 +43,7 @@ bindsym XF86MonBrightnessDown exec "light -U 5; notify-send 'Brightness down'"
 # ----- TERMINAL -----
 set $term --no-startup-id alacritty
 bindsym $mod+Return 		         exec $term
-bindsym $mod+Shift+Return	       exec $term --working-directory $(xcwd)
+bindsym $mod+Shift+Return	         exec $term --working-directory $(xcwd)
 
 
 # ----- FILEMANAGER -----
