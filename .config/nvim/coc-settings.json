@@ -13,6 +13,7 @@
     "diagnostic.virtualText": true,
     "diagnostic.displayByAle": false,
     "diagnostic.virtualTextCurrentLineOnly": false,
+    "diagnostic.messageTarget": "echo",
 
     "prettier.printWidth": 120,
     "prettier.tabWidth": 4,
