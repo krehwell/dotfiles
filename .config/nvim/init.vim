@@ -58,6 +58,7 @@ set shortmess+=F
 set mouse-=anc
 set eadirection=ver
 set noequalalways
+set virtualedit=block
 
 
 " ----- FIX SLUGGIST CURSOR HOLD ----
@@ -178,9 +179,6 @@ nnoremap <silent><esc> <esc>:noh<CR><esc>
 
 
 " ----- EDITING
-iabbrev /* /*  */<esc>bhhi<del>
-inoremap <M-;> <esc>v$<esc>`>a;<esc>`<a
-inoremap <c-b> <esc><right>dwi
 inoremap <silent> jj <c-o>:call search('}\\|)\\|]\\|>\\|"', 'cW')<cr><Right>
 nnoremap <M-j> ddp
 nnoremap <M-k> ddkP
