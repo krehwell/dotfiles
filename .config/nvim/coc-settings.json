@@ -24,11 +24,11 @@
 
     "javascript.suggestionActions.enabled": false,
     "javascript.showUnused": false,
-    "javascript.implementationsCodeLens.enabled": false,
+    "javascript.implementationsCodeLens.enabled": true,
 
     "typescript.suggestionActions.enabled": false,
     "typescript.showUnused": false,
-    "typescript.implementationsCodeLens.enabled": false,
+    "typescript.implementationsCodeLens.enabled": true,
     "typescript.suggest.completeFunctionCalls": false,
     "typescript.preferences.autoImportFileExcludePatterns": ["node_modules/@*"],
     "typescript.suggest.autoImports": false,
@@ -43,6 +43,13 @@
     "tsserver.trace.server": "off", // performance matter
     "tsserver.enableTracing": false, // performance matter
 
+    "importCost.typescriptExtensions": ["\\.tsx?$"],
+    "importCost.javascriptExtensions": ["\\.jsx?$"],
+    "importCost.bundleSizeDecoration": "both",
+    "importCost.showCalculatingDecoration": true,
+    "importCost.debug": false,
+
+    "codeLens.enable": true,
     "eslint.enable": true,
     "eslint.autoFixOnSave": false,
 
