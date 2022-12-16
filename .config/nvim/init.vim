@@ -53,7 +53,7 @@ set noshowmode
 set splitright
 set splitbelow
 set showmode
-set scrolloff=5
+set scrolloff=3
 set shortmess+=F
 set mouse-=anc
 set eadirection=ver

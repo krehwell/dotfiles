@@ -23,8 +23,9 @@
     "prettier.arrowParens": "avoid",
 
     "javascript.suggestionActions.enabled": false,
-    "javascript.showUnused": false,
+    "javascript.showUnused": true,
     "javascript.implementationsCodeLens.enabled": true,
+    "javascript.suggest.autoImports": true,
 
     "typescript.suggestionActions.enabled": false,
     "typescript.showUnused": false,
