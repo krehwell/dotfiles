@@ -12,6 +12,10 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 
 
+# ----- CLIPBOARD MANAGER -----
+exec --no-startup-id clipit
+
+
 # ----- DISABLE MIDDLE-MOUSE PASTE -----
 exec --no-startup-id xmousepasteblock &
 
