@@ -16,7 +16,7 @@ let g:ale_echo_cursor = 0
 
 
 " ----- POLYGOT CONFIGURATION <-- NOTE: this must be defined before polygon plugin is loaded
-let g:polyglot_disabled = ['autoindent']
+" let g:polyglot_disabled = ['autoindent']
 
 
 " ----- ALL SETs -----
@@ -127,7 +127,8 @@ Plug 'isomoar/vim-css-to-inline' " for some reason, this lsp can't be in ftplugi
 Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'ojroques/vim-oscyank', {'branch': 'main'}
 " ----- COLORSCHEME PLUG
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Plug 'fxn/vim-monochrome'
 " Plug 'morhetz/gruvbox'
 Plug 'pbrisbin/vim-colors-off'
@@ -228,3 +229,4 @@ set secure
 
 " ----- LUA SOURCE -----
 lua require("telescope-config")
+lua require("treesitter")
