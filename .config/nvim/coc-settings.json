@@ -7,10 +7,10 @@
     // "pairs.enableCharacters": ["(", "[", "{", "<", "'", "\"", "`"],
 
     "diagnostic.checkCurrentLine": true,
+    "diagnostic.refreshOnInsertMode": false,
     "diagnostic.warningSign": ">>",
     "diagnostic.enableSign": false, // since we have virtualText
-    "diagnostic.refreshOnInsertMode": false,
-    "diagnostic.virtualText": true,
+    "diagnostic.virtualText": false,
     "diagnostic.displayByAle": false,
     "diagnostic.virtualTextCurrentLineOnly": false,
     "diagnostic.messageTarget": "float",
@@ -44,12 +44,6 @@
     "tsserver.trace.server": "off", // performance matter
     "tsserver.enableTracing": false, // performance matter
 
-    "importCost.typescriptExtensions": ["\\.tsx?$"],
-    "importCost.javascriptExtensions": ["\\.jsx?$"],
-    "importCost.bundleSizeDecoration": "both",
-    "importCost.showCalculatingDecoration": true,
-    "importCost.debug": false,
-
     "codeLens.enable": true,
     "eslint.enable": true,
     "eslint.autoFixOnSave": false,
@@ -67,6 +61,7 @@
       "Knopfler",
       "Knowt",
       "Knowt's",
+      "Kubernetes",
       "Mixpanel",
       "Modelica",
       "Objs",
