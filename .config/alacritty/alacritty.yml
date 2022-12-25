@@ -4,24 +4,23 @@ colors:
         black: "#696969"
         blue: "#696969"
         cyan: "#696969"
-        green: "#696969"
         magenta: "#696969"
-        red: "#696969"
         white: "#F1F1F1"
+        green: "#696969"
+        red: "#696969"
         yellow: "#696969"
     normal:
         black: "#212121"
         blue: "#696969"
         cyan: "#696969"
-        green: "#5FD7A7"
         magenta: "#696969"
-        red: "#E32791"
         white: "#696969"
+        green: "#5FD7A7"
+        red: "#E32791"
         yellow: "#F3E430"
     primary:
         background: "#161B1A"
         foreground: "#F1F1F1"
-draw_bold_text_with_bright_colors: false
 env:
     TERM: xterm-256color
 font:
@@ -41,21 +40,10 @@ font:
         x: 0
         y: 1
     size: 11.5
+draw_bold_text_with_bright_colors: true
 key_bindings:
-    - action: Paste
-      key: V
-      mods: Control|Shift
-    - action: Copy
-      key: C
-      mods: Control|Shift
-    - action: PasteSelection
-      key: Insert
-      mods: Shift
     - action: ResetFontSize
       key: Key0
-      mods: Control
-    - action: none
-      key: Equals
       mods: Control
     - action: IncreaseFontSize
       key: Plus
@@ -70,31 +58,6 @@ key_bindings:
       key: Paste
     - action: Copy
       key: Copy
-    - action: ClearLogNotice
-      key: L
-      mods: Control
-    - chars: "\f"
-      key: L
-      mods: Control
-    - action: ScrollPageUp
-      key: PageUp
-      mode: ~Alt
-      mods: Shift
-    - action: ScrollPageDown
-      key: PageDown
-      mode: ~Alt
-      mods: Shift
-    - action: ScrollToTop
-      key: Home
-      mode: ~Alt
-      mods: Shift
-    - action: ScrollToBottom
-      key: End
-      mode: ~Alt
-      mods: Shift
-mouse_bindings:
-    - action: Copy
-      mouse: Middle
 scrolling:
     history: 1000
 selection:
