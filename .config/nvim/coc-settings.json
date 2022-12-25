@@ -7,10 +7,10 @@
     // "pairs.enableCharacters": ["(", "[", "{", "<", "'", "\"", "`"],
 
     "diagnostic.checkCurrentLine": true,
+    "diagnostic.refreshOnInsertMode": false,
     "diagnostic.warningSign": ">>",
     "diagnostic.enableSign": false, // since we have virtualText
-    "diagnostic.refreshOnInsertMode": false,
-    "diagnostic.virtualText": true,
+    "diagnostic.virtualText": false,
     "diagnostic.displayByAle": false,
     "diagnostic.virtualTextCurrentLineOnly": false,
     "diagnostic.messageTarget": "float",
@@ -23,8 +23,9 @@
     "prettier.arrowParens": "avoid",
 
     "javascript.suggestionActions.enabled": false,
-    "javascript.showUnused": false,
+    "javascript.showUnused": true,
     "javascript.implementationsCodeLens.enabled": true,
+    "javascript.suggest.autoImports": true,
 
     "typescript.suggestionActions.enabled": false,
     "typescript.showUnused": false,
@@ -43,16 +44,19 @@
     "tsserver.trace.server": "off", // performance matter
     "tsserver.enableTracing": false, // performance matter
 
-    "importCost.typescriptExtensions": ["\\.tsx?$"],
-    "importCost.javascriptExtensions": ["\\.jsx?$"],
-    "importCost.bundleSizeDecoration": "both",
-    "importCost.showCalculatingDecoration": true,
-    "importCost.debug": false,
-
     "codeLens.enable": true,
     "eslint.enable": true,
     "eslint.autoFixOnSave": false,
 
+    "cSpell.ignorePaths": [
+        "node_modules", // this will ignore anything the node_modules directory
+        "**/node_modules", // the same for this one
+        "**/node_modules/**", // the same for this one
+        "node_modules/**", // Doesn't currently work due to how the current working directory is determined.
+        ".git", // Ignore the .git directory
+        "*.dll", // Ignore all .dll files.
+        "**/*.dll" // Ignore all .dll files
+    ],
     "cSpell.userWords": [
         "Alacritty",
         "Autoload",
@@ -66,6 +70,7 @@
         "Knopfler",
         "Knowt",
         "Knowt's",
+        "Kubernetes",
         "Mixpanel",
         "Modelica",
         "Objs",
@@ -93,6 +98,7 @@
         "cytoskeleton",
         "cytosol",
         "dbname",
+        "deduping",
         "dickbutt",
         "encodable",
         "firestore",

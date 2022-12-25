@@ -12,6 +12,10 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 
 
+# ----- CLIPBOARD MANAGER -----
+exec --no-startup-id clipit
+
+
 # ----- DISABLE MIDDLE-MOUSE PASTE -----
 exec --no-startup-id xmousepasteblock &
 
@@ -70,6 +74,7 @@ for_window [class="Nitrogen"] floating enable
 for_window [class="Eog"] floating enable
 for_window [class="SimpleScreenRecorder"] floating enable
 for_window [class="org.gnome.Character"] floating enable
+for_window [class="Blueman-manager"] floating enable
 
 
 # ----- MONITOR -----

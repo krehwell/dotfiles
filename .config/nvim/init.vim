@@ -7,15 +7,16 @@ nnoremap <localleader>i :vsplit $INIT<cr>
 let $INIT="~/.config/nvim/init.vim"
 
 
-" ----- CUSTOM ALE FLAG | TODO: move ale config to ftplugin? -----
+" ----- CUSTOM ALE FLAG -----
 let g:ale_disable_lsp = 1    " disable ale, we set 'diagnostic.displayByAle' to coc instead
 let g:ale_set_highlights = 0
-let g:ale_set_signs = 0
 let g:ale_lint_on_insert_leave = 1
+let g:ale_set_signs = 0
+let g:ale_echo_cursor = 0
 
 
 " ----- POLYGOT CONFIGURATION <-- NOTE: this must be defined before polygon plugin is loaded
-let g:polyglot_disabled = ['autoindent']
+" let g:polyglot_disabled = ['autoindent']
 
 
 " ----- ALL SETs -----
@@ -52,7 +53,7 @@ set wildmenu                                                       " shows sugge
 set splitright
 set splitbelow
 set showmode
-set scrolloff=5
+set scrolloff=3
 set shortmess+=F
 set mouse-=anc
 set eadirection=ver
@@ -82,7 +83,7 @@ set foldcolumn=0
 call plug#begin('~/vim/plugged')
 " ----- LSP
 " Plug 'fatih/vim-go' " for some reason, this lsp can't be in ftplugin/go.vim
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " ----- FUZZY SEARCH PLUG
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -125,7 +126,8 @@ Plug 'isomoar/vim-css-to-inline' " for some reason, this lsp can't be in ftplugi
 Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'ojroques/vim-oscyank', {'branch': 'main'}
 " ----- COLORSCHEME PLUG
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Plug 'fxn/vim-monochrome'
 " Plug 'morhetz/gruvbox'
 Plug 'pbrisbin/vim-colors-off'
@@ -168,8 +170,6 @@ let maplocalleader = "\\"
 " ----- MAPPING KEYS -----
 " ----- SHORTCUT BASIC
 nnoremap <leader>u :UndotreeToggle<CR>:UndotreeFocus<CR>
-nnoremap <silent> <Plug>(my-fern-toggle) :Fern . -drawer -reveal=% -width=27 -toggle<CR>
-nnoremap <c-b> <Plug>(my-fern-toggle)<Plug>(fern-action-zoom:reset)
 nnoremap <silent> <Leader>- :vertical resize -15<CR>
 nnoremap <silent> <Leader>= :vertical resize +15<CR>
 nnoremap <silent> <Leader>9 :resize -3<CR>
@@ -228,3 +228,4 @@ set secure
 
 " ----- LUA SOURCE -----
 lua require("telescope-config")
+lua require("treesitter")
