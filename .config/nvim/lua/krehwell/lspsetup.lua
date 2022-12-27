@@ -28,7 +28,7 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
 	vim.keymap.set("n", "<f2>", vim.lsp.buf.rename, opts)
 	vim.keymap.set("n", "ca", vim.lsp.buf.code_action, opts)
-	vim.keymap.set("n", "<space>f", vim.lsp.buf.format, opts)
+	vim.keymap.set("n", "<space>f", ":lua vim.lsp.buf.format({async = true})<CR>", opts)
 end
 
 local diagnostic_config = {
