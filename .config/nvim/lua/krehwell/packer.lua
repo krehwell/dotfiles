@@ -22,9 +22,10 @@ packer.startup(function(use)
 
 	-- lsp related
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-	use("zbirenbaum/neodim") -- dim unused var
 	use("nvim-treesitter/nvim-treesitter-refactor")
 	use("jose-elias-alvarez/null-ls.nvim") -- formatter, etc
+	use("zbirenbaum/neodim") -- dim unused var
+	use("folke/neodev.nvim") -- improve sumneko with vim :')
 	use({
 		"VonHeikemen/lsp-zero.nvim",
 		requires = {
