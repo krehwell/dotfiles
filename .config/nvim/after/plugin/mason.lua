@@ -19,9 +19,6 @@ masonLspconfig.setup({
 	ensure_installed = {
 		"tsserver",
 		"sumneko_lua",
-		"eslint_d",
-		"prettierd",
-		"stylua",
 		"gopls",
 		"cssls",
 		"html",
