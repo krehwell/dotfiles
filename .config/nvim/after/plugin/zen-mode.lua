@@ -31,5 +31,5 @@ zen_mode.setup({
 vim.keymap.set("n", "<leader>zz", function()
   require("zen-mode").toggle()
   vim.wo.wrap = false
-  ColorMyPencils()
+  ConfigureLastStatus()
 end)

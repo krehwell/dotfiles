@@ -3,7 +3,7 @@ vim.opt.termguicolors = true
 vim.opt.fillchars = {
   vert = "┆", -- alternatives │
   fold = " ",
-  eob = " ", -- suppress ~ at EndOfBuffer
+  eob = "~", -- suppress ~ at EndOfBuffer
   diff = "╱", -- alternatives = ⣿ ░ ─
   msgsep = "‾",
   foldopen = "▾",
@@ -42,5 +42,6 @@ end
 
 -- GRUVBOX COLORSCHEME CONFIGURATION
 if colorscheme == "gruvbox" then
+   -- other custom config, heighlight line number maybe?
   ColorMyPencils()
 end
