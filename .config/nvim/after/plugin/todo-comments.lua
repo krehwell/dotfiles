@@ -1,9 +1,9 @@
 local present, todo_comments = pcall(require, "todo-comments")
-if present then
+if not present then
   return
 end
 
-todo_comments.config({
+todo_comments.setup({
   signs = false,
   highlight = {
     multiline = false, -- enable multine todo comments
