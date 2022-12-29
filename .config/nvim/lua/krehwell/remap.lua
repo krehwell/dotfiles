@@ -14,7 +14,7 @@ vim.keymap.set("n", "<Leader>-", ":vertical resize -15<CR>")
 vim.keymap.set("n", "<Leader>=", ":vertical resize +15<CR>")
 vim.keymap.set("n", "<Leader>9", ":resize -3<CR>")
 vim.keymap.set("n", "<Leader>8", ":resize +3<CR>")
-vim.keymap.set("n", "<esc>", "<esc>:noh<CR><esc>")
+vim.keymap.set("n", "<esc>", "<esc>:noh<CR><esc>", { silent = true })
 vim.keymap.set("i", "jj", "<c-o>:call search('}\\|)\\|]\\|>\\|\"', 'cW')<cr><Right>")
 
 ----- EDITING
