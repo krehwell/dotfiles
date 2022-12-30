@@ -40,7 +40,7 @@ lsp.configure("tsserver", {
 lsp.set_preferences({
 	set_lsp_keymaps = false,
 	suggest_lsp_servers = false,
-	sign_icons = { error = "E", warn = "W", hint = "H", info = "I" },
+	sign_icons = {} -- { error = "E", warn = "W", hint = "H", info = "I" },
 })
 
 -- COMPLETION SETUP
