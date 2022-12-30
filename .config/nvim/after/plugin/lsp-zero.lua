@@ -32,6 +32,12 @@ lsp.configure("tsserver", {
 	flags = {
 		debounce_text_changes = 800,
 	},
+	init_options = {
+		hostInfo = "neovim",
+		preferences = {
+			autoImportFileExcludePatterns = { "node_modules/@*" },
+		},
+	},
 	on_attach = function(client, bufnr)
 		client.server_capabilities.document_formatting = false
 	end,
@@ -40,7 +46,7 @@ lsp.configure("tsserver", {
 lsp.set_preferences({
 	set_lsp_keymaps = false,
 	suggest_lsp_servers = false,
-	sign_icons = {} -- { error = "E", warn = "W", hint = "H", info = "I" },
+	sign_icons = {}, -- { error = "E", warn = "W", hint = "H", info = "I" },
 })
 
 -- COMPLETION SETUP
