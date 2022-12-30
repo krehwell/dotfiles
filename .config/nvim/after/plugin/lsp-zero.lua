@@ -28,14 +28,14 @@ lsp.configure("sumneko_lua", {
 })
 
 -- configure an individual server
--- lsp.configure("tsserver", {
--- 	flags = {
--- 		debounce_text_changes = 150,
--- 	},
--- 	on_attach = function(client, bufnr)
--- 		print("hello tsserver")
--- 	end,
--- })
+lsp.configure("tsserver", {
+	flags = {
+		debounce_text_changes = 800,
+	},
+	on_attach = function(client, bufnr)
+		client.server_capabilities.document_formatting = false
+	end,
+})
 
 lsp.set_preferences({
 	set_lsp_keymaps = false,
