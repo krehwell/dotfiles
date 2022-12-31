@@ -13,7 +13,7 @@ function! AutoRestoreWinView()
     if exists("w:SavedBufView") && has_key(w:SavedBufView, buf)
         let v = winsaveview()
         let atStartOfFile = v.lnum == 1 && v.col == 0
-        if atStartOfFile && !&diff
+        if atStartOfFile && !&diff
             call winrestview(w:SavedBufView[buf])
         endif
         unlet w:SavedBufView[buf]
