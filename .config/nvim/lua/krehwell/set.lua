@@ -1,10 +1,3 @@
--- vim.api.nvim_exec(
--- 	[[
---     filetype plugin indent on
---   ]],
--- 	false
--- )
-
 -- indentation behaviour
 vim.opt.backspace = "2"
 vim.opt.tabstop = 4
@@ -37,10 +30,12 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 5
 
--- search behavior
+-- search/find behavior
 vim.opt.ignorecase = true
 vim.opt.incsearch = true
 vim.opt.smartcase = true
+-- vim.opt.path:append("**")
+vim.opt.isfname:append("@-@")
 
 -- etc
 vim.opt.exrc = true
@@ -50,15 +45,6 @@ vim.opt.buflisted = false
 vim.opt.compatible = false
 vim.opt.showmode = true
 vim.opt.wildmenu = true
-vim.opt.ttimeoutlen = 0
-vim.opt.updatetime = 10
+-- vim.opt.ttimeoutlen = 0
+vim.opt.updatetime = 100
 vim.opt.shortmess:append({ f = true }) -- aka `shortmess+=f`
-vim.opt.path:append("**")
-vim.opt.isfname:append("@-@")
-
--- folding
-vim.opt.foldmethod = "indent"
-vim.opt.foldlevel = 99 -- Don't fold anything by default - I'll close the folds myself
-vim.opt.foldminlines = 5 -- Don't bother folding small blocks
--- vim.o.foldclose = 'all' -- Autoclose folds when moving out of them
-vim.opt.foldcolumn = "0" -- Fold column
