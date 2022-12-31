@@ -38,8 +38,9 @@ vim.opt.smartcase = true
 vim.opt.isfname:append("@-@")
 
 -- etc
-vim.opt.exrc = true
-vim.opt.hidden = true
+-- vim.opt.exrc = true
+-- vim.opt.hidden = true
+-- vim.opt.guicursor = ""
 vim.opt.termguicolors = true
 vim.opt.buflisted = false
 vim.opt.compatible = false
