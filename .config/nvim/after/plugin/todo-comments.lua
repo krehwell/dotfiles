@@ -1,11 +1,11 @@
 local present, todo_comments = pcall(require, "todo-comments")
 if not present then
-  return
+	return
 end
 
 todo_comments.setup({
-  signs = false,
-  highlight = {
-    multiline = false, -- enable multine todo comments
-  },
+	signs = false,
+	highlight = {
+		multiline = false, -- enable multine todo comments
+	},
 })
