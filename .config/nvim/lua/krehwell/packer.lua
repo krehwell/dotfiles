@@ -27,6 +27,7 @@ packer.startup(function(use)
 	use("zbirenbaum/neodim") -- dim unused var
 	use("folke/neodev.nvim") -- improve sumneko with vim :')
 	use("github/copilot.vim")
+	use("isomoar/vim-css-to-inline") -- css to jsx inline
 	use({
 		"VonHeikemen/lsp-zero.nvim",
 		requires = {
@@ -90,6 +91,7 @@ packer.startup(function(use)
 	use("folke/zen-mode.nvim")
 	use("folke/twilight.nvim")
 	use("j-hui/fidget.nvim")
+  use("norcalli/nvim-colorizer.lua")
 
 	-- automatically set up your configuration after cloning packer.nvim
 	-- must be at bottom most
