@@ -10,10 +10,8 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 --- BASIC MAPPING
-vim.keymap.set("n", "<Leader>-", ":vertical resize -15<CR>")
-vim.keymap.set("n", "<Leader>=", ":vertical resize +15<CR>")
-vim.keymap.set("n", "<Leader>9", ":resize -3<CR>")
-vim.keymap.set("n", "<Leader>8", ":resize +3<CR>")
+vim.keymap.set("n", "<Leader>-", ":vertical resize -23<CR>")
+vim.keymap.set("n", "<Leader>=", ":vertical resize +23<CR>")
 vim.keymap.set("n", "<esc>", "<esc>:noh<CR><esc>", { silent = true })
 vim.keymap.set("i", "jj", "<c-o>:call search('}\\|)\\|]\\|>\\|\"', 'cW')<cr><Right>")
 
@@ -28,7 +26,7 @@ vim.keymap.set("v", "w", "e")
 ----- SESSION BUFFER CONTROLLER
 vim.keymap.set("n", "<localleader>b", ":bprevious<CR>")
 vim.keymap.set("n", "<localleader>n", ":bnext<CR>")
-vim.keymap.set("n", "<localleader>o", ":source ~\\.vim\\vim_session<cr>") -- Todo: per file name instead maybe?
+vim.keymap.set("n", "<localleader>o", ":source ~\\.vim\\vim_session<cr>") -- TODO: per file name instead maybe?
 vim.keymap.set("n", "<localleader>s", ":mksession! ~\\.vim\\vim_session<cr>") -- So, instead of <cr>, should just defined the name instead
 
 ----- CD TO CURRENT BUFFER's DIR | lcd -> for cding the current buffer only to the current dir
