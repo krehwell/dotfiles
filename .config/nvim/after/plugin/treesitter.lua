@@ -48,4 +48,7 @@ treesitter.setup({
 			clear_on_cursor_move = false,
 		},
 	},
+	context = {
+		enable = false, -- `TSContextEnable` instead
+	},
 })

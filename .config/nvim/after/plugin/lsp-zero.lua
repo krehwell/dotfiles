@@ -30,7 +30,7 @@ lsp.configure("sumneko_lua", {
 -- configure an individual server
 lsp.configure("tsserver", {
 	flags = {
-		debounce_text_changes = 800,
+		debounce_text_changes = 5000,
 	},
 	init_options = {
 		hostInfo = "neovim",

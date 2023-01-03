@@ -8,7 +8,7 @@ neodim.setup({
 	blend_color = "#000000",
 	update_in_insert = {
 		enable = false,
-		delay = 100,
+		delay = 800,
 	},
 	hide = {
 		virtual_text = false,

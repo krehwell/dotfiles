@@ -1,4 +1,10 @@
 -- indentation behaviour
+vim.api.nvim_exec(
+	[[
+    filetype plugin indent on
+  ]],
+	false
+)
 vim.opt.backspace = "2"
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
