@@ -56,6 +56,7 @@ packer.startup(function(use)
 	use("nvim-lua/popup.nvim")
 	use("nvim-telescope/telescope.nvim")
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make", cond = vim.fn.executable("make") == 1 })
+	use("dharmx/telescope-media.nvim")
 
 	-- git related
 	use("lewis6991/gitsigns.nvim")
