@@ -53,6 +53,7 @@ telescope.setup({
 		grep_string = {
 			prompt_prefix = "🔍 ",
 			no_ignore = true,
+			file_ignore_patterns = { "%.png", "%.jpg", "%.jpeg", "%.gif", "%.webp", "%.svg" },
 		},
 	},
 	extensions = {
