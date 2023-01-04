@@ -15,6 +15,12 @@ vim.keymap.set("n", "<Leader>=", ":vertical resize +23<CR>")
 vim.keymap.set("n", "<esc>", "<esc>:noh<CR><esc>", { silent = true })
 vim.keymap.set("i", "jj", "<c-o>:call search('}\\|)\\|]\\|>\\|\"', 'cW')<cr><Right>")
 
+----- useful `[[`
+vim.keymap.set("n", "[[", ":?{<CR>w99[{<CR>:noh<CR>", { silent = true })
+vim.keymap.set("n", "][", ":/}<CR>b99]}<CR>:noh<CR>", { silent = true })
+vim.keymap.set("n", "]]", ":j0[[%/{<CR><CR>:noh<CR>", { silent = true })
+vim.keymap.set("n", "[]", ":k$][%?}<CR><CR>:noh<CR>", { silent = true })
+
 ----- EDITING
 vim.keymap.set("n", "<M-j>", "ddp")
 vim.keymap.set("n", "<M-k>", "ddkP")
