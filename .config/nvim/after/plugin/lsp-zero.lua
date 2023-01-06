@@ -7,7 +7,7 @@ end
 lsp.preset("recommended")
 
 -- let "./mason.lua" handle this
--- lsp.ensure_installed({ "tsserver", "sumneko_lua", "gopls", "cssls", "html", "cssmodules_ls" })
+lsp.ensure_installed({ "tsserver", "sumneko_lua", "gopls", "cssls", "html", "cssmodules_ls" })
 
 -- FIX UNDEFINED GLOBAL 'vim'
 require("neodev").setup({}) -- no need pcall since I really is want this to be installed
