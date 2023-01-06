@@ -35,6 +35,7 @@ vim.opt.wrap = false
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 5
+vim.opt.sidescrolloff=15
 
 -- search/find behavior
 vim.opt.ignorecase = true
