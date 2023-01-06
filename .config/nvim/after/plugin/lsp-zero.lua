@@ -6,7 +6,6 @@ end
 
 lsp.preset("recommended")
 
--- let "./mason.lua" handle this
 lsp.ensure_installed({ "tsserver", "sumneko_lua", "gopls", "cssls", "html", "cssmodules_ls" })
 
 -- FIX UNDEFINED GLOBAL 'vim'
