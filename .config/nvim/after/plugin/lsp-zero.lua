@@ -27,20 +27,24 @@ lsp.configure("sumneko_lua", {
 })
 
 -- configure an individual server
--- lsp.configure("tsserver", {
--- 	flags = {
--- 		debounce_text_changes = 5000,
--- 	},
--- 	init_options = {
--- 		hostInfo = "neovim",
--- 		preferences = {
--- 			autoImportFileExcludePatterns = { "node_modules/@*" },
--- 		},
--- 	},
--- 	on_attach = function(client, bufnr)
--- 		client.server_capabilities.document_formatting = false
--- 	end,
--- })
+lsp.configure("tsserver", {
+	flags = {
+		debounce_text_changes = 5000,
+	},
+	on_init = function(client)
+		client.server_capabilities.documentFormattingProvider = false
+		client.server_capabilities.documentFormattingRangeProvider = false
+	end,
+	init_options = {
+		hostInfo = "neovim",
+		preferences = {
+			autoImportFileExcludePatterns = { "node_modules/@*" },
+		},
+	},
+	-- on_attach = function(client, bufnr)
+	-- 	client.server_capabilities.document_formatting = false
+	-- end,
+})
 
 lsp.set_preferences({
 	set_lsp_keymaps = false,
