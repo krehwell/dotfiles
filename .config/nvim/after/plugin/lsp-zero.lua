@@ -6,7 +6,7 @@ end
 
 lsp.preset("recommended")
 
-lsp.ensure_installed({ "tsserver", "sumneko_lua", "gopls", "cssls", "html", "cssmodules_ls" })
+lsp.ensure_installed({ "tsserver", "sumneko_lua", "gopls", "cssls", "html", "cssmodules_ls", "jsonls" })
 
 -- FIX UNDEFINED GLOBAL 'vim'
 require("neodev").setup({}) -- no need pcall since I really is want this to be installed
@@ -27,20 +27,20 @@ lsp.configure("sumneko_lua", {
 })
 
 -- configure an individual server
-lsp.configure("tsserver", {
-	flags = {
-		debounce_text_changes = 5000,
-	},
-	init_options = {
-		hostInfo = "neovim",
-		preferences = {
-			autoImportFileExcludePatterns = { "node_modules/@*" },
-		},
-	},
-	on_attach = function(client, bufnr)
-		client.server_capabilities.document_formatting = false
-	end,
-})
+-- lsp.configure("tsserver", {
+-- 	flags = {
+-- 		debounce_text_changes = 5000,
+-- 	},
+-- 	init_options = {
+-- 		hostInfo = "neovim",
+-- 		preferences = {
+-- 			autoImportFileExcludePatterns = { "node_modules/@*" },
+-- 		},
+-- 	},
+-- 	on_attach = function(client, bufnr)
+-- 		client.server_capabilities.document_formatting = false
+-- 	end,
+-- })
 
 lsp.set_preferences({
 	set_lsp_keymaps = false,
