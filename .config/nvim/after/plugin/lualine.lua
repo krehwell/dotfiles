@@ -34,7 +34,7 @@ lualine.setup({
 				newfile_status = false, -- Display new file status (new file means no write after created)
 				path = 1, -- 0: Just the filename 1: Relative path 2: Absolute path 3: Absolute path, with tilde as the home directory
 
-				shorting_target = 40, -- Shortens path to leave 40 spaces in the window
+				shorting_target = 10, -- Shortens path to leave 40 spaces in the window
 				symbols = {
 					modified = "[+]",
 					readonly = "[-]",
@@ -62,7 +62,7 @@ lualine.setup({
 	tabline = {},
 	winbar = {},
 	inactive_winbar = {},
-	extensions = {},
+	extensions = { "fern", "quickfix", "fugitive" },
 })
 
 ----- TPIPELINE CONFIGURATION
