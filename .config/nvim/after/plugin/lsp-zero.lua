@@ -29,7 +29,7 @@ lsp.configure("sumneko_lua", {
 -- configure an individual server
 lsp.configure("tsserver", {
 	flags = {
-		debounce_text_changes = 5000,
+		debounce_text_changes = 100000,
 	},
 	on_init = function(client)
 		client.server_capabilities.documentFormattingProvider = false
