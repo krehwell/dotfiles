@@ -79,8 +79,6 @@ lsp.setup_nvim_cmp({
 	}),
 })
 
-vim.opt.spelllang = { 'en_us' }
-
 -- LSP KEYBINDING
 lsp.on_attach(lspsetup.on_attach)
 

@@ -43,6 +43,7 @@ vim.opt.incsearch = true
 vim.opt.smartcase = true
 -- vim.opt.path:append("**")
 vim.opt.isfname:append("@-@")
+vim.opt.shortmess:append({ f = true }) -- aka `shortmess+=f`
 
 -- etc
 -- vim.opt.exrc = true
@@ -54,5 +55,6 @@ vim.opt.compatible = false
 vim.opt.showmode = true
 vim.opt.wildmenu = true
 -- vim.opt.ttimeoutlen = 0
-vim.opt.updatetime = 100
-vim.opt.shortmess:append({ f = true }) -- aka `shortmess+=f`
+vim.opt.updatetime = 150
+vim.opt.spelllang = { 'en_us' }
+
