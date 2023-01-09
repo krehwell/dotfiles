@@ -1,7 +1,11 @@
 local on_attach = function(client, bufnr)
 	local opts = { buffer = bufnr, remap = false, silent = true }
 
-	vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, { focus=false })]])
+	vim.cmd([[
+      " I don't want to be diagnostic-nified while typing
+      " autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, { focus=false })
+      autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focus=false, scope="cursor" })
+  ]])
 	vim.keymap.set("n", "<leader>W", ":lua vim.diagnostic.goto_prev()<CR>", opts)
 	vim.keymap.set("n", "<leader>w", ":lua vim.diagnostic.goto_next()<CR>", opts)
 	vim.keymap.set(

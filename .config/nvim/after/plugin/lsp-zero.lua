@@ -68,16 +68,21 @@ lsp.setup_nvim_cmp({
 		["<C-k>"] = cmp.mapping.scroll_docs(-4),
 		["<C-j>"] = cmp.mapping.scroll_docs(4),
 		["<C-Space>"] = cmp.mapping.complete({}),
-		["<C-e>"] = cmp.mapping.abort(),
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
 	}),
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp" },
+		{ name = "nvim_lua" },
 		{ name = "luasnip" },
+		{ name = "path" },
+		{ name = "spell" },
+    { name = "calc" }
 	}, {
 		{ name = "buffer" },
 	}),
 })
+
+vim.opt.spelllang = { 'en_us' }
 
 -- LSP KEYBINDING
 lsp.on_attach(lspsetup.on_attach)
