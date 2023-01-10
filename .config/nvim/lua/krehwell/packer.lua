@@ -27,7 +27,7 @@ packer.startup(function(use)
 	use("jose-elias-alvarez/null-ls.nvim") -- formatter, etc
 	use("zbirenbaum/neodim") -- dim unused var
 	use("folke/neodev.nvim") -- improve sumneko with vim :')
-	-- use("github/copilot.vim")
+	use("github/copilot.vim")
 	use("isomoar/vim-css-to-inline") -- css to jsx inline
 	use({
 		"VonHeikemen/lsp-zero.nvim",
