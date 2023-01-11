@@ -92,6 +92,7 @@ packer.startup(function(use)
 			"lambdalisue/fern-hijack.vim",
 		},
 	})
+	use({ "tpope/vim-speeddating" })
 
 	-- status/helper
 	use("mbbill/undotree")

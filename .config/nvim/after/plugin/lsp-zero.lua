@@ -38,6 +38,16 @@ lsp.configure("tsserver", {
 			autoImportFileExcludePatterns = { "node_modules/@*" },
 		},
 	},
+  -- why settings not working?
+  settings = {
+    completions = {
+      completeFunctionCalls = true
+    },
+    -- fuck! not working
+    implicitProjectConfiguration = {
+      checkJs = true
+    }
+  }
 	-- on_attach = function(client, bufnr)
 	-- 	client.server_capabilities.document_formatting = false
 	-- end,
@@ -73,7 +83,7 @@ lsp.setup_nvim_cmp({
 		{ name = "luasnip" },
 		{ name = "path" },
 		{ name = "spell" },
-    { name = "calc" }
+		{ name = "calc" },
 	}, {
 		{ name = "buffer" },
 	}),

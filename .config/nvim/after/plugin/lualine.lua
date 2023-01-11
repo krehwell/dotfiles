@@ -34,7 +34,7 @@ lualine.setup({
 				newfile_status = true, -- Display new file status (new file means no write after created)
 				path = 1, -- 0: Just the filename 1: Relative path 2: Absolute path 3: Absolute path, with tilde as the home directory
 
-				shorting_target = 60, -- Shortens path to leave 40 spaces in the window
+				shorting_target = 20, -- Shortens path to leave 20 spaces in the window
 				symbols = {
 					modified = "[+]",
 					readonly = "[-]",
