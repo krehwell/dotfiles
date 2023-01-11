@@ -29,6 +29,20 @@ packer.startup(function(use)
 	use("folke/neodev.nvim") -- improve sumneko with vim :')
 	use("github/copilot.vim")
 	use("isomoar/vim-css-to-inline") -- css to jsx inline
+	-- Packer
+	use({
+		"jackMort/ChatGPT.nvim",
+		config = function()
+			require("chatgpt").setup({
+				-- optional configuration
+			})
+		end,
+		requires = {
+			"MunifTanjim/nui.nvim",
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+		},
+	})
 	use({
 		"VonHeikemen/lsp-zero.nvim",
 		requires = {

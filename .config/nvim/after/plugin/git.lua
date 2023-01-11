@@ -13,28 +13,28 @@ gitsigns.setup({
 		changedelete = { hl = "GitSignsDelete", text = "~_", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
 		untracked = { hl = "GitSignsAdd", text = "┆", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
 	},
-
 	signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
 	numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
 	linehl = false, -- Toggle with `:Gitsigns toggle_linehl`
+
 	word_diff = false, -- Toggle with `:Gitsigns toggle_word_diff`
 	watch_gitdir = {
-		interval = 1000,
+		interval = 1500,
 		follow_files = true,
 	},
-
 	attach_to_untracked = true,
+
 	current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
 	current_line_blame_opts = {
 		virt_text = true,
 		virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
-		delay = 1000,
+		delay = 1500,
 		ignore_whitespace = false,
 	},
-
 	current_line_blame_formatter = "<author>, <author_time:%Y-%m-%d> - <summary>",
+
 	sign_priority = 6,
-	update_debounce = 100,
+	update_debounce = 1500,
 	status_formatter = nil, -- Use default
 	max_file_length = 40000, -- Disable if file is longer than this (in lines)
 	preview_config = {
@@ -94,7 +94,6 @@ vim.keymap.set("n", "gp", ":GitGutterPreviewHunk<CR>")
 vim.keymap.set("n", "gs", ":Git<CR>")
 vim.keymap.set("n", "gh", ":diffget //2 <CR>")
 vim.keymap.set("n", "gl", ":diffget //3 <CR>")
-vim.keymap.set("n", "gb", ":Git blame <CR>")
 
 vim.keymap.set("c", "GIT", "Git")
 vim.keymap.set("c", "GIt", "Git")
@@ -107,7 +106,6 @@ vim.api.nvim_exec(
     " ----- GIT STATUS TOGGLE
     augroup FugitiveToggleMapping
         autocmd Filetype fugitive nnoremap <buffer> gs :q<cr>
-        autocmd Filetype fugitiveblame nnoremap <buffer> gb :q<cr>
     augroup END
   ]],
 	false
