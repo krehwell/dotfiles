@@ -24,6 +24,7 @@ packer.startup(function(use)
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 	use("nvim-treesitter/nvim-treesitter-refactor")
 	use("nvim-treesitter/nvim-treesitter-context")
+	use("JoosepAlviste/nvim-ts-context-commentstring")
 	use("jose-elias-alvarez/null-ls.nvim") -- formatter, etc
 	use("zbirenbaum/neodim") -- dim unused var
 	use("folke/neodev.nvim") -- improve sumneko with vim :')
@@ -109,6 +110,8 @@ packer.startup(function(use)
 	use("folke/twilight.nvim")
 	use("j-hui/fidget.nvim")
 	use("norcalli/nvim-colorizer.lua")
+	use("huyvohcmc/atlas.vim")
+	use("morhetz/gruvbox")
 
 	-- automatically set up your configuration after cloning packer.nvim
 	-- must be at bottom most

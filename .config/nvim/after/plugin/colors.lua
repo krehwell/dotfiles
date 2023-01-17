@@ -42,6 +42,19 @@ end
 
 -- GRUVBOX COLORSCHEME CONFIGURATION
 if colorscheme == "gruvbox" then
-	-- other custom config, heighlight line number maybe?
+	vim.api.nvim_exec(
+		[[
+      augroup transparent_signs
+        au!
+        highlight! link SignColumn LineNr
+        autocmd ColorScheme * highlight! link SignColumn LineNr
+        autocmd ColorScheme * highlight! GitSignsAdd guibg=NONE
+        autocmd ColorScheme * highlight! GitSignsChange guibg=NONE
+        autocmd ColorScheme * highlight! GitSignsDelete guibg=NONE
+      augroup END
+    ]],
+		false
+	)
+
 	ColorMyPencils()
 end

@@ -6,9 +6,10 @@ end
 
 lsp.preset("recommended")
 
+-- LSP
 lsp.ensure_installed({ "tsserver", "sumneko_lua", "gopls", "cssls", "html", "cssmodules_ls", "jsonls" })
 
--- FIX UNDEFINED GLOBAL 'vim'
+-- individual lsp config: sumneko_lua
 require("neodev").setup({}) -- no need pcall since I really is want this to be installed
 lsp.configure("sumneko_lua", {
 	settings = {
@@ -26,7 +27,7 @@ lsp.configure("sumneko_lua", {
 	},
 })
 
--- configure an individual server
+-- individual lsp config: tsserver
 lsp.configure("tsserver", {
 	on_init = function(client)
 		client.server_capabilities.documentFormattingProvider = false
@@ -38,34 +39,53 @@ lsp.configure("tsserver", {
 			autoImportFileExcludePatterns = { "node_modules/@*" },
 		},
 	},
-  -- why settings not working?
-  settings = {
-    completions = {
-      completeFunctionCalls = true
-    },
-    -- fuck! not working
-    implicitProjectConfiguration = {
-      checkJs = true
-    }
-  }
-	-- on_attach = function(client, bufnr)
-	-- 	client.server_capabilities.document_formatting = false
-	-- end,
+	-- why `settings` not working?
+	settings = {
+		completions = {
+			completeFunctionCalls = true,
+		},
+		-- not working!?
+		implicitProjectConfiguration = {
+			checkJs = true,
+		},
+	},
 })
 
 lsp.set_preferences({
 	set_lsp_keymaps = false,
 	suggest_lsp_servers = false,
-	sign_icons = {}, -- { error = "E", warn = "W", hint = "H", info = "I" },
+	sign_icons = { error = "E", warn = "", hint = "H", info = "I" },
 })
 
--- COMPLETION SETUP
+-- CMP
 local cmp = require("cmp")
 lsp.setup_nvim_cmp({
 	snippet = {
 		expand = function(args)
 			require("luasnip").lsp_expand(args.body)
 		end,
+	},
+	documentation = {
+		-- border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+		-- winhighlight = 'Normal:Normal,FloatBorder:Normal,CursorLine:Visual,Search:None',
+		-- max_height = 20,
+		-- max_width = 60,
+		-- border = "rounded",
+		-- zindex = 1001,
+	},
+	formatting = {
+		-- fields = { "menu", "abbr", "kind" }, -- of fields so the icon is the first
+		-- format = function(entry, item)
+		-- 	local menu_icon = {
+		-- 		nvim_lsp = "λ",
+		-- 		luasnip = "⋗",
+		-- 		buffer = "Ω",
+		-- 		path = "🖫",
+		-- 		nvim_lua = "Π",
+		-- 	}
+		-- 	item.menu = menu_icon[entry.source.name]
+		-- 	return item
+		-- end,
 	},
 	window = {
 		-- completion = cmp.config.window.bordered(),
@@ -77,16 +97,15 @@ lsp.setup_nvim_cmp({
 		["<C-Space>"] = cmp.mapping.complete({}),
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
 	}),
-	sources = cmp.config.sources({
+	sources = {
 		{ name = "nvim_lsp" },
+		{ name = "buffer" },
 		{ name = "nvim_lua" },
 		{ name = "luasnip" },
 		{ name = "path" },
-		{ name = "spell" },
 		{ name = "calc" },
-	}, {
-		{ name = "buffer" },
-	}),
+		{ name = "spell" },
+	},
 })
 
 -- LSP KEYBINDING
