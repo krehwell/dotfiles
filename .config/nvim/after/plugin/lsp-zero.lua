@@ -39,14 +39,11 @@ lsp.configure("tsserver", {
 			autoImportFileExcludePatterns = { "node_modules/@*" },
 		},
 	},
-	-- why `settings` not working?
+	filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
 	settings = {
-		completions = {
-			completeFunctionCalls = true,
-		},
-		-- not working!?
-		implicitProjectConfiguration = {
+		implicitProjectConfig = {
 			checkJs = true,
+			enableImplicitProjectConfig = true,
 		},
 	},
 })

@@ -20,30 +20,21 @@ end
 packer.startup(function(use)
 	use("wbthomason/packer.nvim")
 
-	-- lsp related
+	-- treesitter
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 	use("nvim-treesitter/nvim-treesitter-refactor")
 	use("nvim-treesitter/nvim-treesitter-context")
 	use("JoosepAlviste/nvim-ts-context-commentstring")
+	use("windwp/nvim-ts-autotag")
+
+	-- lsp related
 	use("jose-elias-alvarez/null-ls.nvim") -- formatter, etc
 	use("zbirenbaum/neodim") -- dim unused var
 	use("folke/neodev.nvim") -- improve sumneko with vim :')
-	use("github/copilot.vim")
 	use("isomoar/vim-css-to-inline") -- css to jsx inline
-	-- Packer
-	use({
-		"jackMort/ChatGPT.nvim",
-		config = function()
-			require("chatgpt").setup({
-				-- optional configuration
-			})
-		end,
-		requires = {
-			"MunifTanjim/nui.nvim",
-			"nvim-lua/plenary.nvim",
-			"nvim-telescope/telescope.nvim",
-		},
-	})
+	use("github/copilot.vim")
+
+	-- lsp-zero
 	use({
 		"VonHeikemen/lsp-zero.nvim",
 		requires = {
@@ -81,7 +72,6 @@ packer.startup(function(use)
 	use({ "numToStr/Comment.nvim" })
 	use("tpope/vim-surround")
 	use("tpope/vim-repeat")
-	use("windwp/nvim-ts-autotag") -- for html tag
 	use("windwp/nvim-autopairs") -- for normal enclosing bracket
 	use("mg979/vim-visual-multi")
 	use({
@@ -93,24 +83,20 @@ packer.startup(function(use)
 			"lambdalisue/fern-hijack.vim",
 		},
 	})
-	use({ "tpope/vim-speeddating" })
+	use({ "ojroques/vim-oscyank", branch = "main" })
 
 	-- status/helper
 	use("mbbill/undotree")
 	use("nvim-lualine/lualine.nvim")
 	use("vimpostor/vim-tpipeline")
-	use({ "ojroques/vim-oscyank", branch = "main" })
 
 	-- beauty
 	use("nvim-tree/nvim-web-devicons")
 	use("pbrisbin/vim-colors-off")
-	use("rakr/vim-one")
 	use("folke/todo-comments.nvim")
-	use("folke/zen-mode.nvim")
-	use("folke/twilight.nvim")
 	use("j-hui/fidget.nvim")
+	-- colorscheme
 	use("norcalli/nvim-colorizer.lua")
-	use("huyvohcmc/atlas.vim")
 	use("morhetz/gruvbox")
 
 	-- automatically set up your configuration after cloning packer.nvim
