@@ -9,7 +9,7 @@ dump() {
 }
 
 save() {
-    dump > ~/.tmux-session
+    dump > ./.tmux-session-per-project
 }
 
 terminal_size() {
@@ -43,7 +43,7 @@ restore() {
                         count=$(( count + 1 ))
                         fi
                         fi
-                        done < ~/.tmux-session
+                        done < ./.tmux-session-per-project
 
                         echo "restored $count sessions"
 }
