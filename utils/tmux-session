@@ -3,13 +3,17 @@
 # TODO: persist and restore the state & position of panes.
 set -e
 
+# get current file directory and store to a variable
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 dump() {
     local d=$'\t'
         tmux list-windows -a -F "#S${d}#W${d}#{pane_current_path}"
 }
 
 save() {
-    dump > ./.tmux-session
+    # dump to `DIR`
+    dump > "$DIR"/.tmux-session
 }
 
 terminal_size() {
@@ -43,7 +47,7 @@ restore() {
                         count=$(( count + 1 ))
                         fi
                         fi
-                        done < ./.tmux-session
+                        done < "$DIR"/.tmux-session
 
                         echo "restored $count sessions"
 }
