@@ -51,7 +51,7 @@ lsp.configure("tsserver", {
 lsp.set_preferences({
 	set_lsp_keymaps = false,
 	suggest_lsp_servers = false,
-	sign_icons = { error = "E", warn = "", hint = "H", info = "I" },
+	sign_icons = { error = "", warn = "", hint = "H", info = "I" },
 })
 
 -- CMP
