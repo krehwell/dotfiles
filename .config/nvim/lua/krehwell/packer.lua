@@ -67,6 +67,7 @@ packer.startup(function(use)
 	-- git related
 	use("lewis6991/gitsigns.nvim")
 	use("tpope/vim-fugitive")
+  use("tpope/vim-rhubarb")
 
 	-- movement/navigation
 	use({ "numToStr/Comment.nvim" })

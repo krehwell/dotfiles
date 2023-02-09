@@ -1,11 +1,11 @@
 -- convert code below using pcall
-local present, colorizer = pcall(require, "colorizer")
+local present, colorizer = pcall(require, "nvim-highlight-colors")
 if not present then
 	return
 end
 
 colorizer.setup({
-	"*",
-	css = { css = true, css_fn = true },
-	html = { css = true, css_fn = true },
+	render = "background", -- or 'foreground' or 'first_column'
+	enable_named_colors = true,
+	enable_tailwind = true,
 })
