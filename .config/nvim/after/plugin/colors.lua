@@ -1,6 +1,11 @@
 vim.opt.background = "dark"
 vim.opt.termguicolors = true
-vim.opt.t_Co = "256"
+vim.api.nvim_exec(
+	[[
+      set t_Co=256
+  ]],
+	false
+)
 vim.opt.fillchars = {
 	vert = "┆", -- alternatives │
 	fold = " ",

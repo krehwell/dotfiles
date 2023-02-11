@@ -67,12 +67,13 @@ packer.startup(function(use)
 	-- git related
 	use("lewis6991/gitsigns.nvim")
 	use("tpope/vim-fugitive")
-  use("tpope/vim-rhubarb")
+	use("tpope/vim-rhubarb")
 
 	-- movement/navigation
 	use({ "numToStr/Comment.nvim" })
 	use("tpope/vim-surround")
 	use("tpope/vim-repeat")
+	use("tpope/vim-sleuth") -- auto indent
 	use("windwp/nvim-autopairs") -- for normal enclosing bracket
 	use("mg979/vim-visual-multi")
 	use({
@@ -97,7 +98,7 @@ packer.startup(function(use)
 	use("folke/todo-comments.nvim")
 	use("j-hui/fidget.nvim")
 	-- colorscheme
-	use("norcalli/nvim-colorizer.lua")
+	use("brenoprata10/nvim-highlight-colors")
 	use("morhetz/gruvbox")
 
 	-- automatically set up your configuration after cloning packer.nvim
