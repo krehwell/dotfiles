@@ -196,7 +196,7 @@ type = internal/network
 ; =================================================
 
 [module/calendar]
-click-left = ~/.config/polybar/utils/calendar.sh --popup &
+click-left = gnome-calendar
 exec = ~/.config/polybar/utils/calendar-popup.sh
 interval = 5
 type = custom/script

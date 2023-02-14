@@ -75,6 +75,7 @@ for_window [class="Eog"] floating enable
 for_window [class="SimpleScreenRecorder"] floating enable
 for_window [class="org.gnome.Character"] floating enable
 for_window [class="Blueman-manager"] floating enable
+for_window [class="gnome-calendar"] floating enable
 
 
 # ----- MONITOR -----
