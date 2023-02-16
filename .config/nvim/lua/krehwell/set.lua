@@ -54,6 +54,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 5
 vim.opt.sidescrolloff = 15
+vim.opt.virtualedit = "block"
 -- vim.opt.virtualedit = "block"
 
 -- search/find behavior
