@@ -13,7 +13,6 @@ esac
 bind '"\t":menu-complete'
 bind '"\t":menu-complete'
 bind 'set completion-ignore-case on'
-export TERM=xterm-256color
 alias :q='exit'
 alias sex='explorer.exe . || nautilus . &'
 alias cmd=cmd.exe
@@ -21,6 +20,11 @@ alias vim=nvim
 alias ls='ls --color'
 alias pacman='sudo pacman'
 alias txxx='tmux kill-server'
+
+# ----- VAR
+export TERM=xterm-256color
+export PATH="$PATH:$(go env GOBIN):$(go env GOPATH)/bin"
+
 
 # ----- CUSTOM FUNCTION -----
 mkcdir ()
