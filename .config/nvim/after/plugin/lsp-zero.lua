@@ -7,7 +7,7 @@ end
 lsp.preset("recommended")
 
 -- LSP
-lsp.ensure_installed({ "tsserver", "sumneko_lua", "gopls", "cssls", "html", "cssmodules_ls", "jsonls" })
+lsp.ensure_installed({ "tsserver", "gopls", "cssls", "html", "cssmodules_ls", "jsonls" })
 
 -- individual lsp config: sumneko_lua
 require("neodev").setup({}) -- no need pcall since I really is want this to be installed
