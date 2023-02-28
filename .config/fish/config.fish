@@ -10,4 +10,3 @@ alias txxx='tmux kill-server'
 # --- VAR
 set -gx GOPATH $HOME/go
 set -gx PATH $PATH $GOPATH/bin
-set -gx OPENAI_API_KEY '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'

@@ -29,5 +29,7 @@ null_ls.setup({
 		-- null_ls.builtins.diagnostics.cspell.with({ }),
 		-- null_ls.builtins.completion.spell,
 		-- null_ls.builtins.code_actions.cspell,
+
+		null_ls.builtins.formatting.protolint,
 	},
 })
