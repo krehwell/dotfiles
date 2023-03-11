@@ -67,7 +67,6 @@ vim.opt.isfname:append("@-@")
 vim.opt.shortmess:append({ f = true }) -- aka `shortmess+=f`
 
 -- etc
--- vim.opt.exrc = true
 -- vim.opt.hidden = true
 -- vim.opt.guicursor = ""
 vim.opt.termguicolors = true

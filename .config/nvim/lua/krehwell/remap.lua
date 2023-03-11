@@ -25,6 +25,7 @@ vim.keymap.set("n", "[]", ":k$][%?}<CR><CR>:noh<CR>", { silent = true })
 vim.keymap.set("n", "<M-j>", "ddp")
 vim.keymap.set("n", "<M-k>", "ddkP")
 vim.keymap.set("n", "<localleader>a", "ggVG")
+vim.keymap.set("n", "H", "") -- disable go to top, somehow this is annoying
 vim.keymap.set("v", "b", "B")
 vim.keymap.set("v", "$", "$<left>")
 vim.keymap.set("v", "w", "e")

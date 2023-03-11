@@ -86,6 +86,7 @@ packer.startup(function(use)
 		},
 	})
 	use({ "ojroques/vim-oscyank", branch = "main" })
+	use("klen/nvim-config-local") -- load local .nvimrc/.vimrc config
 
 	-- status/helper
 	use("mbbill/undotree")
