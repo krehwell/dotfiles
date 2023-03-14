@@ -57,11 +57,11 @@ lsp.set_preferences({
 -- CMP
 local cmp = require("cmp")
 lsp.setup_nvim_cmp({
-	snippet = {
-		expand = function(args)
-			require("luasnip").lsp_expand(args.body)
-		end,
-	},
+	-- snippet = {
+	-- 	expand = function(args)
+	-- 		require("luasnip").lsp_expand(args.body)
+	-- 	end,
+	-- },
 	documentation = {
 		-- border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
 		-- winhighlight = 'Normal:Normal,FloatBorder:Normal,CursorLine:Visual,Search:None',
@@ -98,7 +98,7 @@ lsp.setup_nvim_cmp({
 		{ name = "nvim_lsp" },
 		{ name = "buffer" },
 		{ name = "nvim_lua" },
-		{ name = "luasnip" },
+		-- { name = "luasnip" },
 		{ name = "path" },
 		{ name = "calc" },
 		{ name = "spell" },

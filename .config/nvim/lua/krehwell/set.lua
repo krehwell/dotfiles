@@ -1,26 +1,25 @@
--- testing
--- When editing a file, always jump to the last known cursor position.
--- Don't do it when the position is invalid, when inside an event handler
--- (happens when dropping a file on gvim) and for a commit message (it's
--- likely a different one than last time).
--- vim.api.nvim_create_autocmd("BufReadPost", {
--- https://github.com/creativenull/dotfiles/blob/9ae60de4f926436d5682406a5b801a3768bbc765/config/nvim/init.lua#L70-L86
--- 	group = vim.g.user.event,
--- 	callback = function(args)
--- 		local valid_line = vim.fn.line([['"]]) >= 1 and vim.fn.line([['"]]) < vim.fn.line("$")
--- 		local not_commit = vim.b[args.buf].filetype ~= "commit"
---
--- 		if valid_line and not_commit then
--- 			vim.cmd([[normal! g`"]])
--- 		end
--- 	end,
--- })
+vim.g.user = {
+	event = "UserGroup",
+}
+vim.api.nvim_create_augroup(vim.g.user.event, {})
+vim.api.nvim_create_autocmd("BufReadPost", {
+	-- https://github.com/creativenull/dotfiles/blob/eb9b0a69c411b7ed88eca74d740b710e7591473a/config/nvim/init.lua#L70-L81
+	group = vim.g.user.event,
+	callback = function(args)
+		local valid_line = vim.fn.line([['"]]) >= 1 and vim.fn.line([['"]]) < vim.fn.line("$")
+		local not_commit = vim.b[args.buf].filetype ~= "commit"
+
+		if valid_line and not_commit then
+			vim.cmd([[normal! g`"]])
+		end
+	end,
+})
 
 -- indentation behaviour
 vim.api.nvim_exec(
 	[[
     filetype plugin indent on
-  ]],
+    ]],
 	false
 )
 vim.opt.backspace = "2"
@@ -31,6 +30,7 @@ vim.opt.shiftround = true
 vim.opt.expandtab = true
 vim.opt.autoindent = true
 vim.opt.smartindent = true
+vim.opt.textwidth = 120
 
 -- hidden file related config
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
