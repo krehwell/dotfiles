@@ -196,10 +196,12 @@ type = internal/network
 ; =================================================
 
 [module/calendar]
-click-left = gnome-calendar
-exec = ~/.config/polybar/utils/calendar-popup.sh
-interval = 5
 type = custom/script
+click-left = gnome-calendar
+format-prefix = 
+exec = date +' %a %d %b   %H:%M'
+tail = false
+interval = 5
 format-background = ${colors.background}
 format-foreground = ${colors.foreground}
 format-prefix-foreground = ${colors.blue}
@@ -219,12 +221,10 @@ bar-volume-indicator = |
 bar-volume-indicator-font = 2
 bar-volume-width = 5
 format-volume = <label-volume> <bar-volume>
-label-muted = 🔇 muted
+label-muted = muted
 label-muted-foreground = #666
-format-volume-prefix = " "
+; format-volume-prefix = " "
 label-volume = %percentage%%
-label-volume-foreground = ${root.blue}
-format-volume-prefix-foreground = ${colors.blue}
 type = internal/pulseaudio
 
 

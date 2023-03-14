@@ -9,17 +9,17 @@ lualine.setup({
 		theme = "seoul256",
 		component_separators = {}, -- { left = '', right = '' },
 		section_separators = {}, -- { left = '', right = '' },
-		disabled_filetypes = {
-			statusline = {},
-			winbar = {},
-		},
-		ignore_focus = {},
-		always_divide_middle = true,
-		globalstatus = false,
+		-- disabled_filetypes = {
+		-- 	statusline = {},
+		-- 	winbar = {},
+		-- },
+		-- ignore_focus = {},
+		-- always_divide_middle = true,
+		-- globalstatus = false,
 		refresh = {
-			statusline = 3000,
-			tabline = 3000,
-			winbar = 3000,
+			statusline = 2000,
+			tabline = 2000,
+			winbar = 2000,
 		},
 	},
 	sections = {
@@ -42,24 +42,24 @@ lualine.setup({
 				},
 			},
 		},
-		lualine_x = { --[[ 'encoding', 'fileformat', 'filetype' ]]
-		},
-		lualine_y = { --[[ 'progress' ]]
-		},
-		lualine_z = { --[[ 'location' ]]
-		},
+		-- lualine_x = { --[[ 'encoding', 'fileformat', 'filetype' ]]
+		-- },
+		-- lualine_y = { --[[ 'progress' ]]
+		-- },
+		-- lualine_z = { --[[ 'location' ]]
+		-- },
 	},
 	inactive_sections = {
-		lualine_a = {},
-		lualine_b = {},
+		-- lualine_a = {},
+		-- lualine_b = {},
 		lualine_c = { "filename" },
 		lualine_x = { "location" },
-		lualine_y = {},
-		lualine_z = {},
+		-- lualine_y = {},
+		-- lualine_z = {},
 	},
-	tabline = {},
-	winbar = {},
-	inactive_winbar = {},
+	-- tabline = {},
+	-- winbar = {},
+	-- inactive_winbar = {},
 	extensions = { "fern", "quickfix", "fugitive" },
 })
 
@@ -68,7 +68,7 @@ vim.g.tpipeline_autoembed = 0
 -- vim.g.tpipeline_statusline = '%!tpipeline#stl#airline()' -- tpipeline comes bundled with its own custom minimal statusline
 -- vim.g.tpipeline_statusline = '%f'
 -- You can also use standard statusline syntax, see :help stl
-vim.g.tpipeline_cursormoved = 1
+-- vim.g.tpipeline_cursormoved = 1
 
 if vim.fn.exists("$TMUX") == 1 then
 	vim.opt.laststatus = 0
