@@ -59,6 +59,7 @@ lsp.set_preferences({
 local cmp = require("cmp")
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 local cmp_config = lsp.defaults.cmp_config({
+	preselect = cmp.PreselectMode.Item,
 	window = {
 		completion = cmp.config.window.bordered({}),
 	},
@@ -68,15 +69,16 @@ local cmp_config = lsp.defaults.cmp_config({
 		["<C-Space>"] = cmp.mapping.complete({}),
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
 	}),
-	sources = {
+	sources = cmp.config.sources({
 		{ name = "nvim_lsp" },
-		{ name = "buffer" },
 		{ name = "nvim_lua" },
 		{ name = "luasnip" },
 		{ name = "path" },
 		{ name = "calc" },
 		{ name = "spell" },
-	},
+	}, {
+		{ name = "buffer" },
+	}),
 })
 cmp.setup(cmp_config)
 

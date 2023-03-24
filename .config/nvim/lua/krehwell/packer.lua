@@ -45,6 +45,7 @@ packer.startup(function(use)
 
       -- autocompletion
       { "hrsh7th/nvim-cmp" },
+      { "hrsh7th/cmp-calc" },
       { "hrsh7th/cmp-buffer" },
       { "hrsh7th/cmp-path" },
       { "saadparwaiz1/cmp_luasnip" },
