@@ -36,6 +36,7 @@ function ColorMyPencils(color)
 		[[
       hi VertSplit guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
       hi Normal guibg=NONE ctermbg=NONE
+      hi PmenuSel guifg=#ffffff guibg=#20bbfc " selected item colors
     ]],
 		false
 	)

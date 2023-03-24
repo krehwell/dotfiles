@@ -4,7 +4,11 @@ if not present then
 	return
 end
 
-lsp.preset("recommended")
+lsp.preset({
+	name = "minimal",
+	set_lsp_keymaps = true,
+	manage_nvim_cmp = false,
+})
 
 -- LSP
 lsp.ensure_installed({ "tsserver", "gopls", "cssls", "html", "cssmodules_ls", "jsonls" })
@@ -36,16 +40,13 @@ lsp.configure("tsserver", {
 	init_options = {
 		hostInfo = "neovim",
 		preferences = {
-			autoImportFileExcludePatterns = { "node_modules/@*" },
+			autoImportFileExcludePatterns = {
+				"node_modules/@*",
+				"node_modules/**",
+			},
 		},
 	},
 	filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
-	settings = {
-		implicitProjectConfig = {
-			checkJs = true,
-			enableImplicitProjectConfig = true,
-		},
-	},
 })
 
 lsp.set_preferences({
@@ -56,37 +57,10 @@ lsp.set_preferences({
 
 -- CMP
 local cmp = require("cmp")
-lsp.setup_nvim_cmp({
-	snippet = {
-		expand = function(args)
-			require("luasnip").lsp_expand(args.body)
-		end,
-	},
-	documentation = {
-		-- border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-		-- winhighlight = 'Normal:Normal,FloatBorder:Normal,CursorLine:Visual,Search:None',
-		-- max_height = 20,
-		-- max_width = 60,
-		-- border = "rounded",
-		-- zindex = 1001,
-	},
-	formatting = {
-		-- fields = { "menu", "abbr", "kind" }, -- of fields so the icon is the first
-		-- format = function(entry, item)
-		-- 	local menu_icon = {
-		-- 		nvim_lsp = "λ",
-		-- 		luasnip = "⋗",
-		-- 		buffer = "Ω",
-		-- 		path = "🖫",
-		-- 		nvim_lua = "Π",
-		-- 	}
-		-- 	item.menu = menu_icon[entry.source.name]
-		-- 	return item
-		-- end,
-	},
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
+local cmp_config = lsp.defaults.cmp_config({
 	window = {
-		-- completion = cmp.config.window.bordered(),
-		-- documentation = cmp.config.window.bordered(),
+		completion = cmp.config.window.bordered({}),
 	},
 	mapping = cmp.mapping.preset.insert({
 		["<C-k>"] = cmp.mapping.scroll_docs(-4),
@@ -104,6 +78,7 @@ lsp.setup_nvim_cmp({
 		{ name = "spell" },
 	},
 })
+cmp.setup(cmp_config)
 
 -- LSP KEYBINDING
 lsp.on_attach(lspsetup.on_attach)
