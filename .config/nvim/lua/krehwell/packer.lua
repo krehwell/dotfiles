@@ -90,8 +90,8 @@ packer.startup(function(use)
 
   -- status/helper
   use("mbbill/undotree")
-  use("nvim-lualine/lualine.nvim")
-  use("vimpostor/vim-tpipeline")
+  -- use("nvim-lualine/lualine.nvim")
+  -- use("vimpostor/vim-tpipeline")
 
   -- beauty
   use("nvim-tree/nvim-web-devicons")
