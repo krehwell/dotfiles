@@ -75,9 +75,9 @@ local cmp_config = lsp.defaults.cmp_config({
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lsp_signature_help" },
 		{ name = "nvim_lua" },
-		{ name = "luasnip" },
 		{ name = "path" },
 		{ name = "calc" },
+		-- { name = "luasnip" },
 		-- { name = "spell" },
 	}, {
 		{ name = "buffer" },
