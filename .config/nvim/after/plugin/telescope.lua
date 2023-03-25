@@ -107,4 +107,3 @@ vim.keymap.set(
 -- vim.keymap.set("n", "<C-f>", "<CMD>Telescope live_grep<CR>") -- this is pretty cool too since we can use regex
 vim.api.nvim_create_user_command("Ls", "Telescope buffers", { nargs = 0, bang = true })
 vim.api.nvim_create_user_command("LS", "Telescope buffers", { nargs = 0, bang = true })
-vim.api.nvim_create_user_command("Colors", "Telescope colorscheme", { nargs = 0, bang = true })
