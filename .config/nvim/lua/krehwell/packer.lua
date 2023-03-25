@@ -45,12 +45,13 @@ packer.startup(function(use)
 
       -- autocompletion
       { "hrsh7th/nvim-cmp" },
-      { "hrsh7th/cmp-calc" },
-      { "hrsh7th/cmp-buffer" },
-      { "hrsh7th/cmp-path" },
-      { "saadparwaiz1/cmp_luasnip" },
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-nvim-lua" },
+      { "saadparwaiz1/cmp_luasnip" },
+      { "hrsh7th/cmp-path" },
+      { "hrsh7th/cmp-calc" },
+      { "hrsh7th/cmp-buffer" },
+      { "f3fora/cmp-spell" },
 
       -- snippets
       { "L3MON4D3/LuaSnip" },

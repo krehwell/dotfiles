@@ -75,7 +75,7 @@ local cmp_config = lsp.defaults.cmp_config({
 		{ name = "luasnip" },
 		{ name = "path" },
 		{ name = "calc" },
-		{ name = "spell" },
+		-- { name = "spell" },
 	}, {
 		{ name = "buffer" },
 	}),
