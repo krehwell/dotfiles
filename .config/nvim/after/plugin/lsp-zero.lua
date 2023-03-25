@@ -6,9 +6,13 @@ end
 
 lsp.preset({
 	name = "minimal",
-	set_lsp_keymaps = true,
+	set_lsp_keymaps = false,
+	suggest_lsp_servers = false,
 	manage_nvim_cmp = false,
 })
+-- lsp.set_preferences({
+-- 	sign_icons = { error = "", warn = "", hint = "H", info = "I" },
+-- })
 
 -- LSP
 lsp.ensure_installed({ "tsserver", "gopls", "cssls", "html", "cssmodules_ls", "jsonls" })
@@ -49,26 +53,24 @@ lsp.configure("tsserver", {
 	filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
 })
 
-lsp.set_preferences({
-	set_lsp_keymaps = false,
-	suggest_lsp_servers = false,
-	sign_icons = { error = "", warn = "", hint = "H", info = "I" },
-})
-
 -- CMP
 local cmp = require("cmp")
-vim.opt.completeopt = { "menu", "menuone", "noselect" }
 local cmp_config = lsp.defaults.cmp_config({
 	preselect = cmp.PreselectMode.Item,
+	completion = {
+		completeopt = "menu,menuone,noinsert",
+	},
 	window = {
 		completion = cmp.config.window.bordered({}),
 	},
-	mapping = cmp.mapping.preset.insert({
+	mapping = {
 		["<C-k>"] = cmp.mapping.scroll_docs(-4),
 		["<C-j>"] = cmp.mapping.scroll_docs(4),
 		["<C-Space>"] = cmp.mapping.complete({}),
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
-	}),
+		["<C-p>"] = cmp.mapping.select_prev_item(),
+		["<C-n>"] = cmp.mapping.select_next_item(),
+	},
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lua" },

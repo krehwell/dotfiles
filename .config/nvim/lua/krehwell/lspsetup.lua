@@ -43,7 +43,14 @@ local diagnostic_config = {
 	signs = true,
 	underline = true,
 	severity_sort = true,
-	float = true,
+	float = {
+		focusable = false,
+		style = "minimal",
+		border = "rounded",
+		source = "always",
+		header = "",
+		prefix = "",
+	},
 }
 
 return {
