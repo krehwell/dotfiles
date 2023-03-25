@@ -67,29 +67,29 @@ telescope.setup({
 			override_live_grep_sorter = true,
 			case_mode = "smart_case", -- or "ignore_case" or "respect_case", default "smart_case"
 		},
-		media = {
-			---@type string
-			backend = "ueberzug",
-			---@type boolean
-			disable_devicons = false,
-			---@type table<string, integer>
-			geometry = {
-				---@type integer
-				x = -2,
-				---@type integer
-				y = -2,
-				---@type integer
-				width = 1,
-				---@type integer
-				height = 1,
-			},
-			---@type table<string>
-			find_command = { "rg", "--files", "--glob", "*.{png,jpg}", "." },
-		},
+		-- media = {
+		-- 	---@type string
+		-- 	backend = "ueberzug",
+		-- 	---@type boolean
+		-- 	disable_devicons = false,
+		-- 	---@type table<string, integer>
+		-- 	geometry = {
+		-- 		---@type integer
+		-- 		x = -2,
+		-- 		---@type integer
+		-- 		y = -2,
+		-- 		---@type integer
+		-- 		width = 1,
+		-- 		---@type integer
+		-- 		height = 1,
+		-- 	},
+		-- 	---@type table<string>
+		-- 	find_command = { "rg", "--files", "--glob", "*.{png,jpg}", "." },
+		-- },
 	},
 })
 require("telescope").load_extension("fzf")
-require("telescope").load_extension("media")
+-- require("telescope").load_extension("media")
 
 function FallbackFindFiles()
 	local ok = pcall(require("telescope.builtin").git_files)
