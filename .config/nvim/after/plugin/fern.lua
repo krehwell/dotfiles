@@ -17,7 +17,7 @@ vim.keymap.set("n", "<Plug>(my-fern-toggle)", ":Fern . -drawer -reveal=% -width=
 vim.keymap.set("n", "<C-b>", "<Plug>(my-fern-toggle)<Plug>(fern-action-zoom:reset)")
 
 -- fern default settings
-vim.g["fern#hide_cursor"] = 1
+vim.g["fern#hide_cursor"] = 0
 vim.g["fern#default_hidden"] = 1
 vim.g["fern#renderer"] = "nerdfont"
 -- vim.g["fern#renderer#nerdfont#root_symbol"] = " "
