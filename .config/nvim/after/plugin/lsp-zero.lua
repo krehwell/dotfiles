@@ -55,6 +55,9 @@ lsp.configure("tsserver", {
 
 -- CMP
 local cmp = require("cmp")
+local merge = function(a, b)
+	return vim.tbl_deep_extend("force", {}, a, b)
+end
 local cmp_config = lsp.defaults.cmp_config({
 	preselect = cmp.PreselectMode.Item,
 	completion = {
@@ -62,6 +65,25 @@ local cmp_config = lsp.defaults.cmp_config({
 	},
 	window = {
 		completion = cmp.config.window.bordered({}),
+		documentation = merge(cmp.config.window.bordered(), {
+			max_height = 15,
+			max_width = 60,
+		}),
+	},
+	formatting = {
+		fields = { "abbr", "menu", "kind" },
+		format = function(entry, item)
+			local short_name = {
+				nvim_lsp = "LSP",
+				nvim_lua = "nvim",
+				nvim_lsp_signature_help = "signature",
+			}
+
+			local menu_name = short_name[entry.source.name] or entry.source.name
+
+			item.menu = string.format("[%s]", menu_name)
+			return item
+		end,
 	},
 	mapping = {
 		["<C-k>"] = cmp.mapping.scroll_docs(-4),
