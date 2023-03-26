@@ -101,6 +101,7 @@ packer.startup(function(use)
 	use("pbrisbin/vim-colors-off")
 	use("folke/todo-comments.nvim")
 	use("j-hui/fidget.nvim")
+	use("gelguy/wilder.nvim")
 	-- colorscheme
 	use("brenoprata10/nvim-highlight-colors")
 	use("morhetz/gruvbox")
