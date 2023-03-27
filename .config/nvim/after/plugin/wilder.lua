@@ -13,12 +13,20 @@ wilder.set_option(
 			border = "rounded",
 		})),
 		["/"] = wilder.wildmenu_renderer({
-			separator = " ",
 			highlighter = wilder.basic_highlighter(),
+			right = { " ", wilder.wildmenu_index() },
+		}),
+		["?"] = wilder.wildmenu_renderer({
+			highlighter = wilder.basic_highlighter(),
+			right = { " ", wilder.wildmenu_index() },
+			-- left = { " ", wilder.wildmenu_spinner(), " " },
 		}),
 	})
 )
 wilder.setup({
-	modes = { ":", "/", "?" },
-	enable_cmdline_enter = 0,
+	modes = { --[[ ":", ]]
+		"/",
+		"?",
+	},
+	-- enable_cmdline_enter = 0,
 })
