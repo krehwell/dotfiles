@@ -63,7 +63,7 @@ packer.startup(function(use)
 	-- telescope related
 	use("nvim-lua/plenary.nvim")
 	use("nvim-lua/popup.nvim")
-	use("nvim-telescope/telescope.nvim")
+	use({ "nvim-telescope/telescope.nvim", branch = "0.1.x" })
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make", cond = vim.fn.executable("make") == 1 })
 	-- use("dharmx/telescope-media.nvim")
 

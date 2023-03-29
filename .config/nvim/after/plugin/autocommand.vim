@@ -27,6 +27,30 @@
 " endif
 
 
+" ----- TAB NAMING
+function! TabLabel(n)
+  let buflist = tabpagebuflist(a:n)
+  let winnr = tabpagewinnr(a:n)
+  let currentBuffPath = bufname(buflist[winnr - 1])
+  return fnamemodify(currentBuffPath, ":h:t") . "/" . fnamemodify(currentBuffPath, ":t")
+endfunction
+
+function! TabLine()
+  let s = ''
+  for i in range(tabpagenr('$'))
+    if i + 1 == tabpagenr()
+      let s .= '%#TabLineSel#'
+    else
+      let s .= '%#TabLine#'
+    endif
+    let s .= ' %{TabLabel(' . (i + 1) . ')} '
+  endfor
+  let s .= '%#TabLineFill#%T'
+  return s
+endfunction
+set tabline=%!TabLine()
+
+
 " ----- NOAUTOCOMMENT TO ALL FILES -----
 augroup AutoCommetDisable
     autocmd!

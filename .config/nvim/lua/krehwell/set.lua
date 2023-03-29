@@ -1,7 +1,8 @@
--- vim.g.user = {
--- 	event = "UserGroup",
--- }
--- vim.api.nvim_create_augroup(vim.g.user.event, {})
+vim.g.user = {
+	event = "UserGroup",
+}
+vim.api.nvim_create_augroup(vim.g.user.event, {})
+
 -- vim.api.nvim_create_autocmd("BufReadPost", {
 -- 	-- https://github.com/creativenull/dotfiles/blob/eb9b0a69c411b7ed88eca74d740b710e7591473a/config/nvim/init.lua#L70-L81
 -- 	group = vim.g.user.event,
