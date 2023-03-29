@@ -9,7 +9,6 @@ telescope.setup({
 	defaults = {
 		mappings = {
 			i = {
-				-- ["<c-["] = actions.close,
 				["<esc>"] = actions.close,
 			},
 		},
@@ -98,11 +97,12 @@ function FallbackFindFiles()
 	end
 end
 
-vim.keymap.set("n", "<C-p>", ":lua FallbackFindFiles()<CR>")
+vim.keymap.set("n", "<C-p>", ":lua FallbackFindFiles()<CR>", { silent = true })
 vim.keymap.set(
 	"n",
 	"<C-f>",
-	":lua require'telescope.builtin'.grep_string{ shorten_path = true, word_match = \"-w\", only_sort_text = false, search = '' }<CR>"
+	":lua require'telescope.builtin'.grep_string{ shorten_path = true, word_match = \"-w\", only_sort_text = false, search = '' }<CR>",
+	{ silent = true }
 )
 -- vim.keymap.set("n", "<C-f>", "<CMD>Telescope live_grep<CR>") -- this is pretty cool too since we can use regex
 vim.api.nvim_create_user_command("Ls", "Telescope buffers", { nargs = 0, bang = true })
