@@ -76,7 +76,6 @@ packer.startup(function(use)
 	use({ "numToStr/Comment.nvim" })
 	use("tpope/vim-surround")
 	use("tpope/vim-repeat")
-	-- use("tpope/vim-sleuth") -- auto indent
 	use("windwp/nvim-autopairs") -- for normal enclosing bracket
 	use("mg979/vim-visual-multi")
 	use({

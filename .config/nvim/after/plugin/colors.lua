@@ -3,7 +3,7 @@ vim.opt.termguicolors = true
 vim.api.nvim_exec(
 	[[
       set t_Co=256
-  ]],
+      ]],
 	false
 )
 vim.opt.fillchars = {
@@ -38,7 +38,8 @@ function ColorMyPencils(color)
       hi Normal guibg=NONE ctermbg=NONE
       hi Pmenu guibg=#NONE
       hi PmenuSel guifg=#ffffff
-    ]],
+      hi clear Todo
+      ]],
 		false
 	)
 end
@@ -53,14 +54,14 @@ if colorscheme == "gruvbox" then
 	vim.api.nvim_exec(
 		[[
       augroup transparent_signs
-        au!
-        highlight! link SignColumn LineNr
-        autocmd ColorScheme * highlight! link SignColumn LineNr
-        autocmd ColorScheme * highlight! GitSignsAdd guibg=NONE
-        autocmd ColorScheme * highlight! GitSignsChange guibg=NONE
-        autocmd ColorScheme * highlight! GitSignsDelete guibg=NONE
+      au!
+      highlight! link SignColumn LineNr
+      autocmd ColorScheme * highlight! link SignColumn LineNr
+      autocmd ColorScheme * highlight! GitSignsAdd guibg=NONE
+      autocmd ColorScheme * highlight! GitSignsChange guibg=NONE
+      autocmd ColorScheme * highlight! GitSignsDelete guibg=NONE
       augroup END
-    ]],
+      ]],
 		false
 	)
 

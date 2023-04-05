@@ -67,7 +67,7 @@ local cmp_config = lsp.defaults.cmp_config({
 		completion = cmp.config.window.bordered({}),
 		documentation = merge(cmp.config.window.bordered(), {
 			max_height = 15,
-			max_width = 60,
+			max_width = 40,
 		}),
 	},
 	formatting = {
