@@ -1,4 +1,3 @@
--- convert code below using pcall
 local present, colorizer = pcall(require, "nvim-highlight-colors")
 if not present then
 	return
