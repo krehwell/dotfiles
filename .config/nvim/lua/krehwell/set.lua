@@ -76,6 +76,6 @@ vim.opt.compatible = false
 vim.opt.showmode = true
 vim.opt.wildmenu = true
 -- vim.opt.ttimeoutlen = 0
-vim.opt.updatetime = 150
+vim.opt.updatetime = 270
 -- vim.opt.spell = true
 -- vim.opt.spelllang = { 'en_us' }
