@@ -28,27 +28,26 @@
 
 
 " ----- TAB NAMING
-" function! TabLabel(n)
-"   let buflist = tabpagebuflist(a:n)
-"   let winnr = tabpagewinnr(a:n)
-"   let currentBuffPath = bufname(buflist[winnr - 1])
-"   return fnamemodify(currentBuffPath, ":h:t") . "/" . fnamemodify(currentBuffPath, ":t")
-" endfunction
-"
-" function! TabLine()
-"   let s = ''
-"   for i in range(tabpagenr('$'))
-"     if i + 1 == tabpagenr()
-"       let s .= '%#TabLineSel#'
-"     else
-"       let s .= '%#TabLine#'
-"     endif
-"     let s .= ' %{TabLabel(' . (i + 1) . ')} '
-"   endfor
-"   let s .= '%#TabLineFill#%T'
-"   return s
-" endfunction
-" set tabline=%!TabLine()
+set tabline=%!TabLine()
+
+function! TabLine()
+    let line = ''
+    for i in range(tabpagenr('$'))
+        let line .= (i+1 == tabpagenr()) ? '%#TabLineSel#' : '%#TabLine#'
+        let line .= '%' . (i + 1) . 'T'
+        let line .= TabLabel(i + 1) . ' '
+    endfor
+    let line .= '%#TabLineFill#%T'
+    return line
+endfunction
+
+function! TabLabel(n)
+    let panelist = tabpagebuflist(a:n)
+    let filepath = bufname(panelist[0])
+    let dirname = fnamemodify(filepath, ':p:h:t')
+    let filename = fnamemodify(filepath, ':t')
+    return " " . a:n . ':' . dirname . '/' . filename
+endfunction
 
 
 " ----- NOAUTOCOMMENT TO ALL FILES -----
