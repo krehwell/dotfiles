@@ -78,6 +78,9 @@ packer.startup(function(use)
 	use("tpope/vim-repeat")
 	use("windwp/nvim-autopairs") -- for normal enclosing bracket
 	use("mg979/vim-visual-multi")
+
+	-- status/helper
+	use("klen/nvim-config-local") -- load local .nvimrc/.vimrc config
 	use({
 		"lambdalisue/fern.vim",
 		requires = {
@@ -88,12 +91,21 @@ packer.startup(function(use)
 		},
 	})
 	use({ "ojroques/vim-oscyank", branch = "main" })
-	use("klen/nvim-config-local") -- load local .nvimrc/.vimrc config
-
-	-- status/helper
 	use("mbbill/undotree")
 	-- use("nvim-lualine/lualine.nvim")
 	-- use("vimpostor/vim-tpipeline")
+	use({
+		"utilyre/barbecue.nvim",
+		tag = "*",
+		requires = {
+			"SmiteshP/nvim-navic",
+			"nvim-tree/nvim-web-devicons", -- optional dependency
+		},
+		after = "nvim-web-devicons", -- keep this if you're using NvChad
+		-- config = function()
+		-- 	require("barbecue").setup()
+		-- end,
+	})
 
 	-- beauty
 	use("nvim-tree/nvim-web-devicons")

@@ -16,16 +16,17 @@ vim.keymap.set("n", "<esc>", "<esc>:noh<CR><esc>", { silent = true })
 vim.keymap.set("i", "jj", "<c-o>:call search('}\\|)\\|]\\|>\\|\"', 'cW')<cr><Right>")
 
 ----- useful `[[`
-vim.keymap.set("n", "[[", ":?{<CR>w99[{<CR>:noh<CR>", { silent = true })
-vim.keymap.set("n", "][", ":/}<CR>b99]}<CR>:noh<CR>", { silent = true })
-vim.keymap.set("n", "]]", ":j0[[%/{<CR><CR>:noh<CR>", { silent = true })
-vim.keymap.set("n", "[]", ":k$][%?}<CR><CR>:noh<CR>", { silent = true })
+-- vim.keymap.set("n", "[[", ":?{<CR>w99[{<CR>:noh<CR>", { silent = true })
+-- vim.keymap.set("n", "][", ":/}<CR>b99]}<CR>:noh<CR>", { silent = true })
+-- vim.keymap.set("n", "]]", ":j0[[%/{<CR><CR>:noh<CR>", { silent = true })
+-- vim.keymap.set("n", "[]", ":k$][%?}<CR><CR>:noh<CR>", { silent = true })
 
 ----- EDITING
 vim.keymap.set("n", "<M-j>", "ddp")
 vim.keymap.set("n", "<M-k>", "ddkP")
 vim.keymap.set("n", "<localleader>a", "ggVG")
-vim.keymap.set("n", "H", "") -- disable go to top, somehow this is annoying
+vim.keymap.set("v", "H", "") -- disable go to top, somehow this is annoying
+vim.keymap.set("v", "L", "") -- disable go to bottom, somehow this is annoying
 vim.keymap.set("v", "b", "B")
 vim.keymap.set("v", "$", "$<left>")
 vim.keymap.set("v", "w", "e")
