@@ -50,13 +50,3 @@ treesitter.setup({
 	},
 })
 
-local ok_treesitter_context, treesitter_context = pcall(require, "treesitter-context")
-if not ok_treesitter_context then
-	return
-end
-treesitter_context.setup({
-	enable = false, -- -- `TSContextEnable` instead
-	max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
-	trim_scope = "outer", -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
-	min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
-})

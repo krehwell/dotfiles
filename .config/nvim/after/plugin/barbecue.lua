@@ -4,9 +4,7 @@ if not present then
 end
 
 vim.opt.laststatus = 0
-
-vim.keymap.set("n", "[[", ":lua require('barbecue.ui').navigate(-1)<CR>")
-vim.keymap.set("n", "]]", ":lua require('barbecue.ui').navigate(1)<CR>")
+vim.keymap.set("n", "[[", ":lua require('barbecue.ui').navigate(-1)<CR>", { silent = true })
 
 barbecue.setup({
 	create_autocmd = false, -- prevent barbecue from updating itself automatically

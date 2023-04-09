@@ -23,13 +23,11 @@ packer.startup(function(use)
 	-- treesitter
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 	use("nvim-treesitter/nvim-treesitter-refactor")
-	use("nvim-treesitter/nvim-treesitter-context")
 	use("JoosepAlviste/nvim-ts-context-commentstring")
 	use("windwp/nvim-ts-autotag")
 
 	-- lsp related
 	use("jose-elias-alvarez/null-ls.nvim") -- formatter, etc
-	use("zbirenbaum/neodim") -- dim unused var
 	use("folke/neodev.nvim") -- improve sumneko with vim :')
 	use("isomoar/vim-css-to-inline") -- css to jsx inline
 	use("github/copilot.vim")
@@ -78,6 +76,7 @@ packer.startup(function(use)
 	use("tpope/vim-repeat")
 	use("windwp/nvim-autopairs") -- for normal enclosing bracket
 	use("mg979/vim-visual-multi")
+  use("monaqa/dial.nvim")
 
 	-- status/helper
 	use("klen/nvim-config-local") -- load local .nvimrc/.vimrc config
@@ -102,9 +101,6 @@ packer.startup(function(use)
 			"nvim-tree/nvim-web-devicons", -- optional dependency
 		},
 		after = "nvim-web-devicons", -- keep this if you're using NvChad
-		-- config = function()
-		-- 	require("barbecue").setup()
-		-- end,
 	})
 
 	-- beauty
