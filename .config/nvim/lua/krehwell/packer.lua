@@ -79,7 +79,6 @@ packer.startup(function(use)
   use("monaqa/dial.nvim")
 
 	-- status/helper
-	use("klen/nvim-config-local") -- load local .nvimrc/.vimrc config
 	use({
 		"lambdalisue/fern.vim",
 		requires = {
@@ -112,6 +111,7 @@ packer.startup(function(use)
 	-- colorscheme
 	use("brenoprata10/nvim-highlight-colors")
 	use("morhetz/gruvbox")
+  use("archseer/colibri.vim")
 
 	-- automatically set up your configuration after cloning packer.nvim
 	-- must be at bottom most

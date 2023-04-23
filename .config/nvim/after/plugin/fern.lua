@@ -1,5 +1,3 @@
--- vim.g["fern#renderer"] = "nerdfont" -- uncomment this to give icon on fern
-
 vim.api.nvim_exec(
 	[[
     augroup fern-custom
@@ -22,3 +20,5 @@ vim.g["fern#default_hidden"] = 1
 vim.g["fern#renderer"] = "nerdfont"
 -- vim.g["fern#renderer#nerdfont#root_symbol"] = " "
 vim.g["fern#renderer#nerdfont#indent_markers"] = 1
+vim.api.nvim_set_hl(0, "CursorLine", {})
+vim.api.nvim_set_hl(0, "CursorLine", { link = "Visual", default = true })

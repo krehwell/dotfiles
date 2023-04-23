@@ -48,6 +48,7 @@ lsp.configure("tsserver", {
 				"node_modules/@*",
 				"node_modules/**",
 			},
+			importModuleSpecifierPreference = "non-relative", -- always prefer alias import from project relative
 		},
 	},
 	filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
@@ -90,8 +91,11 @@ local cmp_config = lsp.defaults.cmp_config({
 		["<C-j>"] = cmp.mapping.scroll_docs(4),
 		["<C-Space>"] = cmp.mapping.complete({}),
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
+		-- ["<CR>"] = cmp.config.disable,
 		["<C-p>"] = cmp.mapping.select_prev_item(),
 		["<C-n>"] = cmp.mapping.select_next_item(),
+		["<Tab>"] = cmp.config.disable,
+		["<S-Tab>"] = cmp.config.disable,
 	},
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp" },
