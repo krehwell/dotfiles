@@ -22,3 +22,15 @@ vim.g["fern#renderer"] = "nerdfont"
 vim.g["fern#renderer#nerdfont#indent_markers"] = 1
 vim.api.nvim_set_hl(0, "CursorLine", {})
 vim.api.nvim_set_hl(0, "CursorLine", { link = "Visual", default = true })
+
+return {
+	{
+		"lambdalisue/fern.vim",
+		dependencies = {
+			"lambdalisue/fern-git-status.vim",
+			"lambdalisue/nerdfont.vim",
+			"lambdalisue/fern-renderer-nerdfont.vim",
+			"lambdalisue/fern-hijack.vim",
+		},
+	},
+}

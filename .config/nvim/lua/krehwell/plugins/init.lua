@@ -42,20 +42,9 @@ return {
 	{ "numToStr/Comment.nvim" },
 	"tpope/vim-surround",
 	"tpope/vim-repeat",
-	"windwp/nvim-autopairs", -- for normal enclosing bracket("mg979/vim-visual-multi")
 	"monaqa/dial.nvim",
-	{
-		"lambdalisue/fern.vim",
-		dependencies = {
-			"lambdalisue/fern-git-status.vim",
-			"lambdalisue/nerdfont.vim",
-			"lambdalisue/fern-renderer-nerdfont.vim",
-			"lambdalisue/fern-hijack.vim",
-		},
-	},
 	{ "ojroques/vim-oscyank", branch = "main" },
 	"mbbill/undotree",
-	"nvim-tree/nvim-web-devicons",
 	"pbrisbin/vim-colors-off",
 	"folke/todo-comments.nvim",
 	"j-hui/fidget.nvim",
