@@ -1,4 +1,4 @@
-local present, wilder = pcall(require, "wilder")
+local present, wilder = pcall(require, "wilder--")
 if not present then
 	return
 end

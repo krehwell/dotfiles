@@ -14,12 +14,18 @@ lsp.preset({
 -- 	sign_icons = { error = "", warn = "", hint = "H", info = "I" },
 -- })
 
+lsp.set_server_config({
+	on_init = function(client)
+		client.server_capabilities.semanticTokensProvider = nil
+	end,
+})
+
 -- LSP
 lsp.ensure_installed({ "tsserver", "gopls", "cssls", "html", "cssmodules_ls", "jsonls" })
 
 -- individual lsp config: sumneko_lua
 require("neodev").setup({}) -- no need pcall since I really is want this to be installed
-lsp.configure("sumneko_lua", {
+lsp.configure("lua_ls", {
 	settings = {
 		Lua = {
 			diagnostics = {
