@@ -2,7 +2,7 @@ vim.opt.background = "dark"
 vim.opt.termguicolors = true
 vim.api.nvim_exec(
 	[[
-      set t_Co=256
+      " set t_Co=256
   ]],
 	false
 )

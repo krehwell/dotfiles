@@ -67,6 +67,6 @@ window:
         general: Alacritty
         instance: Alacritty
     padding:
-        x: 8
+        x: 5
         y: 0
     title: Alacritty

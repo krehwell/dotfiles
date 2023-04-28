@@ -4,22 +4,20 @@ return {
 	"JoosepAlviste/nvim-ts-context-commentstring",
 	{ "windwp/nvim-ts-autotag", event = "InsertEnter" },
 	"jose-elias-alvarez/null-ls.nvim", -- formatter, etc
-	"folke/neodev.nvim", -- improve sumneko with vim :')
+	{ "folke/neodev.nvim", ft = { "lua", "vim" } }, -- improve sumneko with vim :')
 	{ "isomoar/vim-css-to-inline", event = "InsertEnter" }, -- css to jsx inline
 	{
 		"VonHeikemen/lsp-zero.nvim",
 		branch = "v2.x",
 		dependencies = {
-			-- LSP Support
-			{ "neovim/nvim-lspconfig" }, -- Required
+			{ "neovim/nvim-lspconfig" },
 			{
-				-- Optional
 				"williamboman/mason.nvim",
 				build = function()
 					pcall(vim.cmd, "MasonUpdate")
 				end,
 			},
-			{ "williamboman/mason-lspconfig.nvim" }, -- Optional
+			{ "williamboman/mason-lspconfig.nvim" },
 
 			-- Autocompletion
 			{ "hrsh7th/nvim-cmp" }, -- Required
@@ -35,14 +33,22 @@ return {
 		dependencies = { "nvim-lua/plenary.nvim" },
 	},
 	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make", cond = vim.fn.executable("make") == 1 },
+	{ "tpope/vim-fugitive", event = "VeryLazy" },
 	{ "lewis6991/gitsigns.nvim", event = "CursorMoved" },
-	"tpope/vim-fugitive",
 	{ "tpope/vim-rhubarb", cmd = "GBrowse" },
 	{ "numToStr/Comment.nvim", event = "InsertEnter" },
 	{ "tpope/vim-surround", event = "InsertEnter" },
 	{ "tpope/vim-repeat", event = "InsertEnter" },
-	{ "monaqa/dial.nvim", event = "InsertEnter" },
-	{ "ojroques/vim-oscyank", branch = "main", event = "ModeChanged" },
+	{
+		"ojroques/vim-oscyank",
+		branch = "main",
+		keys = {
+			{ "<C-c>", ":OSCYankVisual<CR>", desc = "Copy to clipboard", mode = "v", silent = true },
+		},
+		init = function()
+			vim.g.oscyank_term = "default"
+		end,
+	},
 	{
 		"mbbill/undotree",
 		lazy = true,
@@ -50,11 +56,38 @@ return {
 			{ "<leader>u", ":UndotreeToggle<CR>:UndotreeFocus<CR>" },
 		},
 	},
-	"folke/todo-comments.nvim",
-	"j-hui/fidget.nvim",
+	{
+		"folke/todo-comments.nvim",
+		event = "VeryLazy",
+		opts = {
+			signs = false,
+			highlight = {
+				multiline = false, -- enable multine todo comments
+			},
+		},
+	},
+	{
+		"j-hui/fidget.nvim",
+		opts = {
+			window = {
+				relative = "win",
+				blend = 0,
+				zindex = nil,
+				border = "none",
+			},
+		},
+	},
 	"gelguy/wilder.nvim",
-	{ "brenoprata10/nvim-highlight-colors", event = "CursorMoved" },
-	{ "pbrisbin/vim-colors-off", priority = 100, lazy = true },
-	{ "morhetz/gruvbox", priority = 100, lazy = true },
-	{ "archseer/colibri.vim", priority = 100, lazy = true },
+	{
+		"brenoprata10/nvim-highlight-colors",
+		event = "CursorMoved",
+		opts = {
+			render = "background", -- or 'foreground' or 'first_column'
+			enable_named_colors = true,
+			enable_tailwind = true,
+		},
+	},
+	{ "pbrisbin/vim-colors-off", priority = 1000, lazy = true },
+	{ "morhetz/gruvbox", priority = 1000, lazy = true, event = "VeryLazy" },
+	{ "archseer/colibri.vim", priority = 1000, lazy = true, event = "VeryLazy" },
 }
