@@ -43,11 +43,9 @@ endfunction
 
 function! TabLabel(n)
     let panelist = tabpagebuflist(a:n)
-    let winnr = tabpagewinnr(a:n)
-    let bufnr = winbufnr(winnr)
-    let bufname = bufname(bufnr)
-    let dirname = fnamemodify(bufname, ':p:h:t')
-    let filename = fnamemodify(bufname, ':t')
+    let filepath = bufname(panelist[0])
+    let dirname = fnamemodify(filepath, ':p:h:t')
+    let filename = fnamemodify(filepath, ':t')
     return " " . a:n . ':' . dirname . '/' . filename
 endfunction
 
