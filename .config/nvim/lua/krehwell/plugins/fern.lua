@@ -11,7 +11,8 @@ vim.api.nvim_exec(
 	false
 )
 
-vim.keymap.set("n", "<Plug>(my-fern-toggle)", ":Fern . -drawer -reveal=% -width=27 -wait<CR>", { silent = true })
+-- vim.keymap.set("n", "<Plug>(my-fern-toggle)", ":Fern . -drawer -reveal=% -width=27 -wait<CR>", { silent = true })
+vim.keymap.set("n", "<Plug>(my-fern-toggle)", ":Fern . -drawer -reveal=% -width=27<CR>", { silent = true })
 vim.keymap.set("n", "<C-b>", "<Plug>(my-fern-toggle)<Plug>(fern-action-zoom:reset)")
 
 -- fern default settings
