@@ -7,6 +7,9 @@ return {
 	"folke/neodev.nvim", -- improve sumneko with vim :')
 	"isomoar/vim-css-to-inline", -- css to jsx inline
 	"github/copilot.vim",
+	{ "hrsh7th/cmp-calc" },
+	{ "hrsh7th/cmp-path" },
+  { "hrsh7th/cmp-nvim-lsp-signature-help" },
 	{
 		"VonHeikemen/lsp-zero.nvim",
 		branch = "v2.x",
