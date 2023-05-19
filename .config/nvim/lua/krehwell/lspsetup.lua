@@ -31,16 +31,11 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<cr>", opts)
 	vim.keymap.set("n", "gy", "<cmd>Telescope lsp_type_definitions<cr>", opts)
 	vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", opts)
-	vim.keymap.set(
-		"n",
-		"K",
-		function()
-			vim.api.nvim_command("set eventignore=CursorHold")
-			vim.lsp.buf.hover()
-			vim.api.nvim_command('autocmd CursorMoved <buffer> ++once set eventignore=""')
-		end,
-		opts
-	)
+	vim.keymap.set("n", "K", function()
+		vim.api.nvim_command("set eventignore=CursorHold")
+		vim.lsp.buf.hover()
+		vim.api.nvim_command('autocmd CursorMoved <buffer> ++once set eventignore=""')
+	end, opts)
 	vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
 	vim.keymap.set("n", "<f2>", vim.lsp.buf.rename, opts)
 	vim.keymap.set("n", "ca", vim.lsp.buf.code_action, opts)

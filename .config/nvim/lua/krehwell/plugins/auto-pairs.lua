@@ -1,8 +1,8 @@
 return {
 	"windwp/nvim-autopairs",
 	cmd = { "ToggleAutopairs" },
-  lazy = true,
-  event = "InsertEnter",
+	lazy = true,
+	event = "InsertEnter",
 	opts = {
 		disable_filetype = { "TelescopePrompt" },
 		disable_in_macro = false, -- disable when recording or executing a macro

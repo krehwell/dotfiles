@@ -55,7 +55,7 @@ telescope.setup({
 			file_ignore_patterns = { "%.png", "%.jpg", "%.jpeg", "%.gif", "%.webp", "%.svg", "%.tsbuildinfo" },
 			layout_config = {
 				width = 162,
-        height = 35,
+				height = 35,
 			},
 		},
 	},
