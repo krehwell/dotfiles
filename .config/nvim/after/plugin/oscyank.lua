@@ -1,2 +1,0 @@
-vim.g.oscyank_term = "default"
-vim.keymap.set("v", "<C-c>", ":OSCYankVisual<CR>")
