@@ -1,5 +1,6 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
+	event = "VeryLazy",
 	dependencies = {
 		{ "windwp/nvim-ts-autotag" }, -- html auto tag
 		{ "nvim-treesitter/nvim-treesitter-refactor" }, -- highlight usages, definition, etc

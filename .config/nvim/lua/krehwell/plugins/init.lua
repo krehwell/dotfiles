@@ -1,7 +1,7 @@
 return {
+	-- LSP
 	"jose-elias-alvarez/null-ls.nvim", -- formatter, etc
 	{ "folke/neodev.nvim", ft = { "lua", "vim" } }, -- improve sumneko with vim :')
-	{ "isomoar/vim-css-to-inline", event = "InsertEnter" }, -- css to jsx inline
 	{
 		"VonHeikemen/lsp-zero.nvim",
 		branch = "v2.x",
@@ -12,25 +12,46 @@ return {
 				build = function()
 					pcall(vim.cmd, "MasonUpdate")
 				end,
+				cmd = "Mason",
 			},
 			{ "williamboman/mason-lspconfig.nvim" },
 
-			-- Autocompletion
-			{ "hrsh7th/nvim-cmp" }, -- Required
-			{ "hrsh7th/cmp-nvim-lsp" }, -- Required
-			{ "L3MON4D3/LuaSnip", event = "InsertEnter" }, -- Required
+			-- AUTOCOMPLETE
+			{
+				"hrsh7th/nvim-cmp",
+				dependencies = {
+					{ "hrsh7th/cmp-calc", event = "InsertEnter" },
+					{ "hrsh7th/cmp-path", event = "InsertEnter" },
+					{ "hrsh7th/cmp-nvim-lsp-signature-help", event = "InsertEnter" },
+					{ "hrsh7th/cmp-nvim-lsp" },
+				},
+			},
+			{ "L3MON4D3/LuaSnip", event = "InsertEnter" },
 		},
 	},
-	"nvim-lua/plenary.nvim",
-	"nvim-lua/popup.nvim",
-	{ "hrsh7th/cmp-calc", event = "InsertEnter" },
-	{ "hrsh7th/cmp-path", event = "InsertEnter" },
-	{ "hrsh7th/cmp-nvim-lsp-signature-help", event = "InsertEnter" },
+
+	-- GIT
 	{ "tpope/vim-fugitive", event = "VeryLazy" },
 	{ "lewis6991/gitsigns.nvim", event = "CursorMoved" },
 	{ "tpope/vim-rhubarb", cmd = "GBrowse" },
-	{ "tpope/vim-surround", event = "InsertEnter" },
-	{ "tpope/vim-repeat", event = "InsertEnter" },
+
+	-- MODIFICATION/NAVIGATIONS
+	{ "isomoar/vim-css-to-inline", event = "CursorMoved" }, -- css to jsx inline
+	{
+		"tpope/vim-surround",
+		keys = {
+			{ "cs", "<Plug>VSurround", desc = "Change surround", mode = "n" },
+			{ "ds", "<Plug>Dsurround", desc = "Delete surround", mode = "n" },
+			{ "ys", "<Plug>Ysurround", desc = "Yank surround", mode = "n" },
+			{ "S", mode = "v" },
+		},
+	},
+	{
+		"tpope/vim-repeat",
+		keys = {
+			{ ".", "<Plug>(repeat-repeat)", desc = "Repeat last command", mode = "n" },
+		},
+	},
 	{
 		"ojroques/vim-oscyank",
 		branch = "main",
@@ -43,16 +64,19 @@ return {
 	},
 	{
 		"mbbill/undotree",
-		lazy = true,
 		keys = {
 			{ "<leader>u", ":UndotreeToggle<CR>:UndotreeFocus<CR>", desc = "Toggle undotree", mode = "n" },
 		},
 	},
 	{
 		"mg979/vim-visual-multi",
-		lazy = true,
-		event = { "VeryLazy", "CursorMoved" },
+		keys = {
+			{ "<C-n>", "<Plug>(VM-Select-Next)", desc = "Select next match", mode = { "n", "v" } },
+			{ "<C-p>", "<Plug>(VM-Select-Previous)", desc = "Select previous match", mode = { "n", "v" } },
+		},
 	},
+
+	-- BEAUTIFY
 	{
 		"folke/todo-comments.nvim",
 		event = { "VeryLazy", "CursorMoved" },
@@ -66,12 +90,7 @@ return {
 	{
 		"j-hui/fidget.nvim",
 		opts = {
-			window = {
-				relative = "win",
-				blend = 0,
-				zindex = nil,
-				border = "none",
-			},
+			window = { relative = "win", blend = 0, zindex = nil, border = "none" },
 		},
 	},
 	{
