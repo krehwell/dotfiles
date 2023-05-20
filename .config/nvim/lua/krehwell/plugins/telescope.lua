@@ -1,10 +1,3 @@
-function FallbackFindFiles()
-	local ok = pcall(require("telescope.builtin").git_files)
-	if not ok then
-		require("telescope.builtin").find_files()
-	end
-end
-
 return {
 	"nvim-telescope/telescope.nvim",
 	tag = "0.1.1",
@@ -23,6 +16,15 @@ return {
 
 		vim.api.nvim_create_user_command("Ls", "Telescope buffers", { nargs = 0, bang = true })
 		vim.api.nvim_create_user_command("LS", "Telescope buffers", { nargs = 0, bang = true })
+
+		function FallbackFindFiles()
+			local ok = pcall(require("telescope.builtin").git_files)
+			if not ok then
+				require("telescope.builtin").find_files()
+			end
+		end
+
+		vim.keymap.set("n", "<C-p>", ":lua FallbackFindFiles()<CR>", { silent = true })
 
 		telescope.setup({
 			defaults = {
@@ -86,12 +88,13 @@ return {
 			},
 		})
 	end,
-	cmd = { "Telescope" },
 	keys = {
-		{ "<C-p>", ":lua FallbackFindFiles()<CR>" },
+		{ "<C-p>", ":lua require('telescope.buildin').find_files", desc = "Find files", silent = true },
 		{
 			"<C-f>",
-			":lua require'telescope.builtin'.grep_string{ shorten_path = true, word_match = \"-w\", only_sort_text = false, search = '' }<CR>",
+			":lua require('telescope.builtin').grep_string{ shorten_path = true, word_match = \"-w\", only_sort_text = false, search = '' }<CR>",
+			desc = "Fuzzy search strings",
+			silent = true,
 		},
 	},
 }

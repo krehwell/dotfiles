@@ -32,12 +32,19 @@ return {
 
 		vim.api.nvim_exec(
 			[[
+        function! s:init_fern() abort
+          setlocal nonu norelativenumber
+        endfunction
+
         augroup fern-custom
           autocmd! *
           autocmd BufWritePost * call feedkeys("\<Plug>(fern-action-redraw)")
-          autocmd FileType fern setlocal nonu norelativenumber
-          " Only close fern while on fern
           autocmd FileType fern nnoremap <buffer> <C-b> :q<cr>
+          autocmd FileType fern call s:init_fern()
+
+          " I don't want wilder on 'fern' due to the highlight is bad
+          autocmd WinEnter * if &ft == "fern" | try | call wilder#disable() | catch | endtry | endif
+          autocmd WinLeave * if &ft == "fern" | try | call wilder#enable() | catch | endtry | endif
         augroup END
       ]],
 			false

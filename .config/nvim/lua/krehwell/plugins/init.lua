@@ -48,9 +48,7 @@ return {
 	},
 	{
 		"tpope/vim-repeat",
-		keys = {
-			{ ".", "<Plug>(repeat-repeat)", desc = "Repeat last command", mode = "n" },
-		},
+		keys = { { "." } },
 	},
 	{
 		"ojroques/vim-oscyank",
