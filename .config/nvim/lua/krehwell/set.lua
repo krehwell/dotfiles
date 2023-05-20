@@ -1,18 +1,3 @@
-	-- "gelguy/wilder.nvim",
-	-- dependencies = "romgrk/fzy-lua-native",
-	-- build = ":UpdateRemotePlugins",
-		-- wilder.set_option("use_python_remote_plugin", 0)
-		--
-		-- wilder.set_option("pipeline", {
-		-- 	wilder.branch(
-		-- 		wilder.cmdline_pipeline({
-		-- 			fuzzy = 1,
-		-- 			fuzzy_filter = wilder.lua_fzy_filter(),
-		-- 		}),
-		-- 		wilder.vim_search_pipeline()
-		-- 	),
-		-- })
-
 vim.g.user = {
 	event = "UserGroup",
 }

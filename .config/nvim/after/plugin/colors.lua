@@ -37,7 +37,7 @@ function ColorMyPencils(color)
       hi VertSplit guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
       hi Normal guibg=NONE ctermbg=NONE
       " hi Pmenu guibg=#NONE
-      " hi PmenuSel guifg=#ffffff
+      hi PmenuSel guifg=#ffffff
       hi clear Todo
       ]],
     false

@@ -26,17 +26,6 @@ return {
 	{ "hrsh7th/cmp-calc", event = "InsertEnter" },
 	{ "hrsh7th/cmp-path", event = "InsertEnter" },
 	{ "hrsh7th/cmp-nvim-lsp-signature-help", event = "InsertEnter" },
-	{
-		"nvim-telescope/telescope.nvim",
-		tag = "0.1.1",
-		dependencies = { "nvim-lua/plenary.nvim" },
-	},
-	{
-		"nvim-telescope/telescope-fzf-native.nvim",
-		build = "make",
-		cond = vim.fn.executable("make") == 1,
-		event = "VeryLazy",
-	},
 	{ "tpope/vim-fugitive", event = "VeryLazy" },
 	{ "lewis6991/gitsigns.nvim", event = "CursorMoved" },
 	{ "tpope/vim-rhubarb", cmd = "GBrowse" },
