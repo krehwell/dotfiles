@@ -70,7 +70,6 @@ return {
 		"mg979/vim-visual-multi",
 		keys = {
 			{ "<C-n>", "<Plug>(VM-Select-Next)", desc = "Select next match", mode = { "n", "v" } },
-			{ "<C-p>", "<Plug>(VM-Select-Previous)", desc = "Select previous match", mode = { "n", "v" } },
 		},
 	},
 

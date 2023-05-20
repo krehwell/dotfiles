@@ -88,8 +88,9 @@ return {
 			},
 		})
 	end,
+	cmd = { "Telescope" },
 	keys = {
-		{ "<C-p>", ":lua require('telescope.buildin').find_files", desc = "Find files", silent = true },
+		{ "<C-p>", ":lua FallbackFindFiles()", desc = "Find files", silent = true },
 		{
 			"<C-f>",
 			":lua require('telescope.builtin').grep_string{ shorten_path = true, word_match = \"-w\", only_sort_text = false, search = '' }<CR>",
