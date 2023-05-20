@@ -44,7 +44,6 @@ return {
 	{ "tpope/vim-fugitive", event = "VeryLazy" },
 	{ "lewis6991/gitsigns.nvim", event = "CursorMoved" },
 	{ "tpope/vim-rhubarb", cmd = "GBrowse" },
-	{ "numToStr/Comment.nvim", event = "InsertEnter" },
 	{ "tpope/vim-surround", event = "InsertEnter" },
 	{ "tpope/vim-repeat", event = "InsertEnter" },
 	{
