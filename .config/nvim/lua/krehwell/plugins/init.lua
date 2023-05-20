@@ -22,7 +22,7 @@ return {
 			-- Autocompletion
 			{ "hrsh7th/nvim-cmp" }, -- Required
 			{ "hrsh7th/cmp-nvim-lsp" }, -- Required
-			{ "L3MON4D3/LuaSnip" }, -- Required
+			{ "L3MON4D3/LuaSnip", event = "InsertEnter" }, -- Required
 		},
 	},
 	"nvim-lua/plenary.nvim",
@@ -35,7 +35,12 @@ return {
 		tag = "0.1.1",
 		dependencies = { "nvim-lua/plenary.nvim" },
 	},
-	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make", cond = vim.fn.executable("make") == 1 },
+	{
+		"nvim-telescope/telescope-fzf-native.nvim",
+		build = "make",
+		cond = vim.fn.executable("make") == 1,
+		event = "VeryLazy",
+	},
 	{ "tpope/vim-fugitive", event = "VeryLazy" },
 	{ "lewis6991/gitsigns.nvim", event = "CursorMoved" },
 	{ "tpope/vim-rhubarb", cmd = "GBrowse" },
