@@ -8,8 +8,18 @@ return {
 	},
 	lazy = true,
 	keys = {
-		{ "<Plug>(my-fern-toggle)", ":Fern . -drawer -reveal=% -width=27 -wait<CR>", silent = true },
-		{ "<C-b>", "<Plug>(my-fern-toggle)<Plug>(fern-action-zoom:reset)", silent = true },
+		{
+			"<Plug>(my-fern-toggle)",
+			":Fern . -drawer -reveal=% -width=27 -wait<CR>",
+			silent = true,
+			desc = "fern toggler func",
+		},
+		{
+			"<C-b>",
+			"<Plug>(my-fern-toggle)<Plug>(fern-action-zoom:reset)",
+			silent = true,
+			desc = "Toggle drawer",
+		},
 	},
 	init = function()
 		vim.g["fern#hide_cursor"] = 0

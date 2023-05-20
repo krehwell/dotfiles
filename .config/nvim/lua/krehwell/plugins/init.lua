@@ -1,8 +1,4 @@
 return {
-	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
-	{ "nvim-treesitter/nvim-treesitter-refactor", event = "VeryLazy" },
-	{ "JoosepAlviste/nvim-ts-context-commentstring", event = "VeryLazy" },
-	{ "windwp/nvim-ts-autotag", event = "InsertEnter" },
 	"jose-elias-alvarez/null-ls.nvim", -- formatter, etc
 	{ "folke/neodev.nvim", ft = { "lua", "vim" } }, -- improve sumneko with vim :')
 	{ "isomoar/vim-css-to-inline", event = "InsertEnter" }, -- css to jsx inline
@@ -60,7 +56,7 @@ return {
 		"mbbill/undotree",
 		lazy = true,
 		keys = {
-			{ "<leader>u", ":UndotreeToggle<CR>:UndotreeFocus<CR>" },
+			{ "<leader>u", ":UndotreeToggle<CR>:UndotreeFocus<CR>", desc = "Toggle undotree", mode = "n" },
 		},
 	},
 	{

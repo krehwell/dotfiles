@@ -1,10 +1,10 @@
 return {
 	"gelguy/wilder.nvim",
 	dependencies = "romgrk/fzy-lua-native",
-	enabled = true,
+	enabled = false,
 	keys = {
-		{ "/" },
-		{ "?" },
+		{ "/", desc = "Find next with wilder.nvim" },
+		{ "?", desc = "Find previous with wilder.nvim" },
 	},
 	config = function()
 		local wilder = require("wilder")

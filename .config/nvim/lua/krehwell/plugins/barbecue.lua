@@ -9,7 +9,7 @@ return {
 	},
 	event = "CursorMoved",
 	keys = {
-		{ "[[", ":lua require('barbecue.ui').navigate(-1)<CR>", desc = "jump to parent function", silent = true },
+		{ "[[", ":lua require('barbecue.ui').navigate(-1)<CR>", desc = "Jump to parent function", silent = true },
 	},
 	opts = {
 		-- create_autocmd = false,

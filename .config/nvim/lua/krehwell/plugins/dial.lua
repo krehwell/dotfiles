@@ -3,11 +3,10 @@ return {
 	lazy = true,
 	module = true,
 	keys = function()
-		-- Create custom mappings
 		local dial = require("dial.map")
 		return {
-			{ "<C-a>", dial.inc_normal() },
-			{ "<C-x>", dial.dec_normal() },
+			{ "<C-a>", dial.inc_normal(), desc = "Increment" },
+			{ "<C-x>", dial.dec_normal(), desc = "Decrement" },
 			{ "g<C-a>", dial.inc_gnormal() },
 			{ "f<C-x>", dial.dec_gnormal() },
 			{ "<C-a>", dial.inc_visual(), mode = "v" },
