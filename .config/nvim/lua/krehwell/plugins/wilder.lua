@@ -1,28 +1,23 @@
 return {
 	"gelguy/wilder.nvim",
-	dependencies = { "roxma/nvim-yarp", "roxma/vim-hug-neovim-rpc" },
-	enabled = false,
+	dependencies = "romgrk/fzy-lua-native",
+	enabled = true,
 	keys = {
 		{ "/" },
+		{ "?" },
 	},
 	config = function()
 		local wilder = require("wilder")
 
-		-- wilder.set_option("pipeline", {
-		-- 	wilder.branch(
-		-- 		wilder.cmdline_pipeline({
-		-- 			language = "python",
-		-- 			fuzzy = 2, -- 2 partial fuzzy matching (match does not have to begin with the same first letter)
-		-- 		}),
-		-- 		wilder.python_search_pipeline({
-		-- 			-- can be set to wilder#python_fuzzy_delimiter_pattern() for stricter fuzzy matching
-		-- 			pattern = wilder.python_fuzzy_pattern(),
-		-- 			-- omit to get results in the order they appear in the buffer
-		-- 			sorter = wilder.python_difflib_sorter(),
-		-- 			engine = "re",
-		-- 		})
-		-- 	),
-		-- })
+		wilder.set_option("pipeline", {
+			wilder.branch(
+				wilder.cmdline_pipeline({
+					fuzzy = 2,
+					fuzzy_filter = wilder.lua_fzy_filter(),
+				}),
+				wilder.vim_search_pipeline()
+			),
+		})
 
 		wilder.set_option(
 			"renderer",

@@ -36,7 +36,7 @@ return {
     { "gbc", mode = "n" },
     { "gco", mode = "n" },
     { "gcO", mode = "n" },
-    { "gc",  mode = "n" },
-    { "gb",  mode = "n" },
+    { "gc",  mode = { "n", "v" } },
+    { "gb",  mode = { "n", "v" } },
   },
 }
