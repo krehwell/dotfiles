@@ -1,3 +1,15 @@
+function ToggleWilder(enable)
+	if vim.bo.filetype == "fern" or vim.bo.filetype == "lazy" or vim.bo.filetype == "mason" then
+		pcall(function()
+			if enable then
+				vim.cmd("call wilder#enable()")
+			else
+				vim.cmd("call wilder#disable()")
+			end
+		end)
+	end
+end
+
 return {
 	"gelguy/wilder.nvim",
 	dependencies = "romgrk/fzy-lua-native",
@@ -6,6 +18,19 @@ return {
 		{ "/", desc = "Find next with wilder.nvim" },
 		{ "?", desc = "Find previous with wilder.nvim" },
 	},
+	init = function()
+		vim.api.nvim_exec(
+			[[
+        " I don't want wilder on 'fern', 'mason', and 'lazy' popup due to the highlight is bad
+        augroup custom-wilder-behavior
+          autocmd! *
+          autocmd BufEnter,WinEnter * lua ToggleWilder(false)
+          autocmd BufLeave,WinLeave * lua ToggleWilder(true)
+        augroup END
+      ]],
+			false
+		)
+	end,
 	config = function()
 		local wilder = require("wilder")
 

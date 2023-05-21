@@ -41,11 +41,7 @@ return {
           autocmd BufWritePost * call feedkeys("\<Plug>(fern-action-redraw)")
           autocmd FileType fern nnoremap <buffer> <C-b> :q<cr>
           autocmd FileType fern call s:init_fern()
-
-          " I don't want wilder on 'fern' due to the highlight is bad
-          autocmd BufEnter,WinEnter * if &ft == "fern" | try | call wilder#disable() | catch | endtry | endif
-          autocmd BufLeave,WinLeave * if &ft == "fern" | try | call wilder#enable() | catch | endtry | endif
-        augroup END
+        augroup end
       ]],
 			false
 		)
