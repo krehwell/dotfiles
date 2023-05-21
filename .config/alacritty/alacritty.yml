@@ -59,6 +59,9 @@ key_bindings:
   - action: Copy
     key: Copy
   - { key: Key6, mods: Control, chars: "\x1e" }
+  - { key: L, mods: Alt, chars: "\x1bl" }
+  - { key: LBracket, mods: Alt, chars: "\x1b[" }
+  - { key: RBracket, mods: Alt, chars: "\x1b]" }
 scrolling:
   history: 1000
 shell:

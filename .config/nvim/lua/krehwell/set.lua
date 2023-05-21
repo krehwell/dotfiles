@@ -54,8 +54,8 @@ vim.opt.title = true
 vim.opt.wrap = false
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.scrolloff = 5
-vim.opt.sidescrolloff = 15
+vim.opt.scrolloff = 8
+vim.opt.sidescrolloff = 18
 vim.opt.virtualedit = "block"
 -- vim.opt.jumpoptions:append("view")
 -- vim.opt.virtualedit = "block"
