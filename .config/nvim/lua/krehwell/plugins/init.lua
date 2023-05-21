@@ -18,20 +18,6 @@ return {
     },
   },
 
-  -- AUTOCOMPLETE
-  -- {
-  --   "hrsh7th/nvim-cmp",
-  --   dependencies = {
-  --     { "hrsh7th/cmp-calc" },
-  --     { "hrsh7th/cmp-path" },
-  --     { "hrsh7th/cmp-nvim-lsp-signature-help" },
-  --     { "hrsh7th/cmp-nvim-lsp" },
-  --     { "L3MON4D3/LuaSnip" },
-  --     { "saadparwaiz1/cmp_luasnip" },
-  --   },
-  -- },
-  -- { "rafamadriz/friendly-snippets" },
-
   -- GIT
   { "tpope/vim-fugitive",           event = "VeryLazy" },
   { "lewis6991/gitsigns.nvim",      event = "CursorMoved" },
