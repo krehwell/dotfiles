@@ -21,7 +21,7 @@ return {
   -- GIT
   { "tpope/vim-fugitive",        event = "VeryLazy" },
   { "lewis6991/gitsigns.nvim",   event = "CursorMoved" },
-  { "tpope/vim-rhubarb",         cmd = "GBrowse" },
+  { "tpope/vim-rhubarb",         event = "CursorMoved" },
 
   -- CODE EDITING/NAVIGATIONS
   { "isomoar/vim-css-to-inline", event = "CursorMoved" }, -- css to jsx inline
@@ -88,6 +88,8 @@ return {
     },
   },
   { "pbrisbin/vim-colors-off", priority = 1000, lazy = true },
-  { "morhetz/gruvbox",         priority = 1000, lazy = true, event = "VeryLazy" },
-  { "archseer/colibri.vim",    priority = 1000, lazy = true, event = "VeryLazy" },
+  { "morhetz/gruvbox",         priority = 1000, lazy = true },
+  { "archseer/colibri.vim",    priority = 1000, lazy = true },
+  { "fxn/vim-monochrome",      priority = 1000, lazy = true },
+  { "jaredgorski/Mies.vim",    priority = 1000, lazy = true },
 }

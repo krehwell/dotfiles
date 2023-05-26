@@ -7,7 +7,10 @@ null_ls.setup({
 	debug = false,
 	sources = {
 		-- COMMON
-		null_ls.builtins.formatting.stylua.with({ }),
+		null_ls.builtins.formatting.stylua.with({
+			indent_type = "Spaces",
+			collapse_simple_statement = "Always",
+		}),
 		null_ls.builtins.code_actions.gitsigns,
 
 		-- DOCKER

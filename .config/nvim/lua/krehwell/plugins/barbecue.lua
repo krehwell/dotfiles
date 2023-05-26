@@ -56,7 +56,7 @@ return {
       TypeParameter = "⚙️",
     },
   },
-  init = function()
+  config = function(_, opts)
     vim.opt.laststatus = 0
     vim.api.nvim_create_autocmd({
       "WinScrolled",
@@ -73,5 +73,8 @@ return {
         require("barbecue.ui").update()
       end,
     })
+
+    local barbecue = require("barbecue")
+    barbecue.setup(opts)
   end,
 }

@@ -3,13 +3,12 @@ return {
 	dependencies = {
 		{ "hrsh7th/cmp-calc" },
 		{ "hrsh7th/cmp-path" },
-		{ "hrsh7th/cmp-nvim-lsp-signature-help" },
+		-- { "hrsh7th/cmp-nvim-lsp-signature-help" },
 		{ "hrsh7th/cmp-nvim-lsp" },
 		{ "L3MON4D3/LuaSnip" },
 		{ "saadparwaiz1/cmp_luasnip" },
 		{ "rafamadriz/friendly-snippets" },
 	},
-	event = { "InsertEnter" },
 	opts = function()
 		local cmp = require("cmp")
 		local merge = function(a, b)
@@ -71,9 +70,9 @@ return {
 			},
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
-				{ name = "nvim_lsp_signature_help" },
 				{ name = "nvim_lua" },
 				{ name = "luasnip" },
+				-- { name = "nvim_lsp_signature_help" },
 				{ name = "path" },
 				{ name = "calc" },
 				-- { name = "spell" },
