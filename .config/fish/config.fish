@@ -1,6 +1,6 @@
 # ----- BEHAVIOUR -----
 alias :q='exit'
-alias sex='bash -c \'explorer.exe . || nautilus . &\''
+alias sex='bash -c \'(open . || explorer.exe . || nautilus .) &\''
 alias cmd=cmd.exe
 alias vim=nvim
 alias pacman='sudo pacman'
