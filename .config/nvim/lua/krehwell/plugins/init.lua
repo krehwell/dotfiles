@@ -1,6 +1,6 @@
 return {
   -- LSP
-  "jose-elias-alvarez/null-ls.nvim",             -- formatter, etc
+  "jose-elias-alvarez/null-ls.nvim",                      -- formatter, etc
   { "folke/neodev.nvim",         ft = { "lua", "vim" } }, -- improve lua with vim :')
   {
     "VonHeikemen/lsp-zero.nvim",
