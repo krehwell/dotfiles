@@ -88,7 +88,7 @@ return {
 			},
 		})
 	end,
-	cmd = { "Telescope" },
+	cmd = { "Telescope", "Ls", "LS" },
 	keys = {
 		{ "<C-p>", ":lua FallbackFindFiles()", desc = "Find files", silent = true },
 		{

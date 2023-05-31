@@ -71,7 +71,7 @@ vim.opt.shortmess:append({ f = true }) -- aka `shortmess+=f`
 
 -- etc
 -- vim.opt.hidden = true
--- vim.opt.guicursor = ""
+vim.opt.guicursor = ""
 vim.opt.termguicolors = true
 vim.opt.buflisted = false
 vim.opt.compatible = false
