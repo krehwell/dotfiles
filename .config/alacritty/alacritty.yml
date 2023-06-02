@@ -58,12 +58,12 @@ key_bindings:
     key: Paste
   - action: Copy
     key: Copy
-  - { key: Key6,     mods: Control, chars: "\x1e" }
-  - { key: L,        mods: Alt,     chars: "\x1bl" }
-  - { key: LBracket, mods: Alt,     chars: "\x1b[" }
-  - { key: RBracket, mods: Alt,     chars: "\x1b]" }
-  - { key: RBracket, mods: Alt,     chars: "\x1b]" }
-  - { key: Q,        mods: Alt,     chars: "\x1bq" }
+  - { key: Key6, mods: Control, chars: "\x1e" }
+  - { key: L, mods: Alt, chars: "\x1bl" }
+  - { key: LBracket, mods: Alt, chars: "\x1b[" }
+  - { key: RBracket, mods: Alt, chars: "\x1b]" }
+  - { key: RBracket, mods: Alt, chars: "\x1b]" }
+  - { key: Q, mods: Alt, chars: "\x1bq" }
   # - { key: A,         mods: Alt,       chars: "\x1ba"                       }
   # - { key: B,         mods: Alt,       chars: "\x1bb"                       }
   # - { key: C,         mods: Alt,       chars: "\x1bc"                       }
@@ -150,6 +150,6 @@ window:
     general: Alacritty
     instance: Alacritty
   padding:
-    x: 8
+    x: 0
     y: 0
   title: Alacritty
