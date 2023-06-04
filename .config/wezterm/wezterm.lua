@@ -18,10 +18,12 @@ local config = {
 
 	hide_tab_bar_if_only_one_tab = true,
 	-- exit_behavior = "CloseOnCleanExit",
-  native_macos_fullscreen_mode = true,
+	native_macos_fullscreen_mode = true,
 
 	window_padding = { left = 0, right = 0, top = 0, bottom = 0 },
 	window_close_confirmation = "NeverPrompt",
+	initial_rows = 40,
+	initial_cols = 110,
 
 	keys = {
 		{
@@ -31,7 +33,7 @@ local config = {
 		},
 	},
 
-  cursor_blink_rate = 500,
+	cursor_blink_rate = 500,
 }
 
 return config
