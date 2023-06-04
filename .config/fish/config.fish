@@ -1,5 +1,6 @@
 if status is-interactive
 	fish_vi_key_bindings
+    set fish_greeting
 
     alias :q='exit'
     alias sex='bash -c \'(open . || explorer.exe . || nautilus .) &\''
