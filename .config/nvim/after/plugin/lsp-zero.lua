@@ -24,7 +24,15 @@ lsp.ensure_installed({ "tsserver", "gopls", "cssls", "html", "cssmodules_ls", "j
 
 -- individual lsp config: luv
 require("neodev").setup({})
-require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())
+require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls({
+	settings = {
+		Lua = {
+			diagnostics = {
+				globals = { "vim" },
+			},
+		},
+	},
+}))
 
 -- individual lsp config: tsserver
 lsp.configure("tsserver", {

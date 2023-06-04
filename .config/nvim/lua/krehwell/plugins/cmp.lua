@@ -72,6 +72,7 @@ return {
 				{ name = "nvim_lsp" },
 				{ name = "nvim_lua" },
 				{ name = "luasnip" },
+        { name = "buffer" },
 				-- { name = "nvim_lsp_signature_help" },
 				{ name = "path" },
 				{ name = "calc" },
