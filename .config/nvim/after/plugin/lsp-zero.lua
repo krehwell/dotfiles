@@ -44,8 +44,8 @@ lsp.configure("tsserver", {
 		hostInfo = "neovim",
 		preferences = {
 			autoImportFileExcludePatterns = {
-				"node_modules/@*",
-				"node_modules/**",
+				-- "node_modules/@*",
+				-- "node_modules/**",
 			},
 			importModuleSpecifierPreference = "non-relative", -- always prefer alias import from project relative
 		},

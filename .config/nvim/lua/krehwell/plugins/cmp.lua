@@ -8,6 +8,7 @@ return {
 		{ "L3MON4D3/LuaSnip" },
 		{ "saadparwaiz1/cmp_luasnip" },
 		{ "rafamadriz/friendly-snippets" },
+		{ "hrsh7th/cmp-buffer" },
 	},
 	opts = function()
 		local cmp = require("cmp")
@@ -72,7 +73,6 @@ return {
 				{ name = "nvim_lsp" },
 				{ name = "nvim_lua" },
 				{ name = "luasnip" },
-        { name = "buffer" },
 				-- { name = "nvim_lsp_signature_help" },
 				{ name = "path" },
 				{ name = "calc" },
