@@ -11,12 +11,14 @@ return {
 	},
 	opts = function()
 		require("telescope").load_extension("fzf")
-		local actions = require("telescope.actions")
-		local telescope = require("telescope")
+
+		local telescope, builtin, actions =
+			require("telescope"), require("telescope.builtin"), require("telescope.actions")
 
 		vim.api.nvim_create_user_command("Ls", "Telescope buffers", { nargs = 0, bang = true })
 		vim.api.nvim_create_user_command("LS", "Telescope buffers", { nargs = 0, bang = true })
 
+		-- to to project file with `git_files` or fallback to `find_files`
 		function FallbackFindFiles()
 			local ok = pcall(require("telescope.builtin").git_files)
 			if not ok then
@@ -24,7 +26,17 @@ return {
 			end
 		end
 
+		function FuzzyFindFiles()
+			builtin.grep_string({
+				path_display = { "smart" },
+				only_sort_text = true,
+				word_match = "-w",
+				search = "",
+			})
+		end
+
 		vim.keymap.set("n", "<C-p>", ":lua FallbackFindFiles()<CR>", { silent = true })
+		vim.keymap.set("n", "<C-f>", "<cmd>lua FuzzyFindFiles{}<cr>", { silent = true })
 
 		telescope.setup({
 			defaults = {
@@ -91,11 +103,6 @@ return {
 	cmd = { "Telescope", "Ls", "LS" },
 	keys = {
 		{ "<C-p>", ":lua FallbackFindFiles()", desc = "Find files", silent = true },
-		{
-			"<C-f>",
-			":lua require('telescope.builtin').grep_string{ shorten_path = true, word_match = \"-w\", only_sort_text = false, search = '' }<CR>",
-			desc = "Fuzzy search strings",
-			silent = true,
-		},
+		{ "<C-f>", "<cmd>lua FuzzyFindFiles{}<cr>", desc = "Fuzzy search strings", silent = true },
 	},
 }
