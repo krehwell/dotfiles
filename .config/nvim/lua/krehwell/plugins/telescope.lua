@@ -102,7 +102,8 @@ return {
 	end,
 	cmd = { "Telescope", "Ls", "LS" },
 	keys = {
-		{ "<C-p>", ":lua FallbackFindFiles()", desc = "Find files", silent = true },
+		{ "<C-p>", ":lua FallbackFindFiles()<CR>", desc = "Find files", silent = true },
 		{ "<C-f>", "<cmd>lua FuzzyFindFiles{}<cr>", desc = "Fuzzy search strings", silent = true },
+		{ "<leader>p", ":lua require(\"telescope.builtin\").find_files()<CR>", desc = "Project find files", silent = true },
 	},
 }

@@ -31,6 +31,12 @@ local config = {
 			mods = "CTRL|CMD",
 			action = wezterm.action.ToggleFullScreen,
 		},
+		-- disable CTRL + SHIFT + P
+		{
+			key = "P",
+			mods = "CTRL|SHIFT",
+			action = "DisableDefaultAssignment",
+		},
 	},
 
 	cursor_blink_rate = 500,

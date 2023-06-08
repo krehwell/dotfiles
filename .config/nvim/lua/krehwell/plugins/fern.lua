@@ -27,8 +27,8 @@ return {
 		-- vim.g["fern#renderer"] = "nerdfont"
 		-- vim.g["fern#renderer#nerdfont#root_symbol"] = " "
 		vim.g["fern#renderer#nerdfont#indent_markers"] = 1
-		vim.api.nvim_set_hl(0, "CursorLine", {})
-		vim.api.nvim_set_hl(0, "CursorLine", { link = "Visual", default = true })
+		-- vim.api.nvim_set_hl(0, "CursorLine", {})
+		-- vim.api.nvim_set_hl(0, "CursorLine", { link = "Visual", default = true })
 
 		vim.api.nvim_exec(
 			[[
