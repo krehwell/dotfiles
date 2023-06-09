@@ -11,7 +11,7 @@ lsp.preset({
   manage_nvim_cmp = false,
 })
 -- lsp.set_sign_icons({ error = "✘", warn = "▲", hint = "⚑", info = "»" })
-lsp.set_sign_icons({ error = "»", warn = "»", hint = "⚑", info = "»" })
+lsp.set_sign_icons({ error = "", warn = "", hint = "H", info = "I" })
 
 lsp.set_server_config({
   on_init = function(client)

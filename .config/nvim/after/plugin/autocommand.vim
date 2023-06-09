@@ -44,13 +44,14 @@ endfunction
 function! TabLabel(n)
     let wincount = tabpagewinnr(a:n, '$')
     let winnr = tabpagewinnr(a:n)
+
     let bufnr = tabpagebuflist(a:n)[winnr - 1]
     let bufname = bufname(bufnr)
     let bufmodified = getbufvar(bufnr, '&mod') == 1 ? '+' : ''
     let dirname = fnamemodify(bufname, ':p:h:t')
     let filename = fnamemodify(bufname, ':t')
     let window_info = wincount > 1 ? '['.wincount.']' : ''
-    return ' ' . a:n . ':' . filename . window_info . bufmodified
+    return ' ' . a:n . ':' . dirname . '/' . filename . window_info . bufmodified
 endfunction
 
 
