@@ -1,11 +1,5 @@
 vim.opt.background = "dark"
 vim.opt.termguicolors = true
-vim.api.nvim_exec(
-  [[
-      " set t_Co=256
-  ]],
-  false
-)
 vim.opt.fillchars = {
   vert = "┆", -- alternatives │
   fold = " ",
@@ -27,14 +21,24 @@ if not present then
   return print("colorscheme " .. colorscheme .. " not found!")
 end
 
+-- save local wazeterm color
+vim.api.nvim_exec(
+  [[
+    if exists('g:wezterm')
+      let g:term_foreground = get(g:wezterm, 'colors', {}).foreground
+      let g:term_background = get(g:wezterm, 'colors', {}).background
+    endif
+  ]],
+  false
+)
+
 if colorscheme == "off" then
   vim.api.nvim_exec(
     [[
-        augroup transparent_signs
+        augroup custom_off_highlight
           au!
-          hi! Normal guibg=NONE guifg=#F1F1F1 ctermbg=NONE
+          hi! Normal guibg=g:term_background guifg=g:term_foreground ctermbg=NONE
           hi! VertSplit guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
-          hi! LineNR ctermfg=242 ctermbg=235 guifg=#6b6b6b
           hi! SignColumn guibg=NONE
           " hi! Pmenu guibg=#NONE
           hi! PmenuSel guifg=#ffffff
@@ -50,7 +54,7 @@ if colorscheme == "fogbell" then
     [[
         augroup transparent_signs
           au!
-          hi! Normal guibg=NONE ctermbg=NONE
+          hi! Normal guibg=term_background
           hi! VertSplit guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
           hi! SignColumn guibg=NONE
           hi! LineNr guibg=NONE
