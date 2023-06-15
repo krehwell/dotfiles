@@ -74,6 +74,7 @@ return {
 	},
 	{
 		"j-hui/fidget.nvim",
+    tag = "legacy",
 		opts = {
 			window = { relative = "win", blend = 0, zindex = nil, border = "none" },
 		},
