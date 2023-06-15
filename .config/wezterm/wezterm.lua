@@ -11,7 +11,7 @@ local config = {
 
 	colors = {
 		background = "#161B1A",
-		foreground = "#BBB8BB", -- #B8BBBB, #A1AFA1, #F1F1F1, #A1AFAF, #BBB8BB
+		foreground = "#B8BBBB", -- #B8BBBB, #A1AFA1, #F1F1F1, #A1AFAF, #BBB8BB
 		cursor_bg = "#c6c6c6",
 		cursor_fg = "#161B1A",
 	},

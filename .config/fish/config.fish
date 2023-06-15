@@ -7,4 +7,9 @@ if status is-interactive
     alias vim=nvim
     alias tmux='tmux -2'
     alias txxx='tmux kill-server'
+
+    function postexec_test --on-event fish_postexec
+        echo
+    end
 end
+

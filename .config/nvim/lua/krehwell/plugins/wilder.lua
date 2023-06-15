@@ -14,6 +14,7 @@ return {
 	"gelguy/wilder.nvim",
 	dependencies = "romgrk/fzy-lua-native",
 	enabled = true,
+	ft = { "fern", "mason", "lazy" },
 	keys = {
 		{ "/", desc = "Find next with wilder.nvim" },
 		{ "?", desc = "Find previous with wilder.nvim" },

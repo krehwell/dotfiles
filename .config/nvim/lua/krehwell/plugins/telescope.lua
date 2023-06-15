@@ -26,17 +26,7 @@ return {
 			end
 		end
 
-		function FuzzyFindFiles()
-			builtin.grep_string({
-				path_display = { "smart" },
-				only_sort_text = true,
-				word_match = "-w",
-				search = "",
-			})
-		end
-
 		vim.keymap.set("n", "<C-p>", ":lua FallbackFindFiles()<CR>", { silent = true })
-		vim.keymap.set("n", "<C-f>", "<cmd>lua FuzzyFindFiles{}<cr>", { silent = true })
 
 		telescope.setup({
 			defaults = {
@@ -103,7 +93,12 @@ return {
 	cmd = { "Telescope", "Ls", "LS" },
 	keys = {
 		{ "<C-p>", ":lua FallbackFindFiles()<CR>", desc = "Find files", silent = true },
-		{ "<C-f>", "<cmd>lua FuzzyFindFiles{}<cr>", desc = "Fuzzy search strings", silent = true },
+		{
+			"<C-f>",
+			":lua require('telescope.builtin').grep_string{ shorten_path = true, word_match = \"-w\", only_sort_text = false, search = '' }<CR>",
+			desc = "Fuzzy search strings",
+			silent = true,
+		},
 		{ "<leader>p", ":lua require(\"telescope.builtin\").find_files()<CR>", desc = "Project find files", silent = true },
 	},
 }
