@@ -1,14 +1,14 @@
 vim.opt.background = "dark"
 vim.opt.termguicolors = true
 vim.opt.fillchars = {
-  vert = "┆", -- alternatives │
-  fold = " ",
-  eob = "~", -- suppress ~ at EndOfBuffer
-  diff = "╱", -- alternatives = ⣿ ░ ─
-  msgsep = "‾",
-  foldopen = "▾",
-  foldsep = "│",
-  foldclose = "▸",
+	vert = "┆", -- alternatives │
+	fold = " ",
+	eob = "~", -- suppress ~ at EndOfBuffer
+	diff = "╱", -- alternatives = ⣿ ░ ─
+	msgsep = "‾",
+	foldopen = "▾",
+	foldsep = "│",
+	foldclose = "▸",
 }
 
 -- OFF COLORSCHEME PRECONFIGURATION
@@ -18,23 +18,23 @@ vim.g.monochrome_italic_comments = 1
 local colorscheme = "off"
 local present, _ = pcall(vim.api.nvim_command, "colorscheme " .. colorscheme)
 if not present then
-  return print("colorscheme " .. colorscheme .. " not found!")
+	return print("colorscheme " .. colorscheme .. " not found!")
 end
 
 -- save local wazeterm color
 vim.api.nvim_exec(
-  [[
+	[[
     if exists('g:wezterm')
       let g:term_foreground = get(g:wezterm, 'colors', {}).foreground
       let g:term_background = get(g:wezterm, 'colors', {}).background
     endif
   ]],
-  false
+	false
 )
 
 if colorscheme == "off" then
-  vim.api.nvim_exec(
-    [[
+	vim.api.nvim_exec(
+		[[
         augroup custom_off_highlight
           au!
           hi! Normal guibg=g:term_background guifg=g:term_foreground ctermbg=NONE
@@ -45,13 +45,13 @@ if colorscheme == "off" then
           hi clear Todo
         augroup END
       ]],
-    false
-  )
+		false
+	)
 end
 
 if colorscheme == "fogbell" then
-  vim.api.nvim_exec(
-    [[
+	vim.api.nvim_exec(
+		[[
         augroup transparent_signs
           au!
           hi! Normal guibg=term_background
@@ -66,6 +66,6 @@ if colorscheme == "fogbell" then
           hi! link TelescopeSelection PMenuSel
         augroup END
       ]],
-    false
-  )
+		false
+	)
 end

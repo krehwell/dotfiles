@@ -5,8 +5,12 @@ return {
 		"lambdalisue/nerdfont.vim",
 		"lambdalisue/fern-renderer-nerdfont.vim",
 		"lambdalisue/fern-hijack.vim",
+		"andykog/fern-highlight.vim",
+		"lambdalisue/glyph-palette.vim",
+		"andykog/fern-copynode.vim",
 	},
 	lazy = true,
+	ft = { "fern" },
 	keys = {
 		{
 			"<Plug>(my-fern-toggle)",
@@ -24,11 +28,9 @@ return {
 	init = function()
 		vim.g["fern#hide_cursor"] = 0
 		vim.g["fern#default_hidden"] = 1
-		-- vim.g["fern#renderer"] = "nerdfont"
-		-- vim.g["fern#renderer#nerdfont#root_symbol"] = " "
+		vim.g["fern#renderer"] = "nerdfont"
 		vim.g["fern#renderer#nerdfont#indent_markers"] = 1
-		-- vim.api.nvim_set_hl(0, "CursorLine", {})
-		-- vim.api.nvim_set_hl(0, "CursorLine", { link = "Visual", default = true })
+		-- vim.g["fern#renderer#nerdfont#root_symbol"] = " "
 
 		vim.api.nvim_exec(
 			[[
@@ -41,6 +43,7 @@ return {
           autocmd BufWritePost * call feedkeys("\<Plug>(fern-action-redraw)")
           autocmd FileType fern nnoremap <buffer> <C-b> :q<cr>
           autocmd FileType fern call s:init_fern()
+          autocmd FileType fern call glyph_palette#apply()
         augroup end
       ]],
 			false
