@@ -62,6 +62,7 @@ return {
 	},
 
 	-- BEAUTIFY
+	{ "sitiom/nvim-numbertoggle", event = "CursorMoved" },
 	{
 		"folke/todo-comments.nvim",
 		event = { "VeryLazy", "CursorMoved" },
@@ -74,7 +75,7 @@ return {
 	},
 	{
 		"j-hui/fidget.nvim",
-    tag = "legacy",
+		tag = "legacy",
 		opts = {
 			window = { relative = "win", blend = 0, zindex = nil, border = "none" },
 		},
