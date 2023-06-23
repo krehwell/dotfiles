@@ -62,7 +62,6 @@ return {
 	},
 
 	-- BEAUTIFY
-	{ "sitiom/nvim-numbertoggle", event = "CursorMoved" },
 	{
 		"folke/todo-comments.nvim",
 		event = { "VeryLazy", "CursorMoved" },
