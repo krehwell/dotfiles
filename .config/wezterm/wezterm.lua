@@ -5,7 +5,7 @@ local config = {
 	font = wezterm.font_with_fallback({
 		-- font weight to be a little bold
 		{ family = "Consolas", weight = "Medium" },
-		{ family = "Symbols Nerd Font Mono", scale = 0.7 },
+		{ family = "Symbols Nerd Font Mono", scale = 0.8 },
 	}),
 	font_size = 14,
 
