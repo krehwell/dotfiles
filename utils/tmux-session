@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # Save and restore the state of tmux sessions and windows.
-# TODO: persist and restore the state & position of panes.
 set -e
 
 # get current file directory and store to a variable
@@ -8,7 +7,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 dump() {
     local d=$'\t'
-        tmux list-windows -a -F "#S${d}#W${d}#{pane_current_path}"
+    tmux list-windows -a -F "#S${d}#W${d}#{pane_current_path}"
 }
 
 save() {
@@ -35,28 +34,28 @@ new_session() {
 
 restore() {
     tmux start-server
-        local count=0
-        local dimensions="$(terminal_size)"
+    local count=0
+    local dimensions="$(terminal_size)"
 
-        while IFS=$'\t' read session_name window_name dir; do
-            if [[ -d "$dir" && $window_name != "log" && $window_name != "man" ]]; then
-                if session_exists "$session_name"; then
-                    add_window "$session_name" "$window_name" "$dir"
-                else
-                    new_session "$session_name" "$window_name" "$dir" "$dimensions"
-                        count=$(( count + 1 ))
-                        fi
-                        fi
-                        done < "$DIR"/.tmux-session
+    while IFS=$'\t' read session_name window_name dir; do
+        if [[ -d "$dir" && $window_name != "log" && $window_name != "man" ]]; then
+            if session_exists "$session_name"; then
+                add_window "$session_name" "$window_name" "$dir"
+            else
+                new_session "$session_name" "$window_name" "$dir" "$dimensions"
+                count=$(( count + 1 ))
+            fi
+        fi
+    done < "$DIR"/.tmux-session
 
-                        echo "restored $count sessions"
+    echo "restored $count sessions"
 }
 
 case "$1" in
-save | restore )
-$1
-;;
-* )
-echo "valid commands: save, restore" >&2
-exit 1
+    save | restore )
+        $1
+        ;;
+    * )
+        echo "valid commands: save, restore" >&2
+        exit 1
 esac
