@@ -26,8 +26,6 @@ fi
 if ! tmux has-session -t=$selected_name 2> /dev/null; then
     if [[ -f $selected/.vim/tmux-session ]]; then
         $selected/.vim/tmux-session restore
-        tmux attach-session -t $selected_name
-        exit 0
     else
         tmux new-session -ds $selected_name -c $selected
     fi
