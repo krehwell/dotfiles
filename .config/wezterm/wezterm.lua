@@ -10,8 +10,8 @@ local config = {
   font_size = 14,
 
   colors = {
-    background = "#161B1A",
-    foreground = "#B8BBBB", -- #B8BBBB, #A1AFA1, #F1F1F1, #A1AFAF, #BBB8BB
+    background = "#161B1A", -- #262626
+    foreground = "#EBEBEB", -- #B8BBBB, #A1AFA1, #F1F1F1, #A1AFAF, #BBB8BB #C6C6C6
     cursor_bg = "#c6c6c6",
     cursor_fg = "#161B1A",
   },
