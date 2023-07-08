@@ -1,6 +1,5 @@
 find
 man
-tldr
 sed
 awk
 tr
@@ -12,7 +11,6 @@ rg
 ps
 mv
 kill
-lsof
 less
 head
 tail
@@ -20,10 +18,8 @@ tar
 cp
 rm
 rename
-jq
 cat
 ssh
-cargo
 git
 git-worktree
 git-status
@@ -31,7 +27,6 @@ git-commit
 git-rebase
 docker
 docker-compose
-stow
 chmod
 chown
 make
