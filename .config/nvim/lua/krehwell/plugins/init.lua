@@ -1,7 +1,7 @@
 return {
   -- LSP
   "jose-elias-alvarez/null-ls.nvim",             -- formatter, etc
-  { "folke/neodev.nvim",         ft = { "lua", "vim" } }, -- improve lua with vim :')
+  { "folke/neodev.nvim",       ft = { "lua", "vim" } }, -- improve lua with vim :')
   {
     "VonHeikemen/lsp-zero.nvim",
     branch = "v2.x",
@@ -18,13 +18,14 @@ return {
     },
   },
 
-  -- GIT
-  { "tpope/vim-fugitive",        event = "VeryLazy" },
-  { "lewis6991/gitsigns.nvim",   event = "CursorMoved" },
-  { "tpope/vim-rhubarb",         event = "CursorMoved" },
-
   -- CODE EDITING/NAVIGATIONS
-  { "isomoar/vim-css-to-inline", event = "CursorMoved" }, -- css to jsx inline
+  {
+    "isomoar/vim-css-to-inline",
+    keys = {
+      { "tis", desc = "Transform to inline styles" },
+      { "fis", desc = "Transform from inline styles to css" },
+    },
+  }, -- css to jsx inline
   {
     "tpope/vim-surround",
     keys = {
@@ -93,5 +94,5 @@ return {
   { "archseer/colibri.vim",    priority = 1000, lazy = true },
   { "fxn/vim-monochrome",      priority = 1000, lazy = true },
   { "jaredgorski/Mies.vim",    priority = 1000, lazy = true },
-  { "jaredgorski/fogbell.vim" },
+  { "jaredgorski/fogbell.vim", priority = 1000, lazy = true },
 }
