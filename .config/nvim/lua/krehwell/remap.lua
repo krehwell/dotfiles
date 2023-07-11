@@ -25,8 +25,8 @@ vim.keymap.set("i", "jj", "<c-o>:call search('}\\|)\\|]\\|>\\|\"', 'cW')<cr><Rig
 vim.keymap.set("n", "<M-j>", "ddp")
 vim.keymap.set("n", "<M-k>", "ddkP")
 vim.keymap.set("n", "<localleader>a", "ggVG")
-vim.keymap.set("v", "H", "") -- disable go to top, somehow this is annoying
-vim.keymap.set("v", "L", "") -- disable go to bottom, somehow this is annoying
+-- vim.keymap.set("v", "H", "") -- disable go to top, somehow this is annoying
+-- vim.keymap.set("v", "L", "") -- disable go to bottom, somehow this is annoying
 -- vim.keymap.set("v", "b", "B")
 vim.keymap.set("v", "$", "$<left>")
 vim.keymap.set("v", "w", "e")

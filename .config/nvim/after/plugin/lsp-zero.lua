@@ -50,7 +50,7 @@ lsp.configure("tsserver", {
         -- "node_modules/@*",
         -- "node_modules/**",
       },
-      importModuleSpecifierPreference = "relative",
+      importModuleSpecifierPreference = "non-relative",
     },
   },
   filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
