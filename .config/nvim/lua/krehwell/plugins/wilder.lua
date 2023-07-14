@@ -12,8 +12,8 @@ end
 
 return {
 	"gelguy/wilder.nvim",
-	dependencies = "romgrk/fzy-lua-native",
 	enabled = true,
+	build = ":UpdateRemotePlugins",
 	ft = { "fern", "mason", "lazy" },
 	keys = {
 		{ "/", desc = "Find next with wilder.nvim" },
@@ -38,10 +38,19 @@ return {
 		wilder.set_option("pipeline", {
 			wilder.branch(
 				wilder.cmdline_pipeline({
-					fuzzy = 2,
-					fuzzy_filter = wilder.lua_fzy_filter(),
+					language = "python",
+					-- 0 turns off fuzzy matching
+					-- 1 turns on fuzzy matching
+					-- 2 partial fuzzy matching (match does not have to begin with the same first letter)
+					fuzzy = 1,
 				}),
-				wilder.vim_search_pipeline()
+				wilder.python_search_pipeline({
+					pattern = wilder.python_fuzzy_pattern(),
+					sorter = wilder.python_difflib_sorter(),
+					-- can be set to 're2' for performance, requires pyre2 to be installed
+					-- see :h wilder#python_search() for more details
+					engine = "re",
+				})
 			),
 		})
 
