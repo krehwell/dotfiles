@@ -8,8 +8,11 @@ return {
 	opts = function()
 		require("telescope").load_extension("fzf")
 
-		local telescope, builtin, actions =
-			require("telescope"), require("telescope.builtin"), require("telescope.actions")
+		local telescope, builtin, actions, action_state =
+			require("telescope"),
+			require("telescope.builtin"),
+			require("telescope.actions"),
+			require("telescope.actions.state")
 
 		vim.api.nvim_create_user_command("Ls", "Telescope buffers", { nargs = 0, bang = true })
 		vim.api.nvim_create_user_command("LS", "Telescope buffers", { nargs = 0, bang = true })
@@ -23,6 +26,13 @@ return {
 		end
 
 		vim.keymap.set("n", "<C-p>", ":lua FallbackFindFiles()<CR>", { silent = true })
+
+		local force_delete_buffer = function(prompt_bufnr)
+			local current_picker = action_state.get_current_picker(prompt_bufnr)
+			current_picker:delete_selection(function(selection)
+				vim.api.nvim_buf_delete(selection.bufnr, { force = true })
+			end)
+		end
 
 		telescope.setup({
 			defaults = {
@@ -41,10 +51,10 @@ return {
 					previewer = false,
 					mappings = {
 						i = {
-							["<c-d>"] = actions.delete_buffer,
+							["<c-d>"] = force_delete_buffer,
 						},
 						n = {
-							["<c-d>"] = actions.delete_buffer,
+							["<c-d>"] = force_delete_buffer,
 						},
 					},
 					layout_config = {
