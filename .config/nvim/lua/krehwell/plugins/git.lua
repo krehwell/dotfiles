@@ -9,8 +9,8 @@ return {
     { "gs", ":Git<CR>",                                    desc = "Git: toggle status",             silent = true },
     { "gh", ":diffget //2 <CR>",                           desc = "Git: get lhs of diff",           silent = true },
     { "gl", ":diffget //3 <CR>",                           desc = "Git: get rhs of diff",           silent = true },
-    { "gu", ":GitGutterUndoHunk<CR>",                      desc = "Git: Undo hunk",                 silent = true },
-    { "gp", ":lua require('gitsigns').preview_hunk()<CR>", desc = "Git: Preview hunk",              silent = true },
+    { "gu", ":GitGutterUndoHunk<CR>",                      desc = "Git: undo hunk",                 silent = true },
+    { "gp", ":lua require('gitsigns').preview_hunk()<CR>", desc = "Git: preview hunk",              silent = true },
     { "gu", ":lua require('gitsigns').reset_hunk()<CR>",   desc = "Git: reset current lines change" },
 
     {

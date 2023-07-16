@@ -1,6 +1,7 @@
 return {
 	"numToStr/Comment.nvim",
 	dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
+  event= "InsertEnter",
 	opts = function()
 		local tscontext = require("ts_context_commentstring.integrations.comment_nvim")
 		return {

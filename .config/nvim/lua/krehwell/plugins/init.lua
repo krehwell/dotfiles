@@ -89,10 +89,22 @@ return {
       enable_tailwind = true,
     },
   },
-  { "pbrisbin/vim-colors-off", priority = 1000, lazy = true },
-  { "morhetz/gruvbox",         priority = 1000, lazy = true },
-  { "archseer/colibri.vim",    priority = 1000, lazy = true },
-  { "fxn/vim-monochrome",      priority = 1000, lazy = true },
-  { "jaredgorski/Mies.vim",    priority = 1000, lazy = true },
-  { "jaredgorski/fogbell.vim", priority = 1000, lazy = true },
+  {
+    "nvim-tree/nvim-web-devicons",
+    event = "VeryLazy",
+    lazy = true,
+    opts = {
+      override = {
+        zsh = { icon = "", color = "#428850", cterm_color = "65", name = "Zsh" },
+      },
+      color_icons = true,
+      default = true,
+    },
+  },
+  { "pbrisbin/vim-colors-off", priority = 1000,      lazy = true },
+  { "morhetz/gruvbox",         priority = 1000,      lazy = true },
+  { "archseer/colibri.vim",    priority = 1000,      lazy = true },
+  { "fxn/vim-monochrome",      priority = 1000,      lazy = true },
+  { "jaredgorski/Mies.vim",    priority = 1000,      lazy = true },
+  { "jaredgorski/fogbell.vim", priority = 1000,      lazy = true },
 }

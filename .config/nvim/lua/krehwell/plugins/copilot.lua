@@ -1,6 +1,6 @@
 return {
   "zbirenbaum/copilot.lua",
-  lazy = true,
+  enabled = false,
   event = "InsertEnter",
   cmd = "Copilot",
   config = function()
