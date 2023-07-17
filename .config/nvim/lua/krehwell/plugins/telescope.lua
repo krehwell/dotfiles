@@ -1,6 +1,5 @@
 return {
   "nvim-telescope/telescope.nvim",
-  tag = "0.1.1",
   dependencies = {
     "nvim-lua/plenary.nvim",
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
@@ -86,11 +85,11 @@ return {
       },
       extensions = {
         fzf = {
-          fuzzy = true,              -- false will only do exact matching
+          fuzzy = true,                   -- false will only do exact matching
           override_generic_sorter = true, -- override the generic sorter
-          override_file_sorter = true, -- override the file sorter
+          override_file_sorter = true,    -- override the file sorter
           override_live_grep_sorter = true,
-          case_mode = "smart_case",  -- or "ignore_case" or "respect_case", default "smart_case"
+          case_mode = "smart_case",       -- or "ignore_case" or "respect_case", default "smart_case"
         },
       },
     })
