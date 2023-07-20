@@ -1,5 +1,10 @@
 function ToggleWilder(enable)
-	if vim.bo.filetype == "fern" or vim.bo.filetype == "lazy" or vim.bo.filetype == "mason" then
+	if
+		vim.bo.filetype == "fern"
+		or vim.bo.filetype == "lazy"
+		or vim.bo.filetype == "mason"
+		or vim.bo.filetype == "help"
+	then
 		pcall(function()
 			if enable then
 				vim.cmd("call wilder#enable()")

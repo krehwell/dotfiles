@@ -13,18 +13,16 @@ return {
         require("telescope.actions"),
         require("telescope.actions.state")
 
-    vim.api.nvim_create_user_command("Ls", "Telescope buffers", { nargs = 0, bang = true })
-    vim.api.nvim_create_user_command("LS", "Telescope buffers", { nargs = 0, bang = true })
-
+    -- vim.api.nvim_create_user_command("Ls", "Telescope buffers", { nargs = 0, bang = true })
+    -- vim.api.nvim_create_user_command("LS", "Telescope buffers", { nargs = 0, bang = true })
     -- to to project file with `git_files` or fallback to `find_files`
-    function FallbackFindFiles()
-      local ok = pcall(require("telescope.builtin").git_files)
-      if not ok then
-        require("telescope.builtin").find_files()
-      end
-    end
-
-    vim.keymap.set("n", "<C-p>", ":lua FallbackFindFiles()<CR>", { silent = true })
+    -- function FallbackFindFiles()
+    -- 	local ok = pcall(require("telescope.builtin").git_files)
+    -- 	if not ok then
+    -- 		require("telescope.builtin").find_files()
+    -- 	end
+    -- end
+    -- vim.keymap.set("n", "<leader>p", ":lua FallbackFindFiles()<CR>", { silent = true })
 
     local force_delete_buffer = function(prompt_bufnr)
       local current_picker = action_state.get_current_picker(prompt_bufnr)
@@ -85,23 +83,23 @@ return {
       },
       extensions = {
         fzf = {
-          fuzzy = true,                   -- false will only do exact matching
+          fuzzy = true,              -- false will only do exact matching
           override_generic_sorter = true, -- override the generic sorter
-          override_file_sorter = true,    -- override the file sorter
+          override_file_sorter = true, -- override the file sorter
           override_live_grep_sorter = true,
-          case_mode = "smart_case",       -- or "ignore_case" or "respect_case", default "smart_case"
+          case_mode = "smart_case",  -- or "ignore_case" or "respect_case", default "smart_case"
         },
       },
     })
   end,
-  cmd = { "Telescope", "Ls", "LS" },
+  cmd = { "Telescope" },
   keys = {
-    { "<C-p>", ":lua FallbackFindFiles()<CR>", desc = "Find files", silent = true },
-    {
-      "<leader>p",
-      ':lua require("telescope.builtin").find_files()<CR>',
-      desc = "Project find files",
-      silent = true,
-    },
+    -- { "<leader>p", ":lua FallbackFindFiles()<CR>", desc = "Find files", silent = true },
+    -- {
+    -- 	"<C-p>",
+    -- 	':lua require("telescope.builtin").find_files()<CR>',
+    -- 	desc = "Project find files",
+    -- 	silent = true,
+    -- },
   },
 }
