@@ -14,7 +14,9 @@ return {
 		local merge = function(a, b)
 			return vim.tbl_deep_extend("force", {}, a, b)
 		end
+
 		-- LUASNIP CONFIGURATION
+		-- require('luasnip.loaders.from_vscode').lazy_load()
 		-- vim.api.nvim_exec(
 		-- 	[[
 		--         " press <Tab> to expand or jump in a snippet. These can also be mapped separately
@@ -42,11 +44,11 @@ return {
 				completion = cmp.config.window.bordered({}),
 				documentation = merge(cmp.config.window.bordered(), { max_height = 15, max_width = 40 }),
 			},
-			-- snippet = {
-			-- 	expand = function(args)
-			-- 		require("luasnip").lsp_expand(args.body)
-			-- 	end,
-			-- },
+			snippet = {
+				expand = function(args)
+					vim.fn["vsnip#anonymous"](args.body)
+				end,
+			},
 			formatting = {
 				fields = { "abbr", "menu", "kind" },
 				-- format = function(entry, item)
@@ -70,11 +72,12 @@ return {
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
 				-- { name = "nvim_lua" },
-				{ name = "vsnip" },
 				-- { name = "nvim_lsp_signature_help" },
 				{ name = "path" },
 				{ name = "calc" },
+
 				-- { name = "spell" },
+				-- { name = "vsnip" },
 			}, {
 				{ name = "buffer" },
 			}),

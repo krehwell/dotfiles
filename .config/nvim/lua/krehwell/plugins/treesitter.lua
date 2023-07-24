@@ -9,7 +9,7 @@ return {
 
 	config = function()
 		require("nvim-treesitter.configs").setup({
-			ensure_installed = { "vimdoc", "javascript", "typescript", "lua" }, -- A list of parser names, or "all"
+			ensure_installed = { "vimdoc", "javascript", "typescript", "lua", "go" }, -- A list of parser names, or "all"
 			sync_install = false, -- Install parsers synchronously (only applied to `ensure_installed`)
 			auto_install = true, -- Automatically install missing parsers when entering buffer
 
@@ -39,7 +39,11 @@ return {
 			},
 			indent = { enable = true, disable = { "yaml" } },
 			autotag = {
-				enable = true, -- close html tag
+				enable = true, -- auto close html tag
+				enable_close_on_slash = false,
+			},
+			context_commentstring = {
+				enable = true,
 			},
 			refactor = {
 				highlight_definitions = {

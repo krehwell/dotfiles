@@ -1,9 +1,8 @@
 return {
 	"numToStr/Comment.nvim",
 	dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
-  event= "InsertEnter",
+	event = "InsertEnter",
 	opts = function()
-		local tscontext = require("ts_context_commentstring.integrations.comment_nvim")
 		return {
 			padding = true, -- Add a space b/w comment and the line
 			sticky = true, -- Whether the cursor should stay at its position
@@ -31,7 +30,7 @@ return {
 				extra = true, -- Extra mapping; `gco`, `gcO`, `gcA`
 			},
 			-- Function to call before (un)comment
-			pre_hook = tscontext.create_pre_hook(),
+			pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
 			-- Function to call after (un)comment
 			post_hook = nil,
 		}
