@@ -58,6 +58,7 @@ if colorscheme == "fogbell" then
           hi! VertSplit guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
           hi! SignColumn guibg=NONE
           hi! LineNr guibg=NONE
+          hi! Directory guibg=NONE
         augroup END
 
         augroup index_color

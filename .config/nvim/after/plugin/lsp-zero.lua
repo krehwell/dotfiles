@@ -20,7 +20,7 @@ lsp.set_server_config({
 })
 
 -- LSP
-lsp.ensure_installed({ "tsserver", "gopls", "cssls", "html", "cssmodules_ls", "jsonls" })
+lsp.ensure_installed({ "tsserver", "gopls", "cssls", "html", "jsonls" })
 
 -- individual lsp config: lua_ls
 require("neodev").setup({})
