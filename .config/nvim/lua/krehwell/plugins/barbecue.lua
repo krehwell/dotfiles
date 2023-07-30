@@ -19,7 +19,7 @@ return {
 			basename = "",
 		},
 		theme = {
-			-- normal = { bg = "#303030", fg = "#c6c6c6" },
+			-- normal = { bg = "#262626", --[[ fg = "#c6c6c6" ]] },
 		},
 		symbols = {
 			modified = "+",

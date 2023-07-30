@@ -1,5 +1,5 @@
 vim.opt.background = "dark"
--- vim.opt.termguicolors = true
+vim.opt.termguicolors = true
 vim.opt.fillchars = {
 	vert = "┆", -- alternatives │
 	fold = " ",
