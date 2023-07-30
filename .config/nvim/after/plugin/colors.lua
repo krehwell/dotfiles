@@ -1,5 +1,5 @@
 vim.opt.background = "dark"
-vim.opt.termguicolors = true
+-- vim.opt.termguicolors = true
 vim.opt.fillchars = {
 	vert = "┆", -- alternatives │
 	fold = " ",
@@ -40,31 +40,10 @@ if colorscheme == "off" then
           hi! Normal guibg=g:term_background guifg=g:term_foreground ctermbg=NONE
           hi! VertSplit guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
           hi! SignColumn guibg=NONE
+          hi! LineNr guifg=#868687
           " hi! Pmenu guibg=#NONE
           hi! PmenuSel guifg=#ffffff
           hi clear Todo
-        augroup END
-      ]],
-		false
-	)
-end
-
-if colorscheme == "fogbell" then
-	vim.api.nvim_exec(
-		[[
-        augroup transparent_signs
-          au!
-          hi! Normal guibg=term_background
-          hi! VertSplit guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
-          hi! SignColumn guibg=NONE
-          hi! LineNr guibg=NONE
-          hi! Directory guibg=NONE
-        augroup END
-
-        augroup index_color
-          au!
-          hi! link TelescopeMatching DiffAdd
-          hi! link TelescopeSelection PMenuSel
         augroup END
       ]],
 		false

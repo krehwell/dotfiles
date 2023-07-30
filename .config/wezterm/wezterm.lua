@@ -4,14 +4,14 @@ local wezterm = require("wezterm")
 local config = {
 	font = wezterm.font_with_fallback({
 		-- font weight to be a little bold
-		{ family = "Consolas", weight = "Medium" },
+		{ family = "SF Mono", weight = "DemiBold" },
 		{ family = "Symbols Nerd Font Mono", scale = 0.8 },
 	}),
-	font_size = 14,
+	font_size = 11.55,
 
 	colors = {
-		background = "#1a1d21", -- #262626 #0F1419
-		foreground = "#D1D2D3", -- #B8BBBB, #A1AFA1, #F1F1F1, #A1AFAF, #BBB8BB #C6C6C6 #86B300
+		background = "#1e1e1f", -- #262626 #0F1419
+		foreground = "#fffffe", -- #B8BBBB, #A1AFA1, #F1F1F1, #A1AFAF, #BBB8BB #C6C6C6 #86B300
 		cursor_bg = "#c6c6c6",
 		cursor_fg = "#161B1A",
 	},

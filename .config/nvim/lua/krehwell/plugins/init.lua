@@ -27,27 +27,17 @@ return {
 			{ "fis", desc = "Transform from inline styles to css" },
 		},
 	},
-	-- for splitting/joining blocks of code like arrays, hashes, statements, objects, dictionaries, etc.
 	{
-		"Wansmer/treesj",
-		dependencies = { "nvim-treesitter/nvim-treesitter" },
-		config = function()
-			require("treesj").setup({
-				use_default_keymaps = false, -- (<space>m - toggle, <space>j - join, <space>s - split)
-				check_syntax_error = true, -- node with syntax error will not be formatted
-				max_join_length = 120, -- don't format for line more than
-				-- hold|start|end:
-				-- hold - cursor follows the node/place on which it was called
-				-- start - cursor jumps to the first symbol of the node being formatted
-				-- end - cursor jumps to the last symbol of the node being formatted
-				cursor_behavior = "hold",
-				-- Notify about possible problems or not
-				notify = true,
-				dot_repeat = true,
+    -- js inline toggler
+		"llllvvuu/nvim-js-actions",
+		ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+		init = function()
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+				command = "nnoremap <buffer> <leader>it " .. ":lua require('nvim-js-actions').js_arrow_fn.toggle()<CR>",
+				-- can also do `require('nvim-js-actions/js-arrow-fn').toggle()`
 			})
 		end,
-		-- keys = { "<space>m", "<space>j", "<space>s" },
-		cmd = { "TSJToggle", "TSJSplit", "TSJJoin" },
 	},
 	{
 		"tpope/vim-surround",
@@ -58,10 +48,7 @@ return {
 			{ "S", mode = "v" },
 		},
 	},
-	{
-		"tpope/vim-repeat",
-		keys = { { "." } },
-	},
+	{ "tpope/vim-repeat", keys = { { "." } } },
 	{
 		"ojroques/vim-oscyank",
 		branch = "main",
@@ -85,28 +72,11 @@ return {
 		},
 	},
 	{
-		"tomasky/bookmarks.nvim",
+		"chrisgrieser/nvim-early-retirement",
+		config = true,
+		event = "VeryLazy",
 		opts = {
-			sign_priority = 100,
-			save_file = vim.fn.expand("$HOME/.vim/.bookmarks"), -- bookmarks save file path
-			keywords = {
-				["@t"] = "☑️",
-				["@w"] = "⚠️",
-				["@f"] = "🛠️",
-				["@n"] = "🗒️",
-			},
-		},
-		keys = {
-			{ "mm", "<cmd>lua require('bookmarks').bookmark_toggle()<cr>", desc = "Toggle bookmarks" },
-			{ "mc", "<cmd>lua require('bookmarks').bookmark_clean()<cr>", desc = "Clean bookmarks" },
-			{
-				"mi",
-				"<cmd>lua require('bookmarks').bookmark_ann()<cr>",
-				desc = "Add or edit mark annotation at current line",
-			},
-			{ "m]", "<cmd>lua require('bookmarks').bookmark_next()<cr>", desc = "Jump to next bookmark" },
-			{ "m[", "<cmd>lua require('bookmarks').bookmark_prev()<cr>", desc = "Jump to previous bookmark" },
-			{ "ml", "<cmd>lua require('bookmarks').bookmark_list()<cr>", desc = "Show bookmarks" },
+			retirementAgeMins = 10,
 		},
 	},
 
@@ -150,10 +120,6 @@ return {
 		},
 	},
 	{ "pbrisbin/vim-colors-off", priority = 1000, lazy = true, event = "VeryLazy" },
-	{ "nyoom-engineering/oxocarbon.nvim" },
 	{ "morhetz/gruvbox", priority = 1000, lazy = true, event = "VeryLazy" },
-	{ "archseer/colibri.vim", priority = 1000, lazy = true, event = "VeryLazy" },
-	{ "fxn/vim-monochrome", priority = 1000, lazy = true, event = "VeryLazy" },
-	{ "jaredgorski/Mies.vim", priority = 1000, lazy = true, event = "VeryLazy" },
-	{ "jaredgorski/fogbell.vim", priority = 1000, lazy = true, event = "VeryLazy" },
+	{ "xiantang/darcula-dark.nvim", priority = 1000, lazy = true, event = "VeryLazy" },
 }
