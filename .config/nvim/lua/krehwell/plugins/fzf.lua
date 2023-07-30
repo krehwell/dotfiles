@@ -103,9 +103,19 @@ return {
   end,
   cmd = { "FzfLua", "Ls", "LS" },
   keys = {
-    { "<C-f>",       ":lua require('fzf-lua').grep({})<CR><CR>",    desc = "Fuzzy search",         silent = true },
-    { "<leader>fzf", "<cmd>lua require('fzf-lua').builtin()<CR>",   desc = "FzfLua features list", silent = true },
-    { "<c-p>",       "<cmd>lua require('fzf-lua').files()<CR>",     desc = "Project find files",   silent = true },
-    { "<leader>p",   "<cmd>lua require('fzf-lua').git_files()<CR>", desc = "Git files",            silent = true },
+    { "<C-f>",       ":lua require('fzf-lua').grep({})<CR><CR>",  desc = "Fuzzy search",         silent = true },
+    { "<leader>fzf", "<cmd>lua require('fzf-lua').builtin()<CR>", desc = "FzfLua features list", silent = true },
+    {
+      "<c-p>",
+      function()
+        if vim.fn.getcwd() == os.getenv("HOME") then
+          return require("fzf-lua").git_files()
+        end
+        return require("fzf-lua").files()
+      end,
+      desc = "Project find files",
+      silent = true,
+    },
+    { "<leader>p", "<cmd>lua require('fzf-lua').git_files()<CR>", desc = "Git files", silent = true },
   },
 }
