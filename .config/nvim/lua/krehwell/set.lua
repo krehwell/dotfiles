@@ -81,5 +81,4 @@ vim.opt.wildmenu = true
 vim.opt.updatetime = 350
 vim.opt.exrc = true
 vim.opt.secure = true
--- vim.opt.spell = true
--- vim.opt.spelllang = { 'en_us' }
+
