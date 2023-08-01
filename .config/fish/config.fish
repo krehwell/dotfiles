@@ -3,6 +3,7 @@ if status is-interactive
     set fish_greeting
 
     alias :q='exit'
+    alias :qa='tmux kill-session'
     alias sex='bash -c \'(open . || explorer.exe . || nautilus .) &\''
     alias vim=nvim
     alias tmux='tmux -2'
