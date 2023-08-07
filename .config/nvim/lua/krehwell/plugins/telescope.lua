@@ -78,7 +78,7 @@ return {
           layout_config = { width = 180, height = 45 },
         },
         lsp_references = {
-          layout_config = { width = 185, height = 45 },
+          layout_config = { width = 200, height = 60 },
         },
       },
       extensions = {

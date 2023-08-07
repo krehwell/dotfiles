@@ -104,7 +104,7 @@ return {
   cmd = { "FzfLua", "Ls", "LS" },
   keys = {
     { "<C-f>",       ":lua require('fzf-lua').grep({})<CR><CR>",  desc = "Fuzzy search",         silent = true },
-    { "<leader>fzf", "<cmd>lua require('fzf-lua').builtin()<CR>", desc = "FzfLua features list", silent = true },
+    { "<leader><leader>fzf", "<cmd>lua require('fzf-lua').builtin()<CR>", desc = "FzfLua features list", silent = true },
     {
       "<c-p>",
       function()
