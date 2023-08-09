@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Get the list of windows in the current session
+windows=$(tmux list-windows -F "#{window_id}")
+
+# Iterate through each window and send the desired keys
+for window in $windows; do
+    # Send the keys to the current window
+    tmux send-keys -t $window C-l
+done

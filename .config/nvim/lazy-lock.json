@@ -1,5 +1,5 @@
 {
-  "Comment.nvim": { "branch": "master", "commit": "d0cbbfb539898a275dc4398446ab0ae3b94819bf" },
+  "Comment.nvim": { "branch": "master", "commit": "0236521ea582747b58869cb72f70ccfa967d2e89" },
   "Mies.vim": { "branch": "main", "commit": "9a96579f800d709f0d1d7cc0f0eece9cf13af815" },
   "alabaster.nvim": { "branch": "main", "commit": "62b8ae3eb2c167f8a55b34a6c2bf19a46bd48143" },
   "any-jump.vim": { "branch": "master", "commit": "770ef708ae3f13322430fcc663d7dfb864756b9b" },
