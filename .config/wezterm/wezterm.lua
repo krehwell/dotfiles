@@ -7,7 +7,7 @@ local config = {
 		{ family = "SF Mono", weight = "DemiBold" },
 		{ family = "Symbols Nerd Font Mono", scale = 0.8 },
 	}),
-	font_size = 11.55,
+	font_size = 10.55,
 
 	colors = {
 		background = "#1e1e1f", -- #262626 #0F1419
