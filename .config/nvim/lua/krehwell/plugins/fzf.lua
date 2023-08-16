@@ -19,6 +19,20 @@ return {
         },
       },
 
+      lsp = {
+        fzf_opts = { ["--layout"] = "default", ["--marker"] = "+" },
+        winopts = {
+          height = 0.85,
+          width = 0.77,
+          preview = {
+            vertical = "up:45%",
+            horizontal = "right:50%",
+            layout = "flex",
+            flip_columns = 120,
+          },
+        },
+      },
+
       grep = {
         fzf_opts = { ["--layout"] = "default", ["--marker"] = "+" },
         rg_glob = true,
@@ -105,6 +119,7 @@ return {
   keys = {
     { "<C-f>",       ":lua require('fzf-lua').grep({})<CR><CR>",  desc = "Fuzzy search",         silent = true },
     { "<leader><leader>fzf", "<cmd>lua require('fzf-lua').builtin()<CR>", desc = "FzfLua features list", silent = true },
+    { "ga", "<cmd>lua require('fzf-lua').grep_cword()<CR>", desc = "Any jump", silent = true },
     {
       "<c-p>",
       function()

@@ -21,6 +21,7 @@ return {
 		{
 			"<C-b>",
 			desc = "Toggle drawer",
+      silent = true,
 		},
 	},
 	config = function()
@@ -36,7 +37,7 @@ return {
 		-- if fern buffer exists and focus, then close fern
 		vim.api.nvim_exec(
 			[[
-        nnoremap <C-B> :call ToggleFernBuffer()<CR>
+        nnoremap <silent> <C-B> :call ToggleFernBuffer()<CR>
 
         function! ToggleFernBuffer()
             let fern_buffer_exists = 0
