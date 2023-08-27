@@ -54,7 +54,7 @@ vim.opt.title = true
 vim.opt.wrap = false
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.scrolloff = 15
+vim.opt.scrolloff = 22
 vim.opt.sidescrolloff = 18
 vim.opt.virtualedit = "block"
 vim.opt.laststatus = 0
@@ -81,4 +81,5 @@ vim.opt.wildmenu = true
 vim.opt.updatetime = 350
 vim.opt.exrc = true
 vim.opt.secure = true
+
 

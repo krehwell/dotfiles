@@ -1,6 +1,6 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
-	-- event = "VeryLazy",
+	event = "VeryLazy",
 	dependencies = {
 		{ "windwp/nvim-ts-autotag" }, -- html auto tag
 		{ "nvim-treesitter/nvim-treesitter-refactor" }, -- highlight usages, definition, etc
@@ -9,9 +9,9 @@ return {
 
 	config = function()
 		require("nvim-treesitter.configs").setup({
-			ensure_installed = { "vimdoc", "javascript", "typescript", "lua", "go" }, -- A list of parser names, or "all"
+			ensure_installed = { "vimdoc", "typescript", "lua", "go", "bash" }, -- A list of parser names, or "all"
 			sync_install = false, -- Install parsers synchronously (only applied to `ensure_installed`)
-			auto_install = true, -- Automatically install missing parsers when entering buffer
+			auto_install = false, -- Automatically install missing parsers when entering buffer
 
 			highlight = {
 				enable = false, -- `false` will disable the whole extension

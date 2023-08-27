@@ -29,7 +29,8 @@ local on_attach = function(client, bufnr)
 	-- vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
 	vim.keymap.set("n", "gd", ":lua require('fzf-lua').lsp_definitions({ jump_to_single_result = true })<cr>", opts)
 	vim.keymap.set("n", "gi", ":lua require('fzf-lua').lsp_implementations({ jump_to_single_result = true })<cr>", opts)
-	vim.keymap.set("n", "gy", ":lua require('fzf-lua').lsp_typedefs({ jump_to_single_result = true })<cr>", opts)
+	-- vim.keymap.set("n", "gy", ":lua require('fzf-lua').lsp_typedefs({ jump_to_single_result = true })<cr>", opts)  -- lsp_typedefs doesn't work that good compared to Telescope
+	vim.keymap.set("n", "gy", "<cmd>Telescope lsp_type_definitions<cr>", opts)
 	vim.keymap.set("n", "gr", ":lua require('fzf-lua').lsp_references({ ignore_current_line = true })<cr>", opts)
 	vim.keymap.set("n", "K", function()
 		vim.api.nvim_command("set eventignore=CursorHold")
@@ -41,7 +42,7 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set("n", "<f2>", vim.lsp.buf.rename, opts)
 	-- vim.keymap.set("n", "ca", vim.lsp.buf.code_action, opts)
 	vim.keymap.set("n", "ca", "<cmd>FzfLua lsp_code_actions<cr>", opts)
-	vim.keymap.set("n", "<space>f", ":lua vim.lsp.buf.format({async = true})<CR>", opts)
+	vim.keymap.set("n", "gq", ":lua vim.lsp.buf.format()<CR>", opts)
 end
 
 local diagnostic_config = {

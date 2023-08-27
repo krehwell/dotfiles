@@ -34,8 +34,8 @@ vim.keymap.set("v", "w", "e")
 ----- SESSION BUFFER CONTROLLER
 vim.keymap.set("n", "<localleader>b", ":bprevious<CR>")
 vim.keymap.set("n", "<localleader>n", ":bnext<CR>")
-vim.keymap.set("n", "<localleader>o", ":source ~/.vim/.vim_sessions<cr>")        -- TODO: per file name instead maybe?
-vim.keymap.set("n", "<localleader>s", ":mksession! ~/.vim/.vim_sessions<cr>")    -- So, instead of <cr>, should just defined the name instead
+vim.keymap.set("n", "<localleader>o", ":source ~/.vim/.vim_sessions<cr>") -- TODO: per file name instead maybe?
+vim.keymap.set("n", "<localleader>s", ":mksession! ~/.vim/.vim_sessions<cr>") -- So, instead of <cr>, should just defined the name instead
 
 ----- CD TO CURRENT BUFFER's DIR | lcd -> for cding the current buffer only to the current dir
 vim.keymap.set("n", "<localleader>cd", ":cd %:p:h<CR>")

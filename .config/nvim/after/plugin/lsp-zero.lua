@@ -47,7 +47,9 @@ lsp.configure("tsserver", {
 		hostInfo = "neovim",
 		preferences = {
 			autoImportFileExcludePatterns = {
-				-- "node_modules/@*",
+				"node_modules/@mui/**",
+				"node_modules/@mui/*",
+        "@mui/**",
 				-- "node_modules/**",
 			},
 			importModuleSpecifierPreference = "auto",
