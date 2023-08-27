@@ -123,6 +123,7 @@ return {
         },
       })
     end,
+    keys = { { "<leader>ccc", ":Ccc" } },
     -- opts = {
     -- 	render = "background", -- or 'foreground' or 'first_column'
     -- 	enable_named_colors = true,
@@ -153,5 +154,5 @@ return {
   { "felipec/vim-felipec",              priority = 1000, lazy = true, event = "VeryLazy" },
   { "projekt0n/github-nvim-theme",      priority = 1000, lazy = true, event = "VeryLazy" },
   { "xero/miasma.nvim",                 priority = 1000, lazy = true, event = "VeryLazy" },
-  { "rose-pine/neovim",                 priority = 1000, lazy = true, event = "VeryLazy", name = "rose-pine", },
+  { "rose-pine/neovim",                 priority = 1000, lazy = true, event = "VeryLazy", name = "rose-pine" },
 }

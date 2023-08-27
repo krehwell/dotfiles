@@ -9,7 +9,7 @@ return {
 
 	config = function()
 		require("nvim-treesitter.configs").setup({
-			ensure_installed = { "vimdoc", "typescript", "lua", "go", "bash" }, -- A list of parser names, or "all"
+			ensure_installed = { "vimdoc", "typescript", "lua", "go", "bash", "tsx" }, -- A list of parser names, or "all"
 			sync_install = false, -- Install parsers synchronously (only applied to `ensure_installed`)
 			auto_install = false, -- Automatically install missing parsers when entering buffer
 
