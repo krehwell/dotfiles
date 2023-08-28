@@ -1,29 +1,8 @@
-vim.g.user = {
-	event = "UserGroup",
-}
-vim.api.nvim_create_augroup(vim.g.user.event, {})
-
--- vim.api.nvim_create_autocmd("BufReadPost", {
--- 	-- https://github.com/creativenull/dotfiles/blob/eb9b0a69c411b7ed88eca74d740b710e7591473a/config/nvim/init.lua#L70-L81
--- 	-- BTW: this cause lazy `event = "CursorMoved"` to trigger
--- 	group = vim.g.user.event,
--- 	callback = function(args)
--- 		local valid_line = vim.fn.line([['"]]) >= 1 and vim.fn.line([['"]]) < vim.fn.line("$")
--- 		local not_commit = vim.b[args.buf].filetype ~= "commit"
---
--- 		if valid_line and not_commit then
--- 			vim.cmd([[normal! g`"]])
--- 		end
--- 	end,
--- })
-
 -- indentation behaviour
-vim.api.nvim_exec(
-	[[
-    filetype plugin indent on
-    ]],
-	false
-)
+vim.cmd([[
+  filetype plugin indent on
+]])
+
 vim.opt.backspace = "2"
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -81,5 +60,3 @@ vim.opt.wildmenu = true
 vim.opt.updatetime = 350
 vim.opt.exrc = true
 vim.opt.secure = true
-
-
