@@ -10,13 +10,13 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set("n", "<leader>w", ":lua vim.diagnostic.goto_next()<CR>", opts)
 	vim.keymap.set(
 		"n",
-		"<leader>E",
+		"[e",
 		":lua vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })<CR>",
 		opts
 	)
 	vim.keymap.set(
 		"n",
-		"<leader>e",
+		"]e",
 		":lua vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })<CR>",
 		opts
 	)
@@ -43,6 +43,14 @@ local on_attach = function(client, bufnr)
 	-- vim.keymap.set("n", "ca", vim.lsp.buf.code_action, opts)
 	vim.keymap.set("n", "ca", "<cmd>FzfLua lsp_code_actions<cr>", opts)
 	vim.keymap.set("n", "gq", ":lua vim.lsp.buf.format()<CR>", opts)
+	vim.keymap.set("v", "gq", function()
+		vim.lsp.buf.format({
+			range = {
+				["start"] = vim.api.nvim_buf_get_mark(0, "<"),
+				["end"] = vim.api.nvim_buf_get_mark(0, ">"),
+			},
+		})
+	end, opts)
 end
 
 local diagnostic_config = {

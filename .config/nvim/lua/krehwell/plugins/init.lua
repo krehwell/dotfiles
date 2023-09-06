@@ -18,20 +18,6 @@ return {
     },
   },
 
-  -- CODE EDITING/NAVIGATIONS
-  -- {
-  -- 	"pechorin/any-jump.vim",
-  -- 	cmd = { "AnyJump" },
-  -- 	keys = { { "ga", "<cmd>AnyJump<cr>", desc = "AnyJump" } },
-  -- 	init = function()
-  -- 		vim.cmd("let g:any_jump_disable_default_keybindings = 1")
-  -- 		vim.cmd("let g:any_jump_grouping_enabled = 1")
-  -- 		vim.cmd("let g:any_jump_results_ui_style = 'filename_last'")
-  -- 		vim.cmd("let g:any_jump_window_width_ratio  = 0.65")
-  -- 		vim.cmd("let g:any_jump_window_height_ratio = 0.65")
-  -- 		vim.cmd("let g:any_jump_window_top_offset   = 10")
-  -- 	end,
-  -- },
   {
     -- css to jsx inline
     "isomoar/vim-css-to-inline",
@@ -39,17 +25,6 @@ return {
       { "tis", desc = "Transform to inline styles" },
       { "fis", desc = "Transform from inline styles to css" },
     },
-  },
-  {
-    -- js inline toggler
-    "llllvvuu/nvim-js-actions",
-    ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-    init = function()
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-        command = "nnoremap <buffer> <leader>it " .. ":lua require('nvim-js-actions').js_arrow_fn.toggle()<CR>",
-      })
-    end,
   },
   {
     "tpope/vim-surround",
@@ -106,6 +81,7 @@ return {
   {
     "j-hui/fidget.nvim",
     tag = "legacy",
+    event = "LspAttach",
     opts = {
       window = { relative = "win", blend = 0, zindex = nil, border = "none" },
     },
@@ -115,8 +91,6 @@ return {
     event = { "VeryLazy", "CursorMoved" },
     config = function()
       require("ccc").setup({
-        -- Your preferred settings
-        -- Example: enable highlighter
         highlighter = {
           auto_enable = true,
           lsp = true,
@@ -142,6 +116,8 @@ return {
       default = true,
     },
   },
+
+  -- THEME
   { "pbrisbin/vim-colors-off",          priority = 1000, lazy = true, event = "VeryLazy" },
   { "morhetz/gruvbox",                  priority = 1000, lazy = true, event = "VeryLazy" },
   { "xiantang/darcula-dark.nvim",       priority = 1000, lazy = true, event = "VeryLazy" },
@@ -155,4 +131,7 @@ return {
   { "projekt0n/github-nvim-theme",      priority = 1000, lazy = true, event = "VeryLazy" },
   { "xero/miasma.nvim",                 priority = 1000, lazy = true, event = "VeryLazy" },
   { "rose-pine/neovim",                 priority = 1000, lazy = true, event = "VeryLazy", name = "rose-pine" },
+  { "Mofiqul/vscode.nvim",              priority = 1000, lazy = true, event = "VeryLazy" },
+  { "danishprakash/vim-yami",           priority = 1000, lazy = true, event = "VeryLazy" },
+  { "robertmeta/nofrils",               priority = 1000, lazy = true, event = "VeryLazy" },
 }

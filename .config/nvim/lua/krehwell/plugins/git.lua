@@ -14,7 +14,7 @@ return {
     { "gu", ":lua require('gitsigns').reset_hunk()<CR>",   desc = "Git: reset current lines change" },
 
     {
-      "g]",
+      "]g",
       function() -- default to ]h
         if vim.wo.diff then
           return "]c"
@@ -28,7 +28,7 @@ return {
     },
 
     {
-      "g[",
+      "[g",
       function() -- default to ]h
         if vim.wo.diff then
           return "]c"
