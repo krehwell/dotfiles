@@ -33,10 +33,6 @@ return {
     },
   },
   config = function(_, opts)
-    vim.opt.laststatus = 0
-    -- color the split window dashes
-    vim.cmd([[ let &statusline='%#VertSplit#' ]])
-
     require("barbecue").setup(opts)
 
     vim.api.nvim_create_autocmd({

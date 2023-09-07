@@ -10,31 +10,18 @@ end)
 local config = {
   font = wezterm.font_with_fallback({
     -- font weight to be a little bold
-    { family = "JetBrains Mono",         weight = "DemiBold" },
+    { family = "SF Mono",         weight = "Medium" },
     { family = "Symbols Nerd Font Mono", scale = 0.8 },
   }),
-  font_size = 9.6,
-  line_height = 1.06,
-  cell_width = 0.93,
+  font_size = 9.5,
+  -- line_height = 1.06,
+  -- cell_width = 0.93,
 
   colors = {
     background = "#1a1a19",
-    cursor_bg = "#c678dd",
-    cursor_border = "#d4d4d4",
-    cursor_fg = "#1e1e1e",
     foreground = "#d4d4d4",
-    selection_bg = "#dcdcaa",
-    selection_fg = "#1e1e1e",
-  },
-  ansi = {
-    "#1e1e1e",
-    "#f44747",
-    "#608b4e",
-    "#dcdcaa",
-    "#569cd6",
-    "#c678dd",
-    "#56b6c2",
-    "#d4d4d4",
+    cursor_bg = "#a270ba",
+    cursor_fg = "#1e1e1e",
   },
 
   hide_tab_bar_if_only_one_tab = true,

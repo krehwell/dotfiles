@@ -13,6 +13,8 @@ vim.opt.fillchars = {
   stlnc = "‐",
   stl = "_",
 }
+vim.opt.laststatus = 0
+vim.cmd([[ let &statusline='%#VertSplit#' ]]) -- color the split window dashes
 
 local c = require("vscode.colors").get_colors()
 require("vscode").setup({

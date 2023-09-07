@@ -53,6 +53,22 @@ return {
     },
   },
   {
+    "kevinhwang91/nvim-fundo",
+    event = "VeryLazy",
+    dependencies = {
+      {
+        "kevinhwang91/promise-async",
+        build = function()
+          require("fundo").install()
+        end,
+      },
+    },
+    config = function()
+      vim.o.undofile = true
+      require("fundo").setup()
+    end,
+  },
+  {
     "mg979/vim-visual-multi",
     keys = {
       { "<C-n>", "<Plug>(VM-Select-Next)", desc = "Select next match", mode = { "n", "v" } },
@@ -68,6 +84,19 @@ return {
   },
 
   -- BEAUTIFY
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    cmd = "TroubleToggle",
+    keys = {
+      { "<leader>tr", "<cmd>TroubleToggle<cr>", desc = "Trouble toggle" },
+    },
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
+  },
   {
     "folke/todo-comments.nvim",
     event = { "CursorMoved" },
@@ -119,7 +148,7 @@ return {
 
   -- THEME
   { "pbrisbin/vim-colors-off",          priority = 1000, lazy = true, event = "VeryLazy" },
-  { "morhetz/gruvbox",                  priority = 1000, lazy = true, event = "VeryLazy" },
+  { "ellisonleao/gruvbox.nvim",         priority = 1000, lazy = true, event = "VeryLazy" },
   { "xiantang/darcula-dark.nvim",       priority = 1000, lazy = true, event = "VeryLazy" },
   { "nyoom-engineering/oxocarbon.nvim", priority = 1000, lazy = true, event = "VeryLazy" },
   { "archseer/colibri.vim",             priority = 1000, lazy = true, event = "VeryLazy" },
@@ -134,4 +163,5 @@ return {
   { "Mofiqul/vscode.nvim",              priority = 1000, lazy = true, event = "VeryLazy" },
   { "danishprakash/vim-yami",           priority = 1000, lazy = true, event = "VeryLazy" },
   { "robertmeta/nofrils",               priority = 1000, lazy = true, event = "VeryLazy" },
+  { "folke/tokyonight.nvim",               priority = 1000, lazy = true, event = "VeryLazy" },
 }
