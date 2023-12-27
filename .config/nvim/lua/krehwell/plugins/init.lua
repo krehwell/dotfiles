@@ -1,31 +1,26 @@
 return {
 	-- LSP
-	"jose-elias-alvarez/null-ls.nvim", -- formatter, etc
 	{ "folke/neodev.nvim", ft = { "lua", "vim" } }, -- improve lua with vim :')
 	{
-		"zeioth/garbage-day.nvim",
-		dependencies = "neovim/nvim-lspconfig",
-		event = "VeryLazy",
-		opts = {
-			-- your options here
-		},
-	},
-	{
 		"VonHeikemen/lsp-zero.nvim",
-		branch = "v2.x",
+		branch = "v3.x",
 		dependencies = {
 			{ "neovim/nvim-lspconfig" },
 			{
 				"williamboman/mason.nvim",
-				build = function()
-					pcall(vim.cmd, "MasonUpdate")
-				end,
 				cmd = "Mason",
 			},
 			{ "williamboman/mason-lspconfig.nvim" },
 		},
 	},
+	{ "jose-elias-alvarez/null-ls.nvim" }, -- formatter, etc
+	-- {
+	-- 	"zeioth/garbage-day.nvim",
+	-- 	dependencies = "neovim/nvim-lspconfig",
+	-- 	event = "VeryLazy",
+	-- },
 
+	-- HELPERS/NAVIGATIONS
 	{
 		-- css to jsx inline
 		"isomoar/vim-css-to-inline",
@@ -47,9 +42,7 @@ return {
 	{
 		"ojroques/vim-oscyank",
 		branch = "main",
-		keys = {
-			{ "<C-c>", ":OSCYankVisual<CR>", desc = "Copy to clipboard", mode = "v" },
-		},
+		keys = { { "<C-c>", ":OSCYankVisual<CR>", desc = "Copy to clipboard", mode = "v" } },
 		init = function()
 			vim.g.oscyank_term = "default"
 		end,
@@ -86,9 +79,7 @@ return {
 		"chrisgrieser/nvim-early-retirement",
 		config = true,
 		event = "VeryLazy",
-		opts = {
-			retirementAgeMins = 20,
-		},
+		opts = { retirementAgeMins = 20 },
 	},
 
 	-- BEAUTIFY
@@ -99,20 +90,13 @@ return {
 		keys = {
 			{ "<leader>tr", "<cmd>TroubleToggle<cr>", desc = "Trouble toggle" },
 		},
-		opts = {
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
-		},
 	},
 	{
 		"folke/todo-comments.nvim",
 		event = { "CursorMoved" },
 		opts = {
 			signs = false,
-			highlight = {
-				multiline = false, -- enable multine todo comments
-			},
+			highlight = { multiline = false },
 		},
 	},
 	{
@@ -135,11 +119,6 @@ return {
 			})
 		end,
 		keys = { { "<leader>ccc", ":Ccc" } },
-		-- opts = {
-		-- 	render = "background", -- or 'foreground' or 'first_column'
-		-- 	enable_named_colors = true,
-		-- 	enable_tailwind = true,
-		-- },
 	},
 	{
 		"nvim-tree/nvim-web-devicons",

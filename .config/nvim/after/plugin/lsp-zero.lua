@@ -1,44 +1,47 @@
-local present, lsp = pcall(require, "lsp-zero")
+local present, lsp_zero = pcall(require, "lsp-zero")
 local lspsetup = require("krehwell.lspsetup")
 if not present then
 	return
 end
 
-lsp.preset({
-	name = "minimal",
-	set_lsp_keymaps = false,
-	suggest_lsp_servers = false,
-	manage_nvim_cmp = false,
-})
--- lsp.set_sign_icons({ error = "✘", warn = "▲", hint = "⚑", info = "»" })
-lsp.set_sign_icons({ error = "", warn = "", hint = "H", info = "I" })
-
-lsp.set_server_config({
-	on_init = function(client)
-		client.server_capabilities.semanticTokensProvider = nil
-	end,
+-- MASON (LSP INSTALLER)
+require("mason").setup({})
+require("mason-lspconfig").setup({
+	ensure_installed = { "tsserver", "gopls", "cssls", "html", "jsonls", "vimls", "cssmodules_ls", "lua_ls" },
+	handlers = { lsp_zero.default_setup },
 })
 
--- LSP
-lsp.ensure_installed({ "tsserver", "gopls", "cssls", "html", "jsonls" })
+lsp_zero.on_attach(function(client, bufnr)
+	lspsetup.on_attach(client, bufnr)
+	vim.diagnostic.config(lspsetup.diagnostic_config)
+end)
 
--- individual lsp config: lua_ls
+-- LUA LSP SETUP
 require("neodev").setup({})
-lsp.configure("lua_ls", {
+
+local lspconfig = require("lspconfig")
+
+lspconfig.lua_ls.setup({
 	settings = {
 		Lua = {
 			diagnostics = {
-				globals = { "vim" },
+				globals = {
+					"vim",
+					"describe",
+					"it",
+					"before_each",
+					"after_each",
+					"pending",
+				},
 			},
-			workspace = {
-				checkThirdParty = false,
-			},
+			workspace = { library = vim.api.nvim_get_runtime_file("", true) },
+			telemetry = { enable = false },
 		},
 	},
 })
 
--- individual lsp config: tsserver
-lsp.configure("tsserver", {
+-- TSSERVER SETUP
+lspconfig.lua_ls.setup({
 	on_init = function(client)
 		client.server_capabilities.documentFormattingProvider = false
 		client.server_capabilities.documentFormattingRangeProvider = false
@@ -47,21 +50,9 @@ lsp.configure("tsserver", {
 		hostInfo = "neovim",
 		preferences = {
 			autoImportFileExcludePatterns = {
-				"node_modules/@mui/**",
-				"node_modules/@mui/*",
-        "@mui/**",
-				-- "node_modules/**",
+				"**/@mui/**",
 			},
 			importModuleSpecifierPreference = "auto",
 		},
 	},
-	filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
 })
-
--- LSP KEYBINDING
-lsp.on_attach(lspsetup.on_attach)
-
-lsp.setup()
-
--- DIAGNOSTIC SETUP | must be at bottom most
-vim.diagnostic.config(lspsetup.diagnostic_config)

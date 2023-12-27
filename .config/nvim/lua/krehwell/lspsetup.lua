@@ -1,6 +1,7 @@
 local on_attach = function(client, bufnr)
 	local opts = { buffer = bufnr, remap = false, silent = true }
 
+  -- DIAGNOSTIC JUMP KEYMAPS
 	vim.cmd([[
       " I don't want to be diagnostic-nified while typing
       " autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, { focus=false })
@@ -14,16 +15,19 @@ local on_attach = function(client, bufnr)
 	-- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, opts)
 	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 
+  -- LSP WITH NVIM DEFAULT
 	-- vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
 	-- vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
 	-- vim.keymap.set("n", "gy", vim.lsp.buf.type_definition, opts)
 	-- vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
 
+  -- LSP WITH FZF
 	vim.keymap.set("n", "gd", ":lua require('fzf-lua').lsp_definitions({ jump_to_single_result = true })<cr>", opts)
 	vim.keymap.set("n", "gi", ":lua require('fzf-lua').lsp_implementations({ jump_to_single_result = true })<cr>", opts)
 	vim.keymap.set("n", "gy", ":lua require('fzf-lua').lsp_typedefs({ jump_to_single_result = true })<cr>", opts)
 	vim.keymap.set("n", "gr", ":lua require('fzf-lua').lsp_references({ ignore_current_line = true })<cr>", opts)
 
+  -- LSP WITH TELESCOPE
 	-- vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<cr>", opts)
 	-- vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<cr>", opts)
 	-- vim.keymap.set("n", "gy", "<cmd>Telescope lsp_type_definitions<cr>", opts)
@@ -59,7 +63,7 @@ local diagnostic_config = {
 	underline = true,
 	severity_sort = true,
 	float = {
-		focusable = false,
+		focusable = true,
 		style = "minimal",
 		border = "rounded",
 		source = "always",
