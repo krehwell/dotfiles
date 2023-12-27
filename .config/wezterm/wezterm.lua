@@ -10,10 +10,10 @@ end)
 local config = {
   font = wezterm.font_with_fallback({
     -- font weight to be a little bold
-    { family = "SF Mono",         weight = "Medium" },
+    { family = "SF Mono",         weight = "DemiBold" },
     { family = "Symbols Nerd Font Mono", scale = 0.8 },
   }),
-  font_size = 9.5,
+  font_size = 11,
   -- line_height = 1.06,
   -- cell_width = 0.93,
 

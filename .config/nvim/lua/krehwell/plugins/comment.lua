@@ -3,6 +3,8 @@ return {
 	dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
 	event = "InsertEnter",
 	opts = function()
+		require("ts_context_commentstring").setup({})
+		vim.g.skip_ts_context_commentstring_module = true
 		return {
 			padding = true, -- Add a space b/w comment and the line
 			sticky = true, -- Whether the cursor should stay at its position

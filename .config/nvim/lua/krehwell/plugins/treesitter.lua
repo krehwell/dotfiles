@@ -39,9 +39,6 @@ return {
 				enable = true, -- auto close html tag
 				enable_close_on_slash = false,
 			},
-			context_commentstring = {
-				enable = true,
-			},
 			refactor = {
 				highlight_definitions = {
 					enable = true,

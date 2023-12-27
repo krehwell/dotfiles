@@ -23,7 +23,7 @@ return {
         fzf_opts = { ["--layout"] = "default", ["--marker"] = "+" },
         winopts = {
           height = 0.85,
-          width = 0.77,
+          width = 0.9,
           preview = {
             vertical = "up:45%",
             horizontal = "right:50%",
