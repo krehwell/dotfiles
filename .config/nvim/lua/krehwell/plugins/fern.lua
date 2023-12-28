@@ -30,7 +30,9 @@ return {
 		vim.g["fern#hide_cursor"] = 0
 		vim.g["fern#default_hidden"] = 1
 		vim.g["fern#renderer"] = "nerdfont"
-		vim.g["fern#renderer#nerdfont#indent_markers"] = 1
+		vim.g["fern#renderer#nerdfont#indent_markers"] = 0
+    vim.g["fern#renderer#nerdfont#leading"] = "╏ "
+    vim.g["fern#renderer#nerdfont#padding"] = " "
 		-- vim.g["fern#renderer#nerdfont#root_symbol"] = " "
 
 		-- FERN TOGGLER
@@ -55,7 +57,7 @@ return {
 		vim.cmd([[
       function! s:fern_previewer() abort
         nmap <silent> <buffer> p     <Plug>(fern-action-preview:toggle)
-        nmap <silent> <buffer> <C-p> <Plug>(fern-action-preview:auto:toggle)
+        " nmap <silent> <buffer> <C-p> <Plug>(fern-action-preview:auto:toggle)
         nmap <silent> <buffer> <C-j> <Plug>(fern-action-preview:scroll:down:half)
         nmap <silent> <buffer> <C-k> <Plug>(fern-action-preview:scroll:up:half)
       endfunction

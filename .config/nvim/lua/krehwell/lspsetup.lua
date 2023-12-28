@@ -46,11 +46,11 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set("n", "gq", ":lua vim.lsp.buf.format()<CR>", opts)
 	vim.keymap.set("v", "gq", function()
 		vim.lsp.buf.format({
-			range = {
-				["start"] = vim.api.nvim_buf_get_mark(0, "<"),
-				["end"] = vim.api.nvim_buf_get_mark(0, ">"),
-			},
-		})
+      range = {
+        ["start"] = vim.api.nvim_buf_get_mark(0, "<"),
+        ["end"] = vim.api.nvim_buf_get_mark(0, ">"),
+      },
+    })
 	end, opts)
 end
 

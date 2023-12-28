@@ -15,6 +15,8 @@ lsp_zero.on_attach(function(client, bufnr)
 	lspsetup.on_attach(client, bufnr)
 	vim.diagnostic.config(lspsetup.diagnostic_config)
 end)
+-- lsp_zero.set_sign_icons({ error = "✘", warn = "▲", hint = "⚑", info = "»" })
+lsp_zero.set_sign_icons({ error = "", warn = "", hint = "", info = "" })
 
 -- LUA LSP SETUP
 require("neodev").setup({})
