@@ -9,6 +9,11 @@ return {
 			{
 				"williamboman/mason.nvim",
 				cmd = "Mason",
+				opts = {
+					ui = {
+						border = "rounded",
+					},
+				},
 			},
 			{ "williamboman/mason-lspconfig.nvim" },
 		},
