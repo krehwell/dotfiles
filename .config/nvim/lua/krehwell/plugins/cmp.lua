@@ -7,54 +7,101 @@ return {
 		{ "hrsh7th/cmp-vsnip" },
 		{ "hrsh7th/vim-vsnip" },
 		{ "hrsh7th/cmp-buffer" },
+		{ "L3MON4D3/LuaSnip" },
 	},
-	opts = function()
+	config = function()
 		local cmp = require("cmp")
-		local merge = function(a, b)
-			return vim.tbl_deep_extend("force", {}, a, b)
-		end
+		local luasnip = require("luasnip")
 
-		return {
-			preselect = cmp.PreselectMode.Item,
-			completion = {
-				completeopt = "menu,menuone,noinsert",
-			},
-			window = {
-				completion = cmp.config.window.bordered({}),
-				documentation = merge(cmp.config.window.bordered(), { max_height = 15, max_width = 40 }),
-			},
+		local kind_icons = {
+			Text = "",
+			Method = "m",
+			Function = "󰊕",
+			Constructor = "",
+			Field = "",
+			Variable = "",
+			Class = "",
+			Interface = "",
+			Module = "",
+			Property = " ",
+			Unit = "",
+			Value = "󰎠",
+			Enum = "",
+			Keyword = "󰌋",
+			Snippet = "",
+			Color = "󰏘",
+			File = "󰈙",
+			Reference = "",
+			Folder = "󰉋",
+			EnumMember = "",
+			Constant = "󰏿",
+			Struct = "",
+			Event = "",
+			Operator = "󰆕",
+			TypeParameter = " ",
+		}
+
+		local borderstyle = {
+			border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+			winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
+		}
+
+		cmp.setup({
 			snippet = {
 				expand = function(args)
-					vim.fn["vsnip#anonymous"](args.body)
+					luasnip.lsp_expand(args.body)
 				end,
 			},
-			formatting = {
-				fields = { "abbr", "menu", "kind" },
-				-- format = function(entry, item)
-				--   local short_name = { nvim_lsp = "LSP", nvim_lua = "nvim", nvim_lsp_signature_help = "signature" }
-				--   local menu_name = short_name[entry.source.name] or entry.source.name
-				--   item.menu = string.format("[%s]", menu_name)
-				--   return item
-				-- end,
-			},
-			mapping = {
+			mapping = cmp.mapping.preset.insert({
 				["<C-k>"] = cmp.mapping.scroll_docs(-4),
 				["<C-j>"] = cmp.mapping.scroll_docs(4),
 				["<C-Space>"] = cmp.mapping.complete({}),
-				["<CR>"] = cmp.mapping.confirm({ select = true }),
-				-- ["<CR>"] = cmp.config.disable,
 				["<C-p>"] = cmp.mapping.select_prev_item(),
 				["<C-n>"] = cmp.mapping.select_next_item(),
 				["<Tab>"] = cmp.config.disable,
 				["<S-Tab>"] = cmp.config.disable,
+				["<CR>"] = cmp.mapping.confirm({
+					select = true,
+					behavior = cmp.ConfirmBehavior.Replace,
+				}),
+				-- ["<CR>"] = cmp.config.disable,
+			}),
+			formatting = {
+				fields = { "kind", "abbr", "menu" },
+				format = function(entry, vim_item)
+					vim_item.menu = ({
+						nvim_lsp = "[LSP]",
+						luasnip = "[Snip]",
+						buffer = "[Buff]",
+						path = "[Path]",
+					})[entry.source.name]
+
+					vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
+					return vim_item
+				end,
 			},
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
+				{ name = "nvim_lsp_signature_help" },
+				{ name = "luasnip" },
 				{ name = "path" },
-				{ name = "calc" },
-      }, {
+			}, {
 				{ name = "buffer" },
 			}),
-		}
+			duplicates = {
+				nvim_lsp = 1,
+				luasnip = 1,
+				buffer = 1,
+				path = 1,
+			},
+			window = {
+				completion = borderstyle,
+				documentation = borderstyle,
+			},
+			experimental = {
+				ghost_text = false,
+				native_menu = false,
+			},
+		})
 	end,
 }

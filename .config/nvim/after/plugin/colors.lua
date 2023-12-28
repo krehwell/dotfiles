@@ -31,7 +31,7 @@ vim.cmd([[ let &statusline='%#VertSplit#' ]]) -- color the split window dashes
 -- })
 -- require("vscode").load()
 
-local colorscheme = "yami"
+local colorscheme = "arthur"
 local present, _ = pcall(vim.api.nvim_command, "colorscheme " .. colorscheme)
 if not present then
 	return print("colorscheme " .. colorscheme .. " not found!")
@@ -48,14 +48,26 @@ vim.cmd([[
 vim.cmd([[
   augroup custom_off_highlight
     au!
-    hi! Normal guibg=g:term_background guifg=g:term_foreground ctermbg=NONE
+    hi! Normal guibg=g:term_background " guifg=g:term_foreground ctermbg=NONE
     hi! VertSplit guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
     hi! SignColumn guibg=NONE
-    hi! link String Normal
-    hi! link TabLineFill Normal
-    hi! TabLineSel guibg=#a270ba guifg=#1e1e1e
-    " hi! Pmenu guibg=#NONE
-    " hi! PmenuSel guifg=#ffffff
+    " hi! link String Normal
+    hi! TabLineFill guibg=NONE
+    hi! TabLineSel guibg=NONE
+    hi! Pmenu guibg=NONE guifg=Normal
+    " hi! PmenuSel guifg=Normal
     " hi clear Todo
   augroup END
 ]])
+
+if colorscheme == "arthur" then
+	vim.cmd([[
+    augroup custom_arthur
+      au!
+      hi! CmpItemMenuDefault guifg=Normal
+      hi! CmpItemAbbrMatchDefault guifg=Normal gui=bold
+      hi! link CmpItemAbbrDefault Normal
+      hi! CmpItemAbbrMatchFuzzyDefault guifg=Normal gui=bold
+    augroup END
+  ]])
+end
