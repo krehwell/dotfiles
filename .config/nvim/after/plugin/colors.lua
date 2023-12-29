@@ -16,21 +16,6 @@ vim.opt.fillchars = {
 vim.opt.laststatus = 0
 vim.cmd([[ let &statusline='%#VertSplit#' ]]) -- color the split window dashes
 
--- local c = require("vscode.colors").get_colors()
--- require("vscode").setup({
---   -- Enable transparent background
---   transparent = true,
---   -- Enable italic comment
---   italic_comments = true,
---   -- Override highlight groups (see ./lua/vscode/theme.lua)
---   group_overrides = {
---     -- this supports the same val table as vim.api.nvim_set_hl
---     -- use colors from this colorscheme by requiring vscode.colors!
---     Cursor = { fg = c.vscDarkBlue, bg = c.vscLightGreen, bold = true },
---   },
--- })
--- require("vscode").load()
-
 local colorscheme = "arthur"
 local present, _ = pcall(vim.api.nvim_command, "colorscheme " .. colorscheme)
 if not present then
@@ -45,6 +30,7 @@ vim.cmd([[
   endif
 ]])
 
+-- CUSTOM ADDITIONAL COLOR CONFIG
 vim.cmd([[
   augroup custom_off_highlight
     au!
@@ -60,6 +46,7 @@ vim.cmd([[
   augroup END
 ]])
 
+-- CUSTOM ARTHUR COLOR CONFIG
 if colorscheme == "arthur" then
 	vim.cmd([[
     augroup custom_arthur
@@ -68,6 +55,22 @@ if colorscheme == "arthur" then
       hi! CmpItemAbbrMatchDefault guifg=Normal gui=bold
       hi! link CmpItemAbbrDefault Normal
       hi! CmpItemAbbrMatchFuzzyDefault guifg=Normal gui=bold
+      hi! IncSearch guifg=plum guibg=black
+      hi! Search guifg=NONE guibg=teal
+      hi! link CurSearch Search
     augroup END
+  ]])
+
+	-- CURSOR COLOR
+	vim.cmd([[
+    hi! Cursor guifg=white guibg=#ddeedd
+    hi! iCursor guifg=white guibg=#ddeedd
+    hi! vCursor guifg=red guibg=plum
+    set guicursor=n-c:block-Cursor
+    set guicursor+=v:block-vCursor
+    set guicursor+=i:ver100-iCursor
+    set guicursor+=n-v-c:blinkon0
+    " set guicursor+=i:blinkwait0
+    " set guicursor+=a:blinkon100
   ]])
 end
