@@ -26,24 +26,22 @@ local lspconfig = require("lspconfig")
 lspconfig.lua_ls.setup({
 	settings = {
 		Lua = {
-			diagnostics = {
-				globals = {
-					"vim",
-					"describe",
-					"it",
-					"before_each",
-					"after_each",
-					"pending",
-				},
+			runtime = {
+				version = "LuaJIT",
 			},
-			workspace = { library = vim.api.nvim_get_runtime_file("", true) },
+			diagnostics = {
+				globals = { "vim", "require" },
+			},
+			workspace = {
+				library = vim.api.nvim_get_runtime_file("", true),
+			},
 			telemetry = { enable = false },
 		},
 	},
 })
 
 -- TSSERVER SETUP
-lspconfig.lua_ls.setup({
+lspconfig.tsserver.setup({
 	on_init = function(client)
 		client.server_capabilities.documentFormattingProvider = false
 		client.server_capabilities.documentFormattingRangeProvider = false
@@ -52,9 +50,13 @@ lspconfig.lua_ls.setup({
 		hostInfo = "neovim",
 		preferences = {
 			autoImportFileExcludePatterns = {
-				"**/@mui/**",
+				"node_modules/@mui/**",
+				"node_modules/@mui/*",
+				"@mui/**",
+				-- "node_modules/**",
 			},
 			importModuleSpecifierPreference = "auto",
 		},
 	},
+	filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
 })

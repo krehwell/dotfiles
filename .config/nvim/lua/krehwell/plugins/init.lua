@@ -89,6 +89,12 @@ return {
 
 	-- BEAUTIFY
 	{
+		"mhinz/vim-startify",
+		config = function()
+			vim.g.startify_session_dir = "$HOME/.vim/session"
+		end,
+	},
+	{
 		"folke/trouble.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		cmd = "TroubleToggle",

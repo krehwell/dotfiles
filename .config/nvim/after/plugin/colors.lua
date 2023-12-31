@@ -37,12 +37,8 @@ vim.cmd([[
     hi! Normal guibg=g:term_background " guifg=g:term_foreground ctermbg=NONE
     hi! VertSplit guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
     hi! SignColumn guibg=NONE
-    " hi! link String Normal
-    hi! TabLineFill guibg=NONE
-    hi! TabLineSel guibg=NONE
     hi! Pmenu guibg=NONE guifg=Normal
-    " hi! PmenuSel guifg=Normal
-    " hi clear Todo
+    hi! link TabLine LineNr
   augroup END
 ]])
 
@@ -53,19 +49,22 @@ if colorscheme == "arthur" then
       au!
       hi! CmpItemMenuDefault guifg=Normal
       hi! CmpItemAbbrMatchDefault guifg=Normal gui=bold
-      hi! link CmpItemAbbrDefault Normal
       hi! CmpItemAbbrMatchFuzzyDefault guifg=Normal gui=bold
-      hi! IncSearch guifg=plum guibg=black
-      hi! Search guifg=NONE guibg=teal
-      hi! link CurSearch Search
+      hi! link CmpItemAbbrDefault Normal
+      hi! IncSearch cterm=reverse gui=reverse guifg=#ffe66b guibg=#222222
+      hi! Search    cterm=reverse gui=reverse guifg=#ddeedd guibg=#222222
+      hi! link CurSearch IncSearch
+      hi! TabLineSel guibg=#ffe66b guifg=#222222
+      hi! TabLineFill guibg=NONE
+      hi! StatusLine guibg=#222222 guifg=Normal
     augroup END
   ]])
 
 	-- CURSOR COLOR
 	vim.cmd([[
     hi! Cursor guifg=white guibg=#ddeedd
-    hi! iCursor guifg=white guibg=#ddeedd
-    hi! vCursor guifg=red guibg=plum
+    hi! iCursor guifg=white guibg=#ffe66b
+    hi! vCursor guifg=red guibg=#ffe66b
     set guicursor=n-c:block-Cursor
     set guicursor+=v:block-vCursor
     set guicursor+=i:ver100-iCursor
