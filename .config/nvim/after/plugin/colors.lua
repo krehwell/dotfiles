@@ -57,18 +57,19 @@ if colorscheme == "arthur" then
       hi! TabLineSel guibg=#ffe66b guifg=#222222
       hi! TabLineFill guibg=NONE
       hi! StatusLine guibg=#222222 guifg=Normal
+      hi! ColorColumn guibg=#222222
     augroup END
   ]])
 
 	-- CURSOR COLOR
 	vim.cmd([[
-    hi! Cursor guifg=white guibg=#ddeedd
-    hi! iCursor guifg=white guibg=#ffe66b
-    hi! vCursor guifg=red guibg=#ffe66b
-    set guicursor=n-c:block-Cursor
-    set guicursor+=v:block-vCursor
-    set guicursor+=i:ver100-iCursor
-    set guicursor+=n-v-c:blinkon0
+    " hi! Cursor guifg=white guibg=#ddeedd
+    " hi! iCursor guifg=white guibg=#ffe66b
+    " hi! vCursor guifg=red guibg=#ffe66b
+    " set guicursor=n-c:block-Cursor
+    " set guicursor+=v:block-vCursor
+    " set guicursor+=i:ver100-iCursor
+    " set guicursor+=n-v-c:blinkon0
     " set guicursor+=i:blinkwait0
     " set guicursor+=a:blinkon100
   ]])

@@ -19,11 +19,11 @@ return {
 		},
 	},
 	{ "jose-elias-alvarez/null-ls.nvim" }, -- formatter, etc
-	-- {
-	-- 	"zeioth/garbage-day.nvim",
-	-- 	dependencies = "neovim/nvim-lspconfig",
-	-- 	event = "VeryLazy",
-	-- },
+	{
+		"zeioth/garbage-day.nvim",
+		dependencies = "neovim/nvim-lspconfig",
+		event = "VeryLazy",
+	},
 
 	-- HELPERS/NAVIGATIONS
 	{
@@ -40,7 +40,7 @@ return {
 			{ "cs", "<Plug>VSurround", desc = "Change surround", mode = "n" },
 			{ "ds", "<Plug>Dsurround", desc = "Delete surround", mode = "n" },
 			{ "ys", "<Plug>Ysurround", desc = "Yank surround", mode = "n" },
-			{ "S", mode = "v" },
+			{ "S", mode = "v", desc = "Surround selected" },
 		},
 	},
 	{ "tpope/vim-repeat", keys = { { "." } } },

@@ -4,14 +4,19 @@ return {
 		{ "hrsh7th/cmp-calc" },
 		{ "hrsh7th/cmp-path" },
 		{ "hrsh7th/cmp-nvim-lsp" },
-		{ "hrsh7th/cmp-vsnip" },
-		{ "hrsh7th/vim-vsnip" },
 		{ "hrsh7th/cmp-buffer" },
-		{ "L3MON4D3/LuaSnip" },
+		{ "saadparwaiz1/cmp_luasnip" },
+		{
+			"L3MON4D3/LuaSnip",
+			version = "v2.*",
+			build = "make install_jsregexp",
+		},
+		{ "rafamadriz/friendly-snippets" },
 	},
 	config = function()
 		local cmp = require("cmp")
 		local luasnip = require("luasnip")
+		require("luasnip.loaders.from_vscode").lazy_load()
 
 		local kind_icons = {
 			Text = "",
