@@ -40,6 +40,7 @@ vim.cmd([[
     " hi! Pmenu guibg=NONE guifg=Normal
       hi! link TabLine LineNr
       hi! link TabLineFill LineNr
+    set guicursor=n-c:block-Cursor
   augroup END
 ]])
 
