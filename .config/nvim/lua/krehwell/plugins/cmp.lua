@@ -6,50 +6,14 @@ return {
 		{ "hrsh7th/cmp-nvim-lsp" },
 		{ "hrsh7th/cmp-buffer" },
 		{ "saadparwaiz1/cmp_luasnip" },
-		{
-			"L3MON4D3/LuaSnip",
-			version = "v2.*",
-			build = "make install_jsregexp",
-		},
+		{ "L3MON4D3/LuaSnip", version = "v2.*", build = "make install_jsregexp" },
 		{ "rafamadriz/friendly-snippets" },
+		{ "onsails/lspkind.nvim" },
 	},
 	config = function()
 		local cmp = require("cmp")
 		local luasnip = require("luasnip")
 		require("luasnip.loaders.from_vscode").lazy_load()
-
-		local kind_icons = {
-			Text = "",
-			Method = "m",
-			Function = "󰊕",
-			Constructor = "",
-			Field = "",
-			Variable = "",
-			Class = "",
-			Interface = "",
-			Module = "",
-			Property = " ",
-			Unit = "",
-			Value = "󰎠",
-			Enum = "",
-			Keyword = "󰌋",
-			Snippet = "",
-			Color = "󰏘",
-			File = "󰈙",
-			Reference = "",
-			Folder = "󰉋",
-			EnumMember = "",
-			Constant = "󰏿",
-			Struct = "",
-			Event = "",
-			Operator = "󰆕",
-			TypeParameter = " ",
-		}
-
-		local borderstyle = {
-			border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-			winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
-		}
 
 		cmp.setup({
 			snippet = {
@@ -74,15 +38,42 @@ return {
 			formatting = {
 				fields = { "kind", "abbr", "menu" },
 				format = function(entry, vim_item)
-					vim_item.menu = ({
-						nvim_lsp = "[LSP]",
-						luasnip = "[Snip]",
-						buffer = "[Buff]",
-						path = "[Path]",
-					})[entry.source.name]
-
-					vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-					return vim_item
+					local kind = require("lspkind").cmp_format({
+						mode = "symbol_text",
+						maxwidth = 50,
+						symbol_map = {
+							Text = "",
+							Method = "m",
+							Function = "󰊕",
+							Constructor = "",
+							Field = "",
+							Variable = "",
+							Class = "",
+							Interface = "",
+							Module = "",
+							Property = " ",
+							Unit = "",
+							Value = "󰎠",
+							Enum = "",
+							Keyword = "󰌋",
+							Snippet = "",
+							Color = "󰏘",
+							File = "󰈙",
+							Reference = "",
+							Folder = "󰉋",
+							EnumMember = "",
+							Constant = "󰏿",
+							Struct = "",
+							Event = "",
+							Operator = "󰆕",
+							TypeParameter = " ",
+						},
+					})(entry, vim_item)
+					local strings = vim.split(kind.kind, "%s", { trimempty = true })
+					kind.kind = " " .. (strings[1] or "") .. " "
+					--kind.kind = '▍' -- instead of symbol
+					kind.menu = " " .. (strings[2] or "")
+					return kind
 				end,
 			},
 			sources = cmp.config.sources({
@@ -99,13 +90,22 @@ return {
 				buffer = 1,
 				path = 1,
 			},
+			view = {
+				--entries = "native"
+			},
+			--performance = {
+			--	debounce = 300,
+			--	throttle = 150
+			--},
 			window = {
-				completion = borderstyle,
-				documentation = borderstyle,
+				completion = {
+					col_offset = -3,
+					side_padding = 0,
+				},
 			},
 			experimental = {
-				ghost_text = false,
-				native_menu = false,
+				ghost_text = true,
+				-- native_menu = false,
 			},
 		})
 	end,

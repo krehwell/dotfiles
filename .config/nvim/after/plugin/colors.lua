@@ -16,7 +16,7 @@ vim.opt.fillchars = {
 vim.opt.laststatus = 0
 vim.cmd([[ let &statusline='%#VertSplit#' ]]) -- color the split window dashes
 
-local colorscheme = "arthur"
+local colorscheme = "mirec"
 local present, _ = pcall(vim.api.nvim_command, "colorscheme " .. colorscheme)
 if not present then
 	return print("colorscheme " .. colorscheme .. " not found!")
@@ -33,12 +33,13 @@ vim.cmd([[
 -- CUSTOM ADDITIONAL COLOR CONFIG
 vim.cmd([[
   augroup custom_off_highlight
-    au!
-    hi! Normal guibg=g:term_background " guifg=g:term_foreground ctermbg=NONE
-    hi! VertSplit guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
-    hi! SignColumn guibg=NONE
-    hi! Pmenu guibg=NONE guifg=Normal
-    hi! link TabLine LineNr
+    " au!
+    " hi! Normal guibg=g:term_background " guifg=g:term_foreground ctermbg=NONE
+    " hi! VertSplit guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
+    " hi! SignColumn guibg=NONE
+    " hi! Pmenu guibg=NONE guifg=Normal
+      hi! link TabLine LineNr
+      hi! link TabLineFill LineNr
   augroup END
 ]])
 
