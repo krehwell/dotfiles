@@ -6,6 +6,10 @@ wezterm.on("gui-startup", function()
 	window:gui_window():toggle_fullscreen()
 end)
 
+wezterm.on("window-config-reloaded", function(window, pane)
+	window:toast_notification("wezterm", "configuration reloaded!", nil, 4000)
+end)
+
 -- This table will hold the configuration.
 local config = {
 	font = wezterm.font_with_fallback({
@@ -18,7 +22,7 @@ local config = {
 	-- cell_width = 0.93,
 
 	colors = {
-		background = "#1a1a19",
+		background = "#000000",
 		foreground = "#d4d4d4",
 		cursor_bg = "#a270ba",
 		cursor_fg = "#1e1e1e",
@@ -27,6 +31,7 @@ local config = {
 	hide_tab_bar_if_only_one_tab = true,
 	native_macos_fullscreen_mode = true,
 	-- exit_behavior = "CloseOnCleanExit",
+	automatically_reload_config = true,
 
 	window_padding = { left = 0, right = 0, top = 0, bottom = 0 },
 	window_close_confirmation = "NeverPrompt",
@@ -49,6 +54,11 @@ local config = {
 			key = "p",
 			mods = "CMD",
 			action = wezterm.action({ SendString = "~/utils/tmux-sessionizer\n" }),
+		},
+		{
+			key = "r",
+			mods = "CMD|SHIFT",
+			action = wezterm.action.ReloadConfiguration,
 		},
 	},
 

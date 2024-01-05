@@ -44,6 +44,14 @@ vim.cmd([[
   augroup END
 ]])
 
+if colorscheme == "mirec" then
+	vim.cmd([[
+    augroup custom_mirec
+      au!
+    augroup END
+  ]])
+end
+
 -- CUSTOM ARTHUR COLOR CONFIG
 if colorscheme == "arthur" then
 	vim.cmd([[
