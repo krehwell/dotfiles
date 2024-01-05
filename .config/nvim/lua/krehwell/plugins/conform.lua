@@ -24,15 +24,15 @@ return {
 			format_on_save = {
 				lsp_fallback = true,
 				async = false,
-				timeout_ms = 1000,
+				-- timeout_ms = 1000,
 			},
 		})
 
 		vim.keymap.set({ "n", "v" }, "gq", function()
 			conform.format({
-				lsp_fallback = false,
+				lsp_fallback = true,
 				async = true,
-				timeout_ms = 1000,
+				-- timeout_ms = 1000,
 			})
 		end, { desc = "Format file or range (in visual mode)" })
 	end,
