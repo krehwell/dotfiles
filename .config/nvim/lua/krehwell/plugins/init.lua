@@ -19,11 +19,11 @@ return {
 		},
 	},
 	{ "jose-elias-alvarez/null-ls.nvim" }, -- formatter, etc
-	{
-		"zeioth/garbage-day.nvim",
-		dependencies = "neovim/nvim-lspconfig",
-		event = "VeryLazy",
-	},
+	-- {
+	-- 	"zeioth/garbage-day.nvim",
+	-- 	dependencies = "neovim/nvim-lspconfig",
+	-- 	event = "VeryLazy",
+	-- },
 
 	-- HELPERS/NAVIGATIONS
 	{
@@ -84,7 +84,7 @@ return {
 		"chrisgrieser/nvim-early-retirement",
 		config = true,
 		event = "VeryLazy",
-		opts = { retirementAgeMins = 20 },
+		opts = { retirementAgeMins = 15 },
 	},
 
 	-- BEAUTIFY

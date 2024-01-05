@@ -46,6 +46,9 @@ lspconfig.tsserver.setup({
 		client.server_capabilities.documentFormattingProvider = false
 		client.server_capabilities.documentFormattingRangeProvider = false
 	end,
+
+	cmd = { "bunx", "typescript-language-server", "--stdio" },
+
 	init_options = {
 		hostInfo = "neovim",
 		preferences = {
