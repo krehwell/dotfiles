@@ -15,6 +15,13 @@ return {
 		local luasnip = require("luasnip")
 		require("luasnip.loaders.from_vscode").lazy_load()
 
+		cmp.setup.cmdline("/", {
+			view = {
+				entries = { name = "wildmenu", separator = " | " },
+			},
+			mapping = cmp.mapping.preset.cmdline(),
+		})
+
 		cmp.setup({
 			snippet = {
 				expand = function(args)
@@ -66,12 +73,17 @@ return {
 							Struct = "",
 							Event = "",
 							Operator = "󰆕",
-							TypeParameter = " ",
+							TypeParameter = "",
 						},
 					})(entry, vim_item)
 					local strings = vim.split(kind.kind, "%s", { trimempty = true })
+
 					kind.kind = " " .. (strings[1] or "") .. " "
-					--kind.kind = '▍' -- instead of symbol
+					if entry.source.name == "calc" then
+						kind.kind = " 󰃬 "
+					end
+
+					-- kind.kind = '▍' -- instead of symbol
 					kind.menu = " " .. (strings[2] or "")
 					return kind
 				end,
@@ -81,6 +93,7 @@ return {
 				{ name = "nvim_lsp_signature_help" },
 				{ name = "luasnip" },
 				{ name = "path" },
+				{ name = "calc" },
 			}, {
 				{ name = "buffer" },
 			}),

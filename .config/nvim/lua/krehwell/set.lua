@@ -3,6 +3,7 @@ vim.cmd([[
   filetype plugin indent on
 ]])
 
+vim.loader.enable()
 vim.opt.backspace = "2"
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -25,7 +26,7 @@ vim.opt.colorcolumn = "120"
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.eadirection = "ver"
-vim.opt.equalalways = false
+vim.opt.equalalways = true
 vim.opt.signcolumn = "yes:1"
 vim.opt.title = true
 
