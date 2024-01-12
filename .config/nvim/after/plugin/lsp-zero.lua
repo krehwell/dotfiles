@@ -7,7 +7,7 @@ end
 -- MASON (LSP INSTALLER)
 require("mason").setup({})
 require("mason-lspconfig").setup({
-	ensure_installed = { "tsserver", "gopls", "cssls", "html", "jsonls", "vimls", "cssmodules_ls", "lua_ls" },
+	ensure_installed = { --[[ "tsserver", ]] "gopls", "cssls", "html", "jsonls", "vimls", "cssmodules_ls", "lua_ls" },
 	handlers = { lsp_zero.default_setup },
 })
 
@@ -41,65 +41,25 @@ lspconfig.lua_ls.setup({
 })
 
 -- TSSERVER SETUP
-local function rename_file()
-	local source_file, target_file
-
-	vim.ui.input({
-		prompt = "Source : ",
-		completion = "file",
-		default = vim.api.nvim_buf_get_name(0),
-	}, function(input)
-		source_file = input
-	end)
-	vim.ui.input({
-		prompt = "Target : ",
-		completion = "file",
-		default = source_file,
-	}, function(input)
-		target_file = input
-	end)
-
-	local params = {
-		command = "_typescript.applyRenameFile",
-		arguments = {
-			{
-				sourceUri = source_file,
-				targetUri = target_file,
-			},
-		},
-		title = "",
-	}
-
-	vim.lsp.util.rename(source_file, target_file)
-	vim.lsp.buf.execute_command(params)
-end
-
-lspconfig.tsserver.setup({
-	on_init = function(client)
-		client.server_capabilities.documentFormattingProvider = false
-		client.server_capabilities.documentFormattingRangeProvider = false
-	end,
-
-	cmd = { "bunx", "typescript-language-server", "--stdio" },
-
-	commands = {
-		RenameFile = {
-			rename_file,
-			description = "Rename File",
-		},
-	},
-
-	init_options = {
-		hostInfo = "neovim",
-		preferences = {
-			autoImportFileExcludePatterns = {
-				"node_modules/@mui/**",
-				"node_modules/@mui/*",
-				"@mui/**",
-				-- "node_modules/**",
-			},
-			importModuleSpecifierPreference = "auto",
-		},
-	},
-	filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
-})
+-- lspconfig.tsserver.setup({
+-- 	on_init = function(client)
+-- 		client.server_capabilities.documentFormattingProvider = false
+-- 		client.server_capabilities.documentFormattingRangeProvider = false
+-- 	end,
+--
+-- 	cmd = { "bunx", "typescript-language-server", "--stdio" },
+--
+-- 	init_options = {
+-- 		hostInfo = "neovim",
+-- 		preferences = {
+-- 			autoImportFileExcludePatterns = {
+-- 				"node_modules/@mui/**",
+-- 				"node_modules/@mui/*",
+-- 				"@mui/**",
+-- 				-- "node_modules/**",
+-- 			},
+-- 			importModuleSpecifierPreference = "auto",
+-- 		},
+-- 	},
+-- 	filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+-- })

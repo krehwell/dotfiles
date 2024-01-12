@@ -5,6 +5,7 @@ return {
 		{ "hrsh7th/cmp-path" },
 		{ "hrsh7th/cmp-nvim-lsp" },
 		{ "hrsh7th/cmp-buffer" },
+		{ "hrsh7th/cmp-cmdline" },
 		{ "saadparwaiz1/cmp_luasnip" },
 		{ "L3MON4D3/LuaSnip", version = "v2.*", build = "make install_jsregexp" },
 		{ "rafamadriz/friendly-snippets" },
@@ -15,14 +16,39 @@ return {
 		local luasnip = require("luasnip")
 		require("luasnip.loaders.from_vscode").lazy_load()
 
-		cmp.setup.cmdline("/", {
+    -- CMP IN "/" and "?"
+		cmp.setup.cmdline({ "/", "?" }, {
 			view = {
 				entries = { name = "wildmenu", separator = " | " },
 			},
 			mapping = cmp.mapping.preset.cmdline(),
+			sources = { { name = "buffer" } },
+		})
+
+    -- CMP IN CMD MODE
+		cmp.setup.cmdline(":", {
+			mapping = cmp.mapping.preset.cmdline(),
+			sources = cmp.config.sources({
+				{ name = "path" },
+			}, {
+				{
+					name = "cmdline",
+					option = {
+						ignore_cmds = { "Man", "!" },
+					},
+				},
+			}),
 		})
 
 		cmp.setup({
+			enabled = function()
+				local disabled_ft = { "fern" }
+				if vim.tbl_contains(disabled_ft, vim.bo.filetype) then
+					return false
+				end
+				return true
+			end,
+
 			snippet = {
 				expand = function(args)
 					luasnip.lsp_expand(args.body)
