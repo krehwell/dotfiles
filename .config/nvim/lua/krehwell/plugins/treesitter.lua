@@ -14,16 +14,14 @@ return {
 			auto_install = false, -- Automatically install missing parsers when entering buffer
 
 			highlight = {
-				enable = false, -- `false` will disable the whole extension
-
-				-- list of language that will be disabled
-				disable = {},
-
-				-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-				-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-				-- Using this option may slow down your editor, and you may see some duplicate highlights.
-				-- Instead of true it can also be a list of languages
+				enable = true,
 				additional_vim_regex_highlighting = false,
+				use_languagetree = false,
+				-- disable = function(_, bufnr)
+				-- 	local buf_name = vim.api.nvim_buf_get_name(bufnr)
+				-- 	local file_size = vim.api.nvim_call_function("getfsize", { buf_name })
+				-- 	return file_size > 256 * 1024
+				-- end,
 			},
 			incremental_selection = {
 				enable = true,
