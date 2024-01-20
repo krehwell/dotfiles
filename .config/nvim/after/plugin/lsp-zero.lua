@@ -7,7 +7,7 @@ end
 -- MASON (LSP INSTALLER)
 require("mason").setup({})
 require("mason-lspconfig").setup({
-	ensure_installed = { --[[ "tsserver", ]] "gopls", "cssls", "html", "jsonls", "vimls", "cssmodules_ls", "lua_ls" },
+	ensure_installed = { "tsserver", "gopls", "cssls", "html", "jsonls", "vimls", "cssmodules_ls", "lua_ls" },
 	handlers = { lsp_zero.default_setup },
 })
 
@@ -41,25 +41,25 @@ lspconfig.lua_ls.setup({
 })
 
 -- TSSERVER SETUP
--- lspconfig.tsserver.setup({
--- 	on_init = function(client)
--- 		client.server_capabilities.documentFormattingProvider = false
--- 		client.server_capabilities.documentFormattingRangeProvider = false
--- 	end,
---
--- 	cmd = { "bunx", "typescript-language-server", "--stdio" },
---
--- 	init_options = {
--- 		hostInfo = "neovim",
--- 		preferences = {
--- 			autoImportFileExcludePatterns = {
--- 				"node_modules/@mui/**",
--- 				"node_modules/@mui/*",
--- 				"@mui/**",
--- 				-- "node_modules/**",
--- 			},
--- 			importModuleSpecifierPreference = "auto",
--- 		},
--- 	},
--- 	filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
--- })
+lspconfig.tsserver.setup({
+	on_init = function(client)
+		client.server_capabilities.documentFormattingProvider = false
+		client.server_capabilities.documentFormattingRangeProvider = false
+	end,
+
+	cmd = { "bunx", "typescript-language-server", "--stdio" },
+
+	init_options = {
+		hostInfo = "neovim",
+		preferences = {
+			autoImportFileExcludePatterns = {
+				"node_modules/@mui/**",
+				"node_modules/@mui/*",
+				"@mui/**",
+				-- "node_modules/**",
+			},
+			importModuleSpecifierPreference = "auto",
+		},
+	},
+	filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+})

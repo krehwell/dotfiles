@@ -9,14 +9,14 @@ return {
 
 	config = function()
 		require("nvim-treesitter.configs").setup({
-			ensure_installed = { "vimdoc", "typescript", "lua", "go", "bash", "tsx" }, -- A list of parser names, or "all"
+			ensure_installed = { "vimdoc", "typescript", "lua", "go", "bash", "tsx", "javascript", }, -- A list of parser names, or "all"
 			sync_install = false, -- Install parsers synchronously (only applied to `ensure_installed`)
 			auto_install = false, -- Automatically install missing parsers when entering buffer
 
 			highlight = {
 				enable = true,
 				additional_vim_regex_highlighting = false,
-				use_languagetree = false,
+				use_languagetree = true,
 				-- disable = function(_, bufnr)
 				-- 	local buf_name = vim.api.nvim_buf_get_name(bufnr)
 				-- 	local file_size = vim.api.nvim_call_function("getfsize", { buf_name })
@@ -41,6 +41,8 @@ return {
 				highlight_definitions = {
 					enable = true,
 					clear_on_cursor_move = false,
+					enable_rename = true,
+					enable_close = true,
 				},
 			},
 		})

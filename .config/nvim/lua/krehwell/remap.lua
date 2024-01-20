@@ -39,6 +39,7 @@ end)
 vim.keymap.set("n", "<localleader>s", function()
 	-- get name of current dir only
 	local cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+	vim.api.nvim_input(":wa<CR>") -- save all first
 	vim.api.nvim_input(":mksession! ~/.vim/session/" .. cwd .. ".vim<left><left><left><left>")
 end)
 

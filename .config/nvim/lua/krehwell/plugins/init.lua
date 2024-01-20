@@ -15,16 +15,6 @@ return {
 		},
 	},
 	{ "jose-elias-alvarez/null-ls.nvim" }, -- formatter, etc
-	{
-		"pmizio/typescript-tools.nvim",
-		ft = { "typescript", "javascript", "javascriptreact", "typescriptreact" },
-		keys = {
-			{ "tst", ":TSTools", desc = "Insert `:TSTools` in cmd mode" },
-		},
-		config = function()
-			require("typescript-tools").setup({})
-		end,
-	}, -- ts tools
 	{ "zeioth/garbage-day.nvim", dependencies = "neovim/nvim-lspconfig", event = "LspAttach" },
 
 	-- HELPERS/NAVIGATIONS
