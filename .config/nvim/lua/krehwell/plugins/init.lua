@@ -14,8 +14,28 @@ return {
 			{ "williamboman/mason-lspconfig.nvim" },
 		},
 	},
-	{ "jose-elias-alvarez/null-ls.nvim" }, -- formatter, etc
 	{ "zeioth/garbage-day.nvim", dependencies = "neovim/nvim-lspconfig", event = "LspAttach" },
+	{
+		"folke/trouble.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		cmd = "TroubleToggle",
+		keys = {
+			{ "<leader>xx", ":lua require('trouble').toggle()<CR>", desc = "Trouble toggle" },
+			{
+				"<leader>xw",
+				"require('trouble').toggle('workspace_diagnostics')<CR>",
+				desc = "Trouble Workspace Diagnostics",
+			},
+			{
+				"<leader>xd",
+				"require('trouble').toggle('document_diagnostics')<CR>",
+				desc = "Trouble Document Diagnostics",
+			},
+			{ "<leader>xq", "require('trouble').toggle('quickfix')<CR>", desc = "Trouble Quickfix" },
+			{ "<leader>xl", "require('trouble').toggle('loclist')<CR>", desc = "Trouble Location List" },
+		},
+	},
+	{ "chrisgrieser/nvim-early-retirement", event = "VeryLazy", opts = { retirementAgeMins = 15 } },
 
 	-- HELPERS/NAVIGATIONS
 	{
@@ -72,12 +92,6 @@ return {
 			{ "<C-n>", "<Plug>(VM-Select-Next)", desc = "Select next match", mode = { "n", "v" } },
 		},
 	},
-	{
-		"chrisgrieser/nvim-early-retirement",
-		config = true,
-		event = "VeryLazy",
-		opts = { retirementAgeMins = 15 },
-	},
 
 	-- BEAUTIFY
 	{
@@ -85,26 +99,6 @@ return {
 		config = function()
 			vim.g.startify_session_dir = "$HOME/.vim/session"
 		end,
-	},
-	{
-		"folke/trouble.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		cmd = "TroubleToggle",
-		keys = {
-			{ "<leader>xx", ":lua require('trouble').toggle()<CR>", desc = "Trouble toggle" },
-			{
-				"<leader>xw",
-				"require('trouble').toggle('workspace_diagnostics')<CR>",
-				desc = "Trouble Workspace Diagnostics",
-			},
-			{
-				"<leader>xd",
-				"require('trouble').toggle('document_diagnostics')<CR>",
-				desc = "Trouble Document Diagnostics",
-			},
-			{ "<leader>xq", "require('trouble').toggle('quickfix')<CR>", desc = "Trouble Quickfix" },
-			{ "<leader>xl", "require('trouble').toggle('loclist')<CR>", desc = "Trouble Location List" },
-		},
 	},
 	{
 		"folke/todo-comments.nvim",
