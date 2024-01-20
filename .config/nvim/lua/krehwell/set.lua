@@ -39,7 +39,7 @@ vim.opt.scrolloff = 22
 vim.opt.sidescrolloff = 18
 vim.opt.virtualedit = "block"
 vim.opt.laststatus = 0
-vim.opt.jumpoptions:append("view")
+vim.opt.jumpoptions:append("stack")
 -- vim.opt.virtualedit = "block"
 
 -- search/find behavior

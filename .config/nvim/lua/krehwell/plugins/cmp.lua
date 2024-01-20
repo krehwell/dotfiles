@@ -16,7 +16,7 @@ return {
 		local luasnip = require("luasnip")
 		require("luasnip.loaders.from_vscode").lazy_load()
 
-    -- CMP IN "/" and "?"
+		-- CMP IN "/" and "?"
 		cmp.setup.cmdline({ "/", "?" }, {
 			view = {
 				entries = { name = "wildmenu", separator = " | " },
@@ -25,7 +25,7 @@ return {
 			sources = { { name = "buffer" } },
 		})
 
-    -- CMP IN CMD MODE
+		-- CMP IN CMD MODE
 		cmp.setup.cmdline(":", {
 			mapping = cmp.mapping.preset.cmdline(),
 			sources = cmp.config.sources({
@@ -116,9 +116,8 @@ return {
 			},
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
-				{ name = "nvim_lsp_signature_help" },
 				{ name = "luasnip" },
-				{ name = "path" },
+				-- { name = "path" },
 				{ name = "calc" },
 			}, {
 				{ name = "buffer" },
@@ -132,10 +131,12 @@ return {
 			view = {
 				--entries = "native"
 			},
-			--performance = {
-			--	debounce = 300,
-			--	throttle = 150
-			--},
+			performance = {
+				-- debounce = 50,
+				-- throttle = 50,
+				-- fetching_timeout = 50,
+				max_view_entries = 50,
+			},
 			window = {
 				completion = {
 					col_offset = -3,
