@@ -40,7 +40,11 @@ vim.cmd([[
     " hi! Pmenu guibg=NONE guifg=Normal
       hi! link TabLine LineNr
       hi! link TabLineFill LineNr
-    set guicursor=n-c:block-Cursor
+
+      set guicursor=n-c-v:block-Cursor
+      set guicursor+=v:block-vCursor
+      set guicursor+=a:blinkon0
+      set guicursor+=n:blinkon80
   augroup END
 ]])
 
@@ -49,38 +53,5 @@ if colorscheme == "mirec" then
     augroup custom_mirec
       au!
     augroup END
-  ]])
-end
-
--- CUSTOM ARTHUR COLOR CONFIG
-if colorscheme == "arthur" then
-	vim.cmd([[
-    augroup custom_arthur
-      au!
-      hi! CmpItemMenuDefault guifg=Normal
-      hi! CmpItemAbbrMatchDefault guifg=Normal gui=bold
-      hi! CmpItemAbbrMatchFuzzyDefault guifg=Normal gui=bold
-      hi! link CmpItemAbbrDefault Normal
-      hi! IncSearch cterm=reverse gui=reverse guifg=#ffe66b guibg=#222222
-      hi! Search    cterm=reverse gui=reverse guifg=#ddeedd guibg=#222222
-      hi! link CurSearch IncSearch
-      hi! TabLineSel guibg=#ffe66b guifg=#222222
-      hi! TabLineFill guibg=NONE
-      hi! StatusLine guibg=#222222 guifg=Normal
-      hi! ColorColumn guibg=#222222
-    augroup END
-  ]])
-
-	-- CURSOR COLOR
-	vim.cmd([[
-    " hi! Cursor guifg=white guibg=#ddeedd
-    " hi! iCursor guifg=white guibg=#ffe66b
-    " hi! vCursor guifg=red guibg=#ffe66b
-    " set guicursor=n-c:block-Cursor
-    " set guicursor+=v:block-vCursor
-    " set guicursor+=i:ver100-iCursor
-    " set guicursor+=n-v-c:blinkon0
-    " set guicursor+=i:blinkwait0
-    " set guicursor+=a:blinkon100
   ]])
 end

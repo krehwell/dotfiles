@@ -38,7 +38,7 @@ local colorscheme = {
 	{ "Label", { ctermfg = 252 } },
 	{ "LineNr", { ctermfg = 244, ctermbg = 234 } },
 	{ "Macro", { ctermfg = 252 } },
-	{ "MatchParen", { ctermfg = 255, cterm = { bold = false, nocombine = true } } },
+	{ "MatchParen", { ctermfg = 255, ctermbg = 125, cterm = { bold = true, nocombine = true } } },
 	{ "ModeMsg", { ctermfg = 181, cterm = { bold = false } } },
 	{ "MoreMsg", { ctermfg = 231, cterm = { bold = false } } },
 	{ "NonText", { ctermfg = 8 } },

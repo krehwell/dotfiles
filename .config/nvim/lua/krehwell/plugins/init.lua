@@ -150,7 +150,6 @@ return {
 	{ "archseer/colibri.vim", priority = 1000, lazy = true, event = "VeryLazy" },
 	{ "fxn/vim-monochrome", priority = 1000, lazy = true, event = "VeryLazy" },
 	{ "jaredgorski/Mies.vim", priority = 1000, lazy = true, event = "VeryLazy" },
-	{ "jaredgorski/fogbell.vim", priority = 1000, lazy = true, event = "VeryLazy" },
 	{ "p00f/alabaster.nvim", priority = 1000, lazy = true, event = "VeryLazy" },
 	{ "felipec/vim-felipec", priority = 1000, lazy = true, event = "VeryLazy" },
 	{ "projekt0n/github-nvim-theme", priority = 1000, lazy = true, event = "VeryLazy" },
@@ -160,9 +159,5 @@ return {
 	{ "danishprakash/vim-yami", priority = 1000, lazy = true, event = "VeryLazy" },
 	{ "robertmeta/nofrils", priority = 1000, lazy = true, event = "VeryLazy" },
 	{ "folke/tokyonight.nvim", priority = 1000, lazy = true, event = "VeryLazy" },
-	{ "andreasvc/vim-256noir", priority = 1000, lazy = true, event = "VeryLazy" },
-	{ "ewilazarus/preto", priority = 1000, lazy = true, event = "VeryLazy" },
 	{ "VonHeikemen/rubber-themes.vim", priority = 1000, lazy = true, event = "VeryLazy" },
-	{ "thenewvu/vim-colors-arthur", priority = 1000, lazy = true, event = "VeryLazy" },
-	{ "saulhoward/kaodam", priority = 1000, lazy = true, event = "VeryLazy" },
 }

@@ -27,6 +27,13 @@ return {
 
 		-- CMP IN CMD MODE
 		cmp.setup.cmdline(":", {
+			enabled = function()
+				local disabled_ft = { "fern" }
+				if vim.tbl_contains(disabled_ft, vim.bo.filetype) then
+					return false
+				end
+				return true
+			end,
 			mapping = cmp.mapping.preset.cmdline(),
 			sources = cmp.config.sources({
 				{ name = "path" },
