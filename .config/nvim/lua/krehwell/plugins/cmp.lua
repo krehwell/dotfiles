@@ -16,8 +16,17 @@ return {
 		local luasnip = require("luasnip")
 		require("luasnip.loaders.from_vscode").lazy_load()
 
+		local disableCmp = function()
+			local disabled_ft = { "fern" }
+			if vim.tbl_contains(disabled_ft, vim.bo.filetype) then
+				return false
+			end
+			return true
+		end
+
 		-- CMP IN "/" and "?"
 		cmp.setup.cmdline({ "/", "?" }, {
+			enabled = disableCmp,
 			view = {
 				entries = { name = "wildmenu", separator = " | " },
 			},
@@ -27,34 +36,19 @@ return {
 
 		-- CMP IN CMD MODE
 		cmp.setup.cmdline(":", {
-			enabled = function()
-				local disabled_ft = { "fern" }
-				if vim.tbl_contains(disabled_ft, vim.bo.filetype) then
-					return false
-				end
-				return true
-			end,
+			enabled = disableCmp,
 			mapping = cmp.mapping.preset.cmdline(),
-			sources = cmp.config.sources({
-				{ name = "path" },
-			}, {
-				{
+			sources = cmp.config.sources(
+				{ { name = "path" } },
+				{ {
 					name = "cmdline",
-					option = {
-						ignore_cmds = { "Man", "!" },
-					},
-				},
-			}),
+					option = { ignore_cmds = { "Man", "!" } },
+				} }
+			),
 		})
 
 		cmp.setup({
-			enabled = function()
-				local disabled_ft = { "fern" }
-				if vim.tbl_contains(disabled_ft, vim.bo.filetype) then
-					return false
-				end
-				return true
-			end,
+			enabled = disableCmp,
 
 			snippet = {
 				expand = function(args)
@@ -124,7 +118,7 @@ return {
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
 				{ name = "luasnip" },
-				-- { name = "path" },
+				{ name = "path" },
 				{ name = "calc" },
 			}, {
 				{ name = "buffer" },

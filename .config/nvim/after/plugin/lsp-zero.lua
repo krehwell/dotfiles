@@ -47,15 +47,15 @@ lspconfig.tsserver.setup({
 		client.server_capabilities.documentFormattingRangeProvider = false
 	end,
 
-	cmd = { "bunx", "typescript-language-server", "--stdio" },
+	-- cmd = { "bunx", "typescript-language-server", "--stdio" },
 
 	init_options = {
-		hostInfo = "neovim",
+		-- hostInfo = "neovim",
 		preferences = {
 			autoImportFileExcludePatterns = {
-				"node_modules/@mui/**",
-				"node_modules/@mui/*",
-				"@mui/**",
+				-- "node_modules/@mui/**",
+				-- "node_modules/@mui/*",
+				-- "@mui/**",
 				-- "node_modules/**",
 			},
 			importModuleSpecifierPreference = "auto",

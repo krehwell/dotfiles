@@ -24,3 +24,10 @@ defaults write -g ApplePressAndHoldEnabled -bool false # pass true to enable it
 defaults write -g InitialKeyRepeat -int 10 # default is 15 (225 ms)
 defaults write -g KeyRepeat -int 1 # default is 2 (30 ms)
 ```
+
+4. "Show Hidden" by Defaullt
+
+```bash
+defaults write com.apple.finder AppleShowAllFiles -bool YES
+killall Finder
+```
