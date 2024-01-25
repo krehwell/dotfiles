@@ -4,7 +4,7 @@ return {
 		"lambdalisue/fern-git-status.vim",
 		"lambdalisue/nerdfont.vim",
 		"lambdalisue/fern-renderer-nerdfont.vim",
-		"lambdalisue/fern-hijack.vim",
+		-- "lambdalisue/fern-hijack.vim",
 		"andykog/fern-highlight.vim",
 		"lambdalisue/glyph-palette.vim",
 		"andykog/fern-copynode.vim",
@@ -31,8 +31,8 @@ return {
 		vim.g["fern#default_hidden"] = 1
 		vim.g["fern#renderer"] = "nerdfont"
 		vim.g["fern#renderer#nerdfont#indent_markers"] = 0
-    vim.g["fern#renderer#nerdfont#leading"] = "╎ "
-    vim.g["fern#renderer#nerdfont#padding"] = " "
+		vim.g["fern#renderer#nerdfont#leading"] = "╎ "
+		vim.g["fern#renderer#nerdfont#padding"] = " "
 		-- vim.g["fern#renderer#nerdfont#root_symbol"] = " "
 
 		-- FERN TOGGLER
@@ -59,7 +59,7 @@ return {
         nmap <silent> <buffer> p     <Plug>(fern-action-preview:toggle)
         " nmap <silent> <buffer> <C-p> <Plug>(fern-action-preview:auto:toggle)
         nmap <silent> <buffer> <C-j> <Plug>(fern-action-preview:scroll:down:half)
-        nmap <silent> <buffer> <C-k> <Plug>(fern-action-preview:scroll:up:half)
+        nmap <silent> <buffer> <C-u> <Plug>(fern-action-preview:scroll:up:half)
       endfunction
 
       augroup fern-previewer-settings
