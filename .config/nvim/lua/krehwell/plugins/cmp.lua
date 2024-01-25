@@ -16,17 +16,23 @@ return {
 		local luasnip = require("luasnip")
 		require("luasnip.loaders.from_vscode").lazy_load()
 
-		local disableCmp = function()
-			local disabled_ft = { "fern" }
-			if vim.tbl_contains(disabled_ft, vim.bo.filetype) then
-				return false
-			end
-			return true
-		end
+		-- CMP IN CMD MODE
+		cmp.setup.cmdline(":", {
+			mapping = cmp.mapping.preset.cmdline(),
+			sources = cmp.config.sources({
+				{ name = "path" },
+			}, {
+				{
+					name = "cmdline",
+					option = {
+						ignore_cmds = { "Man", "!" },
+					},
+				},
+			}),
+		})
 
 		-- CMP IN "/" and "?"
-		cmp.setup.cmdline({ "/", "?" }, {
-			enabled = disableCmp,
+		cmp.setup.cmdline("/", {
 			view = {
 				entries = { name = "wildmenu", separator = " | " },
 			},
@@ -34,22 +40,7 @@ return {
 			sources = { { name = "buffer" } },
 		})
 
-		-- CMP IN CMD MODE
-		cmp.setup.cmdline(":", {
-			enabled = disableCmp,
-			mapping = cmp.mapping.preset.cmdline(),
-			sources = cmp.config.sources(
-				{ { name = "path" } },
-				{ {
-					name = "cmdline",
-					option = { ignore_cmds = { "Man", "!" } },
-				} }
-			),
-		})
-
 		cmp.setup({
-			enabled = disableCmp,
-
 			snippet = {
 				expand = function(args)
 					luasnip.lsp_expand(args.body)
@@ -69,6 +60,8 @@ return {
 				}),
 				-- ["<CR>"] = cmp.config.disable,
 			}),
+
+			-- CMP APPEARANCE
 			formatting = {
 				fields = { "kind", "abbr", "menu" },
 				format = function(entry, vim_item)
@@ -115,6 +108,16 @@ return {
 					return kind
 				end,
 			},
+			window = {
+				completion = { col_offset = -3, side_padding = 0 },
+			},
+			view = {
+				-- entries = "native",
+			},
+			experimental = {
+				ghost_text = true,
+			},
+
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
 				{ name = "luasnip" },
@@ -129,24 +132,11 @@ return {
 				buffer = 1,
 				path = 1,
 			},
-			view = {
-				--entries = "native"
-			},
 			performance = {
 				-- debounce = 50,
 				-- throttle = 50,
 				-- fetching_timeout = 50,
 				max_view_entries = 50,
-			},
-			window = {
-				completion = {
-					col_offset = -3,
-					side_padding = 0,
-				},
-			},
-			experimental = {
-				ghost_text = true,
-				-- native_menu = false,
 			},
 		})
 	end,
