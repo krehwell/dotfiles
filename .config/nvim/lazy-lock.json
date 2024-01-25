@@ -40,7 +40,7 @@
   "mason-lspconfig.nvim": { "branch": "main", "commit": "b9084b1f42f790d6230dc66dbcb6bcc35b148552" },
   "mason.nvim": { "branch": "main", "commit": "9c9416817c9f4e6f333c749327a1ed5355cfab61" },
   "miasma.nvim": { "branch": "main", "commit": "c672feec07d4e77ac485ee58e3432a96ebe51953" },
-  "neodev.nvim": { "branch": "main", "commit": "e7ca4a2ea0da5e39a639c08c3edb352b9355f09e" },
+  "neodev.nvim": { "branch": "main", "commit": "3408a4daeca5ff8f41cb2c668b6d8fcc665f793a" },
   "nerdfont.vim": { "branch": "master", "commit": "fa7b0173c0dd9a97c2f041d279a84fdf2612fda9" },
   "nofrils": { "branch": "master", "commit": "bad6e490846e098866136ef20fff31e99f428bb9" },
   "nvim-cmp": { "branch": "main", "commit": "538e37ba87284942c1d76ed38dd497e54e65b891" },
