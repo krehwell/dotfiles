@@ -59,7 +59,7 @@ return {
         nmap <silent> <buffer> p     <Plug>(fern-action-preview:toggle)
         " nmap <silent> <buffer> <C-p> <Plug>(fern-action-preview:auto:toggle)
         nmap <silent> <buffer> <C-j> <Plug>(fern-action-preview:scroll:down:half)
-        nmap <silent> <buffer> <C-u> <Plug>(fern-action-preview:scroll:up:half)
+        nmap <silent> <buffer> <C-k> <Plug>(fern-action-preview:scroll:up:half)
       endfunction
 
       augroup fern-previewer-settings

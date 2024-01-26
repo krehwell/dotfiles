@@ -30,9 +30,9 @@ vim.cmd([[
   endif
 ]])
 
--- CUSTOM ADDITIONAL COLOR CONFIG
+-- COLORS MOD
 vim.cmd([[
-  augroup custom_off_highlight
+  augroup custom_highlight
     " au!
     " hi! Normal guibg=g:term_background " guifg=g:term_foreground ctermbg=NONE
     " hi! VertSplit guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
@@ -40,6 +40,9 @@ vim.cmd([[
     " hi! Pmenu guibg=NONE guifg=Normal
       hi! link TabLine LineNr
       hi! link TabLineFill LineNr
+      hi! link FloatBorder Normal
+      hi! link LspInfoBorder Normal
+      hi! link NormalFloat Normal
 
       set guicursor=n-c-v:block-Cursor
       set guicursor+=v:block-vCursor
@@ -48,6 +51,7 @@ vim.cmd([[
   augroup END
 ]])
 
+-- COLORS MOD on `colorscheme === mirec`
 if colorscheme == "mirec" then
 	vim.cmd([[
     augroup custom_mirec
