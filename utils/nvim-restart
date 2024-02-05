@@ -1,0 +1,16 @@
+#!/bin/bash
+
+ARGS=""
+
+while true; do
+  # get current working dir name
+  DIR=${PWD##*/}
+
+  /opt/homebrew/bin/nvim "$ARGS" "$@"
+  if [ $? -ne 1 ]; then
+    ARGS = "-S ~/.vim/session/$DIR"
+    echo $ARGS
+    break
+  fi
+
+done
