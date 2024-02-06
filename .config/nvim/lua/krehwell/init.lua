@@ -3,7 +3,6 @@ require("krehwell.remap")
 require("krehwell.lazy")
 
 local augroup = vim.api.nvim_create_augroup
-local KrehwellGroup = augroup("Krehwell", {})
 
 local autocmd = vim.api.nvim_create_autocmd
 local yank_group = augroup("HighlightYank", {})
@@ -17,10 +16,4 @@ autocmd("TextYankPost", {
 			timeout = 25,
 		})
 	end,
-})
-
-autocmd({ "BufWritePre" }, {
-	group = KrehwellGroup,
-	pattern = "*",
-	command = [[%s/\s\+$//e]],
 })

@@ -10,7 +10,7 @@ local colorscheme = {
 	{ "Conditional", { ctermfg = 252 } },
 	{ "Conceal", { ctermfg = 8 } },
 	{ "Constant", { ctermfg = 252 } },
-	{ "Cursor", { ctermfg = 9, ctermbg = 192, cterm = { bold = false, nocombine = true } } },
+	{ "Cursor", { ctermfg = 9, ctermbg = 24, cterm = { bold = false, nocombine = true } } },
 	{ "CursorColumn", { ctermbg = 232 } },
 	{ "CursorLine", { ctermbg = 233 } },
 	{ "CursorLineNr", { ctermfg = 255, ctermbg = 125, cterm = { bold = false, nocombine = true } } },

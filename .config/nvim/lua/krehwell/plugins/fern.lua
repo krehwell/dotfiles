@@ -11,8 +11,7 @@ return {
 		"yuki-yano/fern-preview.vim",
 		"LumaKernel/fern-mapping-reload-all.vim",
 	},
-	lazy = true,
-	ft = { "fern", "" },
+	ft = { "fern" },
 	keys = {
 		{
 			"<Plug>(my-fern-toggle)",
@@ -31,7 +30,7 @@ return {
 		vim.g["fern#default_hidden"] = 1
 		vim.g["fern#renderer"] = "nerdfont"
 		vim.g["fern#renderer#nerdfont#indent_markers"] = 0
-		vim.g["fern#renderer#nerdfont#leading"] = "╎ "
+		vim.g["fern#renderer#nerdfont#leading"] = "  " -- ╎
 		vim.g["fern#renderer#nerdfont#padding"] = " "
 		-- vim.g["fern#renderer#nerdfont#root_symbol"] = " "
 

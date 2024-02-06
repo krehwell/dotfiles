@@ -1,48 +1,9 @@
-" ----- NOAUTOMOVESCREEN ON SWITCH BUFFER -----
-" Save current view settings on a per-window, per-buffer basis.
-" function! AutoSaveWinView()
-"     if !exists("w:SavedBufView")
-"         let w:SavedBufView = {}
-"     endif
-"     let w:SavedBufView[bufnr("%")] = winsaveview()
-" endfunction
-"
-" " Restore current view settings.
-" function! AutoRestoreWinView()
-"     let buf = bufnr("%")
-"     if exists("w:SavedBufView") && has_key(w:SavedBufView, buf)
-"         let v = winsaveview()
-"         let atStartOfFile = v.lnum == 1 && v.col == 0
-"         if atStartOfFile && !&diff
-"             call winrestview(w:SavedBufView[buf])
-"         endif
-"         unlet w:SavedBufView[buf]
-"     endif
-" endfunction
-"
-" " When switching buffers, preserve window view.
-" if v:version >= 700
-"     autocmd BufLeave * call AutoSaveWinView()
-"     autocmd BufEnter * call AutoRestoreWinView()
-" endif
-
-
-" ----- HIGHLIGHT ON YANK
-lua <<EOF
-local autocmd = vim.api.nvim_create_autocmd
-local augroup = vim.api.nvim_create_augroup
-local yank_group = augroup('HighlightYank', {})
-autocmd('TextYankPost', {
-    group = yank_group,
-    pattern = '*',
-    callback = function()
-        vim.highlight.on_yank({
-            higroup = 'IncSearch',
-            timeout = 40,
-        })
-    end,
-})
-EOF
+" ----- RELATIVE LINE NUMBERS ON NECESSSARY
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,WinEnter * if &nu && mode() != "i" | set rnu   | endif
+  autocmd BufLeave,FocusLost,WinLeave   * if &nu                  | set nornu | endif
+augroup END
 
 
 " ----- TAB NAMING
@@ -80,20 +41,20 @@ augroup AutoCommetDisable
 augroup END
 
 
-" ----- TRIM ANY TRAILING WHITESPACES ON SAVE -----
-augroup TrimWhitespaceOnSave
-    autocmd!
-    autocmd BufWritePre * :call TrimWhitespace()
-augroup END
-
-fun! TrimWhitespace()
-    let l:save = winsaveview()
-    if &ft =~ 'txt\|markdown'
-        return
-    endif
-    keeppatterns %s/\s\+$//e
-    call winrestview(l:save)
-endfun
+" ----- TRIM ANY TRAILING WHITESPACES ON SAVE | currently handled by conform.lua -----
+" augroup TrimWhitespaceOnSave
+"     autocmd!
+"     autocmd BufWritePre * :call TrimWhitespace()
+" augroup END
+"
+" fun! TrimWhitespace()
+"     let l:save = winsaveview()
+"     if &ft =~ 'txt\|markdown'
+"         return
+"     endif
+"     keeppatterns %s/\s\+$//e
+"     call winrestview(l:save)
+" endfun
 
 
 " ----- DELETE BUFFER EXCEPT THE ONEs OPENED ON WINDOWS OR TABS -----
@@ -122,7 +83,7 @@ command! -nargs=0 LSWipeInactive :call WipeoutInactiveBufs()
 command! -nargs=0 LSwipeInactive :call WipeoutInactiveBufs()
 
 
-" ----- "QUICK FIX" REMOVE SELECTED ITEM -----
+" ----- 'QUICK FIX' REMOVE SELECTED ITEM -----
 function! RemoveQFItem()
     let curqfidx = line('.') - 1
     let qfall = getqflist()
@@ -134,3 +95,22 @@ endfunction
 :command! RemoveQFItem :call RemoveQFItem()
 " Use map <buffer> to only map dd in the quickfix window. Requires +localmap
 autocmd FileType qf map <buffer> dd :RemoveQFItem<cr>
+
+
+" ----- HIGHLIGHT ON YANK
+lua << EOF
+local autocmd = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
+local yank_group = augroup('HighlightYank', {})
+autocmd('TextYankPost', {
+    group = yank_group,
+    pattern = '*',
+    callback = function()
+        vim.highlight.on_yank({
+            higroup = 'IncSearch',
+            timeout = 40,
+        })
+    end,
+})
+EOF
+

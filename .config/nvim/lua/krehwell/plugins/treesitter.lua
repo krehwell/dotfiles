@@ -1,5 +1,6 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
+	build = ":TSUpdate",
 	event = "VeryLazy",
 	dependencies = {
 		{ "windwp/nvim-ts-autotag" }, -- html auto tag
@@ -8,14 +9,14 @@ return {
 
 	config = function()
 		require("nvim-treesitter.configs").setup({
-			ensure_installed = { "vimdoc", "typescript", "lua", "go", "bash", "tsx", "javascript" }, -- A list of parser names, or "all"
-			sync_install = false, -- Install parsers synchronously (only applied to `ensure_installed`)
-			auto_install = false, -- Automatically install missing parsers when entering buffer
+			ensure_installed = { "vimdoc", "typescript", "lua", "go", "bash", "tsx", "javascript", "vim", "css" },
+			sync_install = false,
+			auto_install = true,
 
 			highlight = {
-				enable = false,
+				enable = true,
+				use_languagetree = true,
 				additional_vim_regex_highlighting = false,
-				use_languagetree = false,
 				disable = function(lang, buf)
 					local max_filesize = 100 * 1024 -- 50 KB
 					local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
@@ -35,14 +36,9 @@ return {
 				},
 			},
 
-			indent = { enable = true, disable = { "yaml" } },
+			autotag = { enable = true },
 
-			autotag = {
-				enable = true,
-				enable_rename = true,
-				enable_close = true,
-				enable_close_on_slash = true,
-			},
+			indent = { enable = true },
 
 			refactor = {
 				highlight_definitions = {

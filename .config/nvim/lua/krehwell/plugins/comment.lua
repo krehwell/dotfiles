@@ -3,7 +3,7 @@ return {
 	dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
 	event = "InsertEnter",
 	opts = function()
-		require("ts_context_commentstring").setup({})
+		require("ts_context_commentstring").setup({ enable_autocmd = false })
 		vim.g.skip_ts_context_commentstring_module = true
 		return {
 			padding = true, -- Add a space b/w comment and the line
@@ -20,11 +20,7 @@ return {
 				block = "gb", -- Block-comment keymap
 			},
 			-- LHS of extra mappings
-			extra = {
-				above = "gcO", -- Add comment on the line above
-				below = "gco", -- Add comment on the line below
-				eol = "gcA", -- Add comment at the end of line
-			},
+			extra = false,
 			-- Enable keybindings
 			-- NOTE: If given `false` then the plugin won't create any mappings
 			mappings = {
@@ -40,8 +36,6 @@ return {
 	keys = {
 		{ "gcc", mode = "n", desc = "Comment current line" },
 		{ "gbc", mode = "n", desc = "Comment block current line" },
-		{ "gco", mode = "n", desc = "Append comment below current line" },
-		{ "gcO", mode = "n", desc = "Append comment above current line" },
 		{ "gc", mode = { "n", "v" }, desc = "Comment selection" },
 		{ "gb", mode = { "n", "v" }, desc = "Block comment selection" },
 	},

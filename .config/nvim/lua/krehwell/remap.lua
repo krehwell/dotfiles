@@ -29,19 +29,25 @@ vim.keymap.set("v", "$", "$<left>")
 vim.keymap.set("v", "w", "e")
 
 ----- SESSION BUFFER CONTROLLER
-vim.keymap.set("n", "<localleader>b", ":bprevious<CR>")
-vim.keymap.set("n", "<localleader>n", ":bnext<CR>")
-vim.keymap.set("n", "<localleader>o", function()
-	-- current pwd
+local ask_save_session = function(without_confirm)
+	local cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ":t") -- get name of current dir only
+	vim.api.nvim_input(":wa<CR>") -- save all first
+	local save_cmd = ":mksession! ~/.vim/session/" .. cwd .. ".vim<left><left><left><left>"
+  if without_confirm then
+    save_cmd = save_cmd .. "<CR>"
+  end
+	vim.api.nvim_input(save_cmd)
+end
+
+local ask_load_session = function()
 	local cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
 	vim.api.nvim_input(":source ~/.vim/session/" .. cwd .. ".vim<left><left><left><left>")
-end)
-vim.keymap.set("n", "<localleader>s", function()
-	-- get name of current dir only
-	local cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
-	vim.api.nvim_input(":wa<CR>") -- save all first
-	vim.api.nvim_input(":mksession! ~/.vim/session/" .. cwd .. ".vim<left><left><left><left>")
-end)
+end
+
+vim.keymap.set("n", "<localleader>b", ":bprevious<CR>")
+vim.keymap.set("n", "<localleader>n", ":bnext<CR>")
+vim.keymap.set("n", "<localleader>o", ask_load_session)
+vim.keymap.set("n", "<localleader>s", ask_save_session)
 
 ----- CD TO CURRENT BUFFER's DIR | lcd -> for cding the current buffer only to the current dir
 vim.keymap.set("n", "<localleader>cd", ":cd %:p:h<CR>")

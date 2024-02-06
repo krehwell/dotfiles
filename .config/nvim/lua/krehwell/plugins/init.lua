@@ -35,7 +35,7 @@ return {
 			{ "<leader>xl", "require('trouble').toggle('loclist')<CR>", desc = "Trouble Location List" },
 		},
 	},
-	{ "chrisgrieser/nvim-early-retirement", event = "VeryLazy", opts = { retirementAgeMins = 15 } },
+	{ "chrisgrieser/nvim-early-retirement", event = "LspAttach", opts = { retirementAgeMins = 15 } },
 
 	-- HELPERS/NAVIGATIONS
 	{
@@ -72,7 +72,7 @@ return {
 	},
 	{
 		"kevinhwang91/nvim-fundo",
-		event = "VeryLazy",
+		keys = { { "u", desc = "Undo" } },
 		dependencies = {
 			{
 				"kevinhwang91/promise-async",
@@ -122,7 +122,7 @@ return {
 	},
 	{
 		"folke/todo-comments.nvim",
-		event = { "CursorMoved" },
+		event = { "LspAttach" },
 		opts = {
 			signs = false,
 			highlight = { multiline = false },
@@ -138,7 +138,7 @@ return {
 	},
 	{
 		"uga-rosa/ccc.nvim",
-		event = { "VeryLazy", "CursorMoved" },
+		event = { "CursorMoved" },
 		config = function()
 			require("ccc").setup({
 				highlighter = {
@@ -159,6 +159,28 @@ return {
 			},
 			color_icons = true,
 			default = true,
+		},
+	},
+	{
+		"tamton-aquib/duck.nvim",
+		keys = {
+			{
+				"<localleader>pp",
+				function()
+					local candidates = { "🦆", "🦀", "🐈", "🦖", "🐤", "🐶" }
+					local index = math.random(#candidates)
+					local candidate = candidates[index]
+
+					local speeds = { { slow = 1 }, { normal = 3 }, { fast = 5 } }
+					index = math.random(#speeds)
+					local speed = speeds[index].fast
+					require("duck").hatch(candidate, speed)
+				end,
+			},
+			{
+				"<localleader>pc",
+				":lua require('duck').cook()<CR>",
+			},
 		},
 	},
 

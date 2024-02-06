@@ -2,7 +2,7 @@ return {
   "lewis6991/gitsigns.nvim",
   event = "VeryLazy",
   dependencies = {
-    { "tpope/vim-fugitive", event = "VeryLazy" },
+    { "tpope/vim-fugitive", event = "CursorMoved" },
     { "tpope/vim-rhubarb",  event = "CursorMoved" },
   },
   keys = {

@@ -8,42 +8,41 @@ return {
 		{ "hrsh7th/cmp-cmdline" },
 		{ "saadparwaiz1/cmp_luasnip" },
 		{ "L3MON4D3/LuaSnip", version = "v2.*", build = "make install_jsregexp" },
-		{ "rafamadriz/friendly-snippets" },
+		-- { "rafamadriz/friendly-snippets" },
 		{ "onsails/lspkind.nvim" },
 	},
 	config = function()
 		local cmp = require("cmp")
-		local luasnip = require("luasnip")
-		require("luasnip.loaders.from_vscode").lazy_load()
+		-- require("luasnip.loaders.from_vscode").lazy_load()
 
 		-- CMP IN CMD MODE
-		cmp.setup.cmdline(":", {
-			mapping = cmp.mapping.preset.cmdline(),
-			sources = cmp.config.sources({
-				{ name = "path" },
-			}, {
-				{
-					name = "cmdline",
-					option = {
-						ignore_cmds = { "Man", "!" },
-					},
-				},
-			}),
-		})
+		-- cmp.setup.cmdline(":", {
+		-- 	mapping = cmp.mapping.preset.cmdline(),
+		-- 	sources = cmp.config.sources({
+		-- 		{ name = "path" },
+		-- 	}, {
+		-- 		{
+		-- 			name = "cmdline",
+		-- 			option = {
+		-- 				ignore_cmds = { "Man", "!" },
+		-- 			},
+		-- 		},
+		-- 	}),
+		-- })
 
 		-- CMP IN "/" and "?"
-		cmp.setup.cmdline("/", {
-			view = {
-				entries = { name = "wildmenu", separator = " | " },
-			},
-			mapping = cmp.mapping.preset.cmdline(),
-			sources = { { name = "buffer" } },
-		})
+		-- cmp.setup.cmdline("/", {
+		-- 	view = {
+		-- 		entries = { name = "wildmenu", separator = " | " },
+		-- 	},
+		-- 	mapping = cmp.mapping.preset.cmdline(),
+		-- 	sources = { { name = "buffer" } },
+		-- })
 
 		cmp.setup({
 			snippet = {
 				expand = function(args)
-					luasnip.lsp_expand(args.body)
+					require("luasnip").lsp_expand(args.body)
 				end,
 			},
 			mapping = cmp.mapping.preset.insert({
@@ -109,18 +108,19 @@ return {
 				end,
 			},
 			window = {
+				documentation = cmp.config.window.bordered(),
 				completion = { col_offset = -3, side_padding = 0 },
 			},
 			view = {
 				-- entries = "native",
 			},
 			experimental = {
-				ghost_text = true,
+				-- ghost_text = true,
 			},
 
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
-				{ name = "luasnip" },
+				-- { name = "luasnip" },
 				{ name = "path" },
 				{ name = "calc" },
 			}, {
@@ -128,7 +128,7 @@ return {
 			}),
 			duplicates = {
 				nvim_lsp = 1,
-				luasnip = 1,
+				-- luasnip = 1,
 				buffer = 1,
 				path = 1,
 			},
@@ -136,7 +136,7 @@ return {
 				-- debounce = 50,
 				-- throttle = 50,
 				-- fetching_timeout = 50,
-				max_view_entries = 50,
+				max_view_entries = 20,
 			},
 		})
 	end,
