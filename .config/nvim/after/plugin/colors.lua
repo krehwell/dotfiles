@@ -1,4 +1,4 @@
-vim.cmd("syntax off")
+-- vim.cmd("syntax off")
 -- vim.opt.background = "dark"
 -- vim.opt.termguicolors = true
 vim.opt.fillchars = {

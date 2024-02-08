@@ -14,8 +14,8 @@ return {
 			auto_install = true,
 
 			highlight = {
-				enable = true,
-				use_languagetree = true,
+				enable = false,
+				use_languagetree = false,
 				additional_vim_regex_highlighting = false,
 				disable = function(lang, buf)
 					local max_filesize = 100 * 1024 -- 50 KB
