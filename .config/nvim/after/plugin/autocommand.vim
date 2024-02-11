@@ -1,9 +1,9 @@
 " ----- RELATIVE LINE NUMBERS ON NECESSSARY
-" augroup numbertoggle
-"   autocmd!
-"   autocmd BufEnter,FocusGained,WinEnter * if &nu && mode() != "i" | set rnu   | endif
-"   autocmd BufLeave,FocusLost,WinLeave   * if &nu                  | set nornu | endif
-" augroup END
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,WinEnter * if &nu && mode() != "i" | set rnu   | endif
+  autocmd BufLeave,FocusLost,WinLeave   * if &nu                  | set nornu | endif
+augroup END
 
 
 " ----- TAB NAMING
