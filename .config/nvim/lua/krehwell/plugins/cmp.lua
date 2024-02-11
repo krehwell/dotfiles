@@ -136,7 +136,7 @@ return {
 				-- debounce = 50,
 				-- throttle = 50,
 				-- fetching_timeout = 50,
-				max_view_entries = 20,
+				-- max_view_entries = 20,
 			},
 		})
 	end,

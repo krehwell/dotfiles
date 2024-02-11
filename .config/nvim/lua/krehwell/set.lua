@@ -15,26 +15,26 @@ vim.opt.smartindent = true
 vim.opt.textwidth = 120
 vim.opt.cursorline = true
 
--- hidden file related config
+-- HIDDEN FILE RELATED CONFIG
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.backup = false
 vim.opt.writebackup = false
 vim.opt.swapfile = false
 vim.opt.undofile = true
 
--- window behavior
+-- WINDOW BEHAVIOR
 vim.opt.colorcolumn = "120"
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.eadirection = "both"
 vim.opt.equalalways = true
-vim.opt.signcolumn = "yes:1"
 vim.opt.title = true
 
--- navigation behavior
+-- NAVIGATION BEHAVIOR
 vim.opt.wrap = false
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.opt.signcolumn = "no"
 vim.opt.scrolloff = 22
 vim.opt.sidescrolloff = 18
 vim.opt.virtualedit = "block"
@@ -42,7 +42,7 @@ vim.opt.laststatus = 0
 -- vim.opt.jumpoptions:append("view")
 -- vim.opt.virtualedit = "block"
 
--- search/find behavior
+-- SEARCH/FIND BEHAVIOR
 vim.opt.ignorecase = true
 vim.opt.incsearch = true
 vim.opt.smartcase = true
@@ -50,7 +50,7 @@ vim.opt.smartcase = true
 vim.opt.isfname:append("@-@")
 vim.opt.shortmess:append({ f = true }) -- aka `shortmess+=f`
 
--- etc
+-- ETC
 -- vim.opt.hidden = true
 -- vim.opt.guicursor = ""
 vim.opt.termguicolors = true
