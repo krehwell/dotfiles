@@ -71,6 +71,7 @@ return {
 		vim.cmd([[
         function! s:init_fern() abort
           setlocal nonu norelativenumber
+          setlocal signcolumn=no
         endfunction
 
         augroup fern-custom

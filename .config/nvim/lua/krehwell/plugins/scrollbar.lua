@@ -111,7 +111,7 @@ return {
 			-- If set to true, the 'signs' field is ignored and the plugin uses
 			-- symbols and an algorithm that allow for just a little more detailed
 			-- drawing.
-			use_built_in_signs = true,
+			use_built_in_signs = false,
 		},
 
 		-- diagnostics component
