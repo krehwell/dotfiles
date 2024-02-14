@@ -96,16 +96,9 @@ return {
 	-- BEAUTIFY
 	{
 		"dhananjaylatkar/notes.nvim",
+    cmd = { "NotesFind", "NotesGrep", "NotesNew" },
 		opts = {
 			root = os.getenv("HOME") .. "/.vim/notes/",
-		},
-	},
-	{
-		"folke/todo-comments.nvim",
-		event = { "LspAttach" },
-		opts = {
-			signs = false,
-			highlight = { multiline = false },
 		},
 	},
 	{
