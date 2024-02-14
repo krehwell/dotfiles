@@ -1,5 +1,6 @@
 return {
 	"kensyo/nvim-scrlbkun",
+	event = { "CursorMoved" },
 	opts = {
 		-- If you want to display scrollbars on multiple windows, set to false.
 		-- If set to true, a display area comes out only on the current window.
@@ -12,7 +13,7 @@ return {
 		winblend = 20,
 
 		-- On these filetypes, scrollbars don't come out.
-		excluded_filetypes = { "NvimTree", "fern", "mason", "lspinfo" },
+		excluded_filetypes = { "NvimTree", "fern", "mason", "lspinfo", "minifiles" },
 
 		-- On these buftypes, scrollbars don't come out.
 		excluded_buftypes = { "prompt" },
@@ -24,36 +25,7 @@ return {
 		-- The number of columns for display areas of components
 		width = 2,
 
-		-- bar component
-		bar = {
-			-- If set to true, the bar component is enabled.
-			enable = false,
-
-			-- The component is drawn at these events.
-			-- The specification {event_name, patterns} can also be used.
-			-- For example { "CmdlineLeave", {"/", "\\?", ":"} } is ok.
-			draw_events = { "WinScrolled", "BufEnter", "FocusGained" },
-
-			-- The component is drawn on all the windows in the current tabpage
-			-- at these events. But if single_window is set to true, draw_events_tab
-			-- is treated exactly the same as draw_events.
-			-- As with draw_events, the specification {event_name, patterns}
-			-- can also be used.
-			draw_events_tab = { "VimResized", "TabEnter" },
-
-			-- When components overlap, the one with the higher priority is drawn.
-			-- Specify by positive integer.
-			priority = 100,
-
-			-- What number, counting from the left, of the columns allocated
-			-- by the `width` field should be used to display the component.
-			-- Specify in an array between 1 and `width`.
-			draw_columns = { 1, 2 },
-
-			-- A sign for a scrollbar. It is recommended not to change it from
-			-- the default empty symbol.
-			sign = " ",
-		},
+		bar = { enable = false },
 
 		-- cursor component
 		cursor = {
@@ -141,29 +113,18 @@ return {
 
 		-- githunks component
 		githunks = {
-			-- The same as those of the bar component
 			enable = true,
 			draw_events = {},
 			draw_events_tab = {
-				{
-					"User",
-					"GitSignsUpdate",
-				},
+				{ "User", "GitSignsUpdate" },
 			},
 			priority = 300,
 			draw_columns = { 2 },
-
-			-- Signs for githunks.
 			signs = {
-				-- If you specify an array of n-elements,
-				-- then the sign to be used is determined in n more levels depending
-				-- on add {delete, change}-hunks length
 				add = { "┃" },
 				delete = { "▸" },
 				change = { "┇" },
 			},
-
-			-- The same as that of the search component
 			use_built_in_signs = false,
 		},
 	},

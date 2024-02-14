@@ -183,6 +183,13 @@ return {
 	{ "folke/tokyonight.nvim", priority = 1000, lazy = true, event = "VeryLazy" },
 	{ "VonHeikemen/rubber-themes.vim", priority = 1000, lazy = true, event = "VeryLazy" },
 	{
+		dir = "../../mirec/init.lua",
+		name = "mirec",
+		config = function()
+			require("mirec").setup({})
+		end,
+	},
+	{
 		"sainnhe/gruvbox-material",
 		event = "VeryLazy",
 		priority = 1000,

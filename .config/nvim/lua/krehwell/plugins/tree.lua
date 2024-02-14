@@ -1,4 +1,67 @@
-return {
+local minifiles = {
+	"echasnovski/mini.files",
+	version = "*",
+	keys = {
+		{
+			"<C-b>",
+			function()
+				local minifiles = require("mini.files")
+				local current_filetype = vim.bo.filetype
+				if current_filetype == "minifiles" then
+					minifiles.close()
+				else
+					minifiles.open(vim.api.nvim_buf_get_name(0), true)
+				end
+			end,
+			desc = "Open file explorer (mini.files)",
+      silent = true,
+		},
+	},
+	opts = {
+		-- Customization of shown content
+		content = {
+			filter = nil,
+			prefix = nil,
+			sort = nil,
+		},
+
+		-- Module mappings created only inside explorer.
+		-- Use `''` (empty string) to not create one.
+		mappings = {
+			close = "<c-[>",
+			go_in = "l",
+			go_in_plus = "<CR>",
+			go_out = "<BS>",
+			go_out_plus = "H",
+			reset = "R",
+			reveal_cwd = "@",
+			show_help = "g?",
+			synchronize = "=",
+			trim_left = "<",
+			trim_right = ">",
+		},
+
+		-- General options
+		options = {
+			-- Whether to delete permanently or move into module-specific trash
+			permanent_delete = false,
+			-- Whether to use for editing directories
+			use_as_default_explorer = true,
+		},
+
+		-- Customization of explorer windows
+		windows = {
+			max_number = math.huge, -- Maximum number of windows to show side by side
+			preview = false, -- Whether to show preview of file/directory under cursor
+			width_focus = 50,
+			width_nofocus = 15,
+			width_preview = 25,
+		},
+	},
+}
+
+-- I'm not using fern for now
+local fern = {
 	"lambdalisue/fern.vim",
 	dependencies = {
 		"lambdalisue/fern-git-status.vim",
@@ -11,6 +74,7 @@ return {
 		"yuki-yano/fern-preview.vim",
 		"LumaKernel/fern-mapping-reload-all.vim",
 	},
+	enabled = false,
 	ft = { "fern" },
 	keys = {
 		{
@@ -21,7 +85,7 @@ return {
 		},
 		{
 			"<C-b>",
-			desc = "Toggle drawer",
+			desc = "Open file explorer (fern)",
 			silent = true,
 		},
 	},
@@ -83,3 +147,6 @@ return {
       ]])
 	end,
 }
+
+return minifiles;
+

@@ -26,7 +26,7 @@ return {
 			ellipsis = "…",
 			separator = "",
 		},
-		exclude_filetypes = { "netrw", "toggleterm", "fern", "fern-replacer", "fzf", "Trouble" },
+		exclude_filetypes = { "netrw", "toggleterm", "fern", "fern-replacer", "fzf", "Trouble", "minifiles" },
 		kinds = {
 			Module = "{}",
 			Namespace = "{}",
