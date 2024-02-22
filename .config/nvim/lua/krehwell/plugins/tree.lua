@@ -18,14 +18,12 @@ local minifiles = {
 		},
 	},
 	opts = {
-		-- Customization of shown content
 		content = {
 			filter = nil,
 			prefix = nil,
 			sort = nil,
 		},
 
-		-- Module mappings created only inside explorer.
 		-- Use `''` (empty string) to not create one.
 		mappings = {
 			close = "<c-[>",
@@ -43,18 +41,15 @@ local minifiles = {
 
 		-- General options
 		options = {
-			-- Whether to delete permanently or move into module-specific trash
 			permanent_delete = false,
-			-- Whether to use for editing directories
 			use_as_default_explorer = true,
 		},
 
-		-- Customization of explorer windows
 		windows = {
 			max_number = math.huge, -- Maximum number of windows to show side by side
 			preview = false, -- Whether to show preview of file/directory under cursor
 			width_focus = 50,
-			width_nofocus = 15,
+			width_nofocus = 20,
 			width_preview = 25,
 		},
 	},

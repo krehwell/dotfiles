@@ -40,19 +40,6 @@ return {
 			end,
 			desc = "Git: jump to prev lines change",
 		},
-
-		{
-			mode = "c",
-			"GIT",
-			"Git",
-			desc = "I hate typo on typing GIT",
-		},
-		{
-			mode = "c",
-			"GIt",
-			"Git",
-			desc = "I hate typo on typing GIt",
-		},
 	},
 	init = function()
 		vim.g.gitgutter_map_keys = 0 -- prevent default key binding

@@ -36,8 +36,56 @@ return {
 		},
 	},
 	{ "chrisgrieser/nvim-early-retirement", event = "LspAttach", opts = { retirementAgeMins = 15 } },
+	{
+		"ThePrimeagen/refactoring.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+		},
+		keys = {
+			{
+				mode = { "n", "v" },
+				"<leader><leader>",
+				function()
+					require("refactoring").debug.print_var()
+				end,
+				desc = "Print var under selected/cursor",
+			},
+		},
+		config = function()
+			require("refactoring").setup()
+		end,
+	},
 
 	-- HELPERS/NAVIGATIONS
+	{
+		"folke/flash.nvim",
+		opts = {
+			label = {
+				style = "overlay", ---@type "eol" | "overlay" | "right_align" | "inline"
+			},
+			modes = {
+				char = { enabled = false },
+				search = { enabled = false },
+			},
+		},
+		keys = {
+			{
+				"//",
+				function()
+					require("flash").jump({ search = { multi_window = true } })
+				end,
+				desc = "Flash search forward",
+			},
+			{
+				"??",
+				function()
+					require("flash").jump({ search = { multi_window = true } })
+				end,
+				desc = "Flash search backwards",
+			},
+		},
+	},
 	{
 		-- css to jsx inline
 		"isomoar/vim-css-to-inline",
@@ -96,7 +144,7 @@ return {
 	-- BEAUTIFY
 	{
 		"dhananjaylatkar/notes.nvim",
-    cmd = { "NotesFind", "NotesGrep", "NotesNew" },
+		cmd = { "NotesFind", "NotesGrep", "NotesNew" },
 		opts = {
 			root = os.getenv("HOME") .. "/.vim/notes/",
 		},
@@ -114,13 +162,9 @@ return {
 		event = { "CursorMoved" },
 		config = function()
 			require("ccc").setup({
-				highlighter = {
-					auto_enable = true,
-					lsp = true,
-				},
+				highlighter = { auto_enable = true, lsp = true },
 			})
 		end,
-		keys = { { "<leader>ccc", ":Ccc" } },
 	},
 	{
 		"nvim-tree/nvim-web-devicons",
@@ -136,10 +180,10 @@ return {
 	},
 	{
 		"tamton-aquib/duck.nvim",
-		keys = {
-			{
-				"<localleader>pp",
-				function()
+		event = { "CursorMoved" },
+		config = function()
+			function SpawnDuck(n)
+				local spawn_one = function()
 					local candidates = { "🦆", "🦀", "🐈", "🦖", "🐤", "🐶" }
 					local index = math.random(#candidates)
 					local candidate = candidates[index]
@@ -148,33 +192,32 @@ return {
 					index = math.random(#speeds)
 					local speed = speeds[index].fast
 					require("duck").hatch(candidate, speed)
-				end,
-			},
-			{
-				"<localleader>pc",
-				":lua require('duck').cook()<CR>",
-			},
-		},
+				end
+				for _ = 1, n do
+					spawn_one()
+				end
+			end
+		end,
 	},
 
 	-- THEME
-	{ "pbrisbin/vim-colors-off", priority = 1000, lazy = true, event = "VeryLazy" },
-	{ "ellisonleao/gruvbox.nvim", priority = 1000, lazy = true, event = "VeryLazy" },
-	{ "xiantang/darcula-dark.nvim", priority = 1000, lazy = true, event = "VeryLazy" },
-	{ "nyoom-engineering/oxocarbon.nvim", priority = 1000, lazy = true, event = "VeryLazy" },
-	{ "archseer/colibri.vim", priority = 1000, lazy = true, event = "VeryLazy" },
-	{ "fxn/vim-monochrome", priority = 1000, lazy = true, event = "VeryLazy" },
-	{ "jaredgorski/Mies.vim", priority = 1000, lazy = true, event = "VeryLazy" },
-	{ "p00f/alabaster.nvim", priority = 1000, lazy = true, event = "VeryLazy" },
-	{ "felipec/vim-felipec", priority = 1000, lazy = true, event = "VeryLazy" },
-	{ "projekt0n/github-nvim-theme", priority = 1000, lazy = true, event = "VeryLazy" },
-	{ "xero/miasma.nvim", priority = 1000, lazy = true, event = "VeryLazy" },
-	{ "rose-pine/neovim", priority = 1000, lazy = true, event = "VeryLazy", name = "rose-pine" },
-	{ "Mofiqul/vscode.nvim", priority = 1000, lazy = true, event = "VeryLazy" },
-	{ "danishprakash/vim-yami", priority = 1000, lazy = true, event = "VeryLazy" },
-	{ "robertmeta/nofrils", priority = 1000, lazy = true, event = "VeryLazy" },
-	{ "folke/tokyonight.nvim", priority = 1000, lazy = true, event = "VeryLazy" },
-	{ "VonHeikemen/rubber-themes.vim", priority = 1000, lazy = true, event = "VeryLazy" },
+	{ "pbrisbin/vim-colors-off", priority = 1000, lazy = true, event = "CursorMoved" },
+	{ "ellisonleao/gruvbox.nvim", priority = 1000, lazy = true, event = "CursorMoved" },
+	{ "xiantang/darcula-dark.nvim", priority = 1000, lazy = true, event = "CursorMoved" },
+	{ "nyoom-engineering/oxocarbon.nvim", priority = 1000, lazy = true, event = "CursorMoved" },
+	{ "archseer/colibri.vim", priority = 1000, lazy = true, event = "CursorMoved" },
+	{ "fxn/vim-monochrome", priority = 1000, lazy = true, event = "CursorMoved" },
+	{ "jaredgorski/Mies.vim", priority = 1000, lazy = true, event = "CursorMoved" },
+	{ "p00f/alabaster.nvim", priority = 1000, lazy = true, event = "CursorMoved" },
+	{ "felipec/vim-felipec", priority = 1000, lazy = true, event = "CursorMoved" },
+	{ "projekt0n/github-nvim-theme", priority = 1000, lazy = true, event = "CursorMoved" },
+	{ "xero/miasma.nvim", priority = 1000, lazy = true, event = "CursorMoved" },
+	{ "rose-pine/neovim", priority = 1000, lazy = true, event = "CursorMoved", name = "rose-pine" },
+	{ "Mofiqul/vscode.nvim", priority = 1000, lazy = true, event = "CursorMoved" },
+	{ "danishprakash/vim-yami", priority = 1000, lazy = true, event = "CursorMoved" },
+	{ "robertmeta/nofrils", priority = 1000, lazy = true, event = "CursorMoved" },
+	{ "folke/tokyonight.nvim", priority = 1000, lazy = true, event = "CursorMoved" },
+	{ "VonHeikemen/rubber-themes.vim", priority = 1000, lazy = true, event = "CursorMoved" },
 	{
 		dir = "../../mirec/init.lua",
 		name = "mirec",
@@ -184,7 +227,7 @@ return {
 	},
 	{
 		"sainnhe/gruvbox-material",
-		event = "VeryLazy",
+		event = "CursorMoved",
 		priority = 1000,
 		-- 	config = function()
 		-- 		vim.o.background = "dark" -- or "light" for light mode
