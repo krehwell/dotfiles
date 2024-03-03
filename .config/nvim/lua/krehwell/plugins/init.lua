@@ -6,13 +6,17 @@ return {
 		branch = "v3.x",
 		dependencies = {
 			{ "neovim/nvim-lspconfig" },
-			{
-				"williamboman/mason.nvim",
-				cmd = "Mason",
-				opts = { ui = { border = "rounded" } },
-			},
+			{ "williamboman/mason.nvim", cmd = "Mason", opts = { ui = { border = "rounded" } } },
 			{ "williamboman/mason-lspconfig.nvim" },
 		},
+	},
+	{
+		"dmmulroy/ts-error-translator.nvim",
+		event = "LspAttach",
+		ft = { "ts", "tsx", "js", "jsx" },
+		config = function()
+			require("ts-error-translator").setup()
+		end,
 	},
 	{ "zeioth/garbage-day.nvim", dependencies = "neovim/nvim-lspconfig", event = "LspAttach" },
 	{

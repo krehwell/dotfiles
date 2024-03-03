@@ -9,7 +9,20 @@ return {
 
 	config = function()
 		require("nvim-treesitter.configs").setup({
-			ensure_installed = { "vimdoc", "typescript", "lua", "go", "bash", "tsx", "javascript", "vim", "css" },
+			ensure_installed = {
+				"go",
+				"bash",
+				"vim",
+				"css",
+				"typescript",
+				"tsx",
+				"javascript",
+				"html",
+				"vimdoc",
+				"lua",
+				"json",
+				"query",
+			},
 			sync_install = false,
 			auto_install = true,
 
