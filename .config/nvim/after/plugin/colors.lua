@@ -107,34 +107,6 @@ if colorscheme == "mirec" then
       hi! link GitSignsDeleteVirtLn  DiffDelete
       hi! link GitSignsDeleteVirtLnInLine  GitSignsDeleteLnInline
       hi! link GitSignsVirtLnum  GitSignsDeleteVirtLn
-      
-      " hi! DiagnosticError guifg=#d13e23
-      " hi! DiagnosticWarn guifg=#f4b371
-      " hi! DiagnosticInfo guifg=#88cc66
-      " hi! DiagnosticHint guifg=#8ebeec
-      " hi! DiagnosticOk   ctermfg=10 guifg=LightGreen
-      " hi! DiagnosticUnderlineError cterm=underline gui=underline guisp=Red
-      " hi! DiagnosticUnderlineWarn cterm=underline gui=underline guisp=Orange
-      " hi! DiagnosticUnderlineInfo cterm=underline gui=underline guisp=LightBlue
-      " hi! DiagnosticUnderlineHint cterm=underline gui=underline guisp=LightGrey
-      " hi! DiagnosticUnderlineOk cterm=underline gui=underline guisp=LightGreen
-      " hi! DiagnosticVirtualTextError guifg=#d1503a guibg=#350b0b
-      " hi! DiagnosticVirtualTextWarn guifg=#c8935d guibg=#3f240a
-      " hi! DiagnosticVirtualTextInfo guifg=#7bac62 guibg=#162c0b
-      " hi! DiagnosticVirtualTextHint guifg=#7e9cb9 guibg=#1d2b37
-      " hi! link DiagnosticVirtualTextOk DiagnosticOk
-      " hi! link DiagnosticFloatingError DiagnosticError
-      " hi! link DiagnosticFloatingWarn DiagnosticWarn
-      " hi! link DiagnosticFloatingInfo DiagnosticInfo
-      " hi! link DiagnosticFloatingHint DiagnosticHint
-      " hi! link DiagnosticFloatingOk DiagnosticOk
-      " hi! link DiagnosticSignError DiagnosticError
-      " hi! link DiagnosticSignWarn DiagnosticWarn
-      " hi! link DiagnosticSignInfo DiagnosticInfo
-      " hi! link DiagnosticSignHint DiagnosticHint
-      " hi! link DiagnosticSignOk DiagnosticOk
-      " hi! DiagnosticDeprecated cterm=strikethrough gui=strikethrough guisp=Red
-      " hi! link DiagnosticUnnecessary Comment
     augroup END
   ]])
 end

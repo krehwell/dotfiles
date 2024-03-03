@@ -40,38 +40,21 @@ return {
 		},
 	},
 	{ "chrisgrieser/nvim-early-retirement", event = "LspAttach", opts = { retirementAgeMins = 15 } },
-	{
-		"ThePrimeagen/refactoring.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-treesitter/nvim-treesitter",
-		},
-		keys = {
-			{
-				mode = { "n", "v" },
-				"<leader><leader>",
-				function()
-					require("refactoring").debug.print_var()
-				end,
-				desc = "Print var under selected/cursor",
-			},
-		},
-		config = function()
-			require("refactoring").setup()
-		end,
-	},
 
 	-- HELPERS/NAVIGATIONS
 	{
+		"echasnovski/mini.move",
+		version = false,
+		event = "CursorMoved",
+		config = function()
+			require("mini.move").setup({})
+		end,
+	},
+	{
 		"folke/flash.nvim",
 		opts = {
-			label = {
-				style = "overlay", ---@type "eol" | "overlay" | "right_align" | "inline"
-			},
-			modes = {
-				char = { enabled = false },
-				search = { enabled = false },
-			},
+			label = { style = "overlay" },
+			modes = { char = { enabled = false }, search = { enabled = false } },
 		},
 		keys = {
 			{
@@ -154,12 +137,12 @@ return {
 		},
 	},
 	{
-		"j-hui/fidget.nvim",
-		tag = "legacy",
+		"echasnovski/mini.notify",
+		version = false,
 		event = "LspAttach",
-		opts = {
-			window = { relative = "win", blend = 0, zindex = nil, border = "none" },
-		},
+		config = function()
+			require("mini.notify").setup()
+		end,
 	},
 	{
 		"uga-rosa/ccc.nvim",
@@ -204,48 +187,17 @@ return {
 		end,
 	},
 
-	-- THEME
-	{ "pbrisbin/vim-colors-off", priority = 1000, lazy = true, event = "CursorMoved" },
-	{ "ellisonleao/gruvbox.nvim", priority = 1000, lazy = true, event = "CursorMoved" },
-	{ "xiantang/darcula-dark.nvim", priority = 1000, lazy = true, event = "CursorMoved" },
-	{ "nyoom-engineering/oxocarbon.nvim", priority = 1000, lazy = true, event = "CursorMoved" },
-	{ "archseer/colibri.vim", priority = 1000, lazy = true, event = "CursorMoved" },
-	{ "fxn/vim-monochrome", priority = 1000, lazy = true, event = "CursorMoved" },
-	{ "jaredgorski/Mies.vim", priority = 1000, lazy = true, event = "CursorMoved" },
-	{ "p00f/alabaster.nvim", priority = 1000, lazy = true, event = "CursorMoved" },
-	{ "felipec/vim-felipec", priority = 1000, lazy = true, event = "CursorMoved" },
-	{ "projekt0n/github-nvim-theme", priority = 1000, lazy = true, event = "CursorMoved" },
-	{ "xero/miasma.nvim", priority = 1000, lazy = true, event = "CursorMoved" },
-	{ "rose-pine/neovim", priority = 1000, lazy = true, event = "CursorMoved", name = "rose-pine" },
-	{ "Mofiqul/vscode.nvim", priority = 1000, lazy = true, event = "CursorMoved" },
-	{ "danishprakash/vim-yami", priority = 1000, lazy = true, event = "CursorMoved" },
-	{ "robertmeta/nofrils", priority = 1000, lazy = true, event = "CursorMoved" },
-	{ "folke/tokyonight.nvim", priority = 1000, lazy = true, event = "CursorMoved" },
-	{ "VonHeikemen/rubber-themes.vim", priority = 1000, lazy = true, event = "CursorMoved" },
+	-- THEME/COLORSCHEME
+	-- { "jaredgorski/Mies.vim", priority = 1000,  event = "CursorMoved" },
+	-- { "p00f/alabaster.nvim", priority = 1000,  event = "CursorMoved" },
+	{ "projekt0n/github-nvim-theme", priority = 1000, event = "CursorMoved" },
+	{ "xero/miasma.nvim", priority = 1000, event = "CursorMoved" },
+	{ "sainnhe/gruvbox-material", event = "CursorMoved", priority = 1000 },
 	{
 		dir = "../../mirec/init.lua",
 		name = "mirec",
 		config = function()
 			require("mirec").setup({})
 		end,
-	},
-	{
-		"sainnhe/gruvbox-material",
-		event = "CursorMoved",
-		priority = 1000,
-		-- 	config = function()
-		-- 		vim.o.background = "dark" -- or "light" for light mode
-		-- 		vim.cmd("let g:gruvbox_material_background= 'hard'")
-		-- 		vim.cmd("let g:gruvbox_material_transparent_background=2")
-		-- 		vim.cmd("let g:gruvbox_material_diagnostic_line_highlight=1")
-		-- 		vim.cmd("let g:gruvbox_material_diagnostic_virtual_text='colored'")
-		-- 		vim.cmd("let g:gruvbox_material_enable_bold=1")
-		-- 		vim.cmd("let g:gruvbox_material_enable_italic=1")
-		-- 		-- vim.cmd([[colorscheme gruvbox-material]]) -- Set color scheme
-		-- 		-- changing bg and border colors
-		-- 		vim.api.nvim_set_hl(0, "FloatBorder", { link = "Normal" })
-		-- 		vim.api.nvim_set_hl(0, "LspInfoBorder", { link = "Normal" })
-		-- 		vim.api.nvim_set_hl(0, "NormalFloat", { link = "Normal" })
-		-- 	end,
 	},
 }
