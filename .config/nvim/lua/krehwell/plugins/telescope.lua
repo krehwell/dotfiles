@@ -7,24 +7,12 @@ return {
 	},
 	opts = function()
 		require("telescope").load_extension("fzf")
-		require("telescope").load_extension("refactoring")
 
 		local telescope, builtin, actions, action_state =
 			require("telescope"),
 			require("telescope.builtin"),
 			require("telescope.actions"),
 			require("telescope.actions.state")
-
-		-- vim.api.nvim_create_user_command("Ls", "Telescope buffers", { nargs = 0, bang = true })
-		-- vim.api.nvim_create_user_command("LS", "Telescope buffers", { nargs = 0, bang = true })
-		-- to to project file with `git_files` or fallback to `find_files`
-		-- function FallbackFindFiles()
-		-- 	local ok = pcall(require("telescope.builtin").git_files)
-		-- 	if not ok then
-		-- 		require("telescope.builtin").find_files()
-		-- 	end
-		-- end
-		-- vim.keymap.set("n", "<leader>p", ":lua FallbackFindFiles()<CR>", { silent = true })
 
 		local force_delete_buffer = function(prompt_bufnr)
 			local current_picker = action_state.get_current_picker(prompt_bufnr)
@@ -95,13 +83,4 @@ return {
 		})
 	end,
 	cmd = { "Telescope" },
-	keys = {
-		-- { "<leader>p", ":lua FallbackFindFiles()<CR>", desc = "Find files", silent = true },
-		-- {
-		-- 	"<C-p>",
-		-- 	':lua require("telescope.builtin").find_files()<CR>',
-		-- 	desc = "Project find files",
-		-- 	silent = true,
-		-- },
-	},
 }

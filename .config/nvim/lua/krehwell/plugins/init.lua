@@ -2,15 +2,6 @@ return {
 	-- LSP
 	{ "folke/neodev.nvim", ft = { "lua", "vim" } }, -- improve lua with vim :')
 	{
-		"VonHeikemen/lsp-zero.nvim",
-		branch = "v3.x",
-		dependencies = {
-			{ "neovim/nvim-lspconfig" },
-			{ "williamboman/mason.nvim", cmd = "Mason", opts = { ui = { border = "rounded" } } },
-			{ "williamboman/mason-lspconfig.nvim" },
-		},
-	},
-	{
 		"dmmulroy/ts-error-translator.nvim",
 		event = "LspAttach",
 		ft = { "ts", "tsx", "js", "jsx" },
@@ -188,7 +179,6 @@ return {
 	},
 
 	-- THEME/COLORSCHEME
-	-- { "jaredgorski/Mies.vim", priority = 1000,  event = "CursorMoved" },
 	-- { "p00f/alabaster.nvim", priority = 1000,  event = "CursorMoved" },
 	{ "projekt0n/github-nvim-theme", priority = 1000, event = "CursorMoved" },
 	{ "xero/miasma.nvim", priority = 1000, event = "CursorMoved" },

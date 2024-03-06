@@ -24,16 +24,15 @@ return {
 				["_"] = { "trim_whitespace" },
 			},
 		})
-
-		vim.keymap.set({ "n", "v" }, "gq", function()
-			conform.format({
-				lsp_fallback = true,
-				async = true,
-				-- timeout_ms = 1000,
-			})
-		end, { desc = "Format file or range (in visual mode)" })
 	end,
 	keys = {
-		{ "gq", desc = "Format file or range (in visual mode)", mode = { "n", "v" } },
+		{
+			"gq",
+			function()
+				require("conform").format({ lsp_fallback = true, async = true })
+			end,
+			desc = "Format file or range (in visual mode)",
+			mode = { "n", "v" },
+		},
 	},
 }

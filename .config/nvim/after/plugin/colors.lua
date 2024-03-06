@@ -40,10 +40,10 @@ vim.cmd([[
       hi! link LspInfoBorder Normal
       hi! link NormalFloat Normal
 
-      set guicursor=n-c-v:block-Cursor
-      set guicursor+=v:block-vCursor
-      set guicursor+=a:blinkon0
-      set guicursor+=n:blinkon80
+      " set guicursor=n-c-v:block-Cursor
+      " set guicursor+=v:block-vCursor
+      " set guicursor+=a:blinkon0
+      " set guicursor+=n:blinkon80
   augroup END
 ]])
 
