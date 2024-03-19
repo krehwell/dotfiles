@@ -27,6 +27,8 @@ vim.keymap.set("n", "<M-k>", "ddkP")
 vim.keymap.set("n", "<localleader>a", "ggVG")
 vim.keymap.set("v", "$", "$<left>")
 vim.keymap.set("v", "w", "e")
+vim.keymap.set("v", "<C-c>", "\"+y")
+vim.keymap.set({ "n", "v" }, "<C-v>", "\"+p")
 
 ----- SESSION BUFFER CONTROLLER
 local ask_save_session = function(without_confirm)

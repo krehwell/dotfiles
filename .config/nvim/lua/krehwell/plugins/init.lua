@@ -83,11 +83,6 @@ return {
 	},
 	{ "tpope/vim-repeat", keys = { { "." } } },
 	{
-		"ojroques/vim-oscyank",
-		branch = "main",
-		keys = { { "<C-c>", ":OSCYankVisual<CR>", desc = "Copy to clipboard", mode = "v" } },
-	},
-	{
 		"mbbill/undotree",
 		keys = {
 			{ "<leader>u", ":UndotreeToggle<CR>:UndotreeFocus<CR>", desc = "Toggle undotree", mode = "n" },
