@@ -5,6 +5,7 @@ return {
 		{ "neovim/nvim-lspconfig" },
 		{ "williamboman/mason.nvim", cmd = "Mason", opts = { ui = { border = "rounded" } } },
 		{ "williamboman/mason-lspconfig.nvim" },
+		{ "dmmulroy/ts-error-translator.nvim" },
 	},
 	config = function()
 		local lsp_zero = require("lsp-zero")
@@ -42,6 +43,8 @@ return {
 		-- TSSERVER SETUP
 		lspconfig.tsserver.setup({
 			on_init = function(client)
+				require("ts-error-translator").setup()
+
 				client.server_capabilities.documentFormattingProvider = false
 				client.server_capabilities.documentFormattingRangeProvider = false
 			end,

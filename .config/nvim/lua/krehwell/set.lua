@@ -13,7 +13,7 @@ vim.opt.expandtab = true
 vim.opt.autoindent = true
 vim.opt.smartindent = true
 vim.opt.textwidth = 120
-vim.opt.cursorline = true
+vim.opt.cursorline = false
 
 -- HIDDEN FILE RELATED CONFIG
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"

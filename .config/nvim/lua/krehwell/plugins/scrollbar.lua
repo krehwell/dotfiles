@@ -1,5 +1,6 @@
 return {
 	"kensyo/nvim-scrlbkun",
+    enabled = false,
 	event = { "CursorMoved" },
 	opts = {
 		-- If you want to display scrollbars on multiple windows, set to false.

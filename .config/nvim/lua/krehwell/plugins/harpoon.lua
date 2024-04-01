@@ -18,7 +18,15 @@ return {
 				harpoon:list():select(i)
 			end)
 		end
+
+        vim.cmd([[
+          augroup harpoon_cursorline
+            au!
+            au FileType harpoon setlocal cursorline
+          augroup END
+        ]])
 	end,
+
 	keys = {
 		{ "ma", desc = "Harpoon add file" },
 		{ "mo", desc = "Harpoon toggle menu" },

@@ -1,14 +1,6 @@
 return {
 	-- LSP
 	{ "folke/neodev.nvim", ft = { "lua", "vim" } }, -- improve lua with vim :')
-	{
-		"dmmulroy/ts-error-translator.nvim",
-		event = "LspAttach",
-		ft = { "ts", "tsx", "js", "jsx" },
-		config = function()
-			require("ts-error-translator").setup()
-		end,
-	},
 	{ "zeioth/garbage-day.nvim", dependencies = "neovim/nvim-lspconfig", event = "LspAttach" },
 	{
 		"folke/trouble.nvim",
@@ -18,12 +10,12 @@ return {
 			{ "<leader>xx", ":lua require('trouble').toggle()<CR>", desc = "Trouble toggle" },
 			{
 				"<leader>xw",
-				"require('trouble').toggle('workspace_diagnostics')<CR>",
+				":lua require('trouble').toggle('workspace_diagnostics')<CR>",
 				desc = "Trouble Workspace Diagnostics",
 			},
 			{
 				"<leader>xd",
-				"require('trouble').toggle('document_diagnostics')<CR>",
+				":lua require('trouble').toggle('document_diagnostics')<CR>",
 				desc = "Trouble Document Diagnostics",
 			},
 			{ "<leader>xq", "require('trouble').toggle('quickfix')<CR>", desc = "Trouble Quickfix" },
@@ -84,6 +76,7 @@ return {
 	{ "tpope/vim-repeat", keys = { { "." } } },
 	{
 		"mbbill/undotree",
+		cmd = { "UndotreeToggle", "UndotreeFocus" },
 		keys = {
 			{ "<leader>u", ":UndotreeToggle<CR>:UndotreeFocus<CR>", desc = "Toggle undotree", mode = "n" },
 		},
@@ -114,18 +107,25 @@ return {
 	-- BEAUTIFY
 	{
 		"dhananjaylatkar/notes.nvim",
-		cmd = { "NotesFind", "NotesGrep", "NotesNew" },
+		cmd = { "NotesFind", "NotesGrep", "NotesNew", "Notes", "Note" },
+		config = function(_, opts)
+			require("notes").setup(opts)
+			vim.api.nvim_create_user_command("Notes", function()
+				vim.cmd("NotesFind")
+			end, { nargs = 0 })
+			vim.api.nvim_create_user_command("Note", function()
+				vim.cmd("NotesFind")
+			end, { nargs = 0 })
+		end,
 		opts = {
 			root = os.getenv("HOME") .. "/.vim/notes/",
 		},
 	},
 	{
-		"echasnovski/mini.notify",
-		version = false,
-		event = "VeryLazy",
-		config = function()
-			require("mini.notify").setup()
-		end,
+		"j-hui/fidget.nvim",
+		tag = "legacy",
+		event = "LspAttach",
+		opts = { window = { relative = "win", blend = 0, zindex = nil, border = "none" } },
 	},
 	{
 		"uga-rosa/ccc.nvim",
@@ -139,7 +139,6 @@ return {
 	{
 		"nvim-tree/nvim-web-devicons",
 		event = "VeryLazy",
-		lazy = true,
 		opts = {
 			override = {
 				zsh = { icon = "", color = "#428850", cterm_color = "65", name = "Zsh" },
