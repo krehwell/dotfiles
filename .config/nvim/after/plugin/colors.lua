@@ -24,6 +24,10 @@ vim.cmd([[
     let g:term_foreground = get(g:wezterm, 'colors', {}).foreground
     let g:term_background = get(g:wezterm, 'colors', {}).background
   endif
+  if exists('g:kitty')
+    let g:term_foreground = get(g:kitty, 'colors', {}).foreground
+    let g:term_background = get(g:kitty, 'colors', {}).background
+  endif
 ]])
 
 -- COLORS MOD
@@ -52,6 +56,7 @@ if colorscheme == "mirec" then
 	vim.cmd([[
     augroup custom_mirec
       au!
+      hi! Normal guibg=g:term_background guifg=g:term_foreground ctermbg=NONE
       hi! diffFile       guifg=#2f81f7
       hi! diffIndexLine  guifg=#ff7b72
       hi! diffLine       guifg=#79c0ff

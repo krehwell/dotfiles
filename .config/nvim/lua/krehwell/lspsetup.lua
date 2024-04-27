@@ -20,14 +20,15 @@ local on_attach = function(client, bufnr)
 	-- vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
 	-- vim.keymap.set("n", "gy", vim.lsp.buf.type_definition, opts)
 	-- vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-	-- vim.keymap.set("n", "ca", vim.lsp.buf.code_action, opts)
+	-- vim.keymap.set("n", "gc", vim.lsp.buf.code_action, opts)
 
 	-- LSP WITH FZF
 	vim.keymap.set("n", "gd", ":lua require('fzf-lua').lsp_definitions({ jump_to_single_result = true })<cr>", opts)
 	vim.keymap.set("n", "gi", ":lua require('fzf-lua').lsp_implementations({ jump_to_single_result = true })<cr>", opts)
 	vim.keymap.set("n", "gy", ":lua require('fzf-lua').lsp_typedefs({ jump_to_single_result = true })<cr>", opts)
 	vim.keymap.set("n", "gr", ":lua require('fzf-lua').lsp_references({ ignore_current_line = true })<cr>", opts)
-	vim.keymap.set("n", "ca", "<cmd>FzfLua lsp_code_actions<cr>", opts)
+	vim.keymap.set("n", "gc", "<cmd>FzfLua lsp_code_actions<cr>", opts)
+	vim.keymap.set("n", "gc", "<cmd>FzfLua lsp_code_actions<cr>", opts)
 
 	-- LSP WITH TELESCOPE
 	-- vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<cr>", opts)
@@ -43,15 +44,15 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
 	vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, opts)
 	vim.keymap.set("n", "<f2>", vim.lsp.buf.rename, opts)
-	-- vim.keymap.set("n", "gq", ":lua vim.lsp.buf.format()<CR>", opts)
-	-- vim.keymap.set("v", "gq", function()
-	-- 	vim.lsp.buf.format({
-	--      range = {
-	--        ["start"] = vim.api.nvim_buf_get_mark(0, "<"),
-	--        ["end"] = vim.api.nvim_buf_get_mark(0, ">"),
-	--      },
-	--    })
-	-- end, opts)
+	vim.keymap.set("n", "gq", ":lua vim.lsp.buf.format()<CR>", opts)
+	vim.keymap.set("v", "gq", function()
+		vim.lsp.buf.format({
+	     range = {
+	       ["start"] = vim.api.nvim_buf_get_mark(0, "<"),
+	       ["end"] = vim.api.nvim_buf_get_mark(0, ">"),
+	     },
+	   })
+    end, opts)
 
 	vim.keymap.set("n", "<leader>lspr", ":LspRestart<CR>", opts)
 end

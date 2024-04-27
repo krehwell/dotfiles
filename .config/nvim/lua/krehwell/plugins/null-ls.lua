@@ -1,0 +1,43 @@
+return {
+	"nvimtools/none-ls.nvim",
+	dependencies = { "nvimtools/none-ls-extras.nvim" },
+	event = "CursorMoved",
+	config = function()
+		local null_ls = require("null-ls")
+		null_ls.setup({
+			debug = false,
+			sources = {
+				-- COMMON
+				null_ls.builtins.formatting.stylua.with({
+					indent_type = "Spaces",
+					collapse_simple_statement = "Always",
+				}),
+				null_ls.builtins.code_actions.gitsigns,
+
+				-- DOCKER
+				null_ls.builtins.diagnostics.hadolint,
+
+				-- GO
+				null_ls.builtins.formatting.goimports,
+				null_ls.builtins.formatting.golines,
+				-- null_ls.builtins.formatting.gofumpt.with({ space = true, }),
+				null_ls.builtins.formatting.goimports_reviser,
+
+				-- TS
+				null_ls.builtins.formatting.prettierd,
+				require("none-ls.code_actions.eslint_d"),
+				require("none-ls.diagnostics.eslint_d"),
+				-- null_ls.builtins.diagnostics.eslint,
+				-- null_ls.builtins.code_actions.eslint,
+				-- null_ls.builtins.diagnostics.dotenv_linter,
+
+				-- CSpell
+				-- null_ls.builtins.diagnostics.cspell.with({ }),
+				-- null_ls.builtins.completion.spell,
+				-- null_ls.builtins.code_actions.cspell,
+
+				null_ls.builtins.formatting.protolint,
+			},
+		})
+	end,
+}

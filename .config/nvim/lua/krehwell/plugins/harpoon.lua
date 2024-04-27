@@ -7,7 +7,8 @@ return {
 		harpoon:setup()
 
 		vim.keymap.set("n", "ma", function()
-			harpoon:list():append()
+            print("harpoon:add() - " .. vim.fn.expand('%:.:p'))
+			harpoon:list():add()
 		end)
 		vim.keymap.set("n", "mo", function()
 			harpoon.ui:toggle_quick_menu(harpoon:list())
@@ -19,7 +20,7 @@ return {
 			end)
 		end
 
-        vim.cmd([[
+		vim.cmd([[
           augroup harpoon_cursorline
             au!
             au FileType harpoon setlocal cursorline
