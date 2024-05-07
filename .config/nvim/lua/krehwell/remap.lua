@@ -27,16 +27,16 @@ vim.keymap.set("n", "<M-k>", "ddkP")
 vim.keymap.set("n", "<localleader>a", "ggVG")
 vim.keymap.set("v", "$", "$<left>")
 vim.keymap.set("v", "w", "e")
-vim.keymap.set("v", "<C-c>", "\"+y")
+vim.keymap.set("v", "<C-c>", '"+y')
 
 ----- SESSION BUFFER CONTROLLER
 local ask_save_session = function(without_confirm)
 	local cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ":t") -- get name of current dir only
-	vim.api.nvim_input(":wa<CR>") -- save all first
+	vim.api.nvim_input(":wa<CR>")
 	local save_cmd = ":mksession! ~/.vim/session/" .. cwd .. ".vim<left><left><left><left>"
-  if without_confirm then
-    save_cmd = save_cmd .. "<CR>"
-  end
+	if without_confirm then
+		save_cmd = save_cmd .. "<CR>"
+	end
 	vim.api.nvim_input(save_cmd)
 end
 

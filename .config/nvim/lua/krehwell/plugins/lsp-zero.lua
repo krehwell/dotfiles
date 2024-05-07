@@ -10,6 +10,7 @@ return {
 	config = function()
 		local lsp_zero = require("lsp-zero")
 		local lspsetup = require("krehwell.lspsetup")
+		local lspconfig = require("lspconfig")
 
 		-- MASON (LSP INSTALLER)
 		require("mason").setup({})
@@ -19,6 +20,7 @@ return {
 		})
 
 		lsp_zero.on_attach(function(client, bufnr)
+			client.server_capabilities.semanticTokensProvider = nil -- disable lsp's auto highlight globally
 			lspsetup.on_attach(client, bufnr)
 			vim.diagnostic.config(lspsetup.diagnostic_config)
 		end)
@@ -27,14 +29,15 @@ return {
 		-- LUA LSP SETUP
 		require("neodev").setup({})
 
-		local lspconfig = require("lspconfig")
-
 		lspconfig.lua_ls.setup({
 			settings = {
 				Lua = {
 					runtime = { version = "LuaJIT" },
 					diagnostics = { globals = { "vim", "require" } },
-					workspace = { library = vim.api.nvim_get_runtime_file("", true) },
+					workspace = {
+						library = vim.api.nvim_get_runtime_file("", true),
+						checkThirdParty = false,
+					},
 					telemetry = { enable = false },
 				},
 			},

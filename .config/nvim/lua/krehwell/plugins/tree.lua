@@ -14,7 +14,7 @@ local minifiles = {
 				end
 			end,
 			desc = "Open file explorer (mini.files)",
-      silent = true,
+			silent = true,
 		},
 	},
 	opts = {
@@ -143,5 +143,4 @@ local fern = {
 	end,
 }
 
-return minifiles;
-
+return minifiles

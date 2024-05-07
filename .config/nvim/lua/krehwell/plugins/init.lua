@@ -182,10 +182,9 @@ return {
 	{ "xero/miasma.nvim", priority = 1000, event = "CursorMoved" },
 	{ "sainnhe/gruvbox-material", event = "CursorMoved", priority = 1000 },
 	{
-		dir = "../../mirec/init.lua",
-		name = "mirec",
+		"HoNamDuong/hybrid.nvim",
 		config = function()
-			require("mirec").setup({})
+			vim.cmd.colorscheme("hybrid")
 		end,
 	},
 }

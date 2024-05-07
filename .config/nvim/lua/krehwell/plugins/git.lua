@@ -47,11 +47,11 @@ return {
 
 		vim.api.nvim_exec(
 			[[
-        " ----- GIT STATUS TOGGLE
-        augroup FugitiveToggleMapping
-            autocmd Filetype fugitive nnoremap <buffer> gs :q<cr>
-        augroup END
-      ]],
+            " ----- GIT STATUS TOGGLE
+            augroup FugitiveToggleMapping
+                autocmd Filetype fugitive nnoremap <buffer> gs :q<cr>
+            augroup END
+        ]],
 			false
 		)
 	end,

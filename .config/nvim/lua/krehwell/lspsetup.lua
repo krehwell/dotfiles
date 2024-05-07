@@ -6,7 +6,7 @@ local on_attach = function(client, bufnr)
       " I don't want to be diagnostic-nified while typing
       " autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, { focus=false })
       autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focus=false, scope="cursor" })
-  ]])
+    ]])
 	vim.keymap.set("n", "[W", ":lua vim.diagnostic.goto_prev()<CR>", opts)
 	vim.keymap.set("n", "]w", ":lua vim.diagnostic.goto_next()<CR>", opts)
 	vim.keymap.set("n", "[e", ":lua vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })<CR>", opts)
@@ -46,12 +46,12 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set("n", "gq", ":lua vim.lsp.buf.format()<CR>", opts)
 	vim.keymap.set("v", "gq", function()
 		vim.lsp.buf.format({
-	     range = {
-	       ["start"] = vim.api.nvim_buf_get_mark(0, "<"),
-	       ["end"] = vim.api.nvim_buf_get_mark(0, ">"),
-	     },
-	   })
-    end, opts)
+			range = {
+				["start"] = vim.api.nvim_buf_get_mark(0, "<"),
+				["end"] = vim.api.nvim_buf_get_mark(0, ">"),
+			},
+		})
+	end, opts)
 
 	vim.keymap.set("n", "<leader>lspr", ":LspRestart<CR>", opts)
 end
@@ -66,11 +66,11 @@ local diagnostic_config = {
 	severity_sort = true,
 	float = {
 		focusable = true,
-		style = "minimal",
+		-- style = "minimal",
 		border = "rounded",
 		source = "always",
-		header = "",
-		prefix = "",
+		-- header = "",
+		-- prefix = "",
 	},
 }
 

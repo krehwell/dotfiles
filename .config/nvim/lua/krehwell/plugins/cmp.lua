@@ -6,38 +6,14 @@ return {
 		{ "hrsh7th/cmp-nvim-lsp" },
 		{ "hrsh7th/cmp-buffer" },
 		{ "hrsh7th/cmp-cmdline" },
-		{ "saadparwaiz1/cmp_luasnip" },
-		{ "L3MON4D3/LuaSnip", version = "v2.*", build = "make install_jsregexp" },
+		-- { "saadparwaiz1/cmp_luasnip" },
+		-- { "L3MON4D3/LuaSnip", version = "v2.*", build = "make install_jsregexp" },
 		-- { "rafamadriz/friendly-snippets" },
 		{ "onsails/lspkind.nvim" },
 	},
 	config = function()
 		local cmp = require("cmp")
 		-- require("luasnip.loaders.from_vscode").lazy_load()
-
-		-- CMP IN CMD MODE
-		-- cmp.setup.cmdline(":", {
-		-- 	mapping = cmp.mapping.preset.cmdline(),
-		-- 	sources = cmp.config.sources({
-		-- 		{ name = "path" },
-		-- 	}, {
-		-- 		{
-		-- 			name = "cmdline",
-		-- 			option = {
-		-- 				ignore_cmds = { "Man", "!" },
-		-- 			},
-		-- 		},
-		-- 	}),
-		-- })
-
-		-- CMP IN "/" and "?"
-		-- cmp.setup.cmdline("/", {
-		-- 	view = {
-		-- 		entries = { name = "wildmenu", separator = " | " },
-		-- 	},
-		-- 	mapping = cmp.mapping.preset.cmdline(),
-		-- 	sources = { { name = "buffer" } },
-		-- })
 
 		cmp.setup({
 			snippet = {
@@ -114,10 +90,6 @@ return {
 			view = {
 				-- entries = "native",
 			},
-			experimental = {
-				-- ghost_text = true,
-			},
-
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
 				-- { name = "luasnip" },
@@ -131,12 +103,6 @@ return {
 				-- luasnip = 1,
 				buffer = 1,
 				path = 1,
-			},
-			performance = {
-				-- debounce = 50,
-				-- throttle = 50,
-				-- fetching_timeout = 50,
-				-- max_view_entries = 20,
 			},
 		})
 	end,
