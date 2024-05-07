@@ -12,7 +12,6 @@ return {
 					indent_type = "Spaces",
 					collapse_simple_statement = "Always",
 				}),
-				null_ls.builtins.code_actions.gitsigns,
 
 				-- DOCKER
 				null_ls.builtins.diagnostics.hadolint,
@@ -20,8 +19,8 @@ return {
 				-- GO
 				null_ls.builtins.formatting.goimports,
 				null_ls.builtins.formatting.golines,
-				-- null_ls.builtins.formatting.gofumpt.with({ space = true, }),
 				null_ls.builtins.formatting.goimports_reviser,
+                -- null_ls.builtins.formatting.gofumpt.with({ space = true, }),
 
 				-- TS
 				null_ls.builtins.formatting.prettierd,
@@ -37,6 +36,8 @@ return {
 				-- null_ls.builtins.code_actions.cspell,
 
 				null_ls.builtins.formatting.protolint,
+
+				-- null_ls.builtins.code_actions.gitsigns,
 			},
 		})
 	end,

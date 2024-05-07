@@ -8,7 +8,7 @@ return {
 	},
 
 	config = function()
-		require("nvim-treesitter.configs").setup({
+		local cfg = {
 			ensure_installed = {
 				"go",
 				"bash",
@@ -49,6 +49,10 @@ return {
 				},
 			},
 
+			-- for autotag to work properly for jsx file
+			-- .local/share/nvim/lazy/nvim-ts-autotag/lua/nvim-ts-autotag/internal.lua:570
+			-- set `{ clear = false }`
+			-- if want to update this plugin, set it back to true and update then reset it back to false
 			autotag = { enable = true },
 
 			indent = { enable = true },
@@ -60,6 +64,8 @@ return {
 				},
 				highlight_current_scope = { enable = false },
 			},
-		})
+		}
+
+		require("nvim-treesitter.configs").setup(cfg)
 	end,
 }

@@ -26,6 +26,13 @@ return {
 
 	-- HELPERS/NAVIGATIONS
 	{
+		"justinmk/vim-gtfo",
+		keys = {
+			{ "gof", desc = "Go to folder" },
+			{ "got", desc = "Go to terminal" },
+		},
+	},
+	{
 		"echasnovski/mini.move",
 		version = false,
 		event = "CursorMoved",
