@@ -34,7 +34,7 @@ vim.cmd([[
 vim.cmd([[
   augroup custom_highlight
     " au!
-    " hi! Normal guibg=g:term_background guifg=g:term_foreground ctermbg=NONE
+    " hi! Normal guibg=g:term_background guifg=g:term_foreground
     " hi! VertSplit guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
     " hi! SignColumn guibg=NONE
     " hi! Pmenu guibg=NONE guifg=Normal
