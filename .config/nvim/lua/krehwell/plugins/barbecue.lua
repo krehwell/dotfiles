@@ -7,10 +7,6 @@ return {
 		"nvim-tree/nvim-web-devicons", -- optional dependency
 	},
 	event = "VeryLazy",
-	keys = {
-		{ "[[", ":lua require('barbecue.ui').navigate(-1)<CR>", desc = "Jump to parent function", silent = true },
-		{ "]]", ":lua require('barbecue.ui').navigate(2)", desc = "Jump to next function", silent = true },
-	},
 	opts = {
 		show_dirname = true,
 		show_modified = true,

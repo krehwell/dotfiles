@@ -2,7 +2,7 @@
 -- vim.opt.termguicolors = true
 -- vim.opt.background = "dark"
 vim.opt.fillchars = {
-	vert = "╏", -- alternatives │
+	-- vert = "╏", -- alternatives │
 	fold = " ",
 	eob = "~", -- suppress ~ at EndOfBuffer
 	diff = "╱", -- alternatives = ⣿ ░ ─
@@ -18,7 +18,7 @@ vim.cmd([[ let &statusline='%#VertSplit#' ]]) -- color the split window dashes
 
 local colorscheme = vim.g.colors_name
 
--- save local wezterm color
+-- save local terminal color
 vim.cmd([[
   if exists('g:wezterm')
     let g:term_foreground = get(g:wezterm, 'colors', {}).foreground

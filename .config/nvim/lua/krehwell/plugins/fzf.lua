@@ -74,7 +74,7 @@ return {
 
       git = {
         files = {
-          prompt = "GitFiles❯ ",
+          prompt = "GitFiles> ",
           winopts = {
             height = 0.2,
             width = 1,

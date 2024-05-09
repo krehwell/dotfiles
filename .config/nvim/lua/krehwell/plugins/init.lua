@@ -27,10 +27,7 @@ return {
 	-- HELPERS/NAVIGATIONS
 	{
 		"justinmk/vim-gtfo",
-		keys = {
-			{ "gof", desc = "Go to folder" },
-			{ "got", desc = "Go to terminal" },
-		},
+		keys = { { "gof", desc = "Go to folder" }, { "got", desc = "Go to terminal" } },
 	},
 	{
 		"echasnovski/mini.move",
@@ -39,29 +36,6 @@ return {
 		config = function()
 			require("mini.move").setup({})
 		end,
-	},
-	{
-		"folke/flash.nvim",
-		opts = {
-			label = { style = "overlay" },
-			modes = { char = { enabled = false }, search = { enabled = false } },
-		},
-		keys = {
-			{
-				"//",
-				function()
-					require("flash").jump({ search = { multi_window = true } })
-				end,
-				desc = "Flash search forward",
-			},
-			{
-				"??",
-				function()
-					require("flash").jump({ search = { multi_window = true } })
-				end,
-				desc = "Flash search backwards",
-			},
-		},
 	},
 	{
 		-- css to jsx inline
@@ -184,6 +158,17 @@ return {
 	{
 		"HoNamDuong/hybrid.nvim",
 		config = function()
+			require("hybrid").setup({
+				transparent = true,
+				overrides = function(hl, c)
+					hl.Normal = {
+						fg = "#f2f2f2",
+					}
+					hl.NormalNC = {
+						fg = "#f2f2f2",
+					}
+				end,
+			})
 			vim.cmd.colorscheme("hybrid")
 		end,
 	},
