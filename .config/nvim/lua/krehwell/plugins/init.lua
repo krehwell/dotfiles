@@ -147,13 +147,10 @@ return {
 					spawn_one()
 				end
 			end
+
+            function KillDuck()
+                require("duck").cook_all()
+            end
 		end,
 	},
-
-	-- THEME/COLORSCHEME
-	{ "p00f/alabaster.nvim", priority = 1000, event = "CursorMoved" },
-	{ "projekt0n/github-nvim-theme", priority = 1000, event = "CursorMoved" },
-	{ "xero/miasma.nvim", priority = 1000, event = "CursorMoved" },
-	{ "sainnhe/gruvbox-material", event = "CursorMoved", priority = 1000 },
-	{ "HoNamDuong/hybrid.nvim", priority = 1000 },
 }

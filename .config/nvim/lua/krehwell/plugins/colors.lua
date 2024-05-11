@@ -35,15 +35,6 @@ vim.cmd([[
     augroup custom_highlight
         " au!
         " hi! Normal guibg=g:term_background guifg=g:term_foreground
-        " hi! VertSplit guibg=NONE guifg=NONE ctermbg=NONE ctermfg=NONE
-        " hi! SignColumn guibg=NONE
-        " hi! Pmenu guibg=NONE guifg=Normal
-        " hi! link TabLine LineNr
-        " hi! link TabLineFill LineNr
-        " hi! link FloatBorder Normal
-        " hi! link LspInfoBorder Normal
-        " hi! link NormalFloat Normal
-
         " set guicursor=n-c-v:block-Cursor
         " set guicursor+=v:block-vCursor
         " set guicursor+=a:blinkon0
@@ -54,6 +45,13 @@ vim.cmd([[
 return {
 	"krehwell/colors",
 	dev = true,
+	dependencies = {
+		{ "p00f/alabaster.nvim", priority = 1000, event = "CursorMoved" },
+		{ "projekt0n/github-nvim-theme", priority = 1000, event = "CursorMoved" },
+		{ "xero/miasma.nvim", priority = 1000, event = "CursorMoved" },
+		{ "sainnhe/gruvbox-material", event = "CursorMoved", priority = 1000 },
+		{ "HoNamDuong/hybrid.nvim", priority = 1000 },
+	},
 	config = function()
 		require("hybrid").setup({
 			transparent = true,
@@ -69,12 +67,8 @@ return {
 				-- hl.Define = { link = "Normal" }
 				-- hl.Delimiter = { link = "Normal" }
 				-- hl.Directory = { link = "Normal" }
-				-- hl.Error = { link = "Normal" }
-				-- hl.ErrorMsg = { link = "Normal" }
 				-- hl.Exception = { link = "Normal" }
 				-- hl.Float = { link = "Normal" }
-				-- hl.FoldColumn = { link = "Normal" }
-				-- hl.Folded = { link = "Normal" }
 				-- hl.Function = { link = "Normal" }
 				-- hl.Identifier = { link = "Normal" }
 				-- hl.Include = { link = "Normal" }
@@ -92,6 +86,7 @@ return {
 				-- hl.Type = { link = "Normal" }
 				-- hl.Typedef = { link = "Normal" }
 				-- hl.String = { link = "Normal" }
+
 				-- hl.DiffAdd = { link = "Normal" }
 				-- hl.DiffChange = { link = "Normal" }
 				-- hl.DiffDelete = { link = "Normal" }
@@ -106,9 +101,13 @@ return {
 				-- hl.LineNr = { link = "Normal" }
 				-- hl.MatchParen = { link = "Normal" }
 				-- hl.NonText = { link = "Normal" }
+                -- hl.Comment = { link = "Normal" }
 				-- hl.SpecialComment = { link = "Normal" }
 				-- hl.SpecialKey = { link = "Normal" }
-				-- hl.Comment = { link = "Normal" }
+				-- hl.FoldColumn = { link = "Normal" }
+				-- hl.Folded = { link = "Normal" }
+				-- hl.Error = { link = "Normal" }
+				-- hl.ErrorMsg = { link = "Normal" }
 			end,
 		})
 		vim.cmd.colorscheme("hybrid")

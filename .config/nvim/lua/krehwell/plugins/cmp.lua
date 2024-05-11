@@ -29,17 +29,15 @@ return {
 				["<C-n>"] = cmp.mapping.select_next_item(),
 				["<Tab>"] = cmp.config.disable,
 				["<S-Tab>"] = cmp.config.disable,
-				["<CR>"] = cmp.mapping.confirm({
-					select = true,
-					behavior = cmp.ConfirmBehavior.Replace,
-				}),
+				["<CR>"] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Insert }),
 				-- ["<CR>"] = cmp.config.disable,
 			}),
 
 			-- CMP APPEARANCE
 			formatting = {
+				expandable_indicator = true,
 				fields = { "kind", "abbr", "menu" },
-				format = function(entry, vim_item)
+				format = function(entry, item)
 					local kind = require("lspkind").cmp_format({
 						mode = "symbol_text",
 						maxwidth = 50,
@@ -70,19 +68,21 @@ return {
 							Operator = "󰆕",
 							TypeParameter = "",
 						},
-					})(entry, vim_item)
-					local strings = vim.split(kind.kind, "%s", { trimempty = true })
+					})(entry, item)
 
-					kind.kind = " " .. (strings[1] or "") .. " "
+					local s = vim.split(kind.kind, "%s", { trimempty = true })
+					local symbol = " " .. s[1] .. " "
 					if entry.source.name == "calc" then
-						kind.kind = " 󰃬 "
+						symbol = " 󰃬 "
 					end
+					local menu = " " .. s[2]
 
-					-- kind.kind = '▍' -- instead of symbol
-					kind.menu = " " .. (strings[2] or "")
+					kind.kind = symbol
+					kind.menu = menu
 					return kind
 				end,
 			},
+
 			window = {
 				documentation = cmp.config.window.bordered(),
 				completion = { col_offset = -3, side_padding = 0 },
