@@ -1,5 +1,8 @@
 local minifiles = {
 	"echasnovski/mini.files",
+	dependencies = {
+		"antosha417/nvim-lsp-file-operations",
+	},
 	version = "*",
 	keys = {
 		{
@@ -18,25 +21,9 @@ local minifiles = {
 		},
 	},
 	opts = {
-		content = {
-			filter = nil,
-			prefix = nil,
-			sort = nil,
-		},
-
 		-- Use `''` (empty string) to not create one.
 		mappings = {
 			close = "<c-[>",
-			go_in = "l",
-			go_in_plus = "<CR>",
-			go_out = "h",
-			go_out_plus = "H",
-			reset = "R",
-			reveal_cwd = "@",
-			show_help = "g?",
-			synchronize = "=",
-			trim_left = "<",
-			trim_right = ">",
 		},
 
 		-- General options
@@ -49,10 +36,15 @@ local minifiles = {
 			max_number = math.huge, -- Maximum number of windows to show side by side
 			preview = false, -- Whether to show preview of file/directory under cursor
 			width_focus = 50,
-			width_nofocus = 20,
+			width_nofocus = 35,
 			width_preview = 25,
 		},
 	},
+
+	config = function(_, opts)
+		require("mini.files").setup(opts)
+		require("lsp-file-operations").setup()
+	end,
 }
 
 -- I'm not using fern for now

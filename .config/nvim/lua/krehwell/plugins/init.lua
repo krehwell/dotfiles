@@ -155,21 +155,5 @@ return {
 	{ "projekt0n/github-nvim-theme", priority = 1000, event = "CursorMoved" },
 	{ "xero/miasma.nvim", priority = 1000, event = "CursorMoved" },
 	{ "sainnhe/gruvbox-material", event = "CursorMoved", priority = 1000 },
-	{
-		"HoNamDuong/hybrid.nvim",
-		config = function()
-			require("hybrid").setup({
-				transparent = true,
-				overrides = function(hl, c)
-					hl.Normal = {
-						fg = "#f2f2f2",
-					}
-					hl.NormalNC = {
-						fg = "#f2f2f2",
-					}
-				end,
-			})
-			vim.cmd.colorscheme("hybrid")
-		end,
-	},
+	{ "HoNamDuong/hybrid.nvim", priority = 1000 },
 }

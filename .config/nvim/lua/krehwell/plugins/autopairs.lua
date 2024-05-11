@@ -1,8 +1,18 @@
 return {
-	"echasnovski/mini.pairs",
-	version = false,
-	event = "InsertEnter",
-	config = function()
-		require("mini.pairs").setup({})
-	end,
+	"altermo/ultimate-autopair.nvim",
+	event = { "InsertEnter" },
+	branch = "v0.6",
+	opts = {
+		cmap = false,
+		pair_cmap = false,
+	},
 }
+
+-- return {
+-- 	"echasnovski/mini.pairs",
+-- 	version = false,
+-- 	event = "InsertEnter",
+-- 	config = function()
+-- 		require("mini.pairs").setup({})
+-- 	end,
+-- }

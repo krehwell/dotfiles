@@ -29,6 +29,9 @@ return {
 			Object = "{}",
 		},
 		create_autocmd = false,
+		lead_custom_section = function()
+			return ""
+		end,
 	},
 	config = function(_, opts)
 		-- triggers CursorHold event faster
