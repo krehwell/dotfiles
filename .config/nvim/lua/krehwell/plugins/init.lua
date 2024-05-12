@@ -1,7 +1,7 @@
 return {
 	-- LSP
 	{ "folke/neodev.nvim", ft = { "lua", "vim" } }, -- improve lua with vim :')
-	{ "zeioth/garbage-day.nvim", dependencies = "neovim/nvim-lspconfig", event = "LspAttach" },
+	{ "zeioth/garbage-day.nvim", dependencies = "neovim/nvim-lspconfig", event = "InsertEnter" },
 	{
 		"folke/trouble.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -22,7 +22,8 @@ return {
 			{ "<leader>xl", "require('trouble').toggle('loclist')<CR>", desc = "Trouble Location List" },
 		},
 	},
-	{ "chrisgrieser/nvim-early-retirement", event = "LspAttach", opts = { retirementAgeMins = 15 } },
+	{ "chrisgrieser/nvim-early-retirement", event = "InsertEnter", opts = { retirementAgeMins = 20 } },
+	{ "dmmulroy/ts-error-translator.nvim", event = "LspAttach", ft = { "typescript", "typescriptreact" } },
 
 	-- HELPERS/NAVIGATIONS
 	{
@@ -31,8 +32,12 @@ return {
 	},
 	{
 		"echasnovski/mini.move",
-		version = false,
-		event = "CursorMoved",
+		keys = {
+			{ mode = "v", "<M-h>" },
+			{ mode = "v", "<M-l>" },
+			{ mode = "v", "<M-j>" },
+			{ mode = "v", "<M-k>" },
+		},
 		config = function()
 			require("mini.move").setup({})
 		end,
@@ -87,20 +92,21 @@ return {
 
 	-- BEAUTIFY
 	{
-		"dhananjaylatkar/notes.nvim",
-		cmd = { "NotesFind", "NotesGrep", "NotesNew", "Notes", "Note" },
-		config = function(_, opts)
-			require("notes").setup(opts)
-			vim.api.nvim_create_user_command("Notes", function()
-				vim.cmd("NotesFind")
-			end, { nargs = 0 })
+		"yujinyuz/gitpad.nvim",
+		cmd = { "Note", "NoteBranch" },
+		config = function()
+			require("gitpad").setup({
+				dir = os.getenv("HOME") .. "/.vim/notes/",
+			})
+
 			vim.api.nvim_create_user_command("Note", function()
-				vim.cmd("NotesFind")
+				require("gitpad").toggle_gitpad()
+			end, { nargs = 0 })
+
+			vim.api.nvim_create_user_command("NoteBranch", function()
+				require("gitpad").toggle_gitpad_branch()
 			end, { nargs = 0 })
 		end,
-		opts = {
-			root = os.getenv("HOME") .. "/.vim/notes/",
-		},
 	},
 	{
 		"j-hui/fidget.nvim",
@@ -148,9 +154,13 @@ return {
 				end
 			end
 
-            function KillDuck()
-                require("duck").cook_all()
-            end
+			function KillDuck()
+				require("duck").cook_all()
+			end
 		end,
 	},
+	{ "p00f/alabaster.nvim", priority = 1000, event = "VeryLazy" },
+	{ "projekt0n/github-nvim-theme", priority = 1000, event = "VeryLazy" },
+	{ "xero/miasma.nvim", priority = 1000, event = "VeryLazy" },
+	{ "sainnhe/gruvbox-material", event = "VeryLazy", priority = 1000 },
 }

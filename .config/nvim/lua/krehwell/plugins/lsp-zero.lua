@@ -3,21 +3,19 @@ return {
 	branch = "v3.x",
 	dependencies = {
 		{ "neovim/nvim-lspconfig" },
-		{ "williamboman/mason.nvim", cmd = "Mason", opts = { ui = { border = "rounded" } } },
+		{ "williamboman/mason.nvim", opts = { ui = { border = "rounded" } } },
 		{ "williamboman/mason-lspconfig.nvim" },
-		{ "dmmulroy/ts-error-translator.nvim" },
 	},
 	config = function()
 		local lsp_zero = require("lsp-zero")
 		local lspsetup = require("krehwell.lspsetup")
 		local lspconfig = require("lspconfig")
 
-		-- MASON (LSP INSTALLER)
 		require("mason").setup({})
-		require("mason-lspconfig").setup({
-			ensure_installed = { "tsserver", "gopls", "cssls", "html", "jsonls", "vimls", "cssmodules_ls", "lua_ls" },
-			handlers = { lsp_zero.default_setup },
-		})
+		-- require("mason-lspconfig").setup({
+		-- 	ensure_installed = { "tsserver", "gopls", "cssls", "html", "jsonls", "vimls", "cssmodules_ls" },
+		-- 	handlers = { lsp_zero.default_setup },
+		-- })
 
 		lsp_zero.on_attach(function(client, bufnr)
 			client.server_capabilities.semanticTokensProvider = nil -- disable lsp's auto highlight globally
@@ -26,7 +24,6 @@ return {
 		end)
 		lsp_zero.set_sign_icons({ error = "", warn = "", hint = "", info = "" })
 
-		-- LUA LSP SETUP
 		require("neodev").setup({})
 
 		lspconfig.lua_ls.setup({
