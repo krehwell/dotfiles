@@ -12,7 +12,6 @@ return {
         { "gu", ":GitGutterUndoHunk<CR>",                      desc = "Git: undo hunk",                 silent = true },
         { "gp", ":lua require('gitsigns').preview_hunk()<CR>", desc = "Git: preview hunk",              silent = true },
         { "gu", ":lua require('gitsigns').reset_hunk()<CR>",   desc = "Git: reset current lines change" },
-
         {
             "]g",
             function() -- default to ]h

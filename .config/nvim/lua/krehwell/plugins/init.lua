@@ -97,6 +97,9 @@ return {
 		config = function()
 			require("gitpad").setup({
 				dir = os.getenv("HOME") .. "/.vim/notes/",
+				on_attach = function(bufnr)
+					vim.api.nvim_buf_set_keymap(bufnr, "n", "q", "<Cmd>wq<CR>", { noremap = true, silent = true })
+				end,
 			})
 
 			vim.api.nvim_create_user_command("Note", function()
