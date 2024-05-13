@@ -4,8 +4,9 @@ return {
 	dependencies = {
 		{ "neovim/nvim-lspconfig" },
 		{ "williamboman/mason.nvim", opts = { ui = { border = "rounded" } } },
-		{ "williamboman/mason-lspconfig.nvim" },
+		-- { "williamboman/mason-lspconfig.nvim" },
 	},
+	ft = require("krehwell.lspsetup").fts,
 	config = function()
 		local lsp_zero = require("lsp-zero")
 		local lspsetup = require("krehwell.lspsetup")

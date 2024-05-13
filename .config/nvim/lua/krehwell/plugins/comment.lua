@@ -1,47 +1,44 @@
 return {
-	"numToStr/Comment.nvim",
-	dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
+	"echasnovski/mini.comment",
+	dependencies = {
+		"JoosepAlviste/nvim-ts-context-commentstring",
+		config = function()
+			require("ts_context_commentstring").setup({ enable_autocmd = false })
+		end,
+	},
 	event = "InsertEnter",
-	opts = function()
-		require("ts_context_commentstring").setup({ enable_autocmd = false })
-		vim.g.skip_ts_context_commentstring_module = true
-		return {
-			padding = true, -- Add a space b/w comment and the line
-			sticky = true, -- Whether the cursor should stay at its position
-			ignore = nil, -- Lines to be ignored while (un)comment
+	version = false,
+	opts = {
+		options = {
+			custom_commentstring = function()
+				return require("ts_context_commentstring").calculate_commentstring() or vim.bo.commentstring
+			end,
 
-			-- LHS of toggle mappings in NORMAL mode
-			toggler = {
-				line = "gcc", -- Line-comment toggle keymap
-				block = "gbc", -- Block-comment toggle keymap
-			},
+			-- Whether to ignore blank lines when commenting
+			ignore_blank_line = true,
 
-			-- LHS of operator-pending mappings in NORMAL and VISUAL mode
-			opleader = {
-				line = "gc", -- Line-comment keymap
-				block = "gb", -- Block-comment keymap
-			},
+			-- Whether to recognize as comment only lines without indent
+			start_of_line = false,
 
-			-- LHS of extra mappings
-			extra = {},
+			-- Whether to force single space inner padding for comment parts
+			pad_comment_parts = true,
+		},
 
-			-- Enable keybindings
-			-- NOTE: If given `false` then the plugin won't create any mappings
-			mappings = {
-				basic = true, -- Operator-pending mapping; `gcc` `gbc` `gc[count]{motion}` `gb[count]{motion}`
-				extra = true, -- Extra mapping; `gco`, `gcO`, `gcA`
-			},
+		-- Module mappings. Use `''` (empty string) to disable one.
+		mappings = {
+			-- Toggle comment (like `gcip` - comment inner paragraph) for both
+			-- Normal and Visual modes
+			comment = "gc",
 
-			-- Function to call before (un)comment
-			pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
-			-- Function to call after (un)comment
-			post_hook = nil,
-		}
-	end,
-	keys = {
-		{ "gcc", mode = "n", desc = "Comment current line" },
-		{ "gbc", mode = "n", desc = "Comment block current line" },
-		{ "gc", mode = { "n", "v" }, desc = "Comment selection" },
-		{ "gb", mode = { "n", "v" }, desc = "Block comment selection" },
+			-- Toggle comment on current line
+			comment_line = "gcc",
+
+			-- Toggle comment on visual selection
+			comment_visual = "gc",
+
+			-- Define 'comment' textobject (like `dgc` - delete whole comment block)
+			-- Works also in Visual mode if mapping differs from `comment_visual`
+			textobject = "gc",
+		},
 	},
 }

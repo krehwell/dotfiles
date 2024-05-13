@@ -4,7 +4,6 @@ return {
 	{ "zeioth/garbage-day.nvim", dependencies = "neovim/nvim-lspconfig", event = "InsertEnter" },
 	{
 		"folke/trouble.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
 		cmd = "TroubleToggle",
 		keys = {
 			{ "<leader>xx", ":lua require('trouble').toggle()<CR>", desc = "Trouble toggle" },
@@ -38,9 +37,6 @@ return {
 			{ mode = "v", "<M-j>" },
 			{ mode = "v", "<M-k>" },
 		},
-		config = function()
-			require("mini.move").setup({})
-		end,
 	},
 	{
 		-- css to jsx inline
@@ -139,7 +135,7 @@ return {
 	},
 	{
 		"tamton-aquib/duck.nvim",
-		event = { "CursorMoved" },
+		event = { "InsertEnter" },
 		config = function()
 			function SpawnDuck(n)
 				local spawn_one = function()

@@ -74,7 +74,26 @@ local diagnostic_config = {
 	},
 }
 
+local fts = {
+	"lua",
+	"typescript",
+	"javascript",
+	"typescriptreact",
+	"javascriptreact",
+	"vim",
+	"cpp",
+	"go",
+	"c",
+	"sh",
+	"css",
+	"html",
+	"vimdoc",
+	"json",
+	"md",
+}
+
 return {
 	on_attach = on_attach,
 	diagnostic_config = diagnostic_config,
+	fts = fts,
 }
