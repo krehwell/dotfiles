@@ -20,7 +20,7 @@ return {
 				null_ls.builtins.formatting.goimports,
 				null_ls.builtins.formatting.golines,
 				null_ls.builtins.formatting.goimports_reviser,
-                -- null_ls.builtins.formatting.gofumpt.with({ space = true, }),
+				-- null_ls.builtins.formatting.gofumpt.with({ space = true, }),
 
 				-- TS
 				null_ls.builtins.formatting.prettierd,

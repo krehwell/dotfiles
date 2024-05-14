@@ -16,8 +16,6 @@ vim.opt.fillchars = {
 vim.opt.laststatus = 0
 vim.cmd([[ let &statusline='%#WinSeparator#' ]]) -- color the split window dashes
 
-local colorscheme = vim.g.colors_name
-
 -- save local terminal color
 vim.cmd([[
     if exists('g:wezterm')
@@ -28,18 +26,6 @@ vim.cmd([[
         let g:term_foreground = get(g:kitty, 'colors', {}).foreground
         let g:term_background = get(g:kitty, 'colors', {}).background
     endif
-]])
-
--- COLORS MOD
-vim.cmd([[
-    augroup custom_highlight
-        " au!
-        " hi! Normal guibg=g:term_background guifg=g:term_foreground
-        " set guicursor=n-c-v:block-Cursor
-        " set guicursor+=v:block-vCursor
-        " set guicursor+=a:blinkon0
-        " set guicursor+=n:blinkon80
-    augroup END
 ]])
 
 return {

@@ -1,26 +1,56 @@
 return {
-	"echasnovski/mini.completion",
-	opts = {
-		delay = { completion = 300, info = 100, signature = 50 },
-
-		window = {
-			info = { height = 25, width = 80, border = "none" },
-			signature = { height = 25, width = 80, border = "none" },
-		},
-
-		lsp_completion = {
-			-- `source_func` should be one of 'completefunc' or 'omnifunc'.
-			source_func = "completefunc",
-			auto_setup = true,
-		},
-
-		mappings = {
-			force_twostep = "<C-Space>", -- Force two-step completion
-			force_fallback = "<A-Space>", -- Force fallback completion
-		},
-
-		-- Whether to set Vim's settings for better experience (modifies
-		-- `shortmess` and `completeopt`)
-		set_vim_settings = true,
+	"hrsh7th/nvim-cmp",
+	dependencies = {
+		{ "hrsh7th/cmp-calc" },
+		{ "hrsh7th/cmp-path" },
+		{ "hrsh7th/cmp-nvim-lsp" },
+		{ "hrsh7th/cmp-buffer" },
+		{ "saadparwaiz1/cmp_luasnip" },
+		{ "L3MON4D3/LuaSnip", version = "v2.*", build = "make install_jsregexp" },
 	},
+	event = "LspAttach",
+	config = function()
+		local cmp = require("cmp")
+		cmp.setup({
+			snippet = {
+				expand = function(args)
+					require("luasnip").lsp_expand(args.body)
+				end,
+			},
+			mapping = cmp.mapping.preset.insert({
+				["<C-k>"] = cmp.mapping.scroll_docs(-4),
+				["<C-j>"] = cmp.mapping.scroll_docs(4),
+				["<C-Space>"] = cmp.mapping.complete({}),
+				["<C-p>"] = cmp.mapping.select_prev_item(),
+				["<C-n>"] = cmp.mapping.select_next_item(),
+				["<Tab>"] = cmp.config.disable,
+				["<S-Tab>"] = cmp.config.disable,
+				["<CR>"] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Insert }),
+			}),
+
+			window = {
+				documentation = cmp.config.window.bordered(),
+			},
+
+			view = {
+				entries = "native",
+			},
+
+			sources = cmp.config.sources({
+				{ name = "nvim_lsp" },
+				-- { name = "luasnip" },
+				{ name = "path" },
+				{ name = "calc" },
+			}, {
+				{ name = "buffer" },
+			}),
+
+			duplicates = {
+				nvim_lsp = 1,
+				-- luasnip = 1,
+				buffer = 1,
+				path = 1,
+			},
+		})
+	end,
 }

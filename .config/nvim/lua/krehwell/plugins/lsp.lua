@@ -20,9 +20,9 @@ return {
 		-- })
 
 		lsp_zero.on_attach(function(client, bufnr)
-			lsp_utils.on_attach(client, bufnr)
-			vim.diagnostic.config(lsp_utils.diagnostic_config)
 			client.server_capabilities.semanticTokensProvider = nil
+			vim.diagnostic.config(lsp_utils.diagnostic_config)
+			lsp_utils.on_attach(client, bufnr)
 		end)
 
 		lsp_zero.set_sign_icons({ error = "", warn = "", hint = "", info = "" })
@@ -30,11 +30,11 @@ return {
 		require("neodev").setup({})
 
 		lspconfig.lua_ls.setup({
-			on_init = function(client)
-				client.server_capabilities.documentFormattingProvider = false
-				client.server_capabilities.documentFormattingRangeProvider = false
-			end,
 			cmd = { "lua-language-server" },
+			on_init = function(client)
+                client.server_capabilities.documentFormattingProvider = false
+                client.server_capabilities.documentFormattingRangeProvider = false
+			end,
 			settings = {
 				Lua = {
 					runtime = {
@@ -42,7 +42,7 @@ return {
 						path = vim.split(package.path, ";"),
 					},
 					diagnostics = {
-						globals = { "vim" },
+						globals = { "vim", "require" },
 					},
 					telemetry = { enable = false },
 				},
@@ -53,8 +53,8 @@ return {
 		lspconfig.tsserver.setup({
 			on_init = function(client)
 				require("ts-error-translator").setup()
-				client.server_capabilities.documentFormattingProvider = false
-				client.server_capabilities.documentFormattingRangeProvider = false
+                client.server_capabilities.documentFormattingProvider = false
+                client.server_capabilities.documentFormattingRangeProvider = false
 			end,
 
 			cmd = { "bunx", "typescript-language-server", "--stdio" },
