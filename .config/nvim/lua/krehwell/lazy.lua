@@ -17,8 +17,8 @@ local opts = {
 		enabled = true,
 		notify = false,
 	},
-  ui = {
-    border = "rounded"
-  }
+	ui = {
+		border = "rounded",
+	},
 }
 require("lazy").setup("krehwell.plugins", opts)

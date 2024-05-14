@@ -1,6 +1,5 @@
 return {
 	-- LSP
-	{ "folke/neodev.nvim", ft = { "lua", "vim" } }, -- improve lua with vim :')
 	{ "zeioth/garbage-day.nvim", dependencies = "neovim/nvim-lspconfig", event = "InsertEnter" },
 	{
 		"folke/trouble.nvim",

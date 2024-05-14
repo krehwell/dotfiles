@@ -7,31 +7,31 @@ augroup END
 
 
 " ----- TAB NAMING
-set tabline=%!TabLine()
+" set tabline=%!TabLine()
 
-function! TabLine()
-    let line = ''
-    for i in range(tabpagenr('$'))
-        let line .= (i+1 == tabpagenr()) ? '%#TabLineSel#' : '%#TabLine#'
-        let line .= '%' . (i + 1) . 'T'
-        let line .= TabLabel(i + 1) . ' '
-    endfor
-    let line .= '%#TabLineFill#%T'
-    return line
-endfunction
-
-function! TabLabel(n)
-    let wincount = tabpagewinnr(a:n, '$')
-    let winnr = tabpagewinnr(a:n)
-
-    let bufnr = tabpagebuflist(a:n)[winnr - 1]
-    let bufname = bufname(bufnr)
-    let bufmodified = getbufvar(bufnr, '&mod') == 1 ? '+' : ''
-    let dirname = fnamemodify(bufname, ':p:h:t')
-    let filename = fnamemodify(bufname, ':t')
-    let window_info = wincount > 1 ? '['.wincount.']' : ''
-    return ' ' . a:n . ':' . dirname . '/' . filename . window_info . bufmodified
-endfunction
+" function! TabLine()
+"     let line = ''
+"     for i in range(tabpagenr('$'))
+"         let line .= (i+1 == tabpagenr()) ? '%#TabLineSel#' : '%#TabLine#'
+"         let line .= '%' . (i + 1) . 'T'
+"         let line .= TabLabel(i + 1) . ' '
+"     endfor
+"     let line .= '%#TabLineFill#%T'
+"     return line
+" endfunction
+" 
+" function! TabLabel(n)
+"     let wincount = tabpagewinnr(a:n, '$')
+"     let winnr = tabpagewinnr(a:n)
+" 
+"     let bufnr = tabpagebuflist(a:n)[winnr - 1]
+"     let bufname = bufname(bufnr)
+"     let bufmodified = getbufvar(bufnr, '&mod') == 1 ? '+' : ''
+"     let dirname = fnamemodify(bufname, ':p:h:t')
+"     let filename = fnamemodify(bufname, ':t')
+"     let window_info = wincount > 1 ? '['.wincount.']' : ''
+"     return ' ' . a:n . ':' . dirname . '/' . filename . window_info . bufmodified
+" endfunction
 
 
 " ----- NOAUTOCOMMENT TO ALL FILES -----

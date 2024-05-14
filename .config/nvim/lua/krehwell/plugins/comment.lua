@@ -7,7 +7,6 @@ return {
 		end,
 	},
 	event = "InsertEnter",
-	version = false,
 	opts = {
 		options = {
 			custom_commentstring = function()

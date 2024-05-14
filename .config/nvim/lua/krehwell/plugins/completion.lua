@@ -1,7 +1,5 @@
 return {
 	"echasnovski/mini.completion",
-	version = false,
-	-- event = "LspAttach",
 	opts = {
 		delay = { completion = 300, info = 100, signature = 50 },
 

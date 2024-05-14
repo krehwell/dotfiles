@@ -1,29 +1,34 @@
 return {
-	"echasnovski/mini.starter",
-	version = false,
-	opts = {
-		autoopen = true,
+	"mhinz/vim-startify",
+	config = function()
+		vim.cmd([[
+            " returns all modified files of the current git repo
+            " `2>/dev/null` makes the command fail quietly, so that when we are not
+            " in a git repo, the list will be empty
+            function! s:gitModified()
+                let files = systemlist('git ls-files -m 2>/dev/null')
+                return map(files, "{'line': v:val, 'path': v:val}")
+            endfunction
 
-		evaluate_single = true,
+            " same as above, but show untracked files, honouring .gitignore
+            function! s:gitUntracked()
+                let files = systemlist('git ls-files -o --exclude-standard 2>/dev/null')
+                return map(files, "{'line': v:val, 'path': v:val}")
+            endfunction
 
-		-- Items to be displayed. Should be an array with the following elements:
-		-- - Item: table with <action>, <name>, and <section> keys.
-		-- - Function: should return one of these three categories.
-		-- - Array: elements of these three types (i.e. item, array, function).
-		-- If `nil` (default), default items will be used (see |mini.starter|).
-		items = nil,
+            let g:startify_lists = [
+                \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+                \ { 'type': 'files',     'header': ['   MRU']            },
+                \ { 'type': 'sessions',  'header': ['   Sessions']       },
+                \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+                \ { 'type': function('s:gitModified'),  'header': ['   git modified']},
+                \ { 'type': function('s:gitUntracked'), 'header': ['   git untracked']},
+                \ { 'type': 'commands',  'header': ['   Commands']       },
+            \ ]
 
-		-- Header to be displayed before items. Converted to single string via
-		-- `tostring` (use `\n` to display several lines). If function, it is
-		-- evaluated first. If `nil` (default), polite greeting will be used.
-		header = nil,
+            let g:startify_change_to_dir = 0
+        ]])
 
-		-- Footer to be displayed after items. Converted to single string via
-		-- `tostring` (use `\n` to display several lines). If function, it is
-		-- evaluated first. If `nil` (default), default usage help will be shown.
-		footer = nil,
-
-		-- Whether to disable showing non-error feedback
-		silent = false,
-	},
+		vim.g.startify_session_dir = "$HOME/.vim/session"
+	end,
 }
