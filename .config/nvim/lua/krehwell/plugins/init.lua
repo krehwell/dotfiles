@@ -30,11 +30,12 @@ return {
 	},
 	{
 		"echasnovski/mini.move",
-		keys = { { mode = "v", "<M-h>" }, { mode = "v", "<M-l>" }, { mode = "v", "<M-j>" }, { mode = "v", "<M-k>" },
-
-
-
-                                     },
+		keys = {
+			{ mode = "v", "<M-l>" },
+			{ mode = "v", "<M-j>" },
+			{ mode = "v", "<M-h>" },
+			{ mode = "v", "<M-k>" },
+		},
 	},
 	{
 		-- css to jsx inline

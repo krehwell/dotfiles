@@ -6,7 +6,7 @@ return {
 			require("ts_context_commentstring").setup({ enable_autocmd = false })
 		end,
 	},
-	event = "InsertEnter",
+	event = "CursorMoved",
 	opts = {
 		options = {
 			custom_commentstring = function()

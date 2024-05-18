@@ -5,12 +5,11 @@ return {
 		{ "hrsh7th/cmp-path" },
 		{ "hrsh7th/cmp-nvim-lsp" },
 		{ "hrsh7th/cmp-buffer" },
-		{ "saadparwaiz1/cmp_luasnip" },
-		{ "L3MON4D3/LuaSnip", version = "v2.*", build = "make install_jsregexp" },
 	},
 	event = "LspAttach",
 	config = function()
 		local cmp = require("cmp")
+
 		cmp.setup({
 			snippet = {
 				expand = function(args)
@@ -38,7 +37,6 @@ return {
 
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
-				-- { name = "luasnip" },
 				{ name = "path" },
 				{ name = "calc" },
 			}, {

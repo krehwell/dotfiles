@@ -26,7 +26,7 @@ return {
 		{ "gu", ":lua require('gitsigns').reset_hunk()<CR>", desc = "Git: reset current lines change" },
 		{
 			"]g",
-			function() -- default to ]h
+			function()
 				if vim.wo.diff then
 					return "]c"
 				end
@@ -35,11 +35,11 @@ return {
 				end)
 				return "<Ignore>"
 			end,
-			desc = "Git: jump to next lines change",
+			desc = "Git: jump to next line change",
 		},
 		{
 			"[g",
-			function() -- default to ]h
+			function()
 				if vim.wo.diff then
 					return "]c"
 				end
@@ -48,7 +48,7 @@ return {
 				end)
 				return "<Ignore>"
 			end,
-			desc = "Git: jump to prev lines change",
+			desc = "Git: jump to prev line change",
 		},
 	},
 
@@ -78,7 +78,7 @@ return {
 		current_line_blame_formatter = "     <author>, <author_time:%d-%m-%Y> - <summary>",
 
 		sign_priority = 6,
-		update_debounce = 300,
+		update_debounce = 1500,
 		max_file_length = 2000, -- Disable if file is longer than this (in lines)
 		preview_config = { border = "single", style = "minimal", relative = "cursor", row = 0, col = 1 },
 	},
