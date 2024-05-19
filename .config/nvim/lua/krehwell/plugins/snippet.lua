@@ -35,6 +35,6 @@ return {
 
 		vim.keymap.set({ "i", "s" }, "<c-l>", expand_or_jump)
 		vim.keymap.set({ "i", "s" }, "<c-h>", jump_prev)
-		vim.keymap.set({ "i", "s" }, "<c-j>", change_choice)
+		vim.keymap.set({ "i", "s" }, "<c-r>", change_choice)
 	end,
 }
