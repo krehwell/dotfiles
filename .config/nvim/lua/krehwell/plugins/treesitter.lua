@@ -3,9 +3,9 @@ return {
 	build = ":TSUpdate",
 	event = "VeryLazy",
 	dependencies = {
-		{ "windwp/nvim-ts-autotag" }, -- html auto tag
+		{ "PriceHiller/nvim-ts-autotag" }, -- html auto tag
 		{ "nvim-treesitter/nvim-treesitter-refactor" }, -- highlight usages, definition, etc
-		-- { "nvim-treesitter/nvim-treesitter-textobjects" },
+		{ "nvim-treesitter/nvim-treesitter-textobjects", build = ":TSUpdate" },
 	},
 
 	opts = {
@@ -51,7 +51,7 @@ return {
 		},
 
 		-- for autotag to work properly for jsx file
-		-- ~/.local/share/nvim/lazy/local/share/nvim/lazy/nvim-ts-autotag/lua/nvim-ts-autotag/internal.lua:570
+		-- ~/.local/share/nvim/lazy/nvim-ts-autotag/lua/nvim-ts-autotag/internal.lua:570
 		-- set `{ clear = false }`
 		-- if want to update this plugin, set it back to true and update then reset it back to false
 		autotag = { enable = true },

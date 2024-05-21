@@ -1,43 +1,49 @@
 return {
-	"echasnovski/mini.comment",
-	dependencies = {
-		"JoosepAlviste/nvim-ts-context-commentstring",
-		config = function()
-			require("ts_context_commentstring").setup({ enable_autocmd = false })
-		end,
-	},
+	"folke/ts-comments.nvim",
 	event = "CursorMoved",
 	opts = {
-		options = {
-			custom_commentstring = function()
-				return require("ts_context_commentstring").calculate_commentstring() or vim.bo.commentstring
-			end,
-
-			-- Whether to ignore blank lines when commenting
-			ignore_blank_line = true,
-
-			-- Whether to recognize as comment only lines without indent
-			start_of_line = false,
-
-			-- Whether to force single space inner padding for comment parts
-			pad_comment_parts = true,
-		},
-
-		-- Module mappings. Use `''` (empty string) to disable one.
-		mappings = {
-			-- Toggle comment (like `gcip` - comment inner paragraph) for both
-			-- Normal and Visual modes
-			comment = "gc",
-
-			-- Toggle comment on current line
-			comment_line = "gcc",
-
-			-- Toggle comment on visual selection
-			comment_visual = "gc",
-
-			-- Define 'comment' textobject (like `dgc` - delete whole comment block)
-			-- Works also in Visual mode if mapping differs from `comment_visual`
-			textobject = "gc",
+		lang = {
+			astro = "<!-- %s -->",
+			c = "// %s",
+			cpp = "// %s",
+			css = "/* %s */",
+			gleam = "// %s",
+			glimmer = "{{! %s }}",
+			graphql = "# %s",
+			handlebars = "{{! %s }}",
+			hcl = "# %s",
+			html = "<!-- %s -->",
+			ini = "; %s",
+			php = "// %s",
+			rego = "# %s",
+			rescript = "// %s",
+			sql = "-- %s",
+			svelte = "<!-- %s -->",
+			terraform = "# %s",
+			tsx = {
+				_ = "// %s",
+				call_expression = "// %s",
+				comment = "// %s",
+				jsx_attribute = "// %s",
+				jsx_element = "{/* %s */}",
+				jsx_fragment = "{/* %s */}",
+				spread_element = "// %s",
+				statement_block = "// %s",
+			},
+			javascript = {
+				_ = "// %s",
+				call_expression = "// %s",
+				comment = "// %s",
+				jsx_attribute = "// %s",
+				jsx_element = "{/* %s */}",
+				jsx_fragment = "{/* %s */}",
+				spread_element = "// %s",
+				statement_block = "// %s",
+			},
+			twig = "{# %s #}",
+			typescript = "// %s",
+			vim = '" %s',
+			vue = "<!-- %s -->",
 		},
 	},
 }

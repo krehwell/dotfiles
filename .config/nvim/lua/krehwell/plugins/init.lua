@@ -36,6 +36,9 @@ return {
 			{ mode = "v", "<M-h>" },
 			{ mode = "v", "<M-k>" },
 		},
+		config = function()
+			require("mini.move").setup({})
+		end,
 	},
 	{
 		-- css to jsx inline

@@ -28,6 +28,7 @@ vim.keymap.set("n", "<localleader>a", "ggVG")
 vim.keymap.set("v", "$", "$<left>")
 vim.keymap.set("v", "w", "e")
 vim.keymap.set("v", "<C-c>", '"+y')
+vim.keymap.set("n", "<C-l>", "viwyoconsole.log(<C-o>p)<esc><left>b")
 
 ----- SESSION BUFFER CONTROLLER
 local ask_save_session = function(without_confirm)
