@@ -3,7 +3,7 @@ return {
 	branch = "v3.x",
 	dependencies = {
 		{ "neovim/nvim-lspconfig" },
-		{ "williamboman/mason.nvim", opts = { ui = { border = "rounded" } } },
+		{ "williamboman/mason.nvim", opts = { ui = { border = "rounded" } }, cmd = { "Mason" } },
 		-- { "williamboman/mason-lspconfig.nvim" },
 		{ "folke/neodev.nvim" },
 	},
@@ -32,8 +32,8 @@ return {
 		lspconfig.lua_ls.setup({
 			cmd = { "lua-language-server" },
 			on_init = function(client)
-                client.server_capabilities.documentFormattingProvider = false
-                client.server_capabilities.documentFormattingRangeProvider = false
+				client.server_capabilities.documentFormattingProvider = false
+				client.server_capabilities.documentFormattingRangeProvider = false
 			end,
 			settings = {
 				Lua = {
@@ -53,8 +53,8 @@ return {
 		lspconfig.tsserver.setup({
 			on_init = function(client)
 				require("ts-error-translator").setup()
-                client.server_capabilities.documentFormattingProvider = false
-                client.server_capabilities.documentFormattingRangeProvider = false
+				client.server_capabilities.documentFormattingProvider = false
+				client.server_capabilities.documentFormattingRangeProvider = false
 			end,
 
 			cmd = { "bunx", "typescript-language-server", "--stdio" },

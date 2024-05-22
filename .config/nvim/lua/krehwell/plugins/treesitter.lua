@@ -1,11 +1,10 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
-	event = "VeryLazy",
+	event = "BufReadPre",
 	dependencies = {
-		{ "PriceHiller/nvim-ts-autotag" }, -- html auto tag
 		{ "nvim-treesitter/nvim-treesitter-refactor" }, -- highlight usages, definition, etc
-		{ "nvim-treesitter/nvim-treesitter-textobjects", build = ":TSUpdate" },
+		{ "nvim-treesitter/nvim-treesitter-textobjects" },
 	},
 
 	opts = {
@@ -49,12 +48,6 @@ return {
 				node_decremental = "", -- this is <C-BS>
 			},
 		},
-
-		-- for autotag to work properly for jsx file
-		-- ~/.local/share/nvim/lazy/nvim-ts-autotag/lua/nvim-ts-autotag/internal.lua:570
-		-- set `{ clear = false }`
-		-- if want to update this plugin, set it back to true and update then reset it back to false
-		autotag = { enable = true },
 
 		indent = { enable = true },
 

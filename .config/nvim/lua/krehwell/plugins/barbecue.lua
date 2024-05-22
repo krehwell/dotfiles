@@ -6,7 +6,7 @@ return {
 		"SmiteshP/nvim-navic",
 		"nvim-tree/nvim-web-devicons", -- optional dependency
 	},
-	event = "VeryLazy",
+    ft = require("krehwell.lsp-utils").fts,
 	opts = {
 		show_dirname = true,
 		show_modified = true,

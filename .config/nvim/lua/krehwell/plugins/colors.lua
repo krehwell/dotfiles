@@ -1,6 +1,7 @@
 -- vim.cmd("syntax off")
--- vim.opt.termguicolors = true
--- vim.opt.background = "dark"
+vim.opt.termguicolors = true
+vim.opt.background = "dark"
+
 vim.opt.fillchars = {
 	vert = "│", -- alternatives │
 	fold = " ",
@@ -16,18 +17,6 @@ vim.opt.fillchars = {
 vim.opt.laststatus = 0
 vim.cmd([[ let &statusline='%#WinSeparator#' ]]) -- color the split window dashes
 
--- save local terminal color
--- vim.cmd([[
---     if exists('g:wezterm')
---         let g:term_foreground = get(g:wezterm, 'colors', {}).foreground
---         let g:term_background = get(g:wezterm, 'colors', {}).background
---     endif
---     if exists('g:kitty')
---         let g:term_foreground = get(g:kitty, 'colors', {}).foreground
---         let g:term_background = get(g:kitty, 'colors', {}).background
---     endif
--- ]])
-
 return {
 	"krehwell/colors",
 	dev = true,
@@ -39,7 +28,7 @@ return {
 			transparent = true,
 			overrides = function(hl, c)
 				hl.Normal = { fg = "#f2f2f2" }
-				hl.NormalNC = { fg = "#f2f2f2" }
+				hl.NormalNC = { link = "Normal" }
 				hl.Boolean = { link = "Normal" }
 				hl.Character = { link = "Normal" }
 				hl.Conditional = { link = "Normal" }

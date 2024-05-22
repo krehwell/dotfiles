@@ -137,7 +137,7 @@ return {
 	},
 	{
 		"tamton-aquib/duck.nvim",
-		event = { "InsertEnter" },
+		cmd = { "SpawnDuck" },
 		config = function()
 			function SpawnDuck(n)
 				local spawn_one = function()
@@ -158,6 +158,10 @@ return {
 			function KillDuck()
 				require("duck").cook_all()
 			end
+
+			vim.api.nvim_create_user_command("SpawnDuck", function()
+                SpawnDuck(2)
+			end, { nargs = 0 })
 		end,
 	},
 	{ "p00f/alabaster.nvim", priority = 1000, event = "VeryLazy" },
