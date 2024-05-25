@@ -2,7 +2,13 @@
 
 Try to be minimalist possible
 
-![Vim Full Split](https://i.imgur.com/0YSLWm2.png)
+## Tools Deps: 
+
+1. `fish`
+2. `tmux`
+3. `rmtrash`
+4. `fzf`
+
 
 ## Mac `defaults write` overrides:
 
