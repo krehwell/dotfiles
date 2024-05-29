@@ -20,6 +20,7 @@ vim.cmd([[ let &statusline='%#WinSeparator#' ]]) -- color the split window dashe
 return {
 	"krehwell/colors",
 	dev = true,
+    enabled = true,
 	dependencies = {
 		{ "HoNamDuong/hybrid.nvim", priority = 1000 },
 	},

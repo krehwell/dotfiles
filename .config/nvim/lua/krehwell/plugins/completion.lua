@@ -5,6 +5,7 @@ return {
 		{ "hrsh7th/cmp-path" },
 		{ "hrsh7th/cmp-nvim-lsp" },
 		{ "hrsh7th/cmp-buffer" },
+		{ "L3MON4D3/LuaSnip" },
 	},
 	event = "LspAttach",
 	config = function()
@@ -18,7 +19,7 @@ return {
 			},
 			mapping = cmp.mapping.preset.insert({
 				["<C-f>"] = cmp.mapping.scroll_docs(-4),
-                ["<C-b>"] = cmp.mapping.scroll_docs(4),
+				["<C-b>"] = cmp.mapping.scroll_docs(4),
 				["<C-Space>"] = cmp.mapping.complete({}),
 				["<C-p>"] = cmp.mapping.select_prev_item(),
 				["<C-n>"] = cmp.mapping.select_next_item(),
