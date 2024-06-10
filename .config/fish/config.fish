@@ -12,5 +12,12 @@ if status is-interactive
     function postexec_test --on-event fish_postexec
         echo
     end
+
+    function "killall_lsp"
+        set processes eslint_d prettierd node bun bunx tsserver
+        for process in $processes
+            killall -9 $process ^/dev/null
+        end
+    end
 end
 

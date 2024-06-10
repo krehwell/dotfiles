@@ -2,7 +2,7 @@ vim.opt.diffopt = vim.opt.diffopt + "vertical"
 
 return {
 	"lewis6991/gitsigns.nvim",
-	event = "CursorMoved",
+	event = "BufReadPre",
 	dependencies = {
 		{
 			"tpope/vim-fugitive",
@@ -21,9 +21,23 @@ return {
 		{ "gs", ":Git<CR>", desc = "Git: toggle status", silent = true },
 		{ "gh", ":diffget //2 <CR>", desc = "Git: get lhs of diff", silent = true },
 		{ "gl", ":diffget //3 <CR>", desc = "Git: get rhs of diff", silent = true },
-		{ "gu", ":GitGutterUndoHunk<CR>", desc = "Git: undo hunk", silent = true },
-		{ "gp", ":lua require('gitsigns').preview_hunk()<CR>", desc = "Git: preview hunk", silent = true },
-		{ "gu", ":lua require('gitsigns').reset_hunk()<CR>", desc = "Git: reset current lines change" },
+		{
+			"gp",
+			function()
+				vim.cmd("Gitsigns refresh")
+				vim.cmd("Gitsigns preview_hunk")
+			end,
+			desc = "Git: preview hunk",
+			silent = true,
+		},
+		{
+			"gu",
+			function()
+				vim.cmd("Gitsigns reset_hunk")
+				vim.cmd("Gitsigns refresh")
+			end,
+			desc = "Git: reset current lines change",
+		},
 		{
 			"]g",
 			function()
@@ -66,6 +80,9 @@ return {
 		-- 	},
 		-- 	untracked = { hl = "GitSignsAdd", text = "┆", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
 		-- },
+		signcolumn = false,
+		numhl = false,
+		linehl = false,
 		attach_to_untracked = true,
 
 		current_line_blame = true,

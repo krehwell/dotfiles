@@ -46,8 +46,7 @@ defaults write -g NSAutomaticWindowAnimationsEnabled -bool false
 # smooth scrolling
 defaults write -g NSScrollAnimationEnabled -bool false
 
-# showing and hiding sheets, resizing preference windows, zooming windows
-# float 0 doesn't work
+# showing and hiding sheets, resizing preference windows, zooming windows. float 0 doesn't work
 defaults write -g NSWindowResizeTime -float 0.001
 
 # opening and closing Quick Look windows

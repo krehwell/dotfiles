@@ -52,8 +52,6 @@ local on_attach = function(client, bufnr)
 			},
 		})
 	end, opts)
-
-	vim.keymap.set("n", "<leader>lspr", ":LspRestart<CR>", opts)
 end
 
 local diagnostic_config = {

@@ -1,6 +1,11 @@
 return {
 	-- LSP
-	{ "zeioth/garbage-day.nvim", dependencies = "neovim/nvim-lspconfig", event = "InsertEnter" },
+	-- {
+	-- 	"zeioth/garbage-day.nvim",
+	-- 	dependencies = "neovim/nvim-lspconfig",
+	-- 	event = "InsertEnter",
+	-- 	opts = { aggressive_mode = true },
+	-- },
 	{
 		"folke/trouble.nvim",
 		cmd = "TroubleToggle",
@@ -20,7 +25,7 @@ return {
 			{ "<leader>xl", "require('trouble').toggle('loclist')<CR>", desc = "Trouble Location List" },
 		},
 	},
-	{ "chrisgrieser/nvim-early-retirement", event = "InsertEnter", opts = { retirementAgeMins = 20 } },
+	-- { "chrisgrieser/nvim-early-retirement", event = "InsertEnter", opts = { retirementAgeMins = 20 } },
 	{ "dmmulroy/ts-error-translator.nvim", event = "LspAttach", ft = { "typescript", "typescriptreact" } },
 
 	-- HELPERS/NAVIGATIONS
@@ -92,11 +97,28 @@ return {
 	{
 		"yujinyuz/gitpad.nvim",
 		cmd = { "Note", "NoteBranch" },
+		keys = {
+			{
+				"<leader>n",
+				function()
+					require("gitpad").toggle_gitpad()
+				end,
+				desc = "Open note (gitpad)",
+			},
+			{
+				"<leader>b",
+				function()
+					require("gitpad").toggle_gitpad_branch()
+				end,
+				desc = "Open note per branch (gitpad)",
+			},
+		},
 		config = function()
 			require("gitpad").setup({
 				dir = os.getenv("HOME") .. "/.vim/notes/",
 				on_attach = function(bufnr)
 					vim.api.nvim_buf_set_keymap(bufnr, "n", "q", "<Cmd>wq<CR>", { noremap = true, silent = true })
+					vim.api.nvim_buf_set_keymap(bufnr, "n", "<c-[>", "<Cmd>wq<CR>", { noremap = true, silent = true })
 				end,
 			})
 
@@ -116,17 +138,8 @@ return {
 		opts = { window = { relative = "win", blend = 0, zindex = nil, border = "none" } },
 	},
 	{
-		"uga-rosa/ccc.nvim",
-		event = { "VeryLazy" },
-		config = function()
-			require("ccc").setup({
-				highlighter = { auto_enable = true, lsp = true },
-			})
-		end,
-	},
-	{
 		"nvim-tree/nvim-web-devicons",
-		event = "VeryLazy",
+		event = "BufReadPre",
 		opts = {
 			override = {
 				zsh = { icon = "", color = "#428850", cterm_color = "65", name = "Zsh" },
@@ -160,12 +173,12 @@ return {
 			end
 
 			vim.api.nvim_create_user_command("SpawnDuck", function()
-                SpawnDuck(2)
+				SpawnDuck(2)
 			end, { nargs = 0 })
 		end,
 	},
-	{ "p00f/alabaster.nvim", priority = 1000, event = "VeryLazy" },
-	{ "projekt0n/github-nvim-theme", priority = 1000, event = "VeryLazy" },
-	{ "xero/miasma.nvim", priority = 1000, event = "VeryLazy" },
-	{ "sainnhe/gruvbox-material", event = "VeryLazy", priority = 1000 },
+	-- { "p00f/alabaster.nvim", priority = 1000, event = "VeryLazy" },
+	-- { "projekt0n/github-nvim-theme", priority = 1000, event = "VeryLazy" },
+	-- { "xero/miasma.nvim", priority = 1000, event = "VeryLazy" },
+	-- { "sainnhe/gruvbox-material", event = "VeryLazy", priority = 1000 },
 }

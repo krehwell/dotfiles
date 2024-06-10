@@ -24,10 +24,10 @@ return {
 
 				-- TS
 				null_ls.builtins.formatting.prettierd,
-				require("none-ls.code_actions.eslint_d"),
-				require("none-ls.diagnostics.eslint_d"),
-				-- null_ls.builtins.diagnostics.eslint,
-				-- null_ls.builtins.code_actions.eslint,
+				-- require("none-ls.code_actions.eslint_d"),
+				-- require("none-ls.diagnostics.eslint_d"),
+				require("none-ls.code_actions.eslint"),
+				require("none-ls.diagnostics.eslint"),
 				-- null_ls.builtins.diagnostics.dotenv_linter,
 
 				-- CSpell

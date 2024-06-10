@@ -6,22 +6,16 @@ return {
 		"SmiteshP/nvim-navic",
 		"nvim-tree/nvim-web-devicons", -- optional dependency
 	},
-    ft = require("krehwell.lsp-utils").fts,
+	ft = require("krehwell.lsp-utils").fts,
 	opts = {
+		attach_navic = false,
 		show_dirname = true,
-		show_modified = true,
-		modifiers = {
-			dirname = ":h:t",
-			basename = "",
-		},
+		show_modified = false,
+		modifiers = { dirname = ":h:t", basename = "" },
 		theme = {
 			-- normal = { bg = "#262626", --[[ fg = "#c6c6c6" ]] },
 		},
-		symbols = {
-			modified = "+",
-			ellipsis = "…",
-			separator = "",
-		},
+		symbols = { modified = "+", ellipsis = "…", separator = "" },
 		exclude_filetypes = { "netrw", "toggleterm", "fern", "fern-replacer", "fzf", "Trouble", "minifiles" },
 		kinds = {
 			Module = "{}",
@@ -40,11 +34,11 @@ return {
 		require("barbecue").setup(opts)
 
 		vim.api.nvim_create_autocmd({
-			"WinScrolled",
+			-- "WinScrolled",
+			-- "CursorHold",
+			-- "BufModifiedSet",
 			"BufWinEnter",
-			"CursorHold",
-			"InsertLeave",
-			"BufModifiedSet",
+			-- "InsertLeave",
 		}, {
 			group = vim.api.nvim_create_augroup("barbecue.updater", {}),
 			callback = function()

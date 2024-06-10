@@ -5,7 +5,11 @@ return {
 		{ "hrsh7th/cmp-path" },
 		{ "hrsh7th/cmp-nvim-lsp" },
 		{ "hrsh7th/cmp-buffer" },
-		{ "L3MON4D3/LuaSnip" },
+		{ "hrsh7th/cmp-cmdline" },
+		{ "saadparwaiz1/cmp_luasnip" },
+		{ "L3MON4D3/LuaSnip", version = "v2.*", build = "make install_jsregexp" },
+		-- { "rafamadriz/friendly-snippets" },
+		{ "onsails/lspkind.nvim" },
 	},
 	event = "LspAttach",
 	config = function()
@@ -28,12 +32,61 @@ return {
 				["<CR>"] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Insert }),
 			}),
 
+			---@diagnostic disable-next-line: missing-fields
+			formatting = {
+				fields = { "kind", "abbr", "menu" },
+				format = function(entry, vim_item)
+					local kind = require("lspkind").cmp_format({
+						mode = "symbol_text",
+						maxwidth = 50,
+						symbol_map = {
+							Text = "",
+							Method = "m",
+							Function = "󰊕",
+							Constructor = "",
+							Field = "",
+							Variable = "",
+							Class = "",
+							Interface = "",
+							Module = "",
+							Property = " ",
+							Unit = "",
+							Value = "󰎠",
+							Enum = "",
+							Keyword = "󰌋",
+							Snippet = "",
+							Color = "󰏘",
+							File = "󰈙",
+							Reference = "",
+							Folder = "󰉋",
+							EnumMember = "",
+							Constant = "󰏿",
+							Struct = "",
+							Event = "",
+							Operator = "󰆕",
+							TypeParameter = "",
+						},
+					})(entry, vim_item)
+					local strings = vim.split(kind.kind, "%s", { trimempty = true })
+
+					kind.kind = " " .. (strings[1] or "") .. " "
+					if entry.source.name == "calc" then
+						kind.kind = " 󰃬 "
+					end
+
+					-- kind.kind = '▍' -- instead of symbol
+					kind.menu = " " .. (strings[2] or "")
+					return kind
+				end,
+			},
+
 			window = {
 				documentation = cmp.config.window.bordered(),
+				completion = { col_offset = -3, side_padding = 0 },
 			},
 
 			view = {
-				entries = "native",
+				-- entries = "native",
 			},
 
 			sources = cmp.config.sources({

@@ -39,6 +39,18 @@ vim.opt.scrolloff = 22
 vim.opt.sidescrolloff = 18
 vim.opt.virtualedit = "block"
 vim.opt.laststatus = 0
+vim.opt.fillchars = {
+	vert = "│", -- alternatives │
+	fold = " ",
+	eob = "~", -- suppress ~ at EndOfBuffer
+	diff = "╱", -- alternatives = ⣿ ░ ─
+	msgsep = "‾",
+	foldopen = "▾",
+	foldsep = "│",
+	foldclose = "▸",
+	stlnc = "—",
+	stl = "—",
+}
 -- vim.opt.jumpoptions:append("view")
 -- vim.opt.virtualedit = "block"
 

@@ -5,6 +5,7 @@ return {
 	dependencies = {
 		{ "nvim-treesitter/nvim-treesitter-refactor" }, -- highlight usages, definition, etc
 		{ "nvim-treesitter/nvim-treesitter-textobjects" },
+		-- { "nvim-treesitter/nvim-treesitter-context" },
 	},
 
 	opts = {
@@ -44,7 +45,7 @@ return {
 			keymaps = {
 				init_selection = "<c-space>",
 				node_incremental = "<c-space>",
-				scope_incremental = "<c-s>",
+				scope_incremental = "<c-a>",
 				node_decremental = "", -- this is <C-BS>
 			},
 		},

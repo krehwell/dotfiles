@@ -1,26 +1,13 @@
 -- vim.cmd("syntax off")
-vim.opt.termguicolors = true
+vim.opt.termguicolors = false
 vim.opt.background = "dark"
 
-vim.opt.fillchars = {
-	vert = "│", -- alternatives │
-	fold = " ",
-	eob = "~", -- suppress ~ at EndOfBuffer
-	diff = "╱", -- alternatives = ⣿ ░ ─
-	msgsep = "‾",
-	foldopen = "▾",
-	foldsep = "│",
-	foldclose = "▸",
-	stlnc = "—",
-	stl = "—",
-}
-vim.opt.laststatus = 0
 vim.cmd([[ let &statusline='%#WinSeparator#' ]]) -- color the split window dashes
 
 return {
 	"krehwell/colors",
 	dev = true,
-    enabled = true,
+	enabled = true,
 	dependencies = {
 		{ "HoNamDuong/hybrid.nvim", priority = 1000 },
 	},

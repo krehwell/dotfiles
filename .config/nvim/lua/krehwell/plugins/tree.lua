@@ -1,8 +1,5 @@
 local minifiles = {
 	"echasnovski/mini.files",
-	dependencies = {
-		"antosha417/nvim-lsp-file-operations",
-	},
 	keys = {
 		{
 			"<C-b>",
@@ -23,6 +20,16 @@ local minifiles = {
 		-- Use `''` (empty string) to not create one.
 		mappings = {
 			close = "<c-[>",
+			go_in = "<C-l>",
+			go_in_plus = "<CR>",
+			go_out = "<C-h>",
+			go_out_plus = "H",
+			reset = "<BS>",
+			reveal_cwd = "@",
+			show_help = "g?",
+			synchronize = "=",
+			trim_left = "<",
+			trim_right = ">",
 		},
 
 		-- General options
@@ -34,7 +41,7 @@ local minifiles = {
 		windows = {
 			max_number = math.huge, -- Maximum number of windows to show side by side
 			preview = false, -- Whether to show preview of file/directory under cursor
-			width_focus = 50,
+			width_focus = 55,
 			width_nofocus = 35,
 			width_preview = 25,
 		},
@@ -42,7 +49,6 @@ local minifiles = {
 
 	config = function(_, opts)
 		require("mini.files").setup(opts)
-		require("lsp-file-operations").setup()
 	end,
 }
 

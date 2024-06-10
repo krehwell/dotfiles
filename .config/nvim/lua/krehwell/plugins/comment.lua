@@ -1,49 +1,28 @@
 return {
-	"folke/ts-comments.nvim",
-	event = "CursorMoved",
+	"echasnovski/mini.comment",
+	dependencies = {
+		"JoosepAlviste/nvim-ts-context-commentstring",
+		config = function()
+			require("ts_context_commentstring").setup({ enable_autocmd = false })
+		end,
+	},
+	event = "BufReadPre",
 	opts = {
-		lang = {
-			astro = "<!-- %s -->",
-			c = "// %s",
-			cpp = "// %s",
-			css = "/* %s */",
-			gleam = "// %s",
-			glimmer = "{{! %s }}",
-			graphql = "# %s",
-			handlebars = "{{! %s }}",
-			hcl = "# %s",
-			html = "<!-- %s -->",
-			ini = "; %s",
-			php = "// %s",
-			rego = "# %s",
-			rescript = "// %s",
-			sql = "-- %s",
-			svelte = "<!-- %s -->",
-			terraform = "# %s",
-			tsx = {
-				_ = "// %s",
-				call_expression = "// %s",
-				comment = "// %s",
-				jsx_attribute = "// %s",
-				jsx_element = "{/* %s */}",
-				jsx_fragment = "{/* %s */}",
-				spread_element = "// %s",
-				statement_block = "// %s",
-			},
-			javascript = {
-				_ = "// %s",
-				call_expression = "// %s",
-				comment = "// %s",
-				jsx_attribute = "// %s",
-				jsx_element = "{/* %s */}",
-				jsx_fragment = "{/* %s */}",
-				spread_element = "// %s",
-				statement_block = "// %s",
-			},
-			twig = "{# %s #}",
-			typescript = "// %s",
-			vim = '" %s',
-			vue = "<!-- %s -->",
+		options = {
+			custom_commentstring = function()
+				return require("ts_context_commentstring").calculate_commentstring() or vim.bo.commentstring
+			end,
+			ignore_blank_line = true,
+			start_of_line = false,
+			pad_comment_parts = true,
+		},
+
+		-- Module mappings. Use `''` (empty string) to disable one.
+		mappings = {
+			comment = "gc",
+			comment_line = "gcc",
+			comment_visual = "gc",
+			textobject = "gc",
 		},
 	},
 }
