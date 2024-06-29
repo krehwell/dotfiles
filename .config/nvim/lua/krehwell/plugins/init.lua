@@ -1,11 +1,11 @@
 return {
 	-- LSP
-	-- {
-	-- 	"zeioth/garbage-day.nvim",
-	-- 	dependencies = "neovim/nvim-lspconfig",
-	-- 	event = "InsertEnter",
-	-- 	opts = { aggressive_mode = true },
-	-- },
+	{
+		"zeioth/garbage-day.nvim",
+		dependencies = "neovim/nvim-lspconfig",
+		event = "InsertEnter",
+		-- opts = { aggressive_mode = true },
+	},
 	{
 		"folke/trouble.nvim",
 		cmd = "TroubleToggle",
@@ -25,8 +25,8 @@ return {
 			{ "<leader>xl", "require('trouble').toggle('loclist')<CR>", desc = "Trouble Location List" },
 		},
 	},
-	-- { "chrisgrieser/nvim-early-retirement", event = "InsertEnter", opts = { retirementAgeMins = 20 } },
-	{ "dmmulroy/ts-error-translator.nvim", event = "LspAttach", ft = { "typescript", "typescriptreact" } },
+	{ "chrisgrieser/nvim-early-retirement", event = "InsertEnter", opts = { retirementAgeMins = 20 } },
+	-- { "dmmulroy/ts-error-translator.nvim", event = "LspAttach", ft = { "typescript", "typescriptreact" } },
 
 	-- HELPERS/NAVIGATIONS
 	{
@@ -70,27 +70,25 @@ return {
 			{ "<leader>u", ":UndotreeToggle<CR>:UndotreeFocus<CR>", desc = "Toggle undotree", mode = "n" },
 		},
 	},
-	{
-		"kevinhwang91/nvim-fundo",
-		keys = { { "u", desc = "Undo" } },
-		dependencies = {
-			{
-				"kevinhwang91/promise-async",
-				build = function()
-					require("fundo").install()
-				end,
-			},
-		},
-		config = function()
-			vim.o.undofile = true
-			require("fundo").setup()
-		end,
-	},
+	-- {
+	-- 	"kevinhwang91/nvim-fundo",
+	-- 	keys = { { "u", desc = "Undo" } },
+	-- 	dependencies = {
+	-- 		{
+	-- 			"kevinhwang91/promise-async",
+	-- 			build = function()
+	-- 				require("fundo").install()
+	-- 			end,
+	-- 		},
+	-- 	},
+	-- 	config = function()
+	-- 		vim.o.undofile = true
+	-- 		require("fundo").setup()
+	-- 	end,
+	-- },
 	{
 		"mg979/vim-visual-multi",
-		keys = {
-			{ "<C-n>", "<Plug>(VM-Select-Next)", desc = "Select next match", mode = { "n", "v" } },
-		},
+		keys = { { "<C-n>", "<Plug>(VM-Select-Next)", desc = "Select next match", mode = { "n", "v" } } },
 	},
 
 	-- BEAUTIFY
@@ -177,8 +175,8 @@ return {
 			end, { nargs = 0 })
 		end,
 	},
-	-- { "p00f/alabaster.nvim", priority = 1000, event = "VeryLazy" },
-	-- { "projekt0n/github-nvim-theme", priority = 1000, event = "VeryLazy" },
-	-- { "xero/miasma.nvim", priority = 1000, event = "VeryLazy" },
-	-- { "sainnhe/gruvbox-material", event = "VeryLazy", priority = 1000 },
+	{ "p00f/alabaster.nvim", priority = 1000, event = "VeryLazy" },
+	{ "projekt0n/github-nvim-theme", priority = 1000, event = "VeryLazy" },
+	{ "xero/miasma.nvim", priority = 1000, event = "VeryLazy" },
+	{ "sainnhe/gruvbox-material", event = "VeryLazy", priority = 1000 },
 }

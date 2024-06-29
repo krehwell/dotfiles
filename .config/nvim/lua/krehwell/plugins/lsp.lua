@@ -51,16 +51,19 @@ return {
 
 		-- TSSERVER SETUP
 		lspconfig.tsserver.setup({
+			root_dir = function(...)
+				return require("lspconfig.util").root_pattern(".git")(...)
+			end,
+
 			on_init = function(client)
-				require("ts-error-translator").setup()
+				-- require("ts-error-translator").setup()
 				client.server_capabilities.documentFormattingProvider = false
 				client.server_capabilities.documentFormattingRangeProvider = false
 			end,
 
-			-- cmd = { "bunx", "typescript-language-server", "--stdio" },
+			cmd = { "bunx", "typescript-language-server", "--stdio" },
 
 			init_options = {
-				hostInfo = "neovim",
 				preferences = {
 					autoImportFileExcludePatterns = { "**/@mui/**" },
 					importModuleSpecifierPreference = "auto",

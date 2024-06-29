@@ -24,10 +24,14 @@ return {
 
 				-- TS
 				null_ls.builtins.formatting.prettierd,
-				-- require("none-ls.code_actions.eslint_d"),
-				-- require("none-ls.diagnostics.eslint_d"),
-				require("none-ls.code_actions.eslint"),
-				require("none-ls.diagnostics.eslint"),
+				require("none-ls.code_actions.eslint_d"),
+				require("none-ls.diagnostics.eslint_d").with({
+					method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+					diagnostic_config = { virtual_text = false },
+					debounce = 800,
+				}),
+				-- require("none-ls.code_actions.eslint"),
+				-- require("none-ls.diagnostics.eslint"),
 				-- null_ls.builtins.diagnostics.dotenv_linter,
 
 				-- CSpell
@@ -35,7 +39,7 @@ return {
 				-- null_ls.builtins.completion.spell,
 				-- null_ls.builtins.code_actions.cspell,
 
-				null_ls.builtins.formatting.protolint,
+				-- null_ls.builtins.formatting.protolint,
 
 				-- null_ls.builtins.code_actions.gitsigns,
 			},

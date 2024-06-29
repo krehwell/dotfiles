@@ -24,7 +24,6 @@ return {
 		{
 			"gp",
 			function()
-				vim.cmd("Gitsigns refresh")
 				vim.cmd("Gitsigns preview_hunk")
 			end,
 			desc = "Git: preview hunk",
@@ -34,7 +33,6 @@ return {
 			"gu",
 			function()
 				vim.cmd("Gitsigns reset_hunk")
-				vim.cmd("Gitsigns refresh")
 			end,
 			desc = "Git: reset current lines change",
 		},
@@ -81,7 +79,7 @@ return {
 		-- 	untracked = { hl = "GitSignsAdd", text = "┆", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
 		-- },
 		signcolumn = false,
-		numhl = false,
+		numhl = true,
 		linehl = false,
 		attach_to_untracked = true,
 
@@ -95,7 +93,7 @@ return {
 		current_line_blame_formatter = "     <author>, <author_time:%d-%m-%Y> - <summary>",
 
 		sign_priority = 6,
-		update_debounce = 1500,
+		update_debounce = 300,
 		max_file_length = 2000, -- Disable if file is longer than this (in lines)
 		preview_config = { border = "single", style = "minimal", relative = "cursor", row = 0, col = 1 },
 	},

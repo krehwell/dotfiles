@@ -1,6 +1,6 @@
 -- vim.cmd("syntax off")
-vim.opt.termguicolors = false
-vim.opt.background = "dark"
+-- vim.opt.termguicolors = false
+-- vim.opt.background = "dark"
 
 vim.cmd([[ let &statusline='%#WinSeparator#' ]]) -- color the split window dashes
 
@@ -44,6 +44,7 @@ return {
 				hl.String = { link = "Normal" }
 				hl.SpecialKey = { link = "Normal" }
 				hl.Tag = { link = "Normal" }
+				-- hl.TabLineSel = { bg = "#f0c674", fg = "#1d1f21" }
 				-- hl.Conceal = { link = "Normal" }
 
 				-- hl.Directory = { link = "Normal" }

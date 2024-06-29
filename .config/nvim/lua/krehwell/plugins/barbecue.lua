@@ -29,7 +29,7 @@ return {
 	},
 	config = function(_, opts)
 		-- triggers CursorHold event faster
-		vim.opt.updatetime = 200
+		-- vim.opt.updatetime = 200
 
 		require("barbecue").setup(opts)
 
