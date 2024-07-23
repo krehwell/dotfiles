@@ -5,7 +5,6 @@ return {
 		{ "neovim/nvim-lspconfig" },
 		{ "williamboman/mason.nvim", opts = { ui = { border = "rounded" } }, cmd = { "Mason" } },
 		-- { "williamboman/mason-lspconfig.nvim" },
-		{ "folke/neodev.nvim" },
 	},
 	ft = require("krehwell.lsp-utils").fts,
 	config = function()
@@ -27,8 +26,7 @@ return {
 
 		lsp_zero.set_sign_icons({ error = "", warn = "", hint = "", info = "" })
 
-		require("neodev").setup({})
-
+        -- LUA SETUP
 		lspconfig.lua_ls.setup({
 			cmd = { "lua-language-server" },
 			on_init = function(client)
@@ -37,13 +35,8 @@ return {
 			end,
 			settings = {
 				Lua = {
-					runtime = {
-						version = "LuaJIT",
-						path = vim.split(package.path, ";"),
-					},
-					diagnostics = {
-						globals = { "vim", "require" },
-					},
+					runtime = { version = "LuaJIT", path = vim.split(package.path, ";") },
+					diagnostics = { globals = { "vim", "require" } },
 					telemetry = { enable = false },
 				},
 			},
@@ -65,7 +58,7 @@ return {
 
 			init_options = {
 				preferences = {
-					autoImportFileExcludePatterns = { "**/@mui/**" },
+					-- autoImportFileExcludePatterns = { "**/@mui/**" },
 					importModuleSpecifierPreference = "auto",
 				},
 			},

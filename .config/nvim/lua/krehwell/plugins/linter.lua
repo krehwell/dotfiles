@@ -28,7 +28,7 @@ return {
 				require("none-ls.diagnostics.eslint_d").with({
 					method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
 					diagnostic_config = { virtual_text = false },
-					debounce = 800,
+					-- debounce = 800,
 				}),
 				-- require("none-ls.code_actions.eslint"),
 				-- require("none-ls.diagnostics.eslint"),

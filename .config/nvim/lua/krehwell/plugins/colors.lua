@@ -1,5 +1,5 @@
 -- vim.cmd("syntax off")
--- vim.opt.termguicolors = false
+-- vim.opt.termguicolors = true
 -- vim.opt.background = "dark"
 
 vim.cmd([[ let &statusline='%#WinSeparator#' ]]) -- color the split window dashes
@@ -9,7 +9,7 @@ return {
 	dev = true,
 	enabled = true,
 	dependencies = {
-		{ "HoNamDuong/hybrid.nvim", priority = 1000 },
+		{ "HoNamDuong/hybrid.nvim" },
 	},
 	config = function()
 		require("hybrid").setup({

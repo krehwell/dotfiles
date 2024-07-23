@@ -1,6 +1,16 @@
 return {
 	-- LSP
 	{
+		"folke/lazydev.nvim",
+		ft = "lua",
+		opts = {
+			library = {
+				{ path = "luvit-meta/library", words = { "vim%.uv" } },
+			},
+		},
+		dependencies = { { "Bilal2453/luvit-meta", lazy = true } },
+	},
+	{
 		"zeioth/garbage-day.nvim",
 		dependencies = "neovim/nvim-lspconfig",
 		event = "InsertEnter",
@@ -34,18 +44,6 @@ return {
 		keys = { { "gof", desc = "Go to folder" }, { "got", desc = "Go to terminal" } },
 	},
 	{
-		"echasnovski/mini.move",
-		keys = {
-			{ mode = "v", "<M-l>" },
-			{ mode = "v", "<M-j>" },
-			{ mode = "v", "<M-h>" },
-			{ mode = "v", "<M-k>" },
-		},
-		config = function()
-			require("mini.move").setup({})
-		end,
-	},
-	{
 		-- css to jsx inline
 		"isomoar/vim-css-to-inline",
 		keys = {
@@ -70,22 +68,6 @@ return {
 			{ "<leader>u", ":UndotreeToggle<CR>:UndotreeFocus<CR>", desc = "Toggle undotree", mode = "n" },
 		},
 	},
-	-- {
-	-- 	"kevinhwang91/nvim-fundo",
-	-- 	keys = { { "u", desc = "Undo" } },
-	-- 	dependencies = {
-	-- 		{
-	-- 			"kevinhwang91/promise-async",
-	-- 			build = function()
-	-- 				require("fundo").install()
-	-- 			end,
-	-- 		},
-	-- 	},
-	-- 	config = function()
-	-- 		vim.o.undofile = true
-	-- 		require("fundo").setup()
-	-- 	end,
-	-- },
 	{
 		"mg979/vim-visual-multi",
 		keys = { { "<C-n>", "<Plug>(VM-Select-Next)", desc = "Select next match", mode = { "n", "v" } } },
@@ -136,43 +118,11 @@ return {
 		opts = { window = { relative = "win", blend = 0, zindex = nil, border = "none" } },
 	},
 	{
-		"nvim-tree/nvim-web-devicons",
+		"echasnovski/mini.icons",
+		version = false,
 		event = "BufReadPre",
-		opts = {
-			override = {
-				zsh = { icon = "", color = "#428850", cterm_color = "65", name = "Zsh" },
-			},
-			color_icons = true,
-			default = true,
-		},
-	},
-	{
-		"tamton-aquib/duck.nvim",
-		cmd = { "SpawnDuck" },
 		config = function()
-			function SpawnDuck(n)
-				local spawn_one = function()
-					local candidates = { "🦆", "🦀", "🐈", "🦖", "🐤", "🐶" }
-					local index = math.random(#candidates)
-					local candidate = candidates[index]
-
-					local speeds = { { slow = 1 }, { normal = 3 }, { fast = 5 } }
-					index = math.random(#speeds)
-					local speed = speeds[index].fast
-					require("duck").hatch(candidate, speed)
-				end
-				for _ = 1, n do
-					spawn_one()
-				end
-			end
-
-			function KillDuck()
-				require("duck").cook_all()
-			end
-
-			vim.api.nvim_create_user_command("SpawnDuck", function()
-				SpawnDuck(2)
-			end, { nargs = 0 })
+			require("mini.icons").setup()
 		end,
 	},
 	{ "p00f/alabaster.nvim", priority = 1000, event = "VeryLazy" },

@@ -88,7 +88,7 @@ local fts = {
 	"vimdoc",
 	"json",
 	"md",
-    "jsonc",
+	"jsonc",
 }
 
 return {

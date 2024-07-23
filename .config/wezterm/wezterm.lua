@@ -10,7 +10,6 @@ wezterm.on("window-config-reloaded", function(window, pane)
 	window:toast_notification("wezterm", "configuration reloaded!", nil, 4000)
 end)
 
--- This table will hold the configuration.
 local config = {
 	font = wezterm.font_with_fallback({
 		-- font weight to be a little bold
@@ -22,12 +21,16 @@ local config = {
 	-- cell_width = 0.93,
 
 	colors = {
-		background = "#000000",
-		foreground = "#d4d4d4",
-		cursor_bg = "#a270ba",
+		background = "#161b1a",
+		foreground = "#C6C6C6",
+		cursor_bg = "#b294bb",
 		cursor_fg = "#1e1e1e",
 	},
 
+
+    use_fancy_tab_bar = false,
+    tab_max_width = 50,
+    tab_and_split_indices_are_zero_based = true,
 	hide_tab_bar_if_only_one_tab = true,
 	native_macos_fullscreen_mode = true,
 	-- exit_behavior = "CloseOnCleanExit",

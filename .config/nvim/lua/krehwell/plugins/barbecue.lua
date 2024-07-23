@@ -17,11 +17,6 @@ return {
 		},
 		symbols = { modified = "+", ellipsis = "…", separator = "" },
 		exclude_filetypes = { "netrw", "toggleterm", "fern", "fern-replacer", "fzf", "Trouble", "minifiles" },
-		kinds = {
-			Module = "{}",
-			Namespace = "{}",
-			Object = "{}",
-		},
 		create_autocmd = false,
 		lead_custom_section = function()
 			return ""

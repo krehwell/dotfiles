@@ -2,16 +2,14 @@
 # Save and restore the state of tmux sessions and windows.
 set -e
 
-# get current file directory and store to a variable
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 dump() {
     local d=$'\t'
-    tmux list-windows -a -F "#S${d}#W${d}#{pane_current_path}"
+    tmux list-windows -F "#S${d}#W${d}#{pane_current_path}"
 }
 
 save() {
-    # dump to `DIR`
     dump > "$DIR"/.tmux-session
 }
 
