@@ -44,6 +44,7 @@ return {
 				hl.String = { link = "Normal" }
 				hl.SpecialKey = { link = "Normal" }
 				hl.Tag = { link = "Normal" }
+				hl.TabLine = { bg = "#151718", fg = "#707880" }
 				-- hl.TabLineSel = { bg = "#f0c674", fg = "#1d1f21" }
 				-- hl.Conceal = { link = "Normal" }
 

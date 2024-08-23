@@ -39,10 +39,21 @@ return {
 				rg_glob = true,
 				glob_flah = "--glob",
 				glob_separator = "%s%-%-",
+				rg_opts = "--column --line-number --no-heading --color=always --smart-case --max-columns=4096 "
+					.. "-g '!apps/mobile/*' "
+					.. "-g '!apps/backend/*' "
+					.. "-g '!apps/chrome-extension/' "
+					.. "-g '!*/yarn.lock' "
+					.. "-g '!yarn.lock' "
+					.. "-g '!*.{pdf,doc,docx,xml}' "
+					.. "-g '!*.{jpg,jpeg,png,gif,svg}' "
+					.. "-g '!node_modules/*' "
+					.. "-g '!.git/*'"
+					.. " -e",
 				multiline = 2,
 				winopts = {
-					height = 0.95,
-					width = 0.95,
+					height = 0.97,
+					width = 0.97,
 					title = "Live Grep",
 					title_pos = "center",
 					preview = {

@@ -26,7 +26,7 @@ return {
 
 		lsp_zero.set_sign_icons({ error = "", warn = "", hint = "", info = "" })
 
-        -- LUA SETUP
+		-- LUA SETUP
 		lspconfig.lua_ls.setup({
 			cmd = { "lua-language-server" },
 			on_init = function(client)
@@ -43,26 +43,27 @@ return {
 		})
 
 		-- TSSERVER SETUP
-		lspconfig.tsserver.setup({
-			root_dir = function(...)
-				return require("lspconfig.util").root_pattern(".git")(...)
-			end,
+		-- lspconfig.tsserver.setup({
+		-- 	root_dir = function(...)
+		-- 		return require("lspconfig.util").root_pattern(".git")(...)
+		-- 	end,
 
-			on_init = function(client)
-				-- require("ts-error-translator").setup()
-				client.server_capabilities.documentFormattingProvider = false
-				client.server_capabilities.documentFormattingRangeProvider = false
-			end,
+		-- 	on_init = function(client)
+		-- 		-- require("ts-error-translator").setup()
+		-- 		client.server_capabilities.documentFormattingProvider = false
+		-- 		client.server_capabilities.documentFormattingRangeProvider = false
+		-- 	end,
 
-			cmd = { "bunx", "typescript-language-server", "--stdio" },
+		-- 	cmd = { "bunx", "typescript-language-server", "--stdio" },
 
-			init_options = {
-				preferences = {
-					-- autoImportFileExcludePatterns = { "**/@mui/**" },
-					importModuleSpecifierPreference = "auto",
-				},
-			},
-		})
+		-- 	init_options = {
+		-- 		preferences = {
+		-- 			autoImportFileExcludePatterns = { "**/@mui/**" },
+		-- 			importModuleSpecifierPreference = "auto",
+		--                   lazyConfiguredProjectsFromExternalProject = true,
+		-- 		},
+		-- 	},
+		-- })
 
 		lspconfig.gopls.setup({})
 	end,
