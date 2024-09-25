@@ -16,6 +16,9 @@ return {
                 return map(files, "{'line': v:val, 'path': v:val}")
             endfunction
 
+            autocmd User Startified setlocal cursorline
+
+
             let g:startify_lists = [
                 \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
                 \ { 'type': 'files',     'header': ['   MRU']            },

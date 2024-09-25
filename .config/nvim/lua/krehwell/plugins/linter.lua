@@ -26,9 +26,9 @@ return {
 				null_ls.builtins.formatting.prettierd,
 				require("none-ls.code_actions.eslint_d"),
 				require("none-ls.diagnostics.eslint_d").with({
-					method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+					-- method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
 					diagnostic_config = { virtual_text = false },
-					debounce = 100,
+					debounce = 10,
 				}),
 				-- require("none-ls.code_actions.eslint"),
 				-- require("none-ls.diagnostics.eslint"),

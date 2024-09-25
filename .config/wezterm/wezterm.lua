@@ -21,8 +21,8 @@ local config = {
 	-- cell_width = 0.93,
 
 	colors = {
-		background = "#161b1a",
-		foreground = "#C6C6C6",
+		background = "#1d1f21", -- "#161b1a",
+		foreground = "#c4c8c6", -- "#C6C6C6",
 		cursor_bg = "#b294bb",
 		cursor_fg = "#1e1e1e",
 	},

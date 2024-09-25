@@ -1,5 +1,6 @@
 return {
 	"Exafunction/codeium.vim",
+    enabled = true,
 	event = "InsertEnter",
 	config = function()
 		vim.keymap.set("i", "<TAB>", function()

@@ -3,11 +3,7 @@ return {
 	{
 		"folke/lazydev.nvim",
 		ft = "lua",
-		opts = {
-			library = {
-				{ path = "luvit-meta/library", words = { "vim%.uv" } },
-			},
-		},
+		opts = { library = { { path = "luvit-meta/library", words = { "vim%.uv" } } } },
 		dependencies = { { "Bilal2453/luvit-meta", lazy = true } },
 	},
 	{
@@ -36,7 +32,6 @@ return {
 		},
 	},
 	{ "chrisgrieser/nvim-early-retirement", event = "InsertEnter", opts = { retirementAgeMins = 20 } },
-	-- { "dmmulroy/ts-error-translator.nvim", event = "LspAttach", ft = { "typescript", "typescriptreact" } },
 
 	-- HELPERS/NAVIGATIONS
 	{
@@ -67,10 +62,6 @@ return {
 		keys = {
 			{ "<leader>u", ":UndotreeToggle<CR>:UndotreeFocus<CR>", desc = "Toggle undotree", mode = "n" },
 		},
-	},
-	{
-		"mg979/vim-visual-multi",
-		keys = { { "<C-n>", "<Plug>(VM-Select-Next)", desc = "Select next match", mode = { "n", "v" } } },
 	},
 
 	-- BEAUTIFY

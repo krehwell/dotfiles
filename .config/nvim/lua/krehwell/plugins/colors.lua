@@ -47,31 +47,9 @@ return {
 				hl.TabLine = { bg = "#151718", fg = "#707880" }
 				-- hl.TabLineSel = { bg = "#f0c674", fg = "#1d1f21" }
 				-- hl.Conceal = { link = "Normal" }
-
-				-- hl.Directory = { link = "Normal" }
-				-- hl.ColorColumn = { link = "Normal" }
-				-- hl.DiffAdd = { link = "Normal" }
-				-- hl.DiffChange = { link = "Normal" }
-				-- hl.DiffDelete = { link = "Normal" }
-				-- hl.DiffText = { link = "Normal" }
-				-- hl.Cursor = { link = "Normal" }
-				-- hl.CursorColumn = { link = "Normal" }
-				-- hl.CursorLine = { link = "Normal" }
-				-- hl.CursorLineNr = { link = "Normal" }
-				-- hl.CursorLineSign = { link = "Normal" }
-				-- hl.Debug = { link = "Normal" }
-				-- hl.Label = { link = "Normal" }
-				-- hl.LineNr = { link = "Normal" }
-				-- hl.MatchParen = { link = "Normal" }
-				-- hl.NonText = { link = "Normal" }
-				-- hl.Comment = { link = "Normal" }
-				-- hl.SpecialComment = { link = "Normal" }
-				-- hl.FoldColumn = { link = "Normal" }
-				-- hl.Folded = { link = "Normal" }
-				-- hl.Error = { link = "Normal" }
-				-- hl.ErrorMsg = { link = "Normal" }
 			end,
 		})
+
 		vim.cmd.colorscheme("hybrid")
 	end,
 }

@@ -1,5 +1,6 @@
 return {
 	"hrsh7th/nvim-cmp",
+	enabled = true,
 	dependencies = {
 		{ "hrsh7th/cmp-calc" },
 		{ "hrsh7th/cmp-path" },
@@ -8,17 +9,22 @@ return {
 		{ "hrsh7th/cmp-cmdline" },
 		{ "saadparwaiz1/cmp_luasnip" },
 		{ "L3MON4D3/LuaSnip", version = "v2.*", build = "make install_jsregexp" },
-		-- { "rafamadriz/friendly-snippets" },
 		{ "onsails/lspkind.nvim" },
 	},
 	event = "LspAttach",
 	config = function()
 		local cmp = require("cmp")
 
+		cmp.setup.cmdline({ "/", "?" }, {
+			mapping = cmp.mapping.preset.cmdline(),
+			sources = { { name = "buffer" } },
+			view = { entries = "wildmenu" },
+		})
+
 		cmp.setup({
 			snippet = {
 				expand = function(args)
-					require("luasnip").lsp_expand(args.body)
+					vim.snippet.expand(args.body)
 				end,
 			},
 			mapping = cmp.mapping.preset.insert({
@@ -85,10 +91,6 @@ return {
 				completion = { col_offset = -3, side_padding = 0 },
 			},
 
-			view = {
-				-- entries = "native",
-			},
-
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
 				{ name = "path" },
@@ -96,6 +98,10 @@ return {
 			}, {
 				{ name = "buffer" },
 			}),
+
+			performance = {
+				max_view_entries = 15,
+			},
 
 			duplicates = {
 				nvim_lsp = 1,

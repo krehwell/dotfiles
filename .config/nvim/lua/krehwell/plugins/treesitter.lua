@@ -5,7 +5,6 @@ return {
 	dependencies = {
 		{ "nvim-treesitter/nvim-treesitter-refactor" }, -- highlight usages, definition, etc
 		{ "nvim-treesitter/nvim-treesitter-textobjects" },
-		-- { "nvim-treesitter/nvim-treesitter-context" },
 	},
 
 	opts = {
@@ -32,7 +31,7 @@ return {
 			use_languagetree = false,
 			additional_vim_regex_highlighting = false,
 			disable = function(lang, buf)
-				local max_filesize = 10 * 1024 -- 50 KB
+				local max_filesize = 10 * 1024
 				local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
 				if ok and stats and stats.size > max_filesize then
 					return true
@@ -66,19 +65,9 @@ return {
 				set_jumps = false,
 				goto_next_start = {
 					["]]"] = "@function.outer",
-					["]m"] = { query = "@class.outer", desc = "Next class start" },
-				},
-				goto_next_end = {
-					["]["] = "@function.outer",
-					["]M"] = "@class.outer",
 				},
 				goto_previous_start = {
 					["[["] = "@function.outer",
-					["[m"] = "@class.outer",
-				},
-				goto_previous_end = {
-					["[]"] = "@function.outer",
-					["[M"] = "@class.outer",
 				},
 			},
 
@@ -102,6 +91,7 @@ return {
 	},
 
 	config = function(_, opts)
+		vim.opt.smartindent = false
 		require("nvim-treesitter.configs").setup(opts)
 	end,
 }
