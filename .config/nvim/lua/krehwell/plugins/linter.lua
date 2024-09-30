@@ -6,6 +6,8 @@ return {
 		local null_ls = require("null-ls")
 		null_ls.setup({
 			debug = false,
+			update_in_insert = true,
+			debounce = 100,
 			sources = {
 				-- COMMON
 				null_ls.builtins.formatting.stylua.with({
@@ -28,7 +30,6 @@ return {
 				require("none-ls.diagnostics.eslint_d").with({
 					-- method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
 					diagnostic_config = { virtual_text = false },
-					debounce = 10,
 				}),
 				-- require("none-ls.code_actions.eslint"),
 				-- require("none-ls.diagnostics.eslint"),

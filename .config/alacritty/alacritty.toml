@@ -1,0 +1,10 @@
+live_config_reload = true
+
+[font]
+    normal = { family = "MesloLGSDZ Nerd Font" }
+    size = 13
+
+[keyboard]
+bindings = [
+    { key = "p", mods = "Command", chars = "~/utils/tmux-sessionizer\n" },
+]

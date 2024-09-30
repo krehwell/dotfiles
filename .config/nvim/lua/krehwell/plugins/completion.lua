@@ -91,16 +91,25 @@ return {
 				completion = { col_offset = -3, side_padding = 0 },
 			},
 
-			sources = cmp.config.sources({
+			sources = {
 				{ name = "nvim_lsp" },
 				{ name = "path" },
 				{ name = "calc" },
-			}, {
 				{ name = "buffer" },
-			}),
+			},
 
 			performance = {
 				max_view_entries = 15,
+			},
+
+			confirm_opts = {
+				behavior = cmp.ConfirmBehavior.Replace,
+				select = false,
+			},
+
+			experimental = {
+				ghost_text = false,
+				native_menu = false,
 			},
 
 			duplicates = {

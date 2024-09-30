@@ -83,6 +83,11 @@ return {
 		linehl = false,
 		attach_to_untracked = true,
 
+		watch_gitdir = {
+			interval = 1000,
+			follow_files = true,
+		},
+
 		current_line_blame = true,
 		current_line_blame_opts = {
 			virt_text = true,
@@ -92,8 +97,9 @@ return {
 		},
 		current_line_blame_formatter = "     <author>, <author_time:%d-%m-%Y> - <summary>",
 
+		status_formatter = nil,
 		sign_priority = 6,
-		update_debounce = 300,
+		update_debounce = 100,
 		max_file_length = 2000, -- Disable if file is longer than this (in lines)
 		preview_config = { border = "single", style = "minimal", relative = "cursor", row = 0, col = 1 },
 	},
