@@ -91,7 +91,7 @@ return {
 	},
 
 	config = function(_, opts)
-		vim.opt.smartindent = false
+		vim.opt.smartindent = true
 		require("nvim-treesitter.configs").setup(opts)
 	end,
 }

@@ -1,10 +1,22 @@
+[general]
 live_config_reload = true
+
+[colors]
+primary = { background = "#151515", foreground = "#d0d0d0" }
+cursor = { text = "#151515", cursor = "#e1a3ee" }
+selection = { text = "#151515", background = "#d0d0d0" }
+normal = { black = "#151515", red = "#fb9fb1", green = "#acc267", yellow = "#ddb26e", blue = "#6fc2ef", magenta = "#e1a3ee", cyan = "#15cfc0", white = "#d0d0d0" }
+bright = { black = "#505050", red = "#fb9fb1", green = "#acc267", yellow = "#ddb26e", blue = "#6fc2ef", magenta = "#e1a3ee", cyan = "#15cfc0", white = "#f5f5f5" }
+
+[window]
+    option_as_alt = "Both"
 
 [font]
     normal = { family = "MesloLGSDZ Nerd Font" }
     size = 13
 
 [keyboard]
-bindings = [
-    { key = "p", mods = "Command", chars = "~/utils/tmux-sessionizer\n" },
-]
+    bindings = [
+        { key = "p", mods = "Command", chars = "~/utils/tmux-sessionizer\n" },
+        { key = "Key6", mods = "Control", chars = "\u001e" }
+    ]

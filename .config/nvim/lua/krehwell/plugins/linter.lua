@@ -5,9 +5,7 @@ return {
 	config = function()
 		local null_ls = require("null-ls")
 		null_ls.setup({
-			debug = false,
-			update_in_insert = true,
-			debounce = 100,
+			update_in_insert = false,
 			sources = {
 				-- COMMON
 				null_ls.builtins.formatting.stylua.with({
@@ -29,20 +27,15 @@ return {
 				require("none-ls.code_actions.eslint_d"),
 				require("none-ls.diagnostics.eslint_d").with({
 					-- method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+					condition = function(utils)
+						return utils.root_has_file({ ".eslintrc.js", ".eslintrc.json", ".eslintrc.cjs" })
+					end,
 					diagnostic_config = { virtual_text = false },
+					debounce = 500,
 				}),
 				-- require("none-ls.code_actions.eslint"),
 				-- require("none-ls.diagnostics.eslint"),
-				-- null_ls.builtins.diagnostics.dotenv_linter,
-
-				-- CSpell
-				-- null_ls.builtins.diagnostics.cspell.with({ }),
-				-- null_ls.builtins.completion.spell,
-				-- null_ls.builtins.code_actions.cspell,
-
-				-- null_ls.builtins.formatting.protolint,
-
-				-- null_ls.builtins.code_actions.gitsigns,
+				null_ls.builtins.diagnostics.dotenv_linter,
 			},
 		})
 	end,

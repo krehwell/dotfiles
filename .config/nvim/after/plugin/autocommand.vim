@@ -41,22 +41,6 @@ augroup AutoCommetDisable
 augroup END
 
 
-" ----- TRIM ANY TRAILING WHITESPACES ON SAVE -----
-" augroup TrimWhitespaceOnSave
-"     autocmd!
-"     autocmd BufWritePre * :call TrimWhitespace()
-" augroup END
-"
-" fun! TrimWhitespace()
-"     let l:save = winsaveview()
-"     if &ft =~ 'txt\|markdown'
-"         return
-"     endif
-"     keeppatterns %s/\s\+$//e
-"     call winrestview(l:save)
-" endfun
-
-
 " ----- DELETE BUFFER EXCEPT THE ONEs OPENED ON WINDOWS OR TABS -----
 function! WipeoutInactiveBufs()
     "From tabpagebuflist() help, get a list of all buffers in all tabs

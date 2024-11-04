@@ -1,58 +1,21 @@
-local minifiles = {
-	"echasnovski/mini.files",
-	keys = {
-		{
-			"<C-b>",
-			function()
-				local minifiles = require("mini.files")
-				local current_filetype = vim.bo.filetype
-				if current_filetype == "minifiles" then
-					minifiles.close()
-				else
-					minifiles.open(vim.api.nvim_buf_get_name(0), true)
-				end
-			end,
-			desc = "Open file explorer (mini.files)",
-			silent = true,
-		},
-	},
-	opts = {
-		-- Use `''` (empty string) to not create one.
-		mappings = {
-			close = "<c-[>",
-			go_in = "<C-l>",
-			go_in_plus = "<CR>",
-			go_out = "<C-h>",
-			go_out_plus = "H",
-			reset = "<BS>",
-			reveal_cwd = "@",
-			show_help = "g?",
-			synchronize = "=",
-			trim_left = "<",
-			trim_right = ">",
-		},
+function _G.get_oil_winbar()
+	local dir = require("oil").get_current_dir()
+	if dir then
+		local root = vim.fn.getcwd()
+		local relative_path = vim.fn.fnamemodify(dir, ":p"):sub(#root + 2)
 
-		-- General options
-		options = {
-			permanent_delete = false,
-			use_as_default_explorer = true,
-		},
+		if relative_path == "" then
+			return vim.fn.fnamemodify(root, ":~")
+		else
+			return relative_path
+		end
+	else
+		-- If there is no current directory (e.g. over ssh), just show the buffer name
+		return vim.api.nvim_buf_get_name(0)
+	end
+end
 
-		windows = {
-			max_number = math.huge, -- Maximum number of windows to show side by side
-			preview = false, -- Whether to show preview of file/directory under cursor
-			width_focus = 55,
-			width_nofocus = 35,
-			width_preview = 25,
-		},
-	},
-
-	config = function(_, opts)
-		require("mini.files").setup(opts)
-	end,
-}
-
-local oil = {
+return {
 	"stevearc/oil.nvim",
 	---@module 'oil'
 	---@type oil.SetupOpts
@@ -79,10 +42,15 @@ local oil = {
 		keymaps = {
 			["<C-h>"] = { "actions.parent" },
 			["<C-l>"] = { "actions.select" },
+			["<C-c>"] = false,
+			["<C-p>"] = false,
 		},
 
 		skip_confirm_for_simple_edits = true,
 		prompt_save_on_select_new_entry = false,
+		win_options = {
+			winbar = "%!v:lua.get_oil_winbar()",
+		},
 	},
 	dependencies = {
 		{ "echasnovski/mini.icons", opts = {} },
@@ -105,5 +73,3 @@ local oil = {
 		},
 	},
 }
-
-return oil

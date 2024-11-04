@@ -3,14 +3,18 @@ return {
 	{
 		"folke/lazydev.nvim",
 		ft = "lua",
-		opts = { library = { { path = "luvit-meta/library", words = { "vim%.uv" } } } },
+		opts = {
+			library = {
+				{ path = "luvit-meta/library", words = { "vim%.uv" } },
+			},
+		},
 		dependencies = { { "Bilal2453/luvit-meta", lazy = true } },
 	},
 	{
 		"zeioth/garbage-day.nvim",
 		dependencies = "neovim/nvim-lspconfig",
 		event = "InsertEnter",
-		-- opts = { aggressive_mode = true },
+		opts = { aggressive_mode = true },
 	},
 	{
 		"folke/trouble.nvim",
@@ -31,7 +35,7 @@ return {
 			{ "<leader>xl", "require('trouble').toggle('loclist')<CR>", desc = "Trouble Location List" },
 		},
 	},
-	{ "chrisgrieser/nvim-early-retirement", event = "InsertEnter", opts = { retirementAgeMins = 20 } },
+	{ "chrisgrieser/nvim-early-retirement", event = "InsertEnter", opts = { retirementAgeMins = 5 } },
 
 	-- HELPERS/NAVIGATIONS
 	{
@@ -120,4 +124,5 @@ return {
 	{ "projekt0n/github-nvim-theme", priority = 1000, event = "VeryLazy" },
 	{ "xero/miasma.nvim", priority = 1000, event = "VeryLazy" },
 	{ "sainnhe/gruvbox-material", event = "VeryLazy", priority = 1000 },
+	{ "HoNamDuong/hybrid.nvim", event = "VeryLazy", priority = 1000 },
 }

@@ -19,6 +19,13 @@ return {
 				},
 			},
 
+			previewers = {
+				builtin = {
+					syntax = true,
+					treesitter = { enable = true, disable = { "json" } },
+				},
+			},
+
 			lsp = {
 				multiline = 1,
 				fzf_opts = { ["--layout"] = "default", ["--marker"] = "+" },
