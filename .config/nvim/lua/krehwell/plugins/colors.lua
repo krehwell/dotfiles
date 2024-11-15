@@ -5,7 +5,6 @@
 return {
 	"krehwell/colors",
 	dev = true,
-	enabled = true,
 	dependencies = {
 		{ "RRethy/base16-nvim" },
 	},

@@ -3,9 +3,6 @@ local blink = {
 	event = "BufReadPre",
 	version = "v0.*",
 	dependencies = "rafamadriz/friendly-snippets",
-
-	---@module "blink.cmp"
-	---@type blink.cmp.Config
 	opts = {
 		keymap = {
 			preset = "enter",
@@ -42,7 +39,7 @@ local blink = {
 		accept = { auto_brackets = { enabled = true } },
 
 		lsp = {
-			max_items = 30, -- maximum number of items to return
+			max_items = 50, -- maximum number of items to return
 		},
 
 		highlight = {

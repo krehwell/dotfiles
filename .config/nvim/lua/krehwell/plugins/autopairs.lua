@@ -3,7 +3,6 @@ return {
 	dependencies = {
 		{ "windwp/nvim-ts-autotag" }, -- html auto tag
 	},
-	enabled = true,
 	version = false,
 	event = "InsertEnter",
 	config = function()

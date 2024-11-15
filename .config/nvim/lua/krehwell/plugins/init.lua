@@ -14,7 +14,9 @@ return {
 		"zeioth/garbage-day.nvim",
 		dependencies = "neovim/nvim-lspconfig",
 		event = "InsertEnter",
-		opts = { aggressive_mode = true },
+		opts = {
+			notifications = true,
+		},
 	},
 	{
 		"folke/trouble.nvim",

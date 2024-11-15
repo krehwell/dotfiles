@@ -3,10 +3,10 @@ local on_attach = function(bufnr)
 
 	-- DIAGNOSTIC JUMP KEYMAPS
 	vim.cmd([[
-      " I don't want to be diagnostic-nified while typing
-      " autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, { focus=false })
-      autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focus=false, scope="cursor" })
-    ]])
+	" I don't want to be diagnostic-nified while typing
+	" autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, { focus=false })
+	autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focus=false, scope="cursor" })
+	]])
 	vim.keymap.set("n", "[w", ":lua vim.diagnostic.goto_prev()<CR>", opts)
 	vim.keymap.set("n", "]w", ":lua vim.diagnostic.goto_next()<CR>", opts)
 	vim.keymap.set("n", "[e", ":lua vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })<CR>", opts)
@@ -18,14 +18,15 @@ local on_attach = function(bufnr)
 	vim.keymap.set("n", "gi", ":lua require('fzf-lua').lsp_implementations({ jump_to_single_result = true })<cr>", opts)
 	vim.keymap.set("n", "gy", ":lua require('fzf-lua').lsp_typedefs({ jump_to_single_result = true })<cr>", opts)
 	vim.keymap.set("n", "gr", ":lua require('fzf-lua').lsp_references({ ignore_current_line = true })<cr>", opts)
-	vim.keymap.set("n", "ca", "<cmd>FzfLua lsp_code_actions<cr>", opts)
+	-- vim.keymap.set("n", "ge", ":lua vim.diagnostic.open_float(nil, { focus=false, scope='cursor' })<cr>", opts)
+	vim.keymap.set("n", "gx", "<cmd>FzfLua lsp_code_actions<cr>", opts)
 
 	-- LSP WITH NVIM DEFAULT
 	-- vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
 	-- vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
 	-- vim.keymap.set("n", "gy", vim.lsp.buf.type_definition, opts)
 	-- vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-	-- vim.keymap.set("n", "ca", vim.lsp.buf.code_action, opts)
+	-- vim.keymap.set("n", "gx", vim.lsp.buf.code_action, opts)
 	vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
 	vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, opts)
 	vim.keymap.set("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
@@ -47,17 +48,18 @@ local diagnostic_config = {
 	virtual_text = {
 		-- prefix = '●'
 	},
-	update_in_insert = false,
+	update_in_insert = true,
 	signs = true,
 	underline = true,
 	severity_sort = true,
 	float = {
 		focusable = true,
-		-- style = "minimal",
-		border = "rounded",
 		source = "always",
-		show_header = false,
+		show_header = true,
 		header = "",
+		border = "single",
+		style = "minimal",
+		prefix = "",
 		-- prefix = "",
 	},
 }

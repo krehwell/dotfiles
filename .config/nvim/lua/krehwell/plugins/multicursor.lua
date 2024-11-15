@@ -1,6 +1,7 @@
 return {
 	"jake-stewart/multicursor.nvim",
 	branch = "1.0",
+    event = "CursorMoved",
 	keys = {
 		{ "<C-n>", desc = "Start multicursor", mode = { "n", "v" } },
 	},

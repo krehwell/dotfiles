@@ -1,19 +1,17 @@
 return {
-	-- "VonHeikemen/lsp-zero.nvim",
 	"neovim/nvim-lspconfig",
 	dependencies = {
 		{ "williamboman/mason.nvim", opts = { ui = { border = "rounded" } }, cmd = { "Mason" } },
-		{
-			"dmmulroy/ts-error-translator.nvim",
-			event = "LspAttach",
-			ft = { "typescript", "typescriptreact" },
-		},
+		{ "dmmulroy/ts-error-translator.nvim", event = "LspAttach", ft = { "typescript", "typescriptreact" } },
+		{ "b0o/SchemaStore.nvim", name = "schema-store" },
 		-- { "williamboman/mason-lspconfig.nvim" },
 	},
 	ft = require("krehwell.lsp-utils").fts,
 	config = function()
 		local lsp_utils = require("krehwell.lsp-utils")
 		local lspconfig = require("lspconfig")
+		local capabilities = vim.lsp.protocol.make_client_capabilities()
+		capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 		vim.api.nvim_create_autocmd("LspAttach", {
 			desc = "LSP actions",
@@ -24,15 +22,14 @@ return {
 		})
 
 		require("mason").setup({})
-		-- require("mason-lspconfig").setup({
-		-- 	ensure_installed = { "tsserver", "gopls", "cssls", "html", "jsonls", "vimls", "cssmodules_ls" },
-		-- })
 
 		-- LUA SETUP
 		lspconfig.lua_ls.setup({
 			cmd = { "lua-language-server" },
 			on_init = function(client)
 				client.server_capabilities.semanticTokensProvider = nil
+				client.server_capabilities.documentFormattingProvider = false
+				client.server_capabilities.documentRangeFormattingProvider = false
 			end,
 			settings = {
 				Lua = {
@@ -40,36 +37,28 @@ return {
 					diagnostics = { globals = { "vim", "require", "nvim" } },
 					telemetry = { enable = false },
 					workspace = {
-						-- checkThirdParty = false,
-						-- library = vim.api.nvim_get_runtime_file("", true),
+						library = vim.api.nvim_get_runtime_file("", true),
+						checkThirdParty = false,
 					},
 				},
 			},
 		})
 
 		-- TSSERVER SETUP
-		lspconfig.vtsls.setup({
+		lspconfig.ts_ls.setup({
 			on_init = function(client)
 				client.server_capabilities.semanticTokensProvider = nil
+				client.server_capabilities.documentFormattingProvider = false
+				client.server_capabilities.documentRangeFormattingProvider = false
 			end,
-			filetypes = {
-				"javascript",
-				"javascriptreact",
-				"javascript.jsx",
-				"typescript",
-				"typescriptreact",
-				"typescript.tsx",
-			},
-			settings = {
-				complete_function_calls = true,
-				vtsls = {
-					enableMoveToFileCodeAction = true,
-					autoUseWorkspaceTsdk = true,
-					experimental = {
-						completion = {
-							enableServerSideFuzzyMatch = true,
-						},
-					},
+
+			capabilities = capabilities,
+
+			init_options = {
+				preferences = {
+					importModuleSpecifierPreference = "auto",
+					lazyConfiguredProjectsFromExternalProject = false,
+					interactiveInlayHints = false,
 				},
 				typescript = {
 					updateImportsOnFileMove = { enabled = "always" },
@@ -86,15 +75,21 @@ return {
 					},
 				},
 			},
+			single_file_support = true,
 		})
+
+		lspconfig.jsonls.setup({
+			capabilities = capabilities,
+			settings = { json = { schemas = require("schemastore").json.schemas() } },
+		})
+
+		lspconfig.custom_elements_ls.setup({})
 
 		lspconfig.tailwindcss.setup({})
 
-		lspconfig.cssls.setup({})
-
+		lspconfig.cssls.setup({ capabilities = capabilities })
 		lspconfig.cssmodules_ls.setup({})
-
-		lspconfig.cssls.setup({})
+		lspconfig.css_variables.setup({})
 
 		lspconfig.gopls.setup({})
 	end,
