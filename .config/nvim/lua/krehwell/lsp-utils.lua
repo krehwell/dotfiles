@@ -5,7 +5,7 @@ local on_attach = function(bufnr)
 	vim.cmd([[
 	" I don't want to be diagnostic-nified while typing
 	" autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, { focus=false })
-	autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focus=false, scope="cursor" })
+	" autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focus=false, scope="cursor" })
 	]])
 	vim.keymap.set("n", "[w", ":lua vim.diagnostic.goto_prev()<CR>", opts)
 	vim.keymap.set("n", "]w", ":lua vim.diagnostic.goto_next()<CR>", opts)
@@ -18,7 +18,7 @@ local on_attach = function(bufnr)
 	vim.keymap.set("n", "gi", ":lua require('fzf-lua').lsp_implementations({ jump_to_single_result = true })<cr>", opts)
 	vim.keymap.set("n", "gy", ":lua require('fzf-lua').lsp_typedefs({ jump_to_single_result = true })<cr>", opts)
 	vim.keymap.set("n", "gr", ":lua require('fzf-lua').lsp_references({ ignore_current_line = true })<cr>", opts)
-	-- vim.keymap.set("n", "ge", ":lua vim.diagnostic.open_float(nil, { focus=false, scope='cursor' })<cr>", opts)
+	vim.keymap.set("n", "ge", ":lua vim.diagnostic.open_float(nil, { focus=false, scope='cursor' })<cr>", opts)
 	vim.keymap.set("n", "gx", "<cmd>FzfLua lsp_code_actions<cr>", opts)
 
 	-- LSP WITH NVIM DEFAULT

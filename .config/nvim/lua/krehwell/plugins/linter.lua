@@ -31,7 +31,7 @@ return {
 						return utils.root_has_file({ ".eslintrc.js", ".eslintrc.json", ".eslintrc.cjs" })
 					end,
 					diagnostic_config = { virtual_text = false },
-					debounce = 500,
+					debounce = 100,
 				}),
 				-- require("none-ls.code_actions.eslint"),
 				-- require("none-ls.diagnostics.eslint"),

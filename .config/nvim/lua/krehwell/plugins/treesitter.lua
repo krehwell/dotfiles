@@ -7,7 +7,7 @@ return {
 		{ "nvim-treesitter/nvim-treesitter-textobjects" },
 	},
 
-    enabled = false,
+    -- enabled = false,
 
 	opts = {
 		ensure_installed = {
@@ -93,7 +93,7 @@ return {
 	},
 
 	config = function(_, opts)
-		-- vim.opt.smartindent = true
+		vim.opt.smartindent = true
 		require("nvim-treesitter.configs").setup(opts)
 	end,
 }

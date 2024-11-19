@@ -11,7 +11,7 @@ vim.opt.shiftwidth = 4
 vim.opt.shiftround = true
 vim.opt.expandtab = true
 vim.opt.autoindent = true
-vim.opt.smartindent = false
+vim.opt.smartindent = true
 vim.opt.textwidth = 120
 vim.opt.cursorline = true
 
@@ -71,6 +71,6 @@ vim.opt.compatible = false
 vim.opt.showmode = true
 vim.opt.wildmenu = true
 -- vim.opt.ttimeoutlen = 0
-vim.opt.updatetime = 300
+vim.opt.updatetime = 100
 vim.opt.exrc = true
 vim.opt.secure = true

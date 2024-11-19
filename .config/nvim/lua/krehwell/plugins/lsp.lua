@@ -78,6 +78,46 @@ return {
 			single_file_support = true,
 		})
 
+		lspconfig.denols.setup({
+			root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+		})
+
+		-- lspconfig.vtsls.setup({
+		-- 	capabilities = capabilities,
+		-- 	on_init = function(client)
+		-- 		client.server_capabilities.semanticTokensProvider = nil
+		-- 		client.server_capabilities.documentFormattingProvider = false
+		-- 		client.server_capabilities.documentRangeFormattingProvider = false
+		-- 	end,
+		-- 	root_dir = lspconfig.util.root_pattern("package.json"),
+		-- 	single_file_support = false,
+		-- 	settings = {
+		-- 		vtsls = {
+		-- 			enableMoveToFileCodeAction = true,
+		-- 			autoUseWorkspaceTsdk = true,
+		-- 			experimental = {
+		-- 				completion = {
+		-- 					enableServerSideFuzzyMatch = true,
+		-- 				},
+		-- 			},
+		-- 		},
+		-- 		typescript = {
+		-- 			-- updateImportsOnFileMove = { enabled = "always" },
+		-- 			suggest = {
+		-- 				completeFunctionCalls = true,
+		-- 			},
+		-- 			inlayHints = {
+		-- 				-- enumMemberValues = { enabled = true },
+		-- 				-- functionLikeReturnTypes = { enabled = true },
+		-- 				-- parameterNames = { enabled = "literals" },
+		-- 				-- parameterTypes = { enabled = true },
+		-- 				-- propertyDeclarationTypes = { enabled = true },
+		-- 				-- variableTypes = { enabled = false },
+		-- 			},
+		-- 		},
+		-- 	},
+		-- })
+
 		lspconfig.jsonls.setup({
 			capabilities = capabilities,
 			settings = { json = { schemas = require("schemastore").json.schemas() } },

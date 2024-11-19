@@ -39,7 +39,7 @@ local blink = {
 		accept = { auto_brackets = { enabled = true } },
 
 		lsp = {
-			max_items = 50, -- maximum number of items to return
+			max_items = 30, -- maximum number of items to return
 		},
 
 		highlight = {

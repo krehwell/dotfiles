@@ -14,9 +14,7 @@ return {
 		"zeioth/garbage-day.nvim",
 		dependencies = "neovim/nvim-lspconfig",
 		event = "InsertEnter",
-		opts = {
-			notifications = true,
-		},
+		opts = { notifications = true },
 	},
 	{
 		"folke/trouble.nvim",
@@ -38,6 +36,12 @@ return {
 		},
 	},
 	{ "chrisgrieser/nvim-early-retirement", event = "InsertEnter", opts = { retirementAgeMins = 5 } },
+	{
+		"NMAC427/guess-indent.nvim",
+		config = function()
+			require("guess-indent").setup({})
+		end,
+	},
 
 	-- HELPERS/NAVIGATIONS
 	{

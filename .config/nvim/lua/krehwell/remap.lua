@@ -55,7 +55,7 @@ vim.keymap.set("n", "<localleader>a", "ggVG")
 vim.keymap.set("v", "$", "$<left>")
 vim.keymap.set("v", "w", "e")
 vim.keymap.set("v", "<C-c>", '"+y')
-vim.keymap.set("n", "0", function()
+vim.keymap.set({ "n", "v" }, "0", function()
 	local first_non_blank = vim.fn.match(vim.fn.getline("."), "\\S") + 1
 	if vim.fn.col(".") == first_non_blank then
 		return "0"

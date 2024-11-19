@@ -1,43 +1,72 @@
 -- vim.cmd("syntax off")
 -- vim.opt.termguicolors = true
--- vim.opt.background = "dark"
+vim.opt.background = "dark"
 
 return {
 	"krehwell/colors",
 	dev = true,
 	dependencies = {
-		{ "RRethy/base16-nvim" },
+		{ "vague2k/vague.nvim" },
 	},
 
 	config = function()
-		require("base16-colorscheme").setup({
-			base00 = "#151515",
-			base01 = "#202020",
-			base02 = "#303030",
-			base03 = "#505050",
-			base04 = "#b0b0b0",
-			base05 = "#d0d0d0",
-			base06 = "#e0e0e0",
-			base07 = "#f5f5f5",
-			base08 = "#fb9fb1",
-			base09 = "#eda987",
-			base0A = "#ddb26e",
-			base0B = "#acc267",
-			base0C = "#15cfc0",
-			base0D = "#6fc2ef",
-			base0E = "#e1a3ee",
-			base0F = "#deaf8e",
-		}, {
-			lsp_semantic = false,
-			telescope = false,
-			indentblankline = false,
-			notify = false,
-			ts_rainbow = false,
-			cmp = true,
-			illuminate = false,
-			dapui = false,
+		require("vague").setup({
+			transparent = false, -- don't set background
+			style = {
+				-- "none" is the same thing as default. But "italic" and "bold" are also valid options
+				boolean = "none",
+				number = "none",
+				float = "none",
+				error = "none",
+				comments = "italic",
+				conditionals = "none",
+				functions = "none",
+				headings = "bold",
+				operators = "none",
+				strings = "italic",
+				variables = "none",
+
+				-- keywords
+				keywords = "none",
+				keyword_return = "none",
+				keywords_loop = "none",
+				keywords_label = "none",
+				keywords_exception = "none",
+
+				-- builtin
+				builtin_constants = "none",
+				builtin_functions = "none",
+				builtin_types = "none",
+				builtin_variables = "none",
+			},
+			-- Override colors
+			colors = {
+				bg = "#18191a",
+				fg = "#cdcdcd",
+				floatBorder = "#cdcdcd",
+				line = "#282830",
+				comment = "#646477",
+				builtin = "#cdcdcd",
+				func = "#cdcdcd",
+				string = "#cdcdcd",
+				number = "#cdcdcd",
+				property = "#cdcdcd",
+				constant = "#cdcdcd",
+				parameter = "#cdcdcd",
+				visual = "#363738",
+				error = "#d2788c",
+				warning = "#e6be8c",
+				hint = "#8ca0dc",
+				operator = "#cdcdcd",
+				keyword = "#cdcdcd",
+				type = "#cdcdcd",
+				search = "#465362",
+				plus = "#cdcdcd",
+				delta = "#cdcdcd",
+			},
 		})
 
+		vim.cmd([[ colorscheme vague ]])
 		vim.cmd([[ let &statusline='%#WinSeparator#' ]]) -- color the split window dashes
 	end,
 }

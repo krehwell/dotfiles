@@ -1,20 +1,21 @@
 return {
-	"echasnovski/mini.hipatterns",
-	version = false,
+	-- "echasnovski/mini.hipatterns",
+	"uga-rosa/ccc.nvim",
 	event = "BufReadPre",
-	opts = function()
-		local hi = require("mini.hipatterns")
-		return {
-			tailwind = {
-				enabled = true,
-				ft = { "typescriptreact", "javascriptreact", "css", "javascript", "typescript", "html" },
-				-- full: the whole css class will be highlighted
-				-- compact: only the color will be highlighted
-				style = "full",
+	config = function()
+		local ccc = require("ccc")
+		ccc.setup({
+			highlighter = {
+				auto_enable = true,
+				lsp = true,
 			},
-			highlighters = {
-				hex_color = hi.gen_highlighter.hex_color(),
-			},
-		}
+		})
 	end,
+	keys = {
+		{
+			"<leader>c",
+            "<cmd>:CccConvert<CR>",
+			desc = "Toggle highlight color",
+		},
+	},
 }
