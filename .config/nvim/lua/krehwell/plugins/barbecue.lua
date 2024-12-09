@@ -15,7 +15,7 @@ return {
 		theme = {
 			-- normal = { bg = "#262626", --[[ fg = "#c6c6c6" ]] },
 		},
-		symbols = { modified = "+", ellipsis = "…", separator = "" },
+		symbols = { modified = "+", ellipsis = "…", separator = ">" },
 		exclude_filetypes = { "netrw", "toggleterm", "fern", "fern-replacer", "fzf", "Trouble", "minifiles" },
 		create_autocmd = false,
 		lead_custom_section = function()

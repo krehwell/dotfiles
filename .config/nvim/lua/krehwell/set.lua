@@ -71,6 +71,6 @@ vim.opt.compatible = false
 vim.opt.showmode = true
 vim.opt.wildmenu = true
 -- vim.opt.ttimeoutlen = 0
-vim.opt.updatetime = 100
+vim.opt.updatetime = 300
 vim.opt.exrc = true
 vim.opt.secure = true

@@ -18,6 +18,18 @@ return {
 			callback = function(event)
 				vim.diagnostic.config(lsp_utils.diagnostic_config)
 				lsp_utils.on_attach(event.buf)
+
+				vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+					border = "rounded",
+					max_height = 20,
+					max_width = 70,
+				})
+
+				vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+					border = "rounded",
+					max_height = 20,
+					max_width = 70,
+				})
 			end,
 		})
 
@@ -45,6 +57,7 @@ return {
 		})
 
 		-- TSSERVER SETUP
+		lspconfig.biome.setup({})
 		lspconfig.ts_ls.setup({
 			on_init = function(client)
 				client.server_capabilities.semanticTokensProvider = nil
@@ -54,10 +67,12 @@ return {
 
 			capabilities = capabilities,
 
+			root_dir = lspconfig.util.root_pattern("tsconfig.json", "jsconfig.json", "package.json"),
+
 			init_options = {
 				preferences = {
 					importModuleSpecifierPreference = "auto",
-					lazyConfiguredProjectsFromExternalProject = false,
+					lazyConfiguredProjectsFromExternalProject = true,
 					interactiveInlayHints = false,
 				},
 				typescript = {
@@ -78,9 +93,9 @@ return {
 			single_file_support = true,
 		})
 
-		lspconfig.denols.setup({
-			root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
-		})
+		-- lspconfig.denols.setup({
+		-- 	root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc", "deno.lock"),
+		-- })
 
 		-- lspconfig.vtsls.setup({
 		-- 	capabilities = capabilities,
@@ -129,6 +144,7 @@ return {
 
 		lspconfig.cssls.setup({ capabilities = capabilities })
 		lspconfig.cssmodules_ls.setup({})
+		lspconfig.html.setup({})
 		lspconfig.css_variables.setup({})
 
 		lspconfig.gopls.setup({})

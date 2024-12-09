@@ -48,7 +48,7 @@ local diagnostic_config = {
 	virtual_text = {
 		-- prefix = '●'
 	},
-	update_in_insert = true,
+	update_in_insert = false,
 	signs = true,
 	underline = true,
 	severity_sort = true,
@@ -57,7 +57,7 @@ local diagnostic_config = {
 		source = "always",
 		show_header = true,
 		header = "",
-		border = "single",
+		border = "rounded",
 		style = "minimal",
 		prefix = "",
 		-- prefix = "",

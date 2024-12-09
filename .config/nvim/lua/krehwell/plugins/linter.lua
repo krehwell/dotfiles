@@ -23,16 +23,20 @@ return {
 				-- null_ls.builtins.formatting.gofumpt.with({ space = true, }),
 
 				-- TS
-				null_ls.builtins.formatting.prettierd,
-				require("none-ls.code_actions.eslint_d"),
-				require("none-ls.diagnostics.eslint_d").with({
-					-- method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
-					condition = function(utils)
-						return utils.root_has_file({ ".eslintrc.js", ".eslintrc.json", ".eslintrc.cjs" })
-					end,
-					diagnostic_config = { virtual_text = false },
-					debounce = 100,
-				}),
+				-- null_ls.builtins.formatting.prettierd.with({
+				-- 	condition = function(utils)
+				-- 		return utils.root_has_file({ ".prettierrc", ".prettierrc.json", ".prettierrc.js" })
+				-- 	end,
+				-- }),
+				-- require("none-ls.code_actions.eslint_d"),
+				-- require("none-ls.diagnostics.eslint_d").with({
+				-- 	-- method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+				-- 	condition = function(utils)
+				-- 		return utils.root_has_file({ ".eslintrc.js", ".eslintrc.json", ".eslintrc.cjs" })
+				-- 	end,
+				-- 	diagnostic_config = { virtual_text = false },
+				-- 	debounce = 350,
+				-- }),
 				-- require("none-ls.code_actions.eslint"),
 				-- require("none-ls.diagnostics.eslint"),
 				null_ls.builtins.diagnostics.dotenv_linter,

@@ -12,8 +12,8 @@ bright = { black = "#505050", red = "#d2788c", green = "#8faf77", yellow = "#d2a
     option_as_alt = "Both"
 
 [font]
-    normal = { family = "MesloLGSDZ Nerd Font" }
-    size = 13
+    normal = { family = "Consolas NF" }
+    size = 13.5
 
 [keyboard]
     bindings = [
