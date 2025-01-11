@@ -2,89 +2,76 @@ local blink = {
 	"saghen/blink.cmp",
 	event = "BufReadPre",
 	version = "v0.*",
-	dependencies = "rafamadriz/friendly-snippets",
+	dependencies = { "rafamadriz/friendly-snippets", "moyiz/blink-emoji.nvim" },
+	---@module 'blink.cmp'
+	---@type blink.cmp.Config
 	opts = {
 		keymap = {
 			preset = "enter",
 		},
 
 		sources = {
-			completion = {
-				enabled_providers = { "lsp", "path", "snippets", "buffer", "lazydev" },
-			},
+			default = { "lazydev", "emoji", "lsp", "path", "snippets", "buffer" },
 			providers = {
-				-- dont show LuaLS require statements when lazydev has items
-				lsp = { fallback_for = { "lazydev" } },
-				lazydev = { name = "LazyDev", module = "lazydev.integrations.blink" },
+				lazydev = {
+					name = "LazyDev",
+					module = "lazydev.integrations.blink",
+					score_offset = 100,
+				},
+				emoji = {
+					module = "blink-emoji",
+					name = "Emoji",
+					score_offset = 15, -- Tune by preference
+					opts = { insert = true }, -- Insert emoji (default) or complete its name
+				},
 			},
+
+			cmdline = function()
+				local type = vim.fn.getcmdtype()
+				if type == "/" or type == "?" then
+					return { "buffer" }
+				end
+				if type == ":" then
+					return { "cmdline" }
+				end
+				return {}
+			end,
 		},
 
 		completion = {
+			trigger = {
+				prefetch_on_insert = true,
+			},
 			keyword = {
 				range = "full",
 			},
 			accept = { auto_brackets = { enabled = true } },
 			list = {
 				max_items = 100,
-				selection = "auto_insert",
+				selection = { preselect = true, auto_insert = true },
 			},
 			documentation = {
 				auto_show = true,
 			},
 			menu = {
-				enabled = true,
 				draw = {
 					padding = 1,
-					columns = { { "label", "label_description", gap = 1 }, { "kind_icon" } },
+					gap = 2
 				},
+				auto_show = function(ctx)
+					if ctx.mode == "cmdline" then
+						return false
+					elseif vim.tbl_contains({ "/", "?" }, vim.fn.getcmdtype()) then
+						return false
+					end
+					return true
+				end,
+				enabled = true,
 			},
 		},
 
 		signature = {
 			enabled = true,
-			trigger = {
-				blocked_trigger_characters = {},
-				blocked_retrigger_characters = {},
-				-- When true, will show the signature help window when the cursor comes after a trigger character when entering insert mode
-				show_on_insert_on_trigger_character = true,
-			},
-		},
-
-		appearance = {
-			use_nvim_cmp_as_default = true,
-			nerd_font_variant = "normal",
-			kind_icons = {
-				Text = "[Text]",
-				Method = "[Method]",
-				Function = "[Function]",
-				Constructor = "[Constructor]",
-
-				Field = "[Field]",
-				Variable = "[Variable]",
-				Property = "[Property]",
-
-				Class = "[Class]",
-				Interface = "[Interface]",
-				Struct = "[Struct]",
-				Module = "[Module]",
-
-				Unit = "[Unit]",
-				Value = "[Value]",
-				Enum = "[Enum]",
-				EnumMember = "[EnumMember]",
-
-				Keyword = "[Keyword]",
-				Constant = "[Constant]",
-
-				Snippet = "[Snippet]",
-				Color = "[Color]",
-				File = "[File]",
-				Reference = "[Reference]",
-				Folder = "[Folder]",
-				Event = "[Event]",
-				Operator = "[Operator]",
-				TypeParameter = "[TypeParameter]",
-			},
 		},
 	},
 }

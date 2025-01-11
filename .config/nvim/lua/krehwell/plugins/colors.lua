@@ -3,12 +3,7 @@
 vim.opt.background = "dark"
 
 return {
-	"krehwell/colors",
-	dev = true,
-	dependencies = {
-		{ "vague2k/vague.nvim" },
-	},
-
+	"vague2k/vague.nvim",
 	config = function()
 		require("vague").setup({
 			transparent = false, -- don't set background
@@ -41,7 +36,7 @@ return {
 			},
 			-- Override colors
 			colors = {
-				bg = "#18191a",
+				bg = "#18191A",
 				fg = "#cdcdcd",
 				floatBorder = "#878787",
 				line = "#282830",
@@ -52,38 +47,44 @@ return {
 				number = "#cdcdcd",
 				property = "#c7c7d4",
 				constant = "#cdcdcd",
-				parameter = "#b9a3ba",
+				parameter = "#cdcdcd",
 				visual = "#363738",
 				error = "#d2788c",
 				warning = "#e6be8c",
 				hint = "#8ca0dc",
 				operator = "#96a3b2",
-				keyword = "#cdcdcd",
+				keyword = "#7894ab",
 				type = "#cdcdcd",
 				search = "#465362",
 				plus = "#8faf77",
 				delta = "#e6be8c",
+
+				-- bg = "#18191a",
+				-- fg = "#cdcdcd",
+				-- floatBorder = "#878787",
+				-- line = "#282830",
+				-- comment = "#646477",
+				-- builtin = "#bad1ce",
+				-- func = "#be8c8c",
+				-- string = "#deb896",
+				-- number = "#d2a374",
+				-- property = "#c7c7d4",
+				-- constant = "#b4b4ce",
+				-- parameter = "#b9a3ba",
+				-- visual = "#363738",
+				-- error = "#d2788c",
+				-- warning = "#e6be8c",
+				-- hint = "#8ca0dc",
+				-- operator = "#96a3b2",
+				-- keyword = "#7894ab",
+				-- type = "#a1b3b9",
+				-- search = "#465362",
+				-- plus = "#8faf77",
+				-- delta = "#e6be8c",
 			},
 		})
 
 		vim.cmd([[ colorscheme vague ]])
-
-		vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { bg = "NONE", strikethrough = true, fg = "#808080" })
-		-- blue
-		vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { bg = "NONE", fg = "#8ca0dc", bold = true })
-		vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { link = "CmpIntemAbbrMatch", bold = true })
-		-- light blue
-		vim.api.nvim_set_hl(0, "CmpItemKindVariable", { bg = "NONE", fg = "#9CDCFE" })
-		vim.api.nvim_set_hl(0, "CmpItemKindInterface", { link = "CmpItemKindVariable" })
-		vim.api.nvim_set_hl(0, "CmpItemKindText", { link = "CmpItemKindVariable" })
-		-- pink
-		vim.api.nvim_set_hl(0, "CmpItemKindFunction", { bg = "NONE", fg = "#b9a3ba" })
-		vim.api.nvim_set_hl(0, "CmpItemKindMethod", { link = "CmpItemKindFunction" })
-		-- front
-		vim.api.nvim_set_hl(0, "CmpItemKindKeyword", { bg = "NONE", fg = "#D4D4D4" })
-		vim.api.nvim_set_hl(0, "CmpItemKindProperty", { link = "CmpItemKindKeyword" })
-		vim.api.nvim_set_hl(0, "CmpItemKindUnit", { link = "CmpItemKindKeyword" })
-
 		vim.cmd([[ let &statusline='%#WinSeparator#' ]]) -- color the split window dashes
 	end,
 }

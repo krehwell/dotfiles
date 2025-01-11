@@ -2,7 +2,6 @@ return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
 		{ "williamboman/mason.nvim", opts = { ui = { border = "rounded" } }, cmd = { "Mason" } },
-		{ "dmmulroy/ts-error-translator.nvim", event = "LspAttach", ft = { "typescript", "typescriptreact" } },
 		{ "b0o/SchemaStore.nvim", name = "schema-store" },
 		-- { "williamboman/mason-lspconfig.nvim" },
 	},
@@ -10,8 +9,7 @@ return {
 	config = function()
 		local lsp_utils = require("krehwell.lsp-utils")
 		local lspconfig = require("lspconfig")
-		local capabilities = vim.lsp.protocol.make_client_capabilities()
-		capabilities.textDocument.completion.completionItem.snippetSupport = true
+		local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 		vim.api.nvim_create_autocmd("LspAttach", {
 			desc = "LSP actions",
@@ -19,17 +17,13 @@ return {
 				vim.diagnostic.config(lsp_utils.diagnostic_config)
 				lsp_utils.on_attach(event.buf)
 
-				vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-					border = "rounded",
-					max_height = 20,
-					max_width = 70,
-				})
+				vim.lsp.handlers["textDocument/hover"] =
+					vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded", max_height = 20, max_width = 70 })
 
-				vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-					border = "rounded",
-					max_height = 20,
-					max_width = 70,
-				})
+				vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+					vim.lsp.handlers.signature_help,
+					{ border = "rounded", max_height = 20, max_width = 70 }
+				)
 			end,
 		})
 
@@ -37,27 +31,22 @@ return {
 
 		-- LUA SETUP
 		lspconfig.lua_ls.setup({
-			cmd = { "lua-language-server" },
 			on_init = function(client)
 				client.server_capabilities.semanticTokensProvider = nil
 				client.server_capabilities.documentFormattingProvider = false
 				client.server_capabilities.documentRangeFormattingProvider = false
 			end,
-			settings = {
-				Lua = {
-					runtime = { version = "LuaJIT", path = vim.split(package.path, ";") },
-					diagnostics = { globals = { "vim", "require", "nvim" } },
-					telemetry = { enable = false },
-					workspace = {
-						library = vim.api.nvim_get_runtime_file("", true),
-						checkThirdParty = false,
-					},
-				},
-			},
 		})
 
 		-- TSSERVER SETUP
-		lspconfig.biome.setup({})
+		lspconfig.biome.setup({
+			on_init = function(client)
+				client.server_capabilities.semanticTokensProvider = nil
+				client.server_capabilities.documentFormattingProvider = false
+				client.server_capabilities.documentRangeFormattingProvider = false
+			end,
+			capabilities = capabilities,
+		})
 		lspconfig.ts_ls.setup({
 			on_init = function(client)
 				client.server_capabilities.semanticTokensProvider = nil
@@ -71,8 +60,14 @@ return {
 
 			init_options = {
 				preferences = {
+					autoImportFileExcludePatterns = {
+						-- "**/@mui/**",
+						"**/*vidstack/**",
+						"**/next/dist/**",
+						"**/@sentry/**",
+					},
 					importModuleSpecifierPreference = "auto",
-					lazyConfiguredProjectsFromExternalProject = true,
+					lazyConfiguredProjectsFromExternalProject = false,
 					interactiveInlayHints = false,
 				},
 				typescript = {
@@ -138,14 +133,14 @@ return {
 			settings = { json = { schemas = require("schemastore").json.schemas() } },
 		})
 
-		lspconfig.custom_elements_ls.setup({})
+		-- lspconfig.custom_elements_ls.setup({ capabilities = capabilities })
 
 		lspconfig.tailwindcss.setup({})
 
 		lspconfig.cssls.setup({ capabilities = capabilities })
-		lspconfig.cssmodules_ls.setup({})
-		lspconfig.html.setup({})
-		lspconfig.css_variables.setup({})
+		lspconfig.cssmodules_ls.setup({ capabilities = capabilities })
+		lspconfig.html.setup({ capabilities = capabilities })
+		lspconfig.css_variables.setup({ capabilities = capabilities })
 
 		lspconfig.gopls.setup({})
 	end,

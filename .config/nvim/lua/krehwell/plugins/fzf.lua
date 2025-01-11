@@ -22,7 +22,7 @@ return {
 			previewers = {
 				builtin = {
 					syntax = true,
-					treesitter = { enable = true, disable = { "json" } },
+					treesitter = { enabled = true, disabled = { "json" } },
 				},
 			},
 
