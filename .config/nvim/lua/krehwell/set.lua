@@ -21,6 +21,7 @@ vim.opt.backup = false
 vim.opt.writebackup = false
 vim.opt.swapfile = false
 vim.opt.undofile = true
+vim.opt.autoread = true
 
 -- WINDOW BEHAVIOR
 vim.opt.colorcolumn = "120"
@@ -51,7 +52,7 @@ vim.opt.fillchars = {
 	stlnc = "—",
 	stl = "—",
 }
--- vim.opt.jumpoptions:append("view")
+vim.opt.jumpoptions:append("view")
 -- vim.opt.virtualedit = "block"
 
 -- SEARCH/FIND BEHAVIOR

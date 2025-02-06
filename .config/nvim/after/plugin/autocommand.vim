@@ -1,3 +1,10 @@
+" ----- RELOAD FILE WHEN REFOCUS
+augroup reload_file_on_focus
+    autocmd!
+    autocmd FocusGained * checktime
+augroup END
+
+
 " ----- RELATIVE LINE NUMBERS ON NECESSSARY
 augroup numbertoggle
   autocmd!
@@ -35,10 +42,10 @@ endfunction
 
 
 " ----- NOAUTOCOMMENT TO ALL FILES -----
-augroup AutoCommetDisable
-    autocmd!
-    autocmd FileType * set formatoptions-=cro
-augroup END
+" augroup AutoCommetDisable
+"     autocmd!
+"     autocmd FileType * set formatoptions-=cro
+" augroup END
 
 
 " ----- DELETE BUFFER EXCEPT THE ONEs OPENED ON WINDOWS OR TABS -----

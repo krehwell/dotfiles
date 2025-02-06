@@ -1,3 +1,7 @@
+vim.cmd([[
+	au BufNewFile,BufRead *.ts	setf typescript
+]])
+
 local function console_format()
 	vim.cmd("normal! viwy")
 	vim.cmd("normal! o")

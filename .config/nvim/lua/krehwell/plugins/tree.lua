@@ -17,6 +17,7 @@ end
 
 return {
 	"stevearc/oil.nvim",
+	ft = { "oil" },
 	---@module 'oil'
 	---@type oil.SetupOpts
 	opts = {

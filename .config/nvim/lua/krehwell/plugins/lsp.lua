@@ -7,6 +7,7 @@ return {
 	},
 	ft = require("krehwell.lsp-utils").fts,
 	config = function()
+		local lsp_hover = require("krehwell.lsp-hover")
 		local lsp_utils = require("krehwell.lsp-utils")
 		local lspconfig = require("lspconfig")
 		local capabilities = require("blink.cmp").get_lsp_capabilities()
@@ -17,13 +18,21 @@ return {
 				vim.diagnostic.config(lsp_utils.diagnostic_config)
 				lsp_utils.on_attach(event.buf)
 
-				vim.lsp.handlers["textDocument/hover"] =
-					vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded", max_height = 20, max_width = 70 })
-
-				vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-					vim.lsp.handlers.signature_help,
-					{ border = "rounded", max_height = 20, max_width = 70 }
-				)
+				lsp_hover.setup({
+					["^lua_ls"] = {
+						border_hl = "Special",
+					},
+					["^ts_ls"] = {
+						border_hl = "Special",
+					},
+				})
+				-- vim.lsp.handlers["textDocument/hover"] =
+				-- 	vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded", max_height = 20, max_width = 80 })
+				--
+				-- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+				-- 	vim.lsp.handlers.signature_help,
+				-- 	{ border = "rounded", max_height = 20, max_width = 80 }
+				-- )
 			end,
 		})
 
@@ -65,24 +74,25 @@ return {
 						"**/*vidstack/**",
 						"**/next/dist/**",
 						"**/@sentry/**",
+						"**/e2e/**",
 					},
 					importModuleSpecifierPreference = "auto",
 					lazyConfiguredProjectsFromExternalProject = false,
 					interactiveInlayHints = false,
 				},
 				typescript = {
-					updateImportsOnFileMove = { enabled = "always" },
-					suggest = {
-						completeFunctionCalls = true,
-					},
-					inlayHints = {
-						enumMemberValues = { enabled = true },
-						functionLikeReturnTypes = { enabled = true },
-						parameterNames = { enabled = "literals" },
-						parameterTypes = { enabled = true },
-						propertyDeclarationTypes = { enabled = true },
-						variableTypes = { enabled = false },
-					},
+					-- updateImportsOnFileMove = { enabled = "always" },
+					-- suggest = {
+					-- 	completeFunctionCalls = true,
+					-- },
+					-- inlayHints = {
+					-- 	enumMemberValues = { enabled = true },
+					-- 	functionLikeReturnTypes = { enabled = true },
+					-- 	parameterNames = { enabled = "literals" },
+					-- 	parameterTypes = { enabled = true },
+					-- 	propertyDeclarationTypes = { enabled = true },
+					-- 	variableTypes = { enabled = false },
+					-- },
 				},
 			},
 			single_file_support = true,

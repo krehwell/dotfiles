@@ -13,7 +13,7 @@ vim.g.maplocalleader = "\\"
 vim.keymap.set("n", "<Leader>-", ":vertical resize -23<CR>")
 vim.keymap.set("n", "<Leader>=", ":vertical resize +23<CR>")
 vim.keymap.set("n", "<esc>", "<esc>:noh<CR><esc>", { silent = true })
-vim.keymap.set("i", "jj", "<c-o>:call search('}\\|)\\|]\\|>\\|\"', 'cW')<cr><Right>")
+-- vim.keymap.set("i", "jj", "<c-o>:call search('}\\|)\\|]\\|>\\|\"', 'cW')<cr><Right>")
 
 vim.keymap.set("n", "<C-g>", function()
 	local get_git_branch = function()
@@ -60,7 +60,7 @@ vim.keymap.set({ "n", "v" }, "0", function()
 	if vim.fn.col(".") == first_non_blank then
 		return "0"
 	else
-		return "^"
+		return "^zH"
 	end
 end, { expr = true, desc = "Smart zero: toggle between ^ and 0" })
 

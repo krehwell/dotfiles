@@ -10,6 +10,9 @@ bright = { black = "#505050", red = "#d2788c", green = "#8faf77", yellow = "#d2a
 
 [window]
     option_as_alt = "Both"
+    decorations = "none"
+    # decorations = "Buttonless"
+    startup_mode = "Maximized"
 
 [font]
     normal = { family = "Consolas NF" }

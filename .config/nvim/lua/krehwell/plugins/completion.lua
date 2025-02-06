@@ -16,6 +16,7 @@ local blink = {
 				lazydev = {
 					name = "LazyDev",
 					module = "lazydev.integrations.blink",
+					-- make lazydev completions top priority (see `:h blink.cmp`)
 					score_offset = 100,
 				},
 				emoji = {
@@ -36,6 +37,17 @@ local blink = {
 				end
 				return {}
 			end,
+
+			min_keyword_length = function()
+				local type = vim.fn.getcmdtype()
+				if type == "/" or type == "?" then
+					return 15
+				end
+				if type == ":" then
+					return 3
+				end
+				return 0
+			end,
 		},
 
 		completion = {
@@ -43,7 +55,7 @@ local blink = {
 				prefetch_on_insert = true,
 			},
 			keyword = {
-				range = "full",
+				range = "prefix",
 			},
 			accept = { auto_brackets = { enabled = true } },
 			list = {
@@ -52,17 +64,18 @@ local blink = {
 			},
 			documentation = {
 				auto_show = true,
+				-- auto_show_delay_ms = 200,
 			},
 			menu = {
 				draw = {
 					padding = 1,
-					gap = 2
+					gap = 2,
 				},
 				auto_show = function(ctx)
 					if ctx.mode == "cmdline" then
-						return false
+						return true
 					elseif vim.tbl_contains({ "/", "?" }, vim.fn.getcmdtype()) then
-						return false
+						return true
 					end
 					return true
 				end,

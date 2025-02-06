@@ -1,5 +1,5 @@
 -- vim.cmd("syntax off")
--- vim.opt.termguicolors = true
+vim.opt.termguicolors = true
 vim.opt.background = "dark"
 
 return {

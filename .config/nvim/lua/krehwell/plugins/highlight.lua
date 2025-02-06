@@ -1,6 +1,7 @@
 return {
 	-- "echasnovski/mini.hipatterns",
 	"uga-rosa/ccc.nvim",
+	-- enabled = false,
 	event = "BufReadPre",
 	config = function()
 		local ccc = require("ccc")

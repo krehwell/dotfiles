@@ -2,13 +2,19 @@ return {
 	-- LSP
 	{
 		"folke/lazydev.nvim",
-		ft = "lua",
+		ft = "lua", -- only load on lua files
 		opts = {
 			library = {
-				{ path = "luvit-meta/library", words = { "vim%.uv" } },
+				-- See the configuration section for more details
+				-- Load luvit types when the `vim.uv` word is found
+				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
 			},
 		},
-		dependencies = { { "Bilal2453/luvit-meta", lazy = true } },
+	},
+	{
+		"folke/persistence.nvim",
+		event = "BufReadPre",
+		opts = {},
 	},
 	{
 		"zeioth/garbage-day.nvim",
@@ -36,12 +42,13 @@ return {
 		},
 	},
 	{ "chrisgrieser/nvim-early-retirement", event = "InsertEnter", opts = { retirementAgeMins = 5 } },
-	{
-		"NMAC427/guess-indent.nvim",
-		config = function()
-			require("guess-indent").setup({})
-		end,
-	},
+	-- {
+	-- 	"NMAC427/guess-indent.nvim",
+	-- 	config = function()
+	-- 		require("guess-indent").setup({})
+	-- 	end,
+	-- },
+	-- MARKDOWN PREVIEWER
 	{
 		"toppair/peek.nvim",
 		event = { "VeryLazy" },
@@ -122,49 +129,6 @@ return {
 	},
 
 	-- BEAUTIFY
-	{
-		"yujinyuz/gitpad.nvim",
-		cmd = { "Note", "NoteBranch" },
-		keys = {
-			{
-				"<leader>n",
-				function()
-					require("gitpad").toggle_gitpad()
-				end,
-				desc = "Open note (gitpad)",
-			},
-			{
-				"<leader>b",
-				function()
-					require("gitpad").toggle_gitpad_branch()
-				end,
-				desc = "Open note per branch (gitpad)",
-			},
-		},
-		config = function()
-			require("gitpad").setup({
-				dir = os.getenv("HOME") .. "/.vim/notes/",
-				on_attach = function(bufnr)
-					vim.api.nvim_buf_set_keymap(bufnr, "n", "q", "<Cmd>wq<CR>", { noremap = true, silent = true })
-					vim.api.nvim_buf_set_keymap(bufnr, "n", "<c-[>", "<Cmd>wq<CR>", { noremap = true, silent = true })
-				end,
-			})
-
-			vim.api.nvim_create_user_command("Note", function()
-				require("gitpad").toggle_gitpad()
-			end, { nargs = 0 })
-
-			vim.api.nvim_create_user_command("NoteBranch", function()
-				require("gitpad").toggle_gitpad_branch()
-			end, { nargs = 0 })
-		end,
-	},
-	{
-		"j-hui/fidget.nvim",
-		tag = "legacy",
-		event = "LspAttach",
-		opts = { window = { relative = "win", blend = 0, zindex = nil, border = "none" } },
-	},
 	{
 		"echasnovski/mini.icons",
 		version = false,
