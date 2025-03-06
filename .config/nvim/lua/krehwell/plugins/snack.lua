@@ -11,6 +11,7 @@ return {
 		scroll = { enabled = false },
 		scope = { enabled = false },
 		statuscolumn = { enabled = false },
+		picker = { enabled = false },
 		bigfile = { enabled = true },
 		dashboard = {
 			enabled = true,
@@ -26,9 +27,9 @@ return {
 					height = 12,
 				},
 				{ title = "MRU ", file = vim.fn.fnamemodify(".", ":~"), padding = 1 },
-				{ section = "recent_files", limit = 8, padding = 1 },
-				{ title = "MRU", padding = 1 },
 				{ section = "recent_files", cwd = true, limit = 8, padding = 1 },
+				{ title = "MRU", padding = 1 },
+				{ section = "recent_files", limit = 8, padding = 1 },
 				{ title = "Sessions", padding = 1 },
 				{ section = "projects", padding = 1 },
 				{
@@ -74,11 +75,7 @@ return {
 				end,
 			},
 		},
-		notifier = {
-			enabled = true,
-			timeout = 3000,
-		},
-		picker = { enabled = true },
+		notifier = { enabled = true, timeout = 3000 },
 		quickfile = { enabled = true },
 		words = { enabled = true, debounce = 50 },
 		styles = {
@@ -106,7 +103,7 @@ return {
 		{
 			"<leader>z",
 			function()
-				Snacks.zen()
+				Snacks.zen({ win = { backdrop = { transparent = false } } })
 			end,
 			desc = "Toggle Zen Mode",
 		},
@@ -124,22 +121,22 @@ return {
 			end,
 			desc = "Select Scratch Buffer",
 		},
-		{
-			"]]",
-			function()
-				Snacks.words.jump(vim.v.count1)
-			end,
-			desc = "Next Reference",
-			mode = { "n", "t" },
-		},
-		{
-			"[[",
-			function()
-				Snacks.words.jump(-vim.v.count1)
-			end,
-			desc = "Prev Reference",
-			mode = { "n", "t" },
-		},
+		-- {
+		-- 	"]]",
+		-- 	function()
+		-- 		Snacks.words.jump(vim.v.count1)
+		-- 	end,
+		-- 	desc = "Next Reference",
+		-- 	mode = { "n", "t" },
+		-- },
+		-- {
+		-- 	"[[",
+		-- 	function()
+		-- 		Snacks.words.jump(-vim.v.count1)
+		-- 	end,
+		-- 	desc = "Prev Reference",
+		-- 	mode = { "n", "t" },
+		-- },
 	},
 	init = function()
 		vim.api.nvim_create_autocmd("User", {

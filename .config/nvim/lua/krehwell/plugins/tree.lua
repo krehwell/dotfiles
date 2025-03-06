@@ -17,6 +17,9 @@ end
 
 return {
 	"stevearc/oil.nvim",
+	dependencies = {
+		{ "echasnovski/mini.icons", opts = {} },
+	},
 	ft = { "oil" },
 	---@module 'oil'
 	---@type oil.SetupOpts
@@ -24,6 +27,11 @@ return {
 		lsp_file_methods = {
 			enabled = true,
 			timeout_ms = 10000,
+		},
+
+		buf_options = {
+			buflisted = true,
+			bufhidden = "hide",
 		},
 
 		watch_for_changes = true,
@@ -51,15 +59,6 @@ return {
 		prompt_save_on_select_new_entry = false,
 		win_options = {
 			winbar = "%!v:lua.get_oil_winbar()",
-		},
-	},
-	dependencies = {
-		{ "echasnovski/mini.icons", opts = {} },
-		{
-			"antosha417/nvim-lsp-file-operations",
-			config = function()
-				require("lsp-file-operations").setup()
-			end,
 		},
 	},
 	keys = {

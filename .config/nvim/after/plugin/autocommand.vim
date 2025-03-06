@@ -1,7 +1,8 @@
 " ----- RELOAD FILE WHEN REFOCUS
 augroup reload_file_on_focus
     autocmd!
-    autocmd FocusGained * checktime
+    " autocmd BufEnter,FocusGained,WinEnter,CursorHold * if &ft == 'typescriptreact' | checktime | endif
+    autocmd CursorHold * if &ft == 'typescriptreact' | checktime | endif
 augroup END
 
 
@@ -67,6 +68,7 @@ function! WipeoutInactiveBufs()
         endif
     endfor
     echomsg nWipeouts . ' buffer(s) wiped out'
+    :bufdo e
 endfunction
 command! -nargs=0 LsWipeInactive :call WipeoutInactiveBufs()
 command! -nargs=0 LswipeInactive :call WipeoutInactiveBufs()
@@ -81,7 +83,7 @@ function! RemoveQFItem()
     call remove(qfall, curqfidx)
     call setqflist(qfall, 'r')
     execute curqfidx + 1 . "cfirst"
-    :copen
+    " :copen
 endfunction
 :command! RemoveQFItem :call RemoveQFItem()
 " Use map <buffer> to only map dd in the quickfix window. Requires +localmap

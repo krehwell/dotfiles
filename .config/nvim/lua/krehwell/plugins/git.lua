@@ -9,6 +9,7 @@ return {
 			config = function()
 				vim.cmd([[
                     augroup FugitiveToggleMapping
+                        autocmd!
                         autocmd Filetype fugitive nnoremap <buffer> gs :q<cr>
                     augroup END
                 ]])

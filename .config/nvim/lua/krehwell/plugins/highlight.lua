@@ -1,7 +1,5 @@
 return {
-	-- "echasnovski/mini.hipatterns",
 	"uga-rosa/ccc.nvim",
-	-- enabled = false,
 	event = "BufReadPre",
 	config = function()
 		local ccc = require("ccc")
@@ -15,7 +13,7 @@ return {
 	keys = {
 		{
 			"<leader>c",
-            "<cmd>:CccConvert<CR>",
+			"<cmd>:CccConvert<CR>",
 			desc = "Toggle highlight color",
 		},
 	},

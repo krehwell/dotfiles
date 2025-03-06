@@ -1,24 +1,23 @@
 local blink = {
 	"saghen/blink.cmp",
 	event = "BufReadPre",
-	version = "v0.*",
-	dependencies = { "rafamadriz/friendly-snippets", "moyiz/blink-emoji.nvim" },
+	version = "*",
+	dependencies = {
+		"rafamadriz/friendly-snippets",
+		"moyiz/blink-emoji.nvim",
+	},
+
 	---@module 'blink.cmp'
 	---@type blink.cmp.Config
 	opts = {
-		keymap = {
-			preset = "enter",
-		},
+		keymap = { preset = "enter" },
+		cmdline = { enabled = true },
+		appearance = { use_nvim_cmp_as_default = true },
+		fuzzy = { implementation = "prefer_rust_with_warning" },
 
 		sources = {
-			default = { "lazydev", "emoji", "lsp", "path", "snippets", "buffer" },
+			default = { "emoji", "snippets", "lsp", "path", "buffer" },
 			providers = {
-				lazydev = {
-					name = "LazyDev",
-					module = "lazydev.integrations.blink",
-					-- make lazydev completions top priority (see `:h blink.cmp`)
-					score_offset = 100,
-				},
 				emoji = {
 					module = "blink-emoji",
 					name = "Emoji",
@@ -26,29 +25,9 @@ local blink = {
 					opts = { insert = true }, -- Insert emoji (default) or complete its name
 				},
 			},
-
-			cmdline = function()
-				local type = vim.fn.getcmdtype()
-				if type == "/" or type == "?" then
-					return { "buffer" }
-				end
-				if type == ":" then
-					return { "cmdline" }
-				end
-				return {}
-			end,
-
-			min_keyword_length = function()
-				local type = vim.fn.getcmdtype()
-				if type == "/" or type == "?" then
-					return 15
-				end
-				if type == ":" then
-					return 3
-				end
-				return 0
-			end,
 		},
+
+		snippets = { preset = "luasnip" },
 
 		completion = {
 			trigger = {
@@ -59,33 +38,17 @@ local blink = {
 			},
 			accept = { auto_brackets = { enabled = true } },
 			list = {
-				max_items = 100,
+				-- max_items = 30,
 				selection = { preselect = true, auto_insert = true },
 			},
 			documentation = {
 				auto_show = true,
 				-- auto_show_delay_ms = 200,
 			},
-			menu = {
-				draw = {
-					padding = 1,
-					gap = 2,
-				},
-				auto_show = function(ctx)
-					if ctx.mode == "cmdline" then
-						return true
-					elseif vim.tbl_contains({ "/", "?" }, vim.fn.getcmdtype()) then
-						return true
-					end
-					return true
-				end,
-				enabled = true,
-			},
+			menu = { draw = { padding = 1, gap = 2 }, enabled = true },
 		},
 
-		signature = {
-			enabled = true,
-		},
+		signature = { enabled = true },
 	},
 }
 

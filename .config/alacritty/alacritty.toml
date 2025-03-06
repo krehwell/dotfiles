@@ -2,11 +2,11 @@
 live_config_reload = true
 
 [colors]
-primary = { background = "#18191A", foreground = "#cdcdcd" }
-cursor = { text = "#18191a", cursor = "#d2a374" }
-selection = { text = "#151515", background = "#d0d0d0" }
-normal = { black = "#18191a", red = "#be8c8c", green = "#a1b3b9", yellow = "#deb896", blue = "#8ca0dc", magenta = "#b9a3ba", cyan = "#bad1ce", white = "#cdcdcd" }
-bright = { black = "#505050", red = "#d2788c", green = "#8faf77", yellow = "#d2a374", blue = "#7894ab", magenta = "#b9a3ba", cyan = "#c7c7d4", white = "#f5f5f5" }
+primary = { background = "#0e1415", foreground = "#cecece" }
+cursor = { text = "#0e1415", cursor = "#cd974b" }
+selection = { text = "#000000", background = "#293334" }
+normal = { black = "#000000", red = "#d2322d", green = "#6abf40", yellow = "#cd974b", blue = "#217EBC", magenta = "#9B3596", cyan = "#178F79", white = "#cecece" }
+bright = { black = "#333333", red = "#c33c33", green = "#95cb82", yellow = "#dfdf8e", blue = "#71aed7", magenta = "#cc8bc9", cyan = "#47BEA9", white = "#ffffff" }
 
 [window]
     option_as_alt = "Both"

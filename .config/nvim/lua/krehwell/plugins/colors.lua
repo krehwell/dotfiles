@@ -1,90 +1,134 @@
 -- vim.cmd("syntax off")
 vim.opt.termguicolors = true
-vim.opt.background = "dark"
+-- vim.opt.background = "dark"
+
+local dim_my_highlights = function()
+	vim.api.nvim_set_hl(0, "CodeiumSuggestion", { fg = "#808080" })
+	vim.api.nvim_set_hl(0, "NoSyntaxColoring", { fg = "#cecece" })
+	vim.api.nvim_set_hl(0, "Module", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "Constant", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "String", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "Character", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "Number", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "Boolean", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "Float", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "Operator", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "Identifier", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "Function", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "Statement", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "Conditional", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "Repeat", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "Label", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "Keyword", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "Exception", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "PreProc", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "Include", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "Define", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "Macro", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "PreCondit", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "Type", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "StorageClass", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "Structure", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "Typedef", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "Special", { link = "NoSyntaxColoring" })
+	-- vim.api.nvim_set_hl(0, "SpecialComment", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "TSConstructor", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "TSConditional", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "TSConstBuiltin", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "TSConstMacro", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "TSError", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "TSException", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "TSField", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "TSFunction", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "TSFuncBuiltin", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "TSFuncMacro", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "TSKeyword", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "TSKeywordFunction", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "TSLabel", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "TSMethod", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "TSNamespace", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "TSNone", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "TSParameter", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "TSParameterReference", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "TSProperty", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "TSPunctDelimiter", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "TSPunctBracket", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "TSPunctSpecial", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "TSRepeat", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "TSString", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "TSStringRegex", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "TSStringEscape", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "TSSymbol", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "TSType", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "TSTypeBuiltin", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "TSVariable", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "TSVariableBuiltin", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "TSTag", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "TSTagDelimiter", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "TSText", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "@constructor", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "@conditional", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "@constant.builtin", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "@constant.macro", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "@error", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "@exception", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "@field", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "@function", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "@function.builtin", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "@function.macro", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "@keyword", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "@keyword.function", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "@label", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "@method", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "@module", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "@namespace", { link = "NoSyntaxColoring" })
+	-- vim.api.nvim_set_hl(0, "@none", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "@parameter", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "@parameter.reference", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "@property", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "@punctuation.delimiter", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "@punctuation.bracket", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "@punctuation.special", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "@repeat", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "@string", { link = "NoSyntaxColoring" })
+	-- vim.api.nvim_set_hl(0, "@string.regex", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "@string.escape", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "@symbol", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "@type", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "@type.builtin", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "@variable", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "@variable.builtin", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "@AlabasterConstant", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "@AlabasterDefinition", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "@AlabasterPunct", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "@AlabasterString", { link = "NoSyntaxColoring" })
+end
 
 return {
-	"vague2k/vague.nvim",
+	"p00f/alabaster.nvim",
 	config = function()
-		require("vague").setup({
-			transparent = false, -- don't set background
-			style = {
-				-- "none" is the same thing as default. But "italic" and "bold" are also valid options
-				boolean = "none",
-				number = "none",
-				float = "none",
-				error = "none",
-				comments = "italic",
-				conditionals = "none",
-				functions = "none",
-				headings = "bold",
-				operators = "none",
-				strings = "italic",
-				variables = "none",
+		vim.g.alabaster_dim_comments = true
+		vim.g.alabaster_floatborder = true
+		vim.cmd([[ let &statusline='%#WinSeparator#' ]]) -- color the split window dashes
 
-				-- keywords
-				keywords = "none",
-				keyword_return = "none",
-				keywords_loop = "none",
-				keywords_label = "none",
-				keywords_exception = "none",
+		local current_ft = ""
+		vim.api.nvim_create_autocmd({ "BufEnter", "FileType", "BufLeave" }, {
+			pattern = "*",
+			callback = function()
+				local new_ft = vim.bo.filetype
 
-				-- builtin
-				builtin_constants = "none",
-				builtin_functions = "none",
-				builtin_types = "none",
-				builtin_variables = "none",
-			},
-			-- Override colors
-			colors = {
-				bg = "#18191A",
-				fg = "#cdcdcd",
-				floatBorder = "#878787",
-				line = "#282830",
-				comment = "#646477",
-				builtin = "#cdcdcd",
-				func = "#cdcdcd",
-				string = "#cdcdcd",
-				number = "#cdcdcd",
-				property = "#c7c7d4",
-				constant = "#cdcdcd",
-				parameter = "#cdcdcd",
-				visual = "#363738",
-				error = "#d2788c",
-				warning = "#e6be8c",
-				hint = "#8ca0dc",
-				operator = "#96a3b2",
-				keyword = "#7894ab",
-				type = "#cdcdcd",
-				search = "#465362",
-				plus = "#8faf77",
-				delta = "#e6be8c",
-
-				-- bg = "#18191a",
-				-- fg = "#cdcdcd",
-				-- floatBorder = "#878787",
-				-- line = "#282830",
-				-- comment = "#646477",
-				-- builtin = "#bad1ce",
-				-- func = "#be8c8c",
-				-- string = "#deb896",
-				-- number = "#d2a374",
-				-- property = "#c7c7d4",
-				-- constant = "#b4b4ce",
-				-- parameter = "#b9a3ba",
-				-- visual = "#363738",
-				-- error = "#d2788c",
-				-- warning = "#e6be8c",
-				-- hint = "#8ca0dc",
-				-- operator = "#96a3b2",
-				-- keyword = "#7894ab",
-				-- type = "#a1b3b9",
-				-- search = "#465362",
-				-- plus = "#8faf77",
-				-- delta = "#e6be8c",
-			},
+				-- dim_my_highlights()
+				-- if new_ft ~= current_ft then
+				-- 	current_ft = new_ft
+				-- 	if new_ft == "typescriptreact" or new_ft == "typescript" or new_ft == "javascript" then
+				dim_my_highlights()
+				-- 	else
+				-- 		vim.cmd("colorscheme alabaster")
+				-- 	end
+				-- end
+			end,
 		})
 
-		vim.cmd([[ colorscheme vague ]])
-		vim.cmd([[ let &statusline='%#WinSeparator#' ]]) -- color the split window dashes
+		vim.cmd("colorscheme alabaster")
 	end,
 }

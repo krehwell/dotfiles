@@ -1,6 +1,6 @@
 -- indentation behaviour
 vim.cmd([[
-  filetype plugin indent on
+  " filetype plugin indent on
 ]])
 
 vim.loader.enable()
@@ -52,7 +52,8 @@ vim.opt.fillchars = {
 	stlnc = "—",
 	stl = "—",
 }
-vim.opt.jumpoptions:append("view")
+-- vim.opt.jumpoptions:append("stack")
+vim.opt.jumpoptions:append("clean")
 -- vim.opt.virtualedit = "block"
 
 -- SEARCH/FIND BEHAVIOR

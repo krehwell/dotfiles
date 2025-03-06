@@ -9,6 +9,12 @@ if status is-interactive
     alias tmux='tmux -2'
     alias rm='trash'
 
+    set -x DEEPSEEK_API_KEY ""
+    set -x GEMINI_API_KEY ""
+    set -x ANTHROPIC_API_KEY ""
+
+    set fish_cursor_insert block
+
     function postexec_test --on-event fish_postexec
         echo
     end

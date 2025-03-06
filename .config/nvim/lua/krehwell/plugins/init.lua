@@ -11,11 +11,7 @@ return {
 			},
 		},
 	},
-	{
-		"folke/persistence.nvim",
-		event = "BufReadPre",
-		opts = {},
-	},
+	{ "folke/persistence.nvim", event = "BufReadPre", opts = {} },
 	{
 		"zeioth/garbage-day.nvim",
 		dependencies = "neovim/nvim-lspconfig",
@@ -24,34 +20,46 @@ return {
 	},
 	{
 		"folke/trouble.nvim",
-		cmd = "TroubleToggle",
+		opts = {},
+		cmd = "Trouble",
 		keys = {
-			{ "<leader>xx", ":lua require('trouble').toggle()<CR>", desc = "Trouble toggle" },
 			{
-				"<leader>xw",
-				":lua require('trouble').toggle('workspace_diagnostics')<CR>",
-				desc = "Trouble Workspace Diagnostics",
+				"<leader>xx",
+				"<cmd>Trouble diagnostics toggle<cr>",
+				desc = "Diagnostics (Trouble)",
 			},
-			{
-				"<leader>xd",
-				":lua require('trouble').toggle('document_diagnostics')<CR>",
-				desc = "Trouble Document Diagnostics",
-			},
-			{ "<leader>xq", "require('trouble').toggle('quickfix')<CR>", desc = "Trouble Quickfix" },
-			{ "<leader>xl", "require('trouble').toggle('loclist')<CR>", desc = "Trouble Location List" },
 		},
 	},
-	{ "chrisgrieser/nvim-early-retirement", event = "InsertEnter", opts = { retirementAgeMins = 5 } },
-	-- {
-	-- 	"NMAC427/guess-indent.nvim",
-	-- 	config = function()
-	-- 		require("guess-indent").setup({})
-	-- 	end,
-	-- },
+	{ "chrisgrieser/nvim-early-retirement", event = "InsertEnter", opts = { retirementAgeMins = 15 } },
+	{
+		"axelvc/template-string.nvim",
+		config = function()
+			require("template-string").setup({
+				filetypes = {
+					"html",
+					"typescript",
+					"javascript",
+					"typescriptreact",
+					"javascriptreact",
+					"vue",
+					"svelte",
+					"python",
+					"cs",
+				},
+				jsx_brackets = true, -- must add brackets to JSX attributes
+				remove_template_string = true, -- remove backticks when there are no template strings
+				restore_quotes = {
+					normal = [["]],
+					jsx = [["]],
+				},
+			})
+		end,
+	},
 	-- MARKDOWN PREVIEWER
 	{
 		"toppair/peek.nvim",
 		event = { "VeryLazy" },
+		ft = { "markdown", "md" },
 		build = "deno task --quiet build:fast",
 		config = function()
 			require("peek").setup()
@@ -66,18 +74,10 @@ return {
 		event = "FileType qf",
 		---@module "quicker"
 		---@type quicker.SetupOptions
-		opts = {},
+		opts = {
+			wrap = false,
+		},
 		config = function()
-			vim.keymap.set("n", "<leader>q", function()
-				require("quicker").toggle()
-			end, {
-				desc = "Toggle quickfix",
-			})
-			vim.keymap.set("n", "<leader>l", function()
-				require("quicker").toggle({ loclist = true })
-			end, {
-				desc = "Toggle loclist",
-			})
 			require("quicker").setup({
 				keys = {
 					{
@@ -137,9 +137,9 @@ return {
 			require("mini.icons").setup()
 		end,
 	},
-	{ "p00f/alabaster.nvim", priority = 1000, event = "VeryLazy" },
-	{ "projekt0n/github-nvim-theme", priority = 1000, event = "VeryLazy" },
-	{ "xero/miasma.nvim", priority = 1000, event = "VeryLazy" },
-	{ "sainnhe/gruvbox-material", event = "VeryLazy", priority = 1000 },
-	{ "HoNamDuong/hybrid.nvim", event = "VeryLazy", priority = 1000 },
+	-- { "p00f/alabaster.nvim", priority = 1000, event = "VeryLazy" },
+	-- { "projekt0n/github-nvim-theme", priority = 1000, event = "VeryLazy" },
+	-- { "xero/miasma.nvim", priority = 1000, event = "VeryLazy" },
+	-- { "sainnhe/gruvbox-material", event = "VeryLazy", priority = 1000 },
+	-- { "HoNamDuong/hybrid.nvim", event = "VeryLazy", priority = 1000 },
 }

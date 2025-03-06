@@ -13,10 +13,10 @@ local on_attach = function(bufnr)
 	vim.keymap.set("n", "]e", ":lua vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })<CR>", opts)
 
 	-- LSP WITH FZF
-	vim.keymap.set("n", "gd", ":lua require('fzf-lua').lsp_definitions({ jump_to_single_result = true })<cr>", opts)
-	vim.keymap.set("n", "gD", ":lua require('fzf-lua').lsp_declaration({ jump_to_single_result = true })<cr>", opts)
-	vim.keymap.set("n", "gi", ":lua require('fzf-lua').lsp_implementations({ jump_to_single_result = true })<cr>", opts)
-	vim.keymap.set("n", "gy", ":lua require('fzf-lua').lsp_typedefs({ jump_to_single_result = true })<cr>", opts)
+	vim.keymap.set("n", "gd", ":lua require('fzf-lua').lsp_definitions({ jump1 = true })<cr>", opts)
+	vim.keymap.set("n", "gD", ":lua require('fzf-lua').lsp_declaration({ jump1 = true })<cr>", opts)
+	vim.keymap.set("n", "gi", ":lua require('fzf-lua').lsp_implementations({ jump1 = true })<cr>", opts)
+	vim.keymap.set("n", "gy", ":lua require('fzf-lua').lsp_typedefs({ jump1 = true })<cr>", opts)
 	vim.keymap.set("n", "gr", ":lua require('fzf-lua').lsp_references({ ignore_current_line = true })<cr>", opts)
 	vim.keymap.set("n", "ge", ":lua vim.diagnostic.open_float(nil, { focus=false, scope='cursor' })<cr>", opts)
 	vim.keymap.set("n", "gx", "<cmd>FzfLua lsp_code_actions<cr>", opts)
@@ -45,11 +45,12 @@ local on_attach = function(bufnr)
 end
 
 local diagnostic_config = {
+	show_diagnostic_autocmds = { "InsertLeave", "TextChanged" },
 	virtual_text = {
 		-- prefix = '●'
 	},
 	update_in_insert = true,
-	signs = true,
+	signs = false,
 	underline = true,
 	severity_sort = true,
 	float = {
