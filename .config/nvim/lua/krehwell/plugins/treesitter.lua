@@ -71,6 +71,7 @@ return {
 		-- 			["[["] = "@function.outer",
 		-- 		},
 		-- 	},
+		-- },
 		--
 		-- 	select = {
 		-- 		enable = true,
@@ -93,9 +94,6 @@ return {
 
 	config = function(_, opts)
 		vim.opt.smartindent = true
-
-		local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-		parser_config.tsx.filetype_to_parsername = { "javascript", "typescript.tsx" }
 
 		require("nvim-treesitter.configs").setup(opts)
 	end,

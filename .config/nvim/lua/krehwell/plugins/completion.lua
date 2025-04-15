@@ -31,21 +31,28 @@ local blink = {
 
 		completion = {
 			trigger = {
-				prefetch_on_insert = true,
+				prefetch_on_insert = false,
 			},
 			keyword = {
 				range = "prefix",
 			},
-			accept = { auto_brackets = { enabled = true } },
+			accept = { auto_brackets = { enabled = false } },
 			list = {
 				-- max_items = 30,
 				selection = { preselect = true, auto_insert = true },
 			},
 			documentation = {
 				auto_show = true,
-				-- auto_show_delay_ms = 200,
+				auto_show_delay_ms = 150,
 			},
-			menu = { draw = { padding = 1, gap = 2 }, enabled = true },
+			menu = {
+				draw = {
+					padding = 1,
+					gap = 2,
+					treesitter = { "lsp" },
+				},
+				enabled = true,
+			},
 		},
 
 		signature = { enabled = true },

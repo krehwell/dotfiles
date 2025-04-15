@@ -22,17 +22,25 @@ return {
 				settings = {
 					typescript = {
 						tsserver = {
-							maxTsServerMemory = 4000,
+							-- maxTsServerMemory = 4000,
 						},
 						updateImportsOnFileMove = {
 							enabled = "always",
 						},
-						suggest = {
-							completeFunctionCalls = true,
-						},
 						inlayHints = false,
 						preferences = {
 							importModuleSpecifier = "auto",
+							includePackageJsonAutoImports = "off",
+							disableSuggestions = true,
+							autoImportFileExcludePatterns = {
+								"**/@mui/**",
+								"**/*vidstack/**",
+								"**/next/dist/**",
+								"**/@dnd-kit/**",
+								"@knowt/editor",
+								"**/@sentry/**",
+								"**/e2e/**",
+							},
 						},
 					},
 					vtsls = {
@@ -84,15 +92,15 @@ return {
 			-- 	single_file_support = true,
 			-- },
 
-			denols = {
-				root_dir = require("lspconfig").util.root_pattern("deno.json", "deno.jsonc", "deno.lock"),
-			},
+			-- denols = {
+			-- 	root_dir = require("lspconfig").util.root_pattern("deno.json", "deno.jsonc", "deno.lock"),
+			-- },
 
 			-- jsonls = {
 			-- 	settings = { json = { schemas = require("schemastore").json.schemas() } },
 			-- },
 			-- tailwindcss = {},
-            typos_lsp = {},
+			typos_lsp = {},
 			biome = {},
 			cssls = {},
 			cssmodules_ls = {},
@@ -114,18 +122,10 @@ return {
 		end
 
 		vim.api.nvim_create_autocmd("LspAttach", {
-			desc = "LSP UI Setup",
+			desc = "LSP User Setup",
 			callback = function(event)
 				vim.diagnostic.config(lsp_utils.diagnostic_config)
 				lsp_utils.on_attach(event.buf)
-
-				vim.lsp.handlers["textDocument/hover"] =
-					vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded", max_height = 20, max_width = 80 })
-
-				vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-					vim.lsp.handlers.signature_help,
-					{ border = "rounded", max_height = 20, max_width = 80 }
-				)
 			end,
 		})
 	end,

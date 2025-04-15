@@ -13,6 +13,24 @@ return {
 				},
 			},
 		},
+		sources = {
+			treesitter = {
+				valid_types = {
+					"constructor",
+					"function",
+				},
+                max_depth = 2,
+			},
+			lsp = {
+				valid_types = {
+					"constructor",
+					"function",
+				},
+                max_depth = 2,
+			},
+		},
 	},
-	config = function(_, opts) end,
+	config = function(_, opts)
+		require("dropbar").setup(opts)
+	end,
 }

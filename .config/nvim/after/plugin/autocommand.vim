@@ -1,12 +1,11 @@
 " ----- RELOAD FILE WHEN REFOCUS
 augroup reload_file_on_focus
     autocmd!
-    " autocmd BufEnter,FocusGained,WinEnter,CursorHold * if &ft == 'typescriptreact' | checktime | endif
-    autocmd CursorHold * if &ft == 'typescriptreact' | checktime | endif
+    autocmd BufEnter,FocusGained,WinEnter * checktime
 augroup END
 
 
-" ----- RELATIVE LINE NUMBERS ON NECESSSARY
+" ----- RELATIVE LINE NUMBERS ON NECESSARY
 augroup numbertoggle
   autocmd!
   autocmd BufEnter,FocusGained,WinEnter * if &nu && mode() != "i" | set rnu   | endif
@@ -43,7 +42,7 @@ endfunction
 
 
 " ----- NOAUTOCOMMENT TO ALL FILES -----
-" augroup AutoCommetDisable
+" augroup AutoCommentDisable
 "     autocmd!
 "     autocmd FileType * set formatoptions-=cro
 " augroup END

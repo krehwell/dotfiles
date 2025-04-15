@@ -137,6 +137,12 @@ return {
 			require("mini.icons").setup()
 		end,
 	},
+	{
+		"j-hui/fidget.nvim",
+		tag = "legacy",
+		event = "LspAttach",
+		opts = { window = { relative = "win", blend = 0, zindex = nil, border = "none" } },
+	},
 	-- { "p00f/alabaster.nvim", priority = 1000, event = "VeryLazy" },
 	-- { "projekt0n/github-nvim-theme", priority = 1000, event = "VeryLazy" },
 	-- { "xero/miasma.nvim", priority = 1000, event = "VeryLazy" },

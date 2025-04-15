@@ -8,6 +8,7 @@ return {
 
 		vim.api.nvim_create_user_command("Ls", "FzfLua buffers", { nargs = 0, bang = true })
 		vim.api.nvim_create_user_command("LS", "FzfLua buffers", { nargs = 0, bang = true })
+		vim.api.nvim_create_user_command("Lls", "FzfLua buffers", { nargs = 0, bang = true })
 
 		require("fzf-lua").setup({
 			winopts = {
@@ -48,7 +49,7 @@ return {
 				glob_separator = "%s%-%-",
 				rg_opts = "--column --line-number --no-heading --color=always --smart-case --max-columns=4096 "
 					.. "-g '!apps/mobile/*' "
-					.. "-g '!apps/backend/*' "
+					-- .. "-g '!apps/backend/*' "
 					.. "-g '!apps/chrome-extension/' "
 					.. "-g '!*/yarn.lock' "
 					.. "-g '!yarn.lock' "
@@ -73,7 +74,8 @@ return {
 			},
 
 			buffers = {
-				winopts = { height = 0.6, width = 0.5 },
+				formatter = "path.filename_first",
+				winopts = { height = 0.7, width = 0.6 },
 				previewer = false,
 				actions = {
 					["ctrl-d"] = { fn = actions.buf_del, reload = true },
@@ -122,6 +124,8 @@ return {
 			desc = "Project find files",
 			silent = true,
 		},
-		{ "<leader>p", "<cmd>lua require('fzf-lua').git_files()<CR>", desc = "Git files", silent = true },
+		{ "<leader>p", "<cmd>lua require('fzf-lua').git_files()<CR>", desc = "FzfLua Git files", silent = true },
+		{ "<leader>l", "<cmd>lua require('fzf-lua').buffers()<CR>", desc = "FzfLua Buffers", silent = true },
+		{ "<leader>t", "<cmd>lua require('fzf-lua').tagstack()<CR>", desc = "FzfLua Tag Stack", silent = true },
 	},
 }

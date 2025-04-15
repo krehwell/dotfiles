@@ -30,6 +30,7 @@ vim.opt.splitbelow = true
 vim.opt.eadirection = "both"
 vim.opt.equalalways = true
 vim.opt.title = true
+vim.o.winborder = "rounded"
 
 -- NAVIGATION BEHAVIOR
 vim.opt.wrap = false

@@ -12,6 +12,10 @@ return {
 		scope = { enabled = false },
 		statuscolumn = { enabled = false },
 		picker = { enabled = false },
+		scratch = { enabled = false },
+		notifier = { enabled = false, timeout = 3000 },
+
+		quickfile = { enabled = true },
 		bigfile = { enabled = true },
 		dashboard = {
 			enabled = true,
@@ -22,9 +26,8 @@ return {
 					section = "terminal",
 					cmd = "fortune -s | cowsay",
 					hl = "header",
-					padding = 1,
+					padding = 2,
 					indent = 8,
-					height = 12,
 				},
 				{ title = "MRU ", file = vim.fn.fnamemodify(".", ":~"), padding = 1 },
 				{ section = "recent_files", cwd = true, limit = 8, padding = 1 },
@@ -75,31 +78,10 @@ return {
 				end,
 			},
 		},
-		notifier = { enabled = true, timeout = 3000 },
-		quickfile = { enabled = true },
 		words = { enabled = true, debounce = 50 },
-		styles = {
-			notification = {
-				-- wo = { wrap = true } -- Wrap notifications
-			},
-		},
+		styles = {},
 	},
 	keys = {
-		{
-			"<leader><space>",
-			function()
-				Snacks.picker.smart()
-			end,
-			desc = "Smart Find Files",
-		},
-		{
-			"<leader>n",
-			function()
-				Snacks.picker.notifications()
-			end,
-			desc = "Notification History",
-		},
-		-- Other
 		{
 			"<leader>z",
 			function()
@@ -107,36 +89,6 @@ return {
 			end,
 			desc = "Toggle Zen Mode",
 		},
-		{
-			"<leader>.",
-			function()
-				Snacks.scratch()
-			end,
-			desc = "Toggle Scratch Buffer",
-		},
-		{
-			"<leader>,",
-			function()
-				Snacks.scratch.select()
-			end,
-			desc = "Select Scratch Buffer",
-		},
-		-- {
-		-- 	"]]",
-		-- 	function()
-		-- 		Snacks.words.jump(vim.v.count1)
-		-- 	end,
-		-- 	desc = "Next Reference",
-		-- 	mode = { "n", "t" },
-		-- },
-		-- {
-		-- 	"[[",
-		-- 	function()
-		-- 		Snacks.words.jump(-vim.v.count1)
-		-- 	end,
-		-- 	desc = "Prev Reference",
-		-- 	mode = { "n", "t" },
-		-- },
 	},
 	init = function()
 		vim.api.nvim_create_autocmd("User", {
