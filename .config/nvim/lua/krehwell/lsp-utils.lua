@@ -18,6 +18,18 @@ local on_attach = function(bufnr)
 			range = { ["start"] = vim.api.nvim_buf_get_mark(0, "<"), ["end"] = vim.api.nvim_buf_get_mark(0, ">") },
 		})
 	end, opts)
+	vim.keymap.set("n", "[d", function()
+		vim.diagnostic.jump({ count = -1 })
+	end, { desc = "Previous diagnostic" })
+	vim.keymap.set("n", "]d", function()
+		vim.diagnostic.jump({ count = 1 })
+	end, { desc = "Next diagnostic" })
+	vim.keymap.set("n", "[e", function()
+		vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.ERROR })
+	end, { desc = "Previous error" })
+	vim.keymap.set("n", "]e", function()
+		vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.ERROR })
+	end, { desc = "Next error" })
 end
 
 local diagnostic_config = {

@@ -4,6 +4,7 @@ vim.cmd([[
 ]])
 
 vim.loader.enable()
+-- Use an indentation of 4 spaces.
 vim.opt.backspace = "2"
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -31,6 +32,15 @@ vim.opt.eadirection = "both"
 vim.opt.equalalways = true
 vim.opt.title = true
 vim.o.winborder = "rounded"
+
+-- Completion.
+vim.opt.wildignore:append({ ".DS_Store" })
+vim.o.completeopt = "menuone,noselect,noinsert"
+vim.o.pumheight = 15
+
+-- SHOW WHITESPACE
+-- vim.opt.list = true
+vim.opt.listchars = { space = "⋅", trail = "⋅", tab = "  ↦" }
 
 -- NAVIGATION BEHAVIOR
 vim.opt.wrap = false
@@ -63,11 +73,20 @@ vim.opt.incsearch = true
 vim.opt.smartcase = true
 -- vim.opt.path:append("**")
 vim.opt.isfname:append("@-@")
-vim.opt.shortmess:append({ f = true }) -- aka `shortmess+=f`
+vim.opt.shortmess:append({
+	w = true,
+	s = true,
+})
+
+-- DISABLE HEALTH CHECKS FOR THESE PROVIDERS.
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_node_provider = 0
 
 -- ETC
 -- vim.opt.hidden = true
--- vim.opt.guicursor = ""
+vim.o.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,t:block-TermCursor"
 vim.opt.termguicolors = true
 vim.opt.buflisted = false
 vim.opt.compatible = false

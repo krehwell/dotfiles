@@ -111,23 +111,35 @@ return {
 		vim.g.alabaster_floatborder = true
 		vim.cmd([[ let &statusline='%#WinSeparator#' ]]) -- color the split window dashes
 
-		local current_ft = ""
 		vim.api.nvim_create_autocmd({ "BufEnter", "FileType", "BufLeave" }, {
+			group = vim.api.nvim_create_augroup("krehwell/dim_my_highlights", { clear = true }),
 			pattern = "*",
+			desc = "Disable syntax highlighting",
 			callback = function()
-				local new_ft = vim.bo.filetype
-
-				-- dim_my_highlights()
-				-- if new_ft ~= current_ft then
-				-- 	current_ft = new_ft
-				-- 	if new_ft == "typescriptreact" or new_ft == "typescript" or new_ft == "javascript" then
 				dim_my_highlights()
-				-- 	else
-				-- 		vim.cmd("colorscheme alabaster")
-				-- 	end
-				-- end
 			end,
 		})
+
+		vim.cmd([[
+            augroup diffcolors
+                autocmd!
+                autocmd Colorscheme * call s:SetDiffHighlights()
+            augroup END
+
+            function! s:SetDiffHighlights()
+                if &background == "dark"
+                    highlight DiffAdd gui=bold guifg=none guibg=#2e4b2e
+                    highlight DiffDelete gui=bold guifg=none guibg=#4c1e15
+                    highlight DiffChange gui=bold guifg=none guibg=#45565c
+                    highlight DiffText gui=bold guifg=none guibg=#996d74
+                else
+                    highlight DiffAdd gui=bold guifg=none guibg=palegreen
+                    highlight DiffDelete gui=bold guifg=none guibg=tomato
+                    highlight DiffChange gui=bold guifg=none guibg=lightblue
+                    highlight DiffText gui=bold guifg=none guibg=lightpink
+                endif
+            endfunction
+        ]])
 
 		vim.cmd("colorscheme alabaster")
 	end,

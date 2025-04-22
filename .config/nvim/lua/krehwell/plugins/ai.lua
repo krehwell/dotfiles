@@ -7,6 +7,8 @@ return {
 		require("codeium").setup({
 			enable_cmp_source = false,
 			quite = true,
+			detect_proxy = false,
+			enable_chat = true,
 			virtual_text = {
 				quite = true,
 				enabled = true,
@@ -22,7 +24,6 @@ return {
 			},
 			workspace_root = {
 				use_lsp = true,
-				find_root = nil,
 				paths = {
 					".bzr",
 					".git",
@@ -50,43 +51,3 @@ return {
 		-- end, { expr = true })
 	end,
 }
-
--- return {
--- 	"milanglacier/minuet-ai.nvim",
--- 	config = function()
--- 		require("minuet").setup({
--- 			provider = "gemini",
--- 			provider_options = {
--- 				gemini = {
--- 					model = "gemini-2.0-flash",
--- 					stream = true,
--- 					api_key = "GEMINI_API_KEY",
--- 				},
--- 				optional = {
--- 					generationConfig = {
--- 						maxOutputTokens = 512,
--- 					},
--- 				},
--- 			},
--- 			cmp = { enable_auto_complete = false },
--- 			blink = { enable_auto_complete = false },
--- 			virtualtext = {
--- 				auto_trigger_ft = { "lua", "typescript", "typescriptreact" },
--- 				keymap = {
--- 					-- accept whole completion
--- 					accept = "<C-l>",
--- 					-- accept one line
--- 					accept_line = "<M-l>",
--- 					-- accept n lines (prompts for number)
--- 					-- e.g. "A-z 2 CR" will accept 2 lines
--- 					-- accept_n_lines = "<A-z>",
--- 					-- Cycle to prev completion item, or manually invoke completion
--- 					prev = "<A-[>",
--- 					-- Cycle to next completion item, or manually invoke completion
--- 					next = "<A-]>",
--- 					dismiss = "<C-c>",
--- 				},
--- 			},
--- 		})
--- 	end,
--- }

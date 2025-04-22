@@ -91,18 +91,27 @@ autocmd FileType qf map <buffer> dd :RemoveQFItem<cr>
 
 " ----- HIGHLIGHT ON YANK
 lua << EOF
-local autocmd = vim.api.nvim_create_autocmd
-local augroup = vim.api.nvim_create_augroup
-local yank_group = augroup('HighlightYank', {})
-autocmd('TextYankPost', {
-    group = yank_group,
-    pattern = '*',
+vim.api.nvim_create_autocmd('TextYankPost', {
+    group = vim.api.nvim_create_augroup('krehwell/yank_highlight', { clear = true }),
+    desc = 'Highlight on yank',
     callback = function()
-        vim.highlight.on_yank({
-            higroup = 'IncSearch',
-            timeout = 40,
-        })
+        vim.hl.on_yank { higroup = 'Visual', priority = 250 }
     end,
 })
 EOF
 
+
+" ----- GO TO LAST LOCATION WHEN OPENING A BUFFER
+lua << EOF
+vim.api.nvim_create_autocmd('BufReadPost', {
+    group = vim.api.nvim_create_augroup('krehwell/last_location', { clear = true }),
+    desc = 'Go to the last location when opening a buffer',
+    callback = function(args)
+        local mark = vim.api.nvim_buf_get_mark(args.buf, '"')
+        local line_count = vim.api.nvim_buf_line_count(args.buf)
+        if mark[1] > 0 and mark[1] <= line_count then
+            vim.cmd 'normal! g`"zz'
+        end
+    end,
+})
+EOF

@@ -14,6 +14,7 @@ return {
 		picker = { enabled = false },
 		scratch = { enabled = false },
 		notifier = { enabled = false, timeout = 3000 },
+		zen = { enabled = false },
 
 		quickfile = { enabled = true },
 		bigfile = { enabled = true },
@@ -81,28 +82,11 @@ return {
 		words = { enabled = true, debounce = 50 },
 		styles = {},
 	},
-	keys = {
-		{
-			"<leader>z",
-			function()
-				Snacks.zen({ win = { backdrop = { transparent = false } } })
-			end,
-			desc = "Toggle Zen Mode",
-		},
-	},
 	init = function()
 		vim.api.nvim_create_autocmd("User", {
 			pattern = "VeryLazy",
 			callback = function()
 				vim.g.snacks_animate = false
-				-- Setup some globals for debugging (lazy-loaded)
-				_G.dd = function(...)
-					Snacks.debug.inspect(...)
-				end
-				_G.bt = function()
-					Snacks.debug.backtrace()
-				end
-				vim.print = _G.dd -- Override print to use snacks for `:=` command
 			end,
 		})
 	end,
