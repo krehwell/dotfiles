@@ -42,10 +42,10 @@ endfunction
 
 
 " ----- NOAUTOCOMMENT TO ALL FILES -----
-" augroup AutoCommentDisable
-"     autocmd!
-"     autocmd FileType * set formatoptions-=cro
-" augroup END
+augroup AutoCommentDisable
+    autocmd!
+    autocmd FileType * set formatoptions-=cro
+augroup END
 
 
 " ----- DELETE BUFFER EXCEPT THE ONEs OPENED ON WINDOWS OR TABS -----
@@ -91,11 +91,17 @@ autocmd FileType qf map <buffer> dd :RemoveQFItem<cr>
 
 " ----- HIGHLIGHT ON YANK
 lua << EOF
-vim.api.nvim_create_autocmd('TextYankPost', {
-    group = vim.api.nvim_create_augroup('krehwell/yank_highlight', { clear = true }),
-    desc = 'Highlight on yank',
+local autocmd = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
+local yank_group = augroup('HighlightYank', {})
+autocmd('TextYankPost', {
+    group = yank_group,
+    pattern = '*',
     callback = function()
-        vim.hl.on_yank { higroup = 'Visual', priority = 250 }
+        vim.highlight.on_yank({
+            higroup = 'IncSearch',
+            timeout = 40,
+        })
     end,
 })
 EOF

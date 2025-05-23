@@ -12,12 +12,27 @@ local on_attach = function(bufnr)
 	vim.keymap.set("n", "ge", ":lua vim.diagnostic.open_float(nil, { focus=false, scope='cursor' })<cr>", opts)
 	vim.keymap.set("n", "gra", "<cmd>FzfLua lsp_code_actions<cr>", opts)
 	vim.keymap.set("n", "grn", vim.lsp.buf.rename, opts)
-	vim.keymap.set("n", "gq", ":lua vim.lsp.buf.format()<CR>", opts)
+
+	-- FORMATTING
+	vim.keymap.set("n", "<leader>gq", ":lua vim.lsp.buf.format()<CR>", opts)
+	-- format like this does not lose the jumplist
+	vim.keymap.set("n", "gq", function()
+		local cur_line = vim.api.nvim_win_get_cursor(0)[1]
+		local start_line = math.max(cur_line - 2, 1)
+		local end_line = cur_line + 2
+		vim.lsp.buf.format({
+			range = {
+				["start"] = { start_line, 0 },
+				["end"] = { end_line, 0 },
+			},
+		})
+	end, opts)
 	vim.keymap.set("v", "gq", function()
 		vim.lsp.buf.format({
 			range = { ["start"] = vim.api.nvim_buf_get_mark(0, "<"), ["end"] = vim.api.nvim_buf_get_mark(0, ">") },
 		})
 	end, opts)
+
 	vim.keymap.set("n", "[d", function()
 		vim.diagnostic.jump({ count = -1 })
 	end, { desc = "Previous diagnostic" })

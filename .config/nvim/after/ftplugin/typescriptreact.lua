@@ -1,5 +1,5 @@
 vim.cmd([[
-	au BufNewFile,BufRead *.tsx	setf typescriptreact
+	au BufNewFile,BufRead,FocusGained,WinEnter,BufEnter *.tsx setf typescriptreact
 ]])
 
 local function console_format()

@@ -10,7 +10,7 @@ local jsts_settings = {
 return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
-		{ "williamboman/mason.nvim", opts = { ui = { border = "rounded" } }, cmd = { "Mason" } },
+		{ "williamboman/mason.nvim", cmd = { "Mason" } },
 		{ "b0o/SchemaStore.nvim", name = "schema-store" },
 	},
 	ft = require("krehwell.lsp-utils").fts,
@@ -108,6 +108,7 @@ return {
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("krehwell/lsp_configure", { clear = true }),
 			desc = "LSP User Setup",
+
 			callback = function(event)
 				vim.diagnostic.config(lsp_utils.diagnostic_config)
 				lsp_utils.on_attach(event.buf)

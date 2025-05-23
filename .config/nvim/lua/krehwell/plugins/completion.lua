@@ -12,8 +12,6 @@ local blink = {
 	opts = {
 		keymap = { preset = "enter" },
 		cmdline = { enabled = true },
-		appearance = { use_nvim_cmp_as_default = true },
-		fuzzy = { implementation = "prefer_rust_with_warning" },
 
 		sources = {
 			default = { "emoji", "snippets", "lsp", "path", "buffer" },

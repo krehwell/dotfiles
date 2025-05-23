@@ -31,7 +31,7 @@ vim.opt.splitbelow = true
 vim.opt.eadirection = "both"
 vim.opt.equalalways = true
 vim.opt.title = true
-vim.o.winborder = "rounded"
+vim.opt.winborder = "rounded"
 
 -- Completion.
 vim.opt.wildignore:append({ ".DS_Store" })
@@ -65,6 +65,7 @@ vim.opt.fillchars = {
 }
 -- vim.opt.jumpoptions:append("stack")
 vim.opt.jumpoptions:append("clean")
+vim.optfoldmethod = "indent"
 -- vim.opt.virtualedit = "block"
 
 -- SEARCH/FIND BEHAVIOR

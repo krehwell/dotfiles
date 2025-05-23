@@ -96,7 +96,7 @@ return {
 
 			git = {
 				files = {
-					prompt = "GitFiles> ",
+					prompt = "Git Files> ",
 					winopts = {
 						height = 0.2,
 						width = 1,
