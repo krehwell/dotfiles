@@ -15,14 +15,18 @@ bright = { black = "#333333", red = "#c33c33", green = "#95cb82", yellow = "#dfd
     startup_mode = "Maximized"
 
 [font]
-    normal = { family = "Consolas NF" }
+    normal = { family = "Consolas Nerd Font Mono" }
     size = 13.5
-    bold = { family = "Consolas NF" }
-    italic = { family = "Consolas NF" }
-    bold_italic = { family = "Consolas NF" }
+    bold = { family = "Consolas Nerd Font Mono" }
+    italic = { family = "Consolas Nerd Font Mono" }
+    bold_italic = { family = "Consolas Nerd Font Mono" }
 
 [keyboard]
     bindings = [
         { key = "p", mods = "Command", chars = "~/utils/tmux-sessionizer\n" },
         { key = "Key6", mods = "Control", chars = "\u001e" }
     ]
+
+[selection]
+    save_to_clipboard = true
+

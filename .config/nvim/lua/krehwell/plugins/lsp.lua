@@ -1,9 +1,19 @@
 local jsts_settings = {
-	suggest = { completeFunctionCalls = true },
+	suggest = { completeFunctionCalls = false },
 	inlayHints = {
 		functionLikeReturnTypes = { enabled = true },
 		parameterNames = { enabled = "literals" },
 		variableTypes = { enabled = true },
+	},
+	preferences = {
+		excludeModuleSpecifierAutoImports = {
+			"@vidstack/*",
+			"@mui/*",
+			"@next/dist",
+		},
+	},
+    updateImportsOnFileMove = {
+		enabled = "always",
 	},
 }
 
@@ -83,7 +93,7 @@ return {
 				},
 			},
 			-- tailwindcss = {},
-			typos_lsp = {},
+			-- typos_lsp = {},
 			biome = {},
 			cssls = {},
 			cssmodules_ls = {},
@@ -96,9 +106,9 @@ return {
 		},
 	},
 	config = function(_, opts)
+		require("mason").setup({})
 		local lsp_utils = require("krehwell.lsp-utils")
 		local lspconfig = require("lspconfig")
-		require("mason").setup({})
 
 		for server, config in pairs(opts.servers) do
 			config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)

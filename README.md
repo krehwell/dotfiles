@@ -4,6 +4,7 @@ Try to be minimalist possible
 
 ## Tools Deps: 
 
+0. `neovim`
 1. `fish`
 2. `tmux`
 3. `rmtrash`

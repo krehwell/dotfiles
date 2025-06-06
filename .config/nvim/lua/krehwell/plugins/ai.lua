@@ -15,7 +15,7 @@ return {
 			virtual_text = {
 				quite = true,
 				enabled = true,
-				idle_delay = 75,
+				-- idle_delay = 75,
 				key_bindings = {
 					accept = "<C-l>",
 					accept_word = "<M-l>",

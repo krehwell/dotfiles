@@ -7,7 +7,7 @@ if status is-interactive
     alias sex='bash -c \'(open . || explorer.exe . || nautilus .) &\''
     alias vim=nvim
     alias tmux='tmux -2'
-    alias rm='trash'
+    alias rm='rmtrash'
 
     set -x GEMINI_API_KEY "AIzaSyDD7SbjH2KTvR_EEaC9mWBE9y3A3u1mdG4"
     status --is-interactive; and rbenv init - fish | source
