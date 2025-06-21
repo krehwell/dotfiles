@@ -11,8 +11,8 @@ return {
 			border = "double",
 		},
 		cache_window = {
-			width = 100,
-			height = 15,
+			width = 300,
+			height = 20,
 		},
 	},
 	keys = {
