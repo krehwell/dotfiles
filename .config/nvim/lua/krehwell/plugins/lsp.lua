@@ -12,7 +12,7 @@ local jsts_settings = {
 			"@next/dist",
 		},
 	},
-    updateImportsOnFileMove = {
+	updateImportsOnFileMove = {
 		enabled = "always",
 	},
 }
@@ -93,7 +93,8 @@ return {
 				},
 			},
 			-- tailwindcss = {},
-			-- typos_lsp = {},
+			typos_lsp = {},
+			typos = {},
 			biome = {},
 			cssls = {},
 			cssmodules_ls = {},

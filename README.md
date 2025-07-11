@@ -32,7 +32,7 @@ defaults write -g InitialKeyRepeat -int 10 # default is 15 (225 ms)
 defaults write -g KeyRepeat -int 1 # default is 2 (30 ms)
 ```
 
-4. "Mac Override" Defaullt
+4. "Mac Override" Default
 
 ```bash
 # Allow close finder

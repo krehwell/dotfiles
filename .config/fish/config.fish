@@ -1,5 +1,5 @@
 if status is-interactive
-	fish_vi_key_bindings
+    fish_vi_key_bindings
     set fish_greeting
 
     alias :q='exit'
@@ -18,11 +18,14 @@ if status is-interactive
     #     echo
     # end
 
-    function "killall_lsp"
-        set processes biome next vtsls eslint_d prettierd node bun bunx tsserver
-        for process in $processes
-            killall -9 $process ^/dev/null
+    function killall_lsp
+        set patterns biome Biome next vtsls eslint_d eslint prettierd node bun bunx tsserver next-server
+
+        for pattern in $patterns
+            echo "Killing processes matching: $pattern"
+            pkill -9 ^$pattern
         end
     end
+
 end
 

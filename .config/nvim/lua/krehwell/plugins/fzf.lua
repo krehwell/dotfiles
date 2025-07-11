@@ -20,13 +20,6 @@ return {
 				},
 			},
 
-			previewers = {
-				builtin = {
-					syntax = true,
-					treesitter = { enabled = true, disabled = { "json" } },
-				},
-			},
-
 			lsp = {
 				multiline = 1,
 				fzf_opts = { ["--layout"] = "default", ["--marker"] = "+" },
@@ -91,6 +84,11 @@ return {
 					row = 1.0,
 					col = 0.0,
 					preview = { default = false, horizontal = "right:45%" },
+				},
+				actions = {
+					["#"] = function()
+						require("fzf-lua").lsp_live_workspace_symbols()
+					end,
 				},
 			},
 
