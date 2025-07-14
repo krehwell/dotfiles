@@ -19,7 +19,7 @@ if status is-interactive
     # end
 
     function killall_lsp
-        set patterns biome Biome next vtsls eslint_d eslint prettierd node bun bunx tsserver next-server
+        set patterns biome Biome next vtsls eslint_d eslint prettierd node bun bunx tsserver next-server yarn turbo 
 
         for pattern in $patterns
             echo "Killing processes matching: $pattern"
