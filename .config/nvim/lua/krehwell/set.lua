@@ -41,6 +41,12 @@ vim.opt.fillchars = {
 }
 
 -- Use rounded borders for floating windows.
+-- WINDOW BEHAVIOR
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+vim.opt.eadirection = "both"
+-- vim.opt.equalalways = true
+vim.opt.title = true
 vim.o.winborder = "rounded"
 
 -- Sync clipboard between the OS and Neovim.
