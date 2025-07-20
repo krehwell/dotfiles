@@ -53,9 +53,21 @@ return {
 		indent = { enable = true },
 	},
 
+	textobjects = {
+		move = {
+			enable = true,
+			set_jumps = true,
+			goto_next_start = {
+				["]]"] = "@function.outer",
+			},
+			goto_previous_start = {
+				["[["] = "@function.outer",
+			},
+		},
+	},
+
 	config = function(_, opts)
 		vim.opt.smartindent = true
-
 		require("nvim-treesitter.configs").setup(opts)
 	end,
 }

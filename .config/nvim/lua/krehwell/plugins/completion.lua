@@ -1,60 +1,57 @@
-local blink = {
+return {
 	"saghen/blink.cmp",
-	event = "BufReadPre",
-	version = "*",
-	dependencies = {
-		"rafamadriz/friendly-snippets",
-		"moyiz/blink-emoji.nvim",
-	},
-
-	---@module 'blink.cmp'
-	---@type blink.cmp.Config
+	dependencies = "LuaSnip",
+	build = "cargo build --release",
+	event = "InsertEnter",
 	opts = {
-		keymap = { preset = "enter" },
-		cmdline = { enabled = true },
-
-		sources = {
-			default = { "emoji", "snippets", "lsp", "path", "buffer" },
-			providers = {
-				emoji = {
-					module = "blink-emoji",
-					name = "Emoji",
-					score_offset = 15, -- Tune by preference
-					opts = { insert = true }, -- Insert emoji (default) or complete its name
-				},
-			},
+		keymap = {
+			["<CR>"] = { "accept", "fallback" },
+			["<C-\\>"] = { "hide", "fallback" },
+			["<C-n>"] = { "select_next", "show" },
+			["<C-p>"] = { "select_prev" },
+			["<C-b>"] = { "scroll_documentation_up", "fallback" },
+			["<C-f>"] = { "scroll_documentation_down", "fallback" },
 		},
-
-		snippets = { preset = "luasnip" },
-
 		completion = {
-			trigger = {
-				prefetch_on_insert = false,
-			},
-			keyword = {
-				range = "prefix",
-			},
-			accept = { auto_brackets = { enabled = false } },
 			list = {
-				-- max_items = 30,
-				selection = { preselect = true, auto_insert = true },
+				-- Insert items while navigating the completion list.
+				selection = { preselect = false, auto_insert = true },
+				max_items = 10,
 			},
-			documentation = {
-				auto_show = true,
-				auto_show_delay_ms = 150,
-			},
-			menu = {
-				draw = {
-					padding = 1,
-					gap = 2,
-					treesitter = { "lsp" },
-				},
-				enabled = true,
+			documentation = { auto_show = true },
+		},
+		snippets = { preset = "luasnip" },
+		-- Disable command line completion:
+		cmdline = { enabled = false },
+		sources = {
+			-- Disable some sources in comments and strings.
+			default = function()
+				local sources = { "lsp", "buffer" }
+				local ok, node = pcall(vim.treesitter.get_node)
+
+				if ok and node then
+					if not vim.tbl_contains({ "comment", "line_comment", "block_comment" }, node:type()) then
+						table.insert(sources, "path")
+					end
+					if node:type() ~= "string" then
+						table.insert(sources, "snippets")
+					end
+				end
+
+				return sources
+			end,
+			per_filetype = {
+				codecompanion = { "codecompanion", "buffer" },
 			},
 		},
-
-		signature = { enabled = true },
+		appearance = {
+			-- kind_icons = require("icons").symbol_kinds,
+		},
 	},
-}
+	config = function(_, opts)
+		require("blink.cmp").setup(opts)
 
-return blink
+		-- Extend neovim's client capabilities with the completion ones.
+		vim.lsp.config("*", { capabilities = require("blink.cmp").get_lsp_capabilities(nil, true) })
+	end,
+}

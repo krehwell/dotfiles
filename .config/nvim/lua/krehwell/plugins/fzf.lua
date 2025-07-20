@@ -103,6 +103,11 @@ return {
 						preview = { default = false, horizontal = "right:45%" },
 					},
 				},
+				actions = {
+					["#"] = function()
+						require("fzf-lua").lsp_live_workspace_symbols()
+					end,
+				},
 			},
 		})
 	end,
@@ -122,7 +127,6 @@ return {
 			desc = "Project find files",
 			silent = true,
 		},
-		{ "<leader>p", "<cmd>lua require('fzf-lua').git_files()<CR>", desc = "FzfLua Git files", silent = true },
 		{ "<leader>l", "<cmd>lua require('fzf-lua').buffers()<CR>", desc = "FzfLua Buffers", silent = true },
 		{ "<leader>t", "<cmd>lua require('fzf-lua').tagstack()<CR>", desc = "FzfLua Tag Stack", silent = true },
 	},

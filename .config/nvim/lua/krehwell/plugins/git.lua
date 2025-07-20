@@ -19,7 +19,13 @@ return {
 	},
 
 	keys = {
-		{ "gs", ":Git<CR>", desc = "Git: toggle status", silent = true },
+		{ "gs", function ()
+            if vim.bo.filetype == "snacks_dashboard" then
+                vim.cmd("Git")
+                vim.cmd("wincmd w")
+                vim.cmd("q")
+            end
+		end , desc = "Git: toggle status", silent = true },
 		{ "gh", ":diffget //2 <CR>", desc = "Git: get lhs of diff", silent = true },
 		{ "gl", ":diffget //3 <CR>", desc = "Git: get rhs of diff", silent = true },
 		{

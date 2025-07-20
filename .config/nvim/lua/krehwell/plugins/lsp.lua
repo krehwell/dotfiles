@@ -22,6 +22,13 @@ return {
 	dependencies = {
 		{ "williamboman/mason.nvim", cmd = { "Mason" } },
 		{ "b0o/SchemaStore.nvim", name = "schema-store" },
+		-- {
+		-- 	"zeioth/garbage-day.nvim",
+		-- 	dependencies = "neovim/nvim-lspconfig",
+		-- 	event = "InsertEnter",
+		-- 	opts = { notifications = true },
+		-- },
+		{ "chrisgrieser/nvim-early-retirement", event = "InsertEnter", opts = { retirementAgeMins = 15 } },
 	},
 	ft = require("krehwell.lsp-utils").fts,
 	opts = {
@@ -56,7 +63,7 @@ return {
 				},
 			},
 
-			vtsls = {
+			ts_ls = {
 				filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
 				on_init = function(client)
 					client.server_capabilities.semanticTokensProvider = nil
@@ -67,8 +74,8 @@ return {
 				settings = {
 					typescript = jsts_settings,
 					javascript = jsts_settings,
-					vtsls = {
-						autoUseWorkspaceTsdk = true,
+					tsserver = {
+						useSyntaxServer = "auto",
 						experimental = {
 							maxInlayHintLength = 30,
 							completion = {

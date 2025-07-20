@@ -1,19 +1,16 @@
--- Modes:
---   Normal       = "n"
---   Insert       = "i"
---   Visual       = "v"
---   Visual_Block = "x"
---   Terminal     = "t"
---   Command      = "c"
---
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 --- BASIC MAPPING
 vim.keymap.set("n", "<Leader>-", ":vertical resize -23<CR>")
 vim.keymap.set("n", "<Leader>=", ":vertical resize +23<CR>")
-vim.keymap.set("n", "<esc>", "<esc>:noh<CR><esc>", { silent = true })
--- vim.keymap.set("i", "jj", "<c-o>:call search('}\\|)\\|]\\|>\\|\"', 'cW')<cr><Right>")
+vim.keymap.set({ "i", "s", "n" }, "<esc>", function()
+	if require("luasnip").expand_or_jumpable() then
+		require("luasnip").unlink_current()
+	end
+	vim.cmd("noh")
+	return "<esc>"
+end, { desc = "Escape, clear hlsearch, and stop snippet session", expr = true })
 
 vim.keymap.set("n", "<C-g>", function()
 	local get_git_branch = function()
@@ -42,16 +39,7 @@ vim.keymap.set("n", "<C-g>", function()
 	print(msg)
 end)
 
------ useful `[[`
--- vim.keymap.set("n", "[[", ":?{<CR>w99[{<CR>:noh<CR>", { silent = true })
--- vim.keymap.set("n", "][", ":/}<CR>b99]}<CR>:noh<CR>", { silent = true })
--- vim.keymap.set("n", "]]", ":j0[[%/{<CR><CR>:noh<CR>", { silent = true })
--- vim.keymap.set("n", "[]", ":k$][%?}<CR><CR>:noh<CR>", { silent = true })
-
 ----- EDITING
-vim.keymap.set("n", "<M-j>", "ddp")
-vim.keymap.set("n", "<M-k>", "ddkP")
-vim.keymap.set("n", "<localleader>a", "ggVG")
 vim.keymap.set("v", "$", "$<left>")
 vim.keymap.set("v", "w", "e")
 vim.keymap.set("v", "<C-c>", '"+y')
@@ -63,6 +51,9 @@ vim.keymap.set({ "n", "v" }, "0", function()
 		return "^zH"
 	end
 end, { expr = true, desc = "Smart zero: toggle between ^ and 0" })
+-- Remap for dealing with word wrap and adding jumps to the jumplist.
+vim.keymap.set("n", "j", [[(v:count > 1 ? 'm`' . v:count : 'g') . 'j']], { expr = true })
+vim.keymap.set("n", "k", [[(v:count > 1 ? 'm`' . v:count : 'g') . 'k']], { expr = true })
 
 ----- SESSION BUFFER CONTROLLER
 local ask_save_session = function(without_confirm)
@@ -80,8 +71,6 @@ local ask_load_session = function()
 	vim.api.nvim_input(":source ~/.vim/session/" .. cwd .. ".vim<left><left><left><left>")
 end
 
-vim.keymap.set("n", "<localleader>b", ":bprevious<CR>")
-vim.keymap.set("n", "<localleader>n", ":bnext<CR>")
 vim.keymap.set("n", "<M-o>", ask_load_session)
 vim.keymap.set("n", "<M-s>", ask_save_session)
 vim.keymap.set("n", "<localleader>o", ask_load_session)

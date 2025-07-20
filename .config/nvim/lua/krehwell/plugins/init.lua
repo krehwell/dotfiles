@@ -13,12 +13,6 @@ return {
 	},
 	{ "folke/persistence.nvim", event = "BufReadPre", opts = {} },
 	{
-		"zeioth/garbage-day.nvim",
-		dependencies = "neovim/nvim-lspconfig",
-		event = "InsertEnter",
-		opts = { notifications = true },
-	},
-	{
 		"folke/trouble.nvim",
 		opts = {},
 		cmd = "Trouble",
@@ -30,7 +24,6 @@ return {
 			},
 		},
 	},
-	{ "chrisgrieser/nvim-early-retirement", event = "InsertEnter", opts = { retirementAgeMins = 15 } },
 	{
 		"axelvc/template-string.nvim",
 		config = function()
@@ -55,6 +48,7 @@ return {
 			})
 		end,
 	},
+
 	-- MARKDOWN PREVIEWER
 	{
 		"toppair/peek.nvim",
@@ -126,6 +120,9 @@ return {
 		keys = {
 			{ "<leader>u", ":UndotreeToggle<CR>:UndotreeFocus<CR>", desc = "Toggle undotree", mode = "n" },
 		},
+		init = function()
+			vim.g.undotree_SetFocusWhenToggle = 1
+		end,
 	},
 
 	-- BEAUTIFY
