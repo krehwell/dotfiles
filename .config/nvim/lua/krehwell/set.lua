@@ -50,7 +50,7 @@ vim.opt.title = true
 vim.o.winborder = "rounded"
 
 -- Sync clipboard between the OS and Neovim.
-vim.o.clipboard = "unnamedplus"
+-- vim.o.clipboard = "unnamedplus"
 
 -- Save undo history.
 vim.o.undofile = true
