@@ -2,6 +2,9 @@ return {
 	"folke/snacks.nvim",
 	priority = 1000,
 	lazy = false,
+	dependencies = {
+		{ "folke/persistence.nvim", event = "BufReadPre", opts = {} },
+	},
 	---@module 'snacks'
 	---@type snacks.Config
 	opts = {

@@ -21,7 +21,7 @@ return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
 		{ "williamboman/mason.nvim", cmd = { "Mason" } },
-		{ "b0o/SchemaStore.nvim", name = "schema-store" },
+		-- { "b0o/SchemaStore.nvim", name = "schema-store" },
 		-- {
 		-- 	"zeioth/garbage-day.nvim",
 		-- 	dependencies = "neovim/nvim-lspconfig",
@@ -29,6 +29,15 @@ return {
 		-- 	opts = { notifications = true },
 		-- },
 		{ "chrisgrieser/nvim-early-retirement", event = "InsertEnter", opts = { retirementAgeMins = 15 } },
+		{
+			"folke/lazydev.nvim",
+			ft = "lua",
+			opts = {
+				library = {
+					{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+				},
+			},
+		},
 	},
 	ft = require("krehwell.lsp-utils").fts,
 	opts = {
@@ -63,23 +72,26 @@ return {
 				},
 			},
 
-			ts_ls = {
+			vtsls = {
 				filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
 				on_init = function(client)
 					client.server_capabilities.semanticTokensProvider = nil
 					client.server_capabilities.documentFormattingProvider = false
 					client.server_capabilities.documentRangeFormattingProvider = false
 				end,
-				root_markers = { "tsconfig.json", "jsonconfig.json" },
+				root_markers = { "tsconfig.json", "jsonconfig.json", "package.json" },
 				settings = {
 					typescript = jsts_settings,
 					javascript = jsts_settings,
-					tsserver = {
-						useSyntaxServer = "auto",
+					vtsls = {
 						experimental = {
-							maxInlayHintLength = 30,
 							completion = {
 								enableServerSideFuzzyMatch = true,
+							},
+						},
+						typescript = {
+							preferences = {
+								includePackageJsonAutoImports = "auto",
 							},
 						},
 					},

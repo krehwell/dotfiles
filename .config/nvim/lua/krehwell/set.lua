@@ -1,32 +1,57 @@
--- Set <space> as the leader key.
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
+-- indentation behaviour
+vim.cmd([[
+  " filetype plugin indent on
+]])
 
+vim.loader.enable()
 -- Use an indentation of 4 spaces.
-vim.o.sw = 4
-vim.o.ts = 4
-vim.o.et = true
+vim.opt.backspace = "2"
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.shiftround = true
+vim.opt.expandtab = true
+vim.opt.autoindent = true
+vim.opt.smartindent = true
+vim.opt.textwidth = 120
+vim.opt.cursorline = true
 
-vim.opt.number = false
-vim.opt.relativenumber = false
-vim.opt.wrap = false
+-- HIDDEN FILE RELATED CONFIG
+vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.backup = false
+vim.opt.writebackup = false
+vim.opt.swapfile = false
+vim.opt.undofile = true
+vim.opt.autoread = true
 
--- Show whitespace.
+-- WINDOW BEHAVIOR
+vim.opt.colorcolumn = "120"
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+vim.opt.eadirection = "both"
+vim.opt.equalalways = true
+vim.opt.title = true
+vim.opt.winborder = "rounded"
+vim.opt.wildmenu = true
+
+-- Completion.
+vim.opt.wildignore:append({ ".DS_Store" })
+vim.o.completeopt = "menuone,noselect,noinsert"
+vim.o.pumheight = 15
+
+-- SHOW WHITESPACE
 -- vim.opt.list = true
 vim.opt.listchars = { space = "⋅", trail = "⋅", tab = "  ↦" }
 
--- Enable mouse mode.
-vim.o.mouse = "a"
-
--- Disable horizontal scrolling.
-vim.o.mousescroll = "ver:3,hor:0"
-
--- Folding.
-vim.o.foldcolumn = "1"
-vim.o.foldlevelstart = 99
-vim.wo.foldtext = ""
-
--- UI characters.
+-- NAVIGATION BEHAVIOR
+vim.opt.wrap = false
+-- vim.opt.number = true
+-- vim.opt.relativenumber = true
+vim.opt.signcolumn = "no"
+vim.opt.scrolloff = 22
+vim.opt.sidescrolloff = 18
+vim.opt.virtualedit = "block"
+vim.opt.laststatus = 0
 vim.opt.fillchars = {
 	vert = "│", -- alternatives │
 	fold = " ",
@@ -39,58 +64,36 @@ vim.opt.fillchars = {
 	stlnc = "—",
 	stl = "—",
 }
+-- vim.opt.jumpoptions:append("stack")
+vim.opt.jumpoptions:append("clean")
+vim.optfoldmethod = "indent"
+-- vim.opt.virtualedit = "block"
 
--- Use rounded borders for floating windows.
--- WINDOW BEHAVIOR
-vim.opt.splitright = true
-vim.opt.splitbelow = true
-vim.opt.eadirection = "both"
--- vim.opt.equalalways = true
-vim.opt.title = true
-vim.o.winborder = "rounded"
-
--- Sync clipboard between the OS and Neovim.
--- vim.o.clipboard = "unnamedplus"
-
--- Save undo history.
-vim.o.undofile = true
-vim.opt.backup = false
-
--- Case insensitive searching UNLESS /C or the search has capitals.
-vim.o.ignorecase = true
-vim.o.smartcase = true
-
--- Keep signcolumn on by default.
--- vim.wo.signcolumn = "yes"
-
--- Update times and timeouts.
-vim.o.updatetime = 300
-vim.o.timeoutlen = 500
-vim.o.ttimeoutlen = 10
-
--- Completion.
-vim.opt.wildignore:append({ ".DS_Store" })
-vim.o.completeopt = "menuone,noselect,noinsert"
-vim.o.pumheight = 15
-
--- Diff mode settings.
--- Setting the context to a very large number disables folding.
--- vim.opt.diffopt:append("vertical,context:99")
-
+-- SEARCH/FIND BEHAVIOR
+vim.opt.ignorecase = true
+vim.opt.incsearch = true
+vim.opt.smartcase = true
+-- vim.opt.path:append("**")
+vim.opt.isfname:append("@-@")
 vim.opt.shortmess:append({
 	w = true,
 	s = true,
 })
 
--- Status line.
-vim.o.laststatus = 0
-vim.o.cmdheight = 1
-
--- Disable cursor blinking in terminal mode.
-vim.o.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,t:block-TermCursor"
-
--- Disable health checks for these providers.
+-- DISABLE HEALTH CHECKS FOR THESE PROVIDERS.
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_node_provider = 0
+
+-- ETC
+-- vim.opt.hidden = true
+vim.o.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,t:block-TermCursor"
+vim.opt.termguicolors = true
+vim.opt.buflisted = false
+vim.opt.compatible = false
+vim.opt.showmode = true
+-- vim.opt.ttimeoutlen = 0
+vim.opt.updatetime = 300
+vim.opt.exrc = true
+vim.opt.secure = true

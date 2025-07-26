@@ -1,35 +1,22 @@
 return {
-	"otavioschwanck/arrow.nvim",
-	dependencies = {
-		{ "echasnovski/mini.icons" },
-	},
-	opts = {
-		show_icons = true,
-		leader_key = "mm",
-		buffer_leader_key = "''",
-		window = {
-			border = "double",
-		},
-		cache_window = {
-			width = 300,
-			height = 20,
-		},
-	},
+	"alucherdi/hand-of-god",
 	keys = {
 		{ "mo", ":norm mme<CR>", desc = "arrow.nvim open edit mode" },
 		{ "mm", desc = "arrow.nvim open menu (buffers)" },
+		{ "ma", desc = "hand-of-god add file" },
 		{ "''", desc = "arrow.nvim open menu (lines)" },
 	},
 	config = function(_, opts)
-		require("arrow").setup(opts)
+		local jumper = require("handofgod.jumper")
+		jumper.setup()
 
-		vim.api.nvim_create_autocmd({ "BufEnter", "CursorMoved" }, {
-			pattern = "*",
-			callback = function()
-				if vim.bo.filetype == "" then
-                    vim.cmd("setlocal cursorline")
-				end
-			end,
-		})
+		-- add file to jumper list
+		vim.keymap.set("n", "ma", function()
+			jumper.add()
+		end)
+		-- explore jumper list as buffer
+		vim.keymap.set("n", "mo", function()
+			jumper:explore()
+		end)
 	end,
 }
