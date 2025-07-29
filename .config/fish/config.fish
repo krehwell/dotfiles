@@ -27,11 +27,12 @@ if status is-interactive
         end
     end
 
-    # on sigint error, reset status so that autocomplete still work
-    function reset_status_after_ctrl_c --on-event fish_cancel
-        set -g status 0
-        commandline -f repaint
+    function custom_ctrl_c
+        commandline -f cancel
+        echo "You pressed Ctrl+C"
     end
+
+    bind \cc custom_ctrl_c
 
 end
 

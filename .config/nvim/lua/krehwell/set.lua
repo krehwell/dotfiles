@@ -94,6 +94,6 @@ vim.opt.buflisted = false
 vim.opt.compatible = false
 vim.opt.showmode = true
 -- vim.opt.ttimeoutlen = 0
-vim.opt.updatetime = 300
+vim.opt.updatetime = 200
 vim.opt.exrc = true
 vim.opt.secure = true
