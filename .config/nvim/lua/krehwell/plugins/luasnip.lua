@@ -78,7 +78,7 @@ return {
 					local name = path:match("([^/]+)$") or "Component"
 					return name:gsub("^%l", string.upper)
 				end, { 1 }),
-				t(" = dynamic(() => import('"),
+				t(' = dynamic(() => import("'),
 				i(1, "./path/to/component"),
 				t("').then((mod) => mod."),
 				f(function(args)

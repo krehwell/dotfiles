@@ -7,9 +7,13 @@ local jsts_settings = {
 	},
 	preferences = {
 		excludeModuleSpecifierAutoImports = {
+			"@vidstack",
 			"@vidstack/*",
+			"@mui",
 			"@mui/*",
+			"@mui/**",
 			"@next/dist",
+			"@next/dist/*",
 		},
 	},
 	updateImportsOnFileMove = {
@@ -21,21 +25,19 @@ return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
 		{ "williamboman/mason.nvim", cmd = { "Mason" } },
-		-- { "b0o/SchemaStore.nvim", name = "schema-store" },
+		{ "b0o/SchemaStore.nvim" },
 		-- {
 		-- 	"zeioth/garbage-day.nvim",
 		-- 	dependencies = "neovim/nvim-lspconfig",
 		-- 	event = "InsertEnter",
 		-- 	opts = { notifications = true },
 		-- },
-		{ "chrisgrieser/nvim-early-retirement", event = "InsertEnter", opts = { retirementAgeMins = 15 } },
+		-- { "chrisgrieser/nvim-early-retirement", event = "InsertEnter", opts = { retirementAgeMins = 15 } },
 		{
 			"folke/lazydev.nvim",
 			ft = "lua",
 			opts = {
-				library = {
-					{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
-				},
+				library = { { path = "${3rd}/luv/library", words = { "vim%.uv" } } },
 			},
 		},
 	},
@@ -45,8 +47,6 @@ return {
 			lua_ls = {
 				on_init = function(client)
 					client.server_capabilities.semanticTokensProvider = nil
-					client.server_capabilities.documentFormattingProvider = false
-					client.server_capabilities.documentRangeFormattingProvider = false
 				end,
 				filetypes = { "lua" },
 				root_markers = { ".luarc.json", ".luarc.jsonc" },
@@ -78,12 +78,19 @@ return {
 					client.server_capabilities.semanticTokensProvider = nil
 					client.server_capabilities.documentFormattingProvider = false
 					client.server_capabilities.documentRangeFormattingProvider = false
+					client.server_capabilities.codeLensProvider = nil
+					client.server_capabilities.documentHighlightProvider = false
 				end,
 				root_markers = { "tsconfig.json", "jsonconfig.json", "package.json" },
 				settings = {
 					typescript = jsts_settings,
 					javascript = jsts_settings,
 					vtsls = {
+						tsserver = {
+							useSyntaxServer = "auto", -- or "semantic" if you want fewer processes
+							tsdk = vim.fn.getcwd() .. "/node_modules/typescript/lib", -- project ts
+							maxTsServerMemory = 4096, -- bump memory if you have big projects
+						},
 						experimental = {
 							completion = {
 								enableServerSideFuzzyMatch = true,
@@ -92,6 +99,12 @@ return {
 						typescript = {
 							preferences = {
 								includePackageJsonAutoImports = "auto",
+							},
+							tsserver = {
+								-- ignore big folders
+								watchOptions = {
+									excludeDirectories = { "node_modules", "dist", ".next", "out" },
+								},
 							},
 						},
 					},
@@ -102,15 +115,6 @@ return {
 			-- 	root_dir = require("lspconfig").util.root_pattern("deno.json", "deno.jsonc", "deno.lock"),
 			-- },
 
-			jsonls = {
-				filetypes = { "json", "jsonc" },
-				settings = {
-					json = {
-						validate = { enable = true },
-						-- schemas = require("schema-store").json.schemas(),
-					},
-				},
-			},
 			-- tailwindcss = {},
 			typos_lsp = {},
 			typos = {},
@@ -130,6 +134,20 @@ return {
 		local lsp_utils = require("krehwell.lsp-utils")
 		local lspconfig = require("lspconfig")
 
+		local jsonls_config = {
+			filetypes = { "json", "jsonc" },
+			settings = {
+				json = {
+					validate = { enable = true },
+					schemas = require("schemastore").json.schemas(),
+				},
+			},
+		}
+
+		-- merge jsonls into opts.servers
+		opts.servers = vim.tbl_deep_extend("force", opts.servers, { jsonls = jsonls_config })
+
+		-- configure all servers
 		for server, config in pairs(opts.servers) do
 			config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
 			lspconfig[server].setup(config)

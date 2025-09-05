@@ -9,14 +9,9 @@ if status is-interactive
     alias tmux='tmux -2'
     alias rm='rmtrash'
 
-    set -x GEMINI_API_KEY "AIzaSyDD7SbjH2KTvR_EEaC9mWBE9y3A3u1mdG4"
-    status --is-interactive; and rbenv init - fish | source
+    # status --is-interactive; and rbenv init - fish | source
 
     set fish_cursor_insert block
-
-    # function postexec_test --on-event fish_postexec
-    #     echo
-    # end
 
     function killall_lsp
         set patterns biome Biome next vtsls eslint_d eslint prettierd node bun bunx tsserver next-server yarn turbo 
@@ -26,13 +21,5 @@ if status is-interactive
             pkill -9 ^$pattern
         end
     end
-
-    function custom_ctrl_c
-        commandline -f cancel
-        echo "You pressed Ctrl+C"
-    end
-
-    bind \cc custom_ctrl_c
-
 end
 

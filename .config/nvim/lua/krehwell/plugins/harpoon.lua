@@ -17,6 +17,7 @@ return {
 		-- explore jumper list as buffer
 		vim.keymap.set("n", "mo", function()
 			jumper:explore()
+            vim.cmd("setlocal cursorline")
 		end)
 	end,
 }

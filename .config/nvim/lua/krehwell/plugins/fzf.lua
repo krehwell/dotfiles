@@ -4,116 +4,38 @@ return {
 		{ "junegunn/fzf", build = "./install --bin" },
 	},
 	config = function()
-		local actions = require("fzf-lua.actions")
-
 		vim.api.nvim_create_user_command("Ls", "FzfLua buffers", { nargs = 0, bang = true })
 		vim.api.nvim_create_user_command("LS", "FzfLua buffers", { nargs = 0, bang = true })
 		vim.api.nvim_create_user_command("Lls", "FzfLua buffers", { nargs = 0, bang = true })
 
 		require("fzf-lua").setup({
+			{ "default-title" },
+			desc = "fzf lua default options",
 			winopts = {
-				preview = {
-					scrollbar = "border",
-					preview = {
-						default = false, -- "bat" -- I don't use colorscheme, so this is useless
-					},
-				},
+				width = 0.94,
+				height = 0.75,
+				-- fullscreen = true,
+				preview = { default = "bat", horizontal = "right:47%" },
 			},
-
-			lsp = {
-				multiline = 1,
-				fzf_opts = { ["--layout"] = "default", ["--marker"] = "+" },
-				winopts = {
-					height = 0.85,
-					width = 0.9,
-					preview = {
-						vertical = "up:45%",
-						horizontal = "right:50%",
-						layout = "flex",
-						flip_columns = 120,
-					},
-				},
-			},
-
-			grep = {
-				fzf_opts = { ["--layout"] = "default", ["--marker"] = "+" },
-				rg_glob = true,
-				glob_flah = "--glob",
-				glob_separator = "%s%-%-",
-				rg_opts = "--column --line-number --no-heading --color=always --smart-case --max-columns=4096 "
-					.. "-g '!apps/mobile/*' "
-					-- .. "-g '!apps/backend/*' "
-					.. "-g '!apps/chrome-extension/' "
-					.. "-g '!*/yarn.lock' "
-					.. "-g '!yarn.lock' "
-					.. "-g '!*.{pdf,doc,docx,xml}' "
-					.. "-g '!*.{jpg,jpeg,png,gif,svg}' "
-					.. "-g '!node_modules/*' "
-					.. "-g '!.git/*'"
-					.. " -e",
-				multiline = 2,
-				winopts = {
-					height = 0.97,
-					width = 0.97,
-					title = "Live Grep",
-					title_pos = "center",
-					preview = {
-						vertical = "up:45%",
-						horizontal = "right:50%",
-						layout = "flex",
-						flip_columns = 120,
-					},
-				},
-			},
-
-			buffers = {
-				formatter = "path.filename_first",
-				winopts = { height = 0.7, width = 0.6 },
-				previewer = false,
-				actions = {
-					["ctrl-d"] = { fn = actions.buf_del, reload = true },
-				},
-			},
-
-			files = {
-				winopts = {
-					title = "Find Files",
-					title_pos = "center",
-					height = 0.2,
-					width = 1,
-					row = 1.0,
-					col = 0.0,
-					preview = { default = false, horizontal = "right:45%" },
-				},
-				actions = {
-					["#"] = function()
-						require("fzf-lua").lsp_live_workspace_symbols()
-					end,
-				},
-			},
-
-			git = {
-				files = {
-					prompt = "Git Files> ",
-					winopts = {
-						height = 0.2,
-						width = 1,
-						row = 1.0,
-						col = 0.0,
-						preview = { default = false, horizontal = "right:45%" },
-					},
-				},
-				actions = {
-					["#"] = function()
-						require("fzf-lua").lsp_live_workspace_symbols()
-					end,
-				},
-			},
+			manpages = { previewer = "man_native" },
+			helptags = { previewer = "help_native" },
+			lsp = { code_actions = { previewer = "codeaction_native" } },
+			tags = { previewer = "bat" },
+			btags = { previewer = "bat" },
+			lines = { _treesitter = false },
+			blines = { _treesitter = false },
+			buffers = { formatter = "path.filename_first" },
+			files = { formatter = "path.filename_first" },
+			grep = {},
+			git = {},
 		})
 	end,
+
 	cmd = { "FzfLua", "Ls", "LS" },
+
 	keys = {
-		{ "<C-f>", ":lua require('fzf-lua').grep()<CR><CR>", desc = "Fuzzy search", silent = true },
+		{ "<C-f>", ":lua require('fzf-lua').grep()<CR><CR><C-g>", desc = "Fuzzy search (Regex)", silent = true },
+		{ "<C-k>", ":lua require('fzf-lua').grep()<CR><CR>", desc = "Fuzzy search", silent = true },
 		{ "<leader>fzf", "<cmd>lua require('fzf-lua').builtin()<CR>", desc = "FzfLua features list", silent = true },
 		{ "ga", "<cmd>lua require('fzf-lua').grep_cword()<CR>", desc = "Any jump", silent = true },
 		{
@@ -122,7 +44,13 @@ return {
 				if vim.fn.getcwd() == os.getenv("HOME") then
 					return require("fzf-lua").git_files()
 				end
-				return require("fzf-lua").files()
+				local extend = function(table1, table2)
+					return vim.tbl_extend("force", table1, table2)
+				end
+				return require("fzf-lua").files(extend({}, {
+					cmd = "rg --files --hidden --ignore --glob='!.git' --sortr=modified",
+					fzf_opts = { ["--scheme"] = "path", ["--tiebreak"] = "index" },
+				}))
 			end,
 			desc = "Project find files",
 			silent = true,

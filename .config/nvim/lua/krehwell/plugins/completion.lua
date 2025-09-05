@@ -12,11 +12,9 @@ return {
 	opts = {
 		keymap = { preset = "enter" },
 		cmdline = { enabled = true },
-		appearance = { use_nvim_cmp_as_default = true },
-		fuzzy = { implementation = "prefer_rust_with_warning" },
 
 		sources = {
-			default = { "emoji", "snippets", "lsp", "path", "buffer" },
+			default = { "emoji", "lsp", "snippets", "path", "buffer" },
 			providers = {
 				emoji = {
 					module = "blink-emoji",
@@ -43,7 +41,7 @@ return {
 			},
 			documentation = {
 				auto_show = true,
-				auto_show_delay_ms = 150,
+				auto_show_delay_ms = 100,
 			},
 			menu = {
 				draw = {

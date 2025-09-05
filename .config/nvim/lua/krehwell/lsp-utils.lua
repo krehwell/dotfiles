@@ -13,7 +13,11 @@ local on_attach = function(bufnr)
 	end, opts)
 	vim.keymap.set("n", "gD", function()
 		please_remind_me_lsp()
-		require("fzf-lua").lsp_declaration({ jump1 = true })
+		require("fzf-lua").lsp_declarations({ jump1 = true })
+	end, opts)
+	vim.keymap.set("n", "g#", function()
+		please_remind_me_lsp()
+		require("fzf-lua").lsp_live_workspace_symbols()
 	end, opts)
 	vim.keymap.set("n", "gri", function()
 		please_remind_me_lsp()
@@ -29,7 +33,7 @@ local on_attach = function(bufnr)
 	end, opts)
 	vim.keymap.set("n", "gO", function()
 		please_remind_me_lsp()
-		require("fzf-lua").lsp_document_symbol()
+		require("fzf-lua").lsp_document_symbols()
 	end, opts)
 	vim.keymap.set("n", "ge", function()
 		vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })
@@ -78,7 +82,10 @@ local on_attach = function(bufnr)
 end
 
 local diagnostic_config = {
-	show_diagnostic_autocmds = { "InsertLeave", "TextChanged" },
+	show_diagnostic_autocmds = {
+		"InsertLeave",
+		-- "TextChanged"
+	},
 	virtual_text = true,
 	update_in_insert = true,
 	signs = false,

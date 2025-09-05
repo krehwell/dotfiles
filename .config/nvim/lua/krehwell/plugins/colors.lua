@@ -106,6 +106,7 @@ end
 
 return {
 	"p00f/alabaster.nvim",
+	-- "loctvl842/monokai-pro.nvim",
 	config = function()
 		vim.g.alabaster_dim_comments = true
 		vim.g.alabaster_floatborder = true
@@ -142,5 +143,7 @@ return {
         ]])
 
 		vim.cmd("colorscheme alabaster")
+		-- vim.cmd("colorscheme monokai-pro-classic")
+
 	end,
 }

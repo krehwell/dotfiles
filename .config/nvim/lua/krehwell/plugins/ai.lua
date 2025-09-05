@@ -4,7 +4,7 @@ return {
 		"nvim-lua/plenary.nvim",
 		"hrsh7th/nvim-cmp",
 	},
-	enabled = true,
+	enabled = false,
 	event = "InsertEnter",
 	config = function()
 		require("codeium").setup({
@@ -17,7 +17,7 @@ return {
 				enabled = true,
 				-- idle_delay = 75,
 				key_bindings = {
-					accept = "<C-l>",
+					accept = "<Tab>",
 					accept_word = "<M-l>",
 					-- accept_line = "<C-L>",
 					clear = "<C-c>",
@@ -38,19 +38,5 @@ return {
 				},
 			},
 		})
-
-		-- -- this works for kitty terminal
-		-- vim.keymap.set("i", "¬", function()
-		-- 	return vim.fn["codeium#Accept"]()
-		-- end, { expr = true })
-		-- vim.keymap.set("i", "‘", function()
-		-- 	return vim.fn["codeium#CycleCompletions"](1)
-		-- end, { expr = true })
-		-- vim.keymap.set("i", "“", function()
-		-- 	return vim.fn["codeium#CycleCompletions"](-1)
-		-- end, { expr = true })
-		-- vim.keymap.set("i", "˙", function()
-		-- 	return vim.fn["codeium#Clear"]()
-		-- end, { expr = true })
 	end,
 }

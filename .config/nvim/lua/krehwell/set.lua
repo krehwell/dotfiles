@@ -25,7 +25,7 @@ vim.opt.undofile = true
 vim.opt.autoread = true
 
 -- WINDOW BEHAVIOR
-vim.opt.colorcolumn = "120"
+-- vim.opt.colorcolumn = "120"
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.eadirection = "both"
@@ -94,6 +94,6 @@ vim.opt.buflisted = false
 vim.opt.compatible = false
 vim.opt.showmode = true
 -- vim.opt.ttimeoutlen = 0
-vim.opt.updatetime = 200
+vim.opt.updatetime = 400
 vim.opt.exrc = true
 vim.opt.secure = true

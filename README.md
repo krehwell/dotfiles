@@ -8,7 +8,7 @@ Try to be minimalist possible
 1. `fish`
 2. `tmux`
 3. `rmtrash`
-4. `fzf`
+4. `fzf` & `bat`
 
 
 ## Mac `defaults write` overrides:
