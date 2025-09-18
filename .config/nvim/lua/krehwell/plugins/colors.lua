@@ -1,10 +1,11 @@
 -- vim.cmd("syntax off")
 vim.opt.termguicolors = true
--- vim.opt.background = "dark"
+vim.opt.background = "dark"
 
 local dim_my_highlights = function()
 	vim.api.nvim_set_hl(0, "CodeiumSuggestion", { fg = "#808080" })
-	vim.api.nvim_set_hl(0, "NoSyntaxColoring", { fg = "#cecece" })
+	vim.api.nvim_set_hl(0, "NoSyntaxColoring", { fg = "NvimLightGray2" })
+	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 	vim.api.nvim_set_hl(0, "Module", { link = "NoSyntaxColoring" })
 	vim.api.nvim_set_hl(0, "Constant", { link = "NoSyntaxColoring" })
 	vim.api.nvim_set_hl(0, "String", { link = "NoSyntaxColoring" })
@@ -82,7 +83,7 @@ local dim_my_highlights = function()
 	vim.api.nvim_set_hl(0, "@method", { link = "NoSyntaxColoring" })
 	vim.api.nvim_set_hl(0, "@module", { link = "NoSyntaxColoring" })
 	vim.api.nvim_set_hl(0, "@namespace", { link = "NoSyntaxColoring" })
-	-- vim.api.nvim_set_hl(0, "@none", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "@none", { link = "NoSyntaxColoring" })
 	vim.api.nvim_set_hl(0, "@parameter", { link = "NoSyntaxColoring" })
 	vim.api.nvim_set_hl(0, "@parameter.reference", { link = "NoSyntaxColoring" })
 	vim.api.nvim_set_hl(0, "@property", { link = "NoSyntaxColoring" })
@@ -91,7 +92,7 @@ local dim_my_highlights = function()
 	vim.api.nvim_set_hl(0, "@punctuation.special", { link = "NoSyntaxColoring" })
 	vim.api.nvim_set_hl(0, "@repeat", { link = "NoSyntaxColoring" })
 	vim.api.nvim_set_hl(0, "@string", { link = "NoSyntaxColoring" })
-	-- vim.api.nvim_set_hl(0, "@string.regex", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "@string.regex", { link = "NoSyntaxColoring" })
 	vim.api.nvim_set_hl(0, "@string.escape", { link = "NoSyntaxColoring" })
 	vim.api.nvim_set_hl(0, "@symbol", { link = "NoSyntaxColoring" })
 	vim.api.nvim_set_hl(0, "@type", { link = "NoSyntaxColoring" })
@@ -121,29 +122,7 @@ return {
 			end,
 		})
 
-		vim.cmd([[
-            " augroup diffcolors
-            "     autocmd!
-            "     autocmd Colorscheme * call s:SetDiffHighlights()
-            " augroup END
-
-            " function! s:SetDiffHighlights()
-            "     if &background == "dark"
-            "         highlight DiffAdd gui=bold guifg=none guibg=#2e4b2e
-            "         highlight DiffDelete gui=bold guifg=none guibg=#4c1e15
-            "         highlight DiffChange gui=bold guifg=none guibg=#45565c
-            "         highlight DiffText gui=bold guifg=none guibg=#996d74
-            "     else
-            "         highlight DiffAdd gui=bold guifg=none guibg=palegreen
-            "         highlight DiffDelete gui=bold guifg=none guibg=tomato
-            "         highlight DiffChange gui=bold guifg=none guibg=lightblue
-            "         highlight DiffText gui=bold guifg=none guibg=lightpink
-            "     endif
-            " endfunction
-        ]])
-
-		vim.cmd("colorscheme alabaster")
+		-- vim.cmd("colorscheme default")
 		-- vim.cmd("colorscheme monokai-pro-classic")
-
 	end,
 }

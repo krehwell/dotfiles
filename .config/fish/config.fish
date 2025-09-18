@@ -14,7 +14,7 @@ if status is-interactive
     set fish_cursor_insert block
 
     function killall_lsp
-        set patterns biome Biome next vtsls eslint_d eslint prettierd node bun bunx tsserver next-server yarn turbo 
+        set patterns biome Biome next vtsls eslint_d eslint prettierd node bun bunx tsserver next-server yarn turbo watchman 
 
         for pattern in $patterns
             echo "Killing processes matching: $pattern"

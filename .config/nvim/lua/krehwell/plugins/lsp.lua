@@ -1,19 +1,22 @@
 local jsts_settings = {
-	suggest = { completeFunctionCalls = false },
-	inlayHints = {
-		functionLikeReturnTypes = { enabled = true },
-		parameterNames = { enabled = "literals" },
-		variableTypes = { enabled = true },
-	},
 	preferences = {
-		excludeModuleSpecifierAutoImports = {
+		includePackageJsonAutoImports = "off",
+		useAliasesForRenames = false,
+		renameShorthandProperties = false,
+		autoImportFileExcludePatterns = {
 			"@vidstack",
 			"@vidstack/*",
+			"vidstack/*",
 			"@mui",
 			"@mui/*",
 			"@mui/**",
 			"@next/dist",
 			"@next/dist/*",
+		},
+		tsserver = {
+			watchOptions = {
+				excludeDirectories = { "node_modules", "dist", ".next", "out" },
+			},
 		},
 	},
 	updateImportsOnFileMove = {
@@ -87,24 +90,12 @@ return {
 					javascript = jsts_settings,
 					vtsls = {
 						tsserver = {
-							useSyntaxServer = "auto", -- or "semantic" if you want fewer processes
-							tsdk = vim.fn.getcwd() .. "/node_modules/typescript/lib", -- project ts
-							maxTsServerMemory = 4096, -- bump memory if you have big projects
+							useSyntaxServer = "semantic", -- or "semantic" if you want fewer processes
+							maxTsServerMemory = 8192, -- bump memory if you have big projects
 						},
 						experimental = {
 							completion = {
 								enableServerSideFuzzyMatch = true,
-							},
-						},
-						typescript = {
-							preferences = {
-								includePackageJsonAutoImports = "auto",
-							},
-							tsserver = {
-								-- ignore big folders
-								watchOptions = {
-									excludeDirectories = { "node_modules", "dist", ".next", "out" },
-								},
 							},
 						},
 					},

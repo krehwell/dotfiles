@@ -84,7 +84,9 @@ end
 local diagnostic_config = {
 	show_diagnostic_autocmds = {
 		"InsertLeave",
-		-- "TextChanged"
+		"TextChanged",
+		"BufEnter",
+		"WinEnter",
 	},
 	virtual_text = true,
 	update_in_insert = true,

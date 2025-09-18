@@ -8,6 +8,8 @@ return {
 		vim.api.nvim_create_user_command("LS", "FzfLua buffers", { nargs = 0, bang = true })
 		vim.api.nvim_create_user_command("Lls", "FzfLua buffers", { nargs = 0, bang = true })
 
+		require("fzf-lua").register_ui_select()
+
 		require("fzf-lua").setup({
 			{ "default-title" },
 			desc = "fzf lua default options",
