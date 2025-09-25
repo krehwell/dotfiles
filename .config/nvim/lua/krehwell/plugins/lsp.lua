@@ -25,17 +25,10 @@ local jsts_settings = {
 }
 
 return {
-	"neovim/nvim-lspconfig",
+	"b0o/SchemaStore.nvim",
+	cmd = { "Mason" },
 	dependencies = {
-		{ "williamboman/mason.nvim", cmd = { "Mason" } },
-		{ "b0o/SchemaStore.nvim" },
-		-- {
-		-- 	"zeioth/garbage-day.nvim",
-		-- 	dependencies = "neovim/nvim-lspconfig",
-		-- 	event = "InsertEnter",
-		-- 	opts = { notifications = true },
-		-- },
-		-- { "chrisgrieser/nvim-early-retirement", event = "InsertEnter", opts = { retirementAgeMins = 15 } },
+		{ "williamboman/mason.nvim" },
 		{
 			"folke/lazydev.nvim",
 			ft = "lua",
@@ -48,11 +41,13 @@ return {
 	opts = {
 		servers = {
 			lua_ls = {
+				cmd = { "lua-language-server" },
 				on_init = function(client)
 					client.server_capabilities.semanticTokensProvider = nil
+					client.server_capabilities.documentHighlightProvider = false
 				end,
 				filetypes = { "lua" },
-				root_markers = { ".luarc.json", ".luarc.jsonc" },
+				root_dir = vim.fs.root(0, { ".luarc.json", ".luarc.jsonc" }),
 				settings = {
 					Lua = {
 						completion = { callSnippet = "Replace" },
@@ -61,9 +56,7 @@ return {
 							enable = true,
 							arrayIndex = "Disable",
 						},
-						runtime = {
-							version = "LuaJIT",
-						},
+						runtime = { version = "LuaJIT" },
 						workspace = {
 							checkThirdParty = false,
 							library = {
@@ -76,6 +69,7 @@ return {
 			},
 
 			vtsls = {
+				cmd = { "vtsls", "--stdio" },
 				filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
 				on_init = function(client)
 					client.server_capabilities.semanticTokensProvider = nil
@@ -84,14 +78,14 @@ return {
 					client.server_capabilities.codeLensProvider = nil
 					client.server_capabilities.documentHighlightProvider = false
 				end,
-				root_markers = { "tsconfig.json", "jsonconfig.json", "package.json" },
+				root_dir = vim.fs.root(0, { "tsconfig.json", "jsconfig.json", "package.json" }),
 				settings = {
 					typescript = jsts_settings,
 					javascript = jsts_settings,
 					vtsls = {
 						tsserver = {
-							useSyntaxServer = "semantic", -- or "semantic" if you want fewer processes
-							maxTsServerMemory = 8192, -- bump memory if you have big projects
+							useSyntaxServer = "semantic",
+							maxTsServerMemory = 8192,
 						},
 						experimental = {
 							completion = {
@@ -102,52 +96,72 @@ return {
 				},
 			},
 
-			-- denols = {
-			-- 	root_dir = require("lspconfig").util.root_pattern("deno.json", "deno.jsonc", "deno.lock"),
-			-- },
+			jsonls = {
+				cmd = { "vscode-json-language-server", "--stdio" },
+				filetypes = { "json", "jsonc" },
+				root_dir = vim.fs.root(0, { "package.json", ".git" }),
+				settings = {
+					json = {
+						validate = { enable = true },
+					},
+				},
+				on_init = function(client)
+					-- inject schemas dynamically from SchemaStore
+					client.config.settings.json.schemas = require("schemastore").json.schemas()
+					client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+				end,
+			},
 
-			-- tailwindcss = {},
-			typos_lsp = {},
-			typos = {},
-			biome = {},
-			cssls = {},
-			cssmodules_ls = {},
+			cssls = {
+				cmd = { "vscode-css-language-server", "--stdio" },
+				filetypes = { "css" },
+			},
+
+			cssmodules_ls = {
+				cmd = { "cssmodules-language-server" },
+				filetypes = { "css" },
+			},
+
+			css_variables = {
+				cmd = { "css-variables-language-server", "--stdio" },
+				filetypes = { "css" },
+			},
+
 			html = {
+				cmd = { "vscode-html-language-server", "--stdio" },
 				filetypes = { "html" },
 				embeddedLanguages = { css = true, javascript = true },
 			},
-			css_variables = {},
-			gopls = {},
+
+			gopls = {
+				cmd = { "gopls" },
+			},
+
+			biome = {
+				cmd = { "biome", "lsp-proxy" },
+			},
+
+			typos_lsp = {
+				cmd = { "typos-lsp" },
+			},
+
+			typos = {
+				cmd = { "typos-lsp" },
+			},
 		},
 	},
 	config = function(_, opts)
 		require("mason").setup({})
 		local lsp_utils = require("krehwell.lsp-utils")
-		local lspconfig = require("lspconfig")
 
-		local jsonls_config = {
-			filetypes = { "json", "jsonc" },
-			settings = {
-				json = {
-					validate = { enable = true },
-					schemas = require("schemastore").json.schemas(),
-				},
-			},
-		}
-
-		-- merge jsonls into opts.servers
-		opts.servers = vim.tbl_deep_extend("force", opts.servers, { jsonls = jsonls_config })
-
-		-- configure all servers
 		for server, config in pairs(opts.servers) do
-			config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
-			lspconfig[server].setup(config)
+			vim.lsp.config(server, config)
+			vim.lsp.enable(server)
 		end
 
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("krehwell/lsp_configure", { clear = true }),
 			desc = "LSP User Setup",
-
 			callback = function(event)
 				vim.diagnostic.config(lsp_utils.diagnostic_config)
 				lsp_utils.on_attach(event.buf)

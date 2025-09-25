@@ -5,7 +5,14 @@ return {
 	dependencies = {
 		"rafamadriz/friendly-snippets",
 		"moyiz/blink-emoji.nvim",
+		"onsails/lspkind.nvim",
 	},
+
+	config = function(_, opts)
+		require("blink.cmp").setup(opts)
+		-- Extend neovim's client capabilities with the completion ones.
+		vim.lsp.config("*", { capabilities = require("blink.cmp").get_lsp_capabilities(nil, true) })
+	end,
 
 	---@module 'blink.cmp'
 	---@type blink.cmp.Config
@@ -23,6 +30,7 @@ return {
 					opts = { insert = true }, -- Insert emoji (default) or complete its name
 				},
 				snippets = {
+					enabled = true,
 					-- hide snippet suggestion after dot(.)
 					should_show_items = function(ctx)
 						return ctx.trigger.initial_kind ~= "trigger_character"
@@ -33,39 +41,33 @@ return {
 
 		snippets = { preset = "luasnip" },
 
+		signature = { enabled = true },
+
 		completion = {
-			trigger = {
-				prefetch_on_insert = true,
-			},
-			keyword = {
-				range = "prefix",
-			},
-			-- accept = { auto_brackets = { enabled = false } },
-			list = {
-				max_items = 30,
-				selection = {
-					--preselect = true,
-					auto_insert = true,
-				},
-			},
-			documentation = {
-				auto_show = true,
-				auto_show_delay_ms = 100,
-				treesitter_highlighting = true,
-				window = {
-					border = "rounded",
-				},
-			},
 			menu = {
 				draw = {
-					padding = 1,
-					gap = 2,
-					treesitter = { "lsp" },
+					components = {
+						kind_icon = {
+							text = function(ctx)
+								local kind_icon, _, _ = require("mini.icons").get("lsp", ctx.kind)
+								return kind_icon
+							end,
+							-- (optional) use highlights from mini.icons
+							highlight = function(ctx)
+								local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
+								return hl
+							end,
+						},
+						kind = {
+							-- (optional) use highlights from mini.icons
+							highlight = function(ctx)
+								local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
+								return hl
+							end,
+						},
+					},
 				},
-				enabled = true,
 			},
 		},
-
-		signature = { enabled = true },
 	},
 }

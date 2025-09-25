@@ -3,7 +3,7 @@ return {
 	build = ":TSUpdate",
 	event = "BufReadPre",
 	dependencies = {
-		{ "nvim-treesitter/nvim-treesitter-textobjects" },
+		"nvim-treesitter/nvim-treesitter-refactor",
 	},
 
 	-- enabled = false,
@@ -28,9 +28,7 @@ return {
 		auto_install = true,
 
 		highlight = {
-			enable = true,
-			use_languagetree = false,
-			additional_vim_regex_highlighting = false,
+			enable = true, -- keep enabled generally
 		},
 
 		incremental_selection = {
@@ -43,24 +41,19 @@ return {
 			},
 		},
 
+		refactor = {
+			highlight_definitions = {
+				enable = true,
+				-- Set to false if you have an `updatetime` of ~100.
+				clear_on_cursor_move = true,
+			},
+		},
+
 		indent = { enable = true },
 	},
 
-	textobjects = {
-		move = {
-			enable = true,
-			set_jumps = true,
-			goto_next_start = {
-				["]]"] = "@function.outer",
-			},
-			goto_previous_start = {
-				["[["] = "@function.outer",
-			},
-		},
-	},
-
 	config = function(_, opts)
-		vim.opt.smartindent = false
+		vim.opt.smartindent = true
 		require("nvim-treesitter.configs").setup(opts)
 	end,
 }

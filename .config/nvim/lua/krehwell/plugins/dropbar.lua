@@ -5,6 +5,7 @@ return {
 		build = "make",
 	},
 	ft = require("krehwell.lsp-utils").fts,
+	-- enabled = false,
 	opts = {
 		icons = {
 			kinds = {
@@ -19,14 +20,14 @@ return {
 					"constructor",
 					"function",
 				},
-                max_depth = 2,
+				max_depth = 2,
 			},
 			lsp = {
 				valid_types = {
 					"constructor",
 					"function",
 				},
-                max_depth = 2,
+				max_depth = 2,
 			},
 		},
 	},

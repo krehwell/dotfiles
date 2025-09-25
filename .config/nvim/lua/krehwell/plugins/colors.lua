@@ -111,6 +111,7 @@ return {
 	config = function()
 		vim.g.alabaster_dim_comments = true
 		vim.g.alabaster_floatborder = true
+
 		vim.cmd([[ let &statusline='%#WinSeparator#' ]]) -- color the split window dashes
 
 		vim.api.nvim_create_autocmd({ "BufEnter", "FileType", "BufLeave" }, {

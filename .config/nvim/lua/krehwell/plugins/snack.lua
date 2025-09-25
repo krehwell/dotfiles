@@ -2,9 +2,11 @@ return {
 	"folke/snacks.nvim",
 	priority = 1000,
 	lazy = false,
+	-- enabled = false,
 	dependencies = {
 		{ "folke/persistence.nvim", event = "BufReadPre", opts = {} },
 	},
+
 	---@module 'snacks'
 	---@type snacks.Config
 	opts = {
@@ -18,6 +20,7 @@ return {
 		scratch = { enabled = false },
 		notifier = { enabled = false, timeout = 3000 },
 		zen = { enabled = false },
+		words = { enabled = false, debounce = 50 },
 
 		quickfile = { enabled = true },
 		bigfile = { enabled = true },
@@ -82,7 +85,6 @@ return {
 				end,
 			},
 		},
-		words = { enabled = true, debounce = 50 },
 		styles = {},
 	},
 	init = function()
