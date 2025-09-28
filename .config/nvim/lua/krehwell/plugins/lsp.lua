@@ -85,13 +85,13 @@ return {
 					vtsls = {
 						tsserver = {
 							useSyntaxServer = "semantic",
-							maxTsServerMemory = 8192,
+							-- maxTsServerMemory = 8192,
 						},
-						experimental = {
-							completion = {
-								enableServerSideFuzzyMatch = true,
-							},
-						},
+						-- experimental = {
+						-- 	completion = {
+						-- 		enableServerSideFuzzyMatch = true,
+						-- 	},
+						-- },
 					},
 				},
 			},

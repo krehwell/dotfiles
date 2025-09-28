@@ -1,6 +1,6 @@
-vim.cmd([[
-	au BufNewFile,BufRead,FocusGained,WinEnter,BufEnter *.tsx setf typescript
-]])
+-- vim.cmd([[
+-- 	au BufNewFile,BufRead,FocusGained,WinEnter,BufEnter *.tsx setf typescript
+-- ]])
 
 local function console_format()
 	vim.cmd("normal! viwy")
@@ -11,3 +11,4 @@ local function console_format()
 end
 
 vim.keymap.set("n", "<leader><leader>", console_format, { noremap = true, silent = true })
+vim.keymap.set("n", "[[", "?\\(const\\|function\\) [A-Z].*(<CR>w:noh<CR>", { buffer = true, silent = true })

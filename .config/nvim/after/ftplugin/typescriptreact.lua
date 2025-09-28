@@ -1,6 +1,6 @@
-vim.cmd([[
-	au BufNewFile,BufRead,FocusGained,WinEnter,BufEnter *.tsx setf typescriptreact
-]])
+-- vim.cmd([[
+-- 	au BufNewFile,BufRead,FocusGained,WinEnter,BufEnter *.tsx setf typescriptreact
+-- ]])
 
 local function console_format()
 	vim.cmd("normal! viwy")
