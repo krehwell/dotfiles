@@ -1,5 +1,5 @@
 [general]
-live_config_reload = true
+live_config_reload = false
 
 [colors]
 primary = { background = "#0e1415", foreground = "#cecece" }
@@ -16,7 +16,7 @@ bright = { black = "#333333", red = "#c33c33", green = "#95cb82", yellow = "#dfd
 
 [font]
     normal = { family = "Consolas Nerd Font Mono" }
-    size = 13.5
+    size = 13.8
     bold = { family = "Consolas Nerd Font Mono" }
     italic = { family = "Consolas Nerd Font Mono" }
     bold_italic = { family = "Consolas Nerd Font Mono" }

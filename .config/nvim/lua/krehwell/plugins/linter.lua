@@ -25,7 +25,11 @@ return {
 				null_ls.builtins.formatting.goimports_reviser,
 				-- null_ls.builtins.formatting.gofumpt.with({ space = true, }),
 
-				null_ls.builtins.formatting.biome,
+				-- null_ls.builtins.formatting.biome.with({
+				-- 	condition = function(utils)
+				-- 		return utils.root_has_file({ "package.json" })
+				-- 	end,
+				-- }),
 				-- null_ls.builtins.diagnostics.biome,
 
 				-- TS
