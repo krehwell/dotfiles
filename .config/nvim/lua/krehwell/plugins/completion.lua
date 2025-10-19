@@ -6,6 +6,7 @@ return {
 		"rafamadriz/friendly-snippets",
 		"moyiz/blink-emoji.nvim",
 		"onsails/lspkind.nvim",
+		"joelazar/blink-calc",
 	},
 
 	config = function(_, opts)
@@ -21,7 +22,7 @@ return {
 		cmdline = { enabled = true },
 
 		sources = {
-			default = { "emoji", "lsp", "snippets", "path", "buffer" },
+			default = { "lsp", "path", "snippets", "buffer", "calc", "emoji" },
 			providers = {
 				emoji = {
 					module = "blink-emoji",
@@ -35,6 +36,10 @@ return {
 					should_show_items = function(ctx)
 						return ctx.trigger.initial_kind ~= "trigger_character"
 					end,
+				},
+				calc = {
+					name = "Calc",
+					module = "blink-calc",
 				},
 			},
 		},

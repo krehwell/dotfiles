@@ -65,7 +65,7 @@ vim.opt.fillchars = {
 	stl = "—",
 }
 -- vim.opt.jumpoptions:append("stack")
-vim.opt.jumpoptions:append("clean")
+-- vim.opt.jumpoptions:append("clean")
 vim.optfoldmethod = "indent"
 -- vim.opt.virtualedit = "block"
 
