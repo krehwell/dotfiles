@@ -6,7 +6,9 @@ return {
 	version = false,
 	event = "InsertEnter",
 	config = function()
-		require("mini.pairs").setup({})
+		require("mini.pairs").setup({
+			modes = { insert = true, command = false, terminal = false },
+		})
 		require("nvim-ts-autotag").setup({
 			opts = {
 				enable_close = true,

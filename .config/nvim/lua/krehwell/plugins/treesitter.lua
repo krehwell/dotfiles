@@ -4,6 +4,7 @@ return {
 	event = "BufReadPre",
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter-refactor",
+		"nvim-treesitter/nvim-treesitter-textobjects",
 	},
 
 	-- enabled = false,
@@ -50,6 +51,20 @@ return {
 		},
 
 		indent = { enable = true },
+
+		textobjects = {
+			move = {
+				enable = true,
+				set_jumps = true, -- Adds location to the jump list
+
+				goto_previous_start = {
+					["[m"] = { query = "@function.outer", desc = "Previous function start" },
+				},
+				goto_next_start = {
+					["]m"] = { query = "@function.outer", desc = "Next function start" },
+				},
+			},
+		},
 	},
 
 	config = function(_, opts)

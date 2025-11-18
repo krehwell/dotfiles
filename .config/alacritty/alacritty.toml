@@ -1,8 +1,8 @@
 [general]
-live_config_reload = false
+live_config_reload = true
 
 [colors]
-primary = { background = "#0e1415", foreground = "#cecece" }
+primary = { background = "#1e1e1e", foreground = "#dadada" }
 cursor = { text = "#0e1415", cursor = "#cd974b" }
 selection = { text = "#000000", background = "#293334" }
 normal = { black = "#000000", red = "#d2322d", green = "#6abf40", yellow = "#cd974b", blue = "#217EBC", magenta = "#9B3596", cyan = "#178F79", white = "#cecece" }
@@ -16,7 +16,7 @@ bright = { black = "#333333", red = "#c33c33", green = "#95cb82", yellow = "#dfd
 
 [font]
     normal = { family = "Consolas Nerd Font Mono" }
-    size = 13.8
+    size = 14.7
     bold = { family = "Consolas Nerd Font Mono" }
     italic = { family = "Consolas Nerd Font Mono" }
     bold_italic = { family = "Consolas Nerd Font Mono" }

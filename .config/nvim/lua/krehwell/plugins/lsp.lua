@@ -71,53 +71,54 @@ return {
 				},
 			},
 
-			-- vtsls = {
-			-- 	cmd = { "vtsls", "--stdio" },
-			-- 	on_init = function(client)
-			-- 		client.server_capabilities.semanticTokensProvider = nil
-			-- 		client.server_capabilities.documentFormattingProvider = false
-			-- 		client.server_capabilities.documentRangeFormattingProvider = false
-			-- 		client.server_capabilities.codeLensProvider = nil
-			-- 		client.server_capabilities.documentHighlightProvider = false
-			-- 		local biome_config = {
-			-- 			cmd = { "biome", "lsp-proxy" },
-			-- 			root_dir = vim.fs.root(0, { "tsconfig.json", "jsconfig.json", "package.json" }),
-			-- 		}
-			-- 		vim.lsp.config("biome", biome_config)
-			-- 		vim.lsp.enable("biome")
-			-- 	end,
-			-- 	capabilities = {
-			-- 		textDocument = {
-			-- 			semanticTokens = {
-			-- 				multilineTokenSupport = true,
-			-- 			},
-			-- 		},
-			-- 	},
-			-- 	root_dir = vim.fs.root(0, { "tsconfig.json", "jsconfig.json", "package.json" }),
-			-- 	settings = {
-			-- 		typescript = jsts_settings,
-			-- 		javascript = jsts_settings,
-			-- 	},
-			-- },
-
-			deno = {
-				cmd = { "deno", "lsp" },
-				root_dir = vim.fs.root(0, { "deno.json", "deno.jsonc" }), -- detect Deno project
-				init_options = {
-					lint = true, -- enable linting
-					unstable = true, -- allow unstable APIs
-					suggest = {
-						imports = {
-							hosts = {
-								["https://deno.land"] = true,
-								["https://cdn.nest.land"] = true,
-								["https://crux.land"] = true,
-							},
+			vtsls = {
+				filetypes = { "typescript", "javascript", "typescriptreact" },
+				cmd = { "vtsls", "--stdio" },
+				on_init = function(client)
+					client.server_capabilities.semanticTokensProvider = nil
+					client.server_capabilities.documentFormattingProvider = false
+					client.server_capabilities.documentRangeFormattingProvider = false
+					client.server_capabilities.codeLensProvider = nil
+					client.server_capabilities.documentHighlightProvider = false
+					local biome_config = {
+						cmd = { "biome", "lsp-proxy" },
+						root_dir = vim.fs.root(0, { "tsconfig.json", "jsconfig.json", "package.json" }),
+					}
+					vim.lsp.config("biome", biome_config)
+					vim.lsp.enable("biome")
+				end,
+				capabilities = {
+					textDocument = {
+						semanticTokens = {
+							multilineTokenSupport = true,
 						},
 					},
 				},
-				settings = {},
+				root_dir = vim.fs.root(0, { "tsconfig.json", "jsconfig.json", "package.json" }),
+				settings = {
+					typescript = jsts_settings,
+					javascript = jsts_settings,
+				},
 			},
+
+			-- deno = {
+			-- 	cmd = { "deno", "lsp" },
+			-- 	root_dir = vim.fs.root(0, { "deno.json", "deno.jsonc" }), -- detect Deno project
+			-- 	init_options = {
+			-- 		lint = true, -- enable linting
+			-- 		unstable = true, -- allow unstable APIs
+			-- 		suggest = {
+			-- 			imports = {
+			-- 				hosts = {
+			-- 					["https://deno.land"] = true,
+			-- 					["https://cdn.nest.land"] = true,
+			-- 					["https://crux.land"] = true,
+			-- 				},
+			-- 			},
+			-- 		},
+			-- 	},
+			-- 	settings = {},
+			-- },
 
 			jsonls = {
 				cmd = { "vscode-json-language-server", "--stdio" },
@@ -142,7 +143,7 @@ return {
 
 			cssmodules_ls = {
 				cmd = { "cssmodules-language-server" },
-				filetypes = { "css" },
+				filetypes = { "css", "typescriptreact" },
 			},
 
 			css_variables = {
@@ -158,6 +159,7 @@ return {
 
 			gopls = {
 				cmd = { "gopls" },
+				filetypes = { "go", "gomod", "gowork" },
 			},
 
 			typos_lsp = {
