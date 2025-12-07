@@ -34,10 +34,13 @@ local dim_my_highlights = function()
 	vim.api.nvim_set_hl(0, "Structure", { link = "NoSyntaxColoring" })
 	vim.api.nvim_set_hl(0, "Typedef", { link = "NoSyntaxColoring" })
 	vim.api.nvim_set_hl(0, "Special", { link = "NoSyntaxColoring" })
+
+	vim.api.nvim_set_hl(0, "TabLineSel", { link = "DiffText" })
 end
 
 return {
-	"padulkemid/nvim-256noir",
+	"Verf/deepwhite.nvim",
+	-- "padulkemid/nvim-256noir",
 	-- "p00f/alabaster.nvim",
 	-- "loctvl842/monokai-pro.nvim",
 	config = function()

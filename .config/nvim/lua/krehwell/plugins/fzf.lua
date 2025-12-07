@@ -9,6 +9,7 @@ return {
 		vim.api.nvim_create_user_command("Lls", "FzfLua buffers", { nargs = 0, bang = true })
 
 		require("fzf-lua").register_ui_select()
+		local actions = require("fzf-lua.actions")
 
 		require("fzf-lua").setup({
 			{ "default-title" },
@@ -26,7 +27,10 @@ return {
 			btags = { previewer = "bat" },
 			lines = { _treesitter = false },
 			blines = { _treesitter = false },
-			buffers = { formatter = "path.filename_first" },
+			buffers = {
+				formatter = "path.filename_first",
+				actions = { ["ctrl-d"] = { fn = actions.buf_del, reload = true } },
+			},
 			files = { formatter = "path.filename_first" },
 			grep = {},
 			git = {},

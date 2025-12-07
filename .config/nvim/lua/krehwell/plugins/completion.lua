@@ -27,7 +27,7 @@ return {
 				emoji = {
 					module = "blink-emoji",
 					name = "Emoji",
-					score_offset = 15, -- Tune by preference
+					-- score_offset = 15, -- Tune by preference
 					opts = { insert = true }, -- Insert emoji (default) or complete its name
 				},
 				snippets = {
@@ -49,6 +49,10 @@ return {
 		signature = { enabled = true },
 
 		completion = {
+			accept = {
+				auto_brackets = { enabled = false },
+			},
+
 			menu = {
 				draw = {
 					components = {
