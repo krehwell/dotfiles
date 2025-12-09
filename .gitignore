@@ -1,8 +1,7 @@
-# Ignore all files
+# ignore all files
 /*
 
-# Unignore nvim folder
-# !/.config/
+# unignore nvim folder
 /.config/**/
 /.config/*
 !.config/nvim/
@@ -11,10 +10,12 @@
 !.config/nvim/after/*
 !.config/nvim/after/ftplugin/
 
-# File to be unignored
+# file to be unignored
 !.tmux.conf
 !.bashrc
 !.screenrc
 !.gitignore
 !.profile
 !readme.md
+
+**/.DS_Store
