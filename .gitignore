@@ -8,21 +8,8 @@
 !.config/nvim/
 !.config/nvim/*
 /.config/nvim/colors/
-/.config/nvim/.netrwhist
 !.config/nvim/after/*
 !.config/nvim/after/ftplugin/
-
-# Unignore folder | i3 region
-!.config/*
-!.config/i3/
-!.config/i3status/
-!.config/alacritty/
-!.config/fontconfig/
-!.config/rofi/
-!.config/polybar/
-!.config/fish/
-
-!/boilerplates/
 
 # File to be unignored
 !.tmux.conf
