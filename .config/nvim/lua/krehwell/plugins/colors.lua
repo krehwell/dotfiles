@@ -1,9 +1,7 @@
--- vim.cmd("syntax off")
 vim.opt.termguicolors = true
 vim.opt.background = "dark"
 
 local dim_my_highlights = function()
-	-- vim.api.nvim_set_hl(0, "CodeiumSuggestion", { fg = "#808080" })
 	vim.api.nvim_set_hl(0, "NoSyntaxColoring", { fg = "NvimLightGray2" })
 
 	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
@@ -40,25 +38,17 @@ end
 
 return {
 	"Verf/deepwhite.nvim",
-	-- "padulkemid/nvim-256noir",
-	-- "p00f/alabaster.nvim",
-	-- "loctvl842/monokai-pro.nvim",
 	config = function()
-		vim.g.alabaster_dim_comments = true
-		vim.g.alabaster_floatborder = true
-
 		vim.cmd([[ let &statusline='%#WinSeparator#' ]]) -- color the split window dashes
 
-		vim.api.nvim_create_autocmd("VimEnter", {
+		vim.api.nvim_create_autocmd({ "VimEnter" }, {
 			group = vim.api.nvim_create_augroup("krehwell/dim_my_highlights", { clear = true }),
-			desc = "Initialize custom highlighting and color settings.",
+			desc = "I don't like colorscheme, turn off all highlighting",
 			callback = function()
 				dim_my_highlights()
 			end,
 		})
 
-		-- vim.cmd.colorscheme("256noir")
 		vim.cmd("colorscheme default")
-		-- vim.cmd("colorscheme monokai-pro-classic")
 	end,
 }

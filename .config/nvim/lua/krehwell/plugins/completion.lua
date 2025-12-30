@@ -2,17 +2,11 @@ return {
 	"saghen/blink.cmp",
 	event = "BufReadPre",
 	version = "*",
-	dependencies = {
-		"rafamadriz/friendly-snippets",
-		"moyiz/blink-emoji.nvim",
-		"onsails/lspkind.nvim",
-		"joelazar/blink-calc",
-	},
+	dependencies = { "rafamadriz/friendly-snippets", "joelazar/blink-calc" },
 
 	config = function(_, opts)
 		require("blink.cmp").setup(opts)
-		-- Extend neovim's client capabilities with the completion ones.
-		vim.lsp.config("*", { capabilities = require("blink.cmp").get_lsp_capabilities(nil, true) })
+		vim.lsp.config("*", { capabilities = require("blink.cmp").get_lsp_capabilities(nil, true) }) -- Extend neovim's client capabilities with the completion ones.
 	end,
 
 	---@module 'blink.cmp'
@@ -22,14 +16,8 @@ return {
 		cmdline = { enabled = true },
 
 		sources = {
-			default = { "lsp", "path", "snippets", "buffer", "calc", "emoji" },
+			default = { "lsp", "path", "snippets", "buffer", "calc" },
 			providers = {
-				emoji = {
-					module = "blink-emoji",
-					name = "Emoji",
-					-- score_offset = 15, -- Tune by preference
-					opts = { insert = true }, -- Insert emoji (default) or complete its name
-				},
 				snippets = {
 					enabled = true,
 					-- hide snippet suggestion after dot(.)
@@ -51,31 +39,6 @@ return {
 		completion = {
 			accept = {
 				auto_brackets = { enabled = false },
-			},
-
-			menu = {
-				draw = {
-					components = {
-						kind_icon = {
-							text = function(ctx)
-								local kind_icon, _, _ = require("mini.icons").get("lsp", ctx.kind)
-								return kind_icon
-							end,
-							-- (optional) use highlights from mini.icons
-							highlight = function(ctx)
-								local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
-								return hl
-							end,
-						},
-						kind = {
-							-- (optional) use highlights from mini.icons
-							highlight = function(ctx)
-								local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
-								return hl
-							end,
-						},
-					},
-				},
 			},
 		},
 	},

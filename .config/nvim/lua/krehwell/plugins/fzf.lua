@@ -2,12 +2,19 @@ return {
 	"ibhagwan/fzf-lua",
 	dependencies = {
 		{ "junegunn/fzf", build = "./install --bin" },
+		{
+			"max397574/better-escape.nvim",
+			opts = {
+				timeout = vim.o.timeoutlen,
+				default_mappings = false,
+				mappings = {
+					-- `ls` will open a buffer list
+					n = { l = { s = "<cmd>lua require('fzf-lua').buffers()<CR>" } },
+				},
+			},
+		},
 	},
 	config = function()
-		vim.api.nvim_create_user_command("Ls", "FzfLua buffers", { nargs = 0, bang = true })
-		vim.api.nvim_create_user_command("LS", "FzfLua buffers", { nargs = 0, bang = true })
-		vim.api.nvim_create_user_command("Lls", "FzfLua buffers", { nargs = 0, bang = true })
-
 		require("fzf-lua").register_ui_select()
 		local actions = require("fzf-lua.actions")
 
@@ -37,12 +44,12 @@ return {
 		})
 	end,
 
-	cmd = { "FzfLua", "Ls", "LS" },
+	cmd = { "FzfLua" },
 
 	keys = {
 		{ "<C-f>", ":lua require('fzf-lua').grep()<CR><CR><C-g>", desc = "Fuzzy search (Regex)", silent = true },
 		{ "<C-k>", ":lua require('fzf-lua').grep()<CR><CR>", desc = "Fuzzy search", silent = true },
-		{ "<leader>fzf", "<cmd>lua require('fzf-lua').builtin()<CR>", desc = "FzfLua features list", silent = true },
+		{ "fzf", "<cmd>lua require('fzf-lua').builtin()<CR>", desc = "FzfLua features list", silent = true },
 		{ "ga", "<cmd>lua require('fzf-lua').grep_cword()<CR>", desc = "Any jump", silent = true },
 		{
 			"<c-p>",
@@ -61,7 +68,6 @@ return {
 			desc = "Project find files",
 			silent = true,
 		},
-		{ "<leader>l", "<cmd>lua require('fzf-lua').buffers()<CR>", desc = "FzfLua Buffers", silent = true },
 		{ "<leader>t", "<cmd>lua require('fzf-lua').tagstack()<CR>", desc = "FzfLua Tag Stack", silent = true },
 	},
 }

@@ -40,12 +40,6 @@ return {
 			show_hidden = true,
 		},
 
-		float = {
-			max_width = 70,
-			max_height = 30,
-			border = "rounded",
-		},
-
 		delete_to_trash = true,
 
 		keymaps = {

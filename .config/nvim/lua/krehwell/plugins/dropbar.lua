@@ -1,32 +1,21 @@
 return {
 	"Bekaboo/dropbar.nvim",
-	dependencies = {
-		"nvim-telescope/telescope-fzf-native.nvim",
-		build = "make",
-	},
-	ft = require("krehwell.lsp-utils").fts,
 	-- enabled = false,
 	opts = {
 		icons = {
 			kinds = {
-				symbols = {
-					File = " ",
-				},
+				symbols = { File = " " },
 			},
 		},
 		sources = {
 			treesitter = {
-				valid_types = {
-					"constructor",
-					"function",
-				},
+				-- only show this things, I don't need deep complex dropbar info
+				valid_types = { "constructor", "function" },
 				max_depth = 2,
 			},
 			lsp = {
-				valid_types = {
-					"constructor",
-					"function",
-				},
+				-- only show this things, I don't need deep complex dropbar info
+				valid_types = { "constructor", "function" },
 				max_depth = 2,
 			},
 		},

@@ -39,7 +39,7 @@ return {
 			},
 		},
 	},
-	ft = require("krehwell.lsp-utils").fts,
+	ft = { "*" },
 	opts = {
 		servers = {
 
@@ -107,15 +107,6 @@ return {
 			-- 	init_options = {
 			-- 		lint = true, -- enable linting
 			-- 		unstable = true, -- allow unstable APIs
-			-- 		suggest = {
-			-- 			imports = {
-			-- 				hosts = {
-			-- 					["https://deno.land"] = true,
-			-- 					["https://cdn.nest.land"] = true,
-			-- 					["https://crux.land"] = true,
-			-- 				},
-			-- 			},
-			-- 		},
 			-- 	},
 			-- 	settings = {},
 			-- },
@@ -184,9 +175,6 @@ return {
 			group = vim.api.nvim_create_augroup("krehwell/lsp_configure", { clear = true }),
 			desc = "LSP User Setup",
 			callback = function(event)
-				vim.bo[event.buf].formatexpr = nil
-				vim.bo[event.buf].omnifunc = nil
-
 				vim.diagnostic.config(lsp_utils.diagnostic_config)
 				lsp_utils.on_attach(event.buf)
 			end,

@@ -13,43 +13,6 @@ vim.keymap.set({ "i", "s", "n" }, "<esc>", function()
 end, { desc = "Escape, clear hlsearch, and stop snippet session", expr = true })
 
 
--- NORMALIZE THE INDENTATION SO IT STARTS FROM THE LEFTMOST POSITION (NO LEADING SPACES).
--- vim.keymap.set("x", "a", function()
---     -- Get the selected range
---     local start_line = vim.fn.line("'<")
---     local end_line = vim.fn.line("'>")
---
---     -- Get all selected lines
---     local lines = {}
---     for line_num = start_line, end_line do
---         table.insert(lines, vim.fn.getline(line_num))
---     end
---
---     -- Find the minimum indentation (excluding empty lines)
---     local min_indent = math.huge
---     for _, line in ipairs(lines) do
---         if line:match("%S") then -- line has non-whitespace content
---             local indent = line:match("^%s*"):len()
---             min_indent = math.min(min_indent, indent)
---         end
---     end
---
---     -- If we found any indentation, remove it from all lines
---     if min_indent > 0 and min_indent ~= math.huge then
---         for i, line in ipairs(lines) do
---             if line:match("%S") then -- only modify non-empty lines
---                 lines[i] = line:sub(min_indent + 1)
---             end
---         end
---
---         -- Replace the lines in the buffer
---         for i, line in ipairs(lines) do
---             vim.fn.setline(start_line + i - 1, line)
---         end
---     end
--- end, { desc = "Remove common leading whitespace from selection" })
-
-
 vim.keymap.set("n", "<C-g>", function()
 	local get_git_branch = function()
 		local branch = vim.fn.system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")

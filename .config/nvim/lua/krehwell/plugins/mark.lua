@@ -1,10 +1,9 @@
+-- mark an important file using `ma` and manage it using `mo`
 return {
 	"alucherdi/hand-of-god",
 	keys = {
-		{ "mo", ":norm mme<CR>", desc = "arrow.nvim open edit mode" },
-		{ "mm", desc = "arrow.nvim open menu (buffers)" },
+		{ "mo", ":norm mme<CR>", desc = "hand-of-god open edit mode" },
 		{ "ma", desc = "hand-of-god add file" },
-		{ "''", desc = "arrow.nvim open menu (lines)" },
 	},
 	config = function(_, opts)
 		local jumper = require("handofgod.jumper")
@@ -14,10 +13,11 @@ return {
 		vim.keymap.set("n", "ma", function()
 			jumper.add()
 		end)
+
 		-- explore jumper list as buffer
 		vim.keymap.set("n", "mo", function()
 			jumper:explore()
-            vim.cmd("setlocal cursorline")
+			vim.cmd("setlocal cursorline")
 		end)
 	end,
 }

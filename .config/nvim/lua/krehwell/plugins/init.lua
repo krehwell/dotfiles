@@ -124,9 +124,7 @@ return {
 	},
 	{
 		"j-hui/fidget.nvim",
-		tag = "legacy",
 		event = "LspAttach",
-		opts = { window = { relative = "win", blend = 0, zindex = nil, border = "none" } },
 	},
 	{
 		"uga-rosa/ccc.nvim",
@@ -134,23 +132,11 @@ return {
 		config = function()
 			local ccc = require("ccc")
 			ccc.setup({
-				highlighter = {
-					auto_enable = true,
-					lsp = true,
-				},
+				highlighter = { auto_enable = true, lsp = true },
 			})
 		end,
 		keys = {
-			{
-				"<leader>c",
-				"<cmd>:CccConvert<CR>",
-				desc = "Toggle highlight color",
-			},
+			{ "<leader>c", "<cmd>:CccConvert<CR>", desc = "Toggle highlight color" },
 		},
 	},
-	-- { "p00f/alabaster.nvim", priority = 1000, event = "VeryLazy" },
-	-- { "projekt0n/github-nvim-theme", priority = 1000, event = "VeryLazy" },
-	-- { "xero/miasma.nvim", priority = 1000, event = "VeryLazy" },
-	-- { "sainnhe/gruvbox-material", event = "VeryLazy", priority = 1000 },
-	-- { "HoNamDuong/hybrid.nvim", event = "VeryLazy", priority = 1000 },
 }
