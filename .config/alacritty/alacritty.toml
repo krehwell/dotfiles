@@ -25,7 +25,8 @@ bright = { black = "#333333", red = "#c33c33", green = "#95cb82", yellow = "#dfd
     bindings = [
         { key = "p", mods = "Command", chars = "~/utils/tmux/tmux-sessionizer\n" },
         { key = "Key6", mods = "Control", chars = "\u001e" },
-        { key = "F10", action = "ToggleMaximized" }
+        { key = "F10", action = "ToggleMaximized" },
+        { key = "Return", mods = "Shift", chars = "\n" }
     ]
 
 [selection]

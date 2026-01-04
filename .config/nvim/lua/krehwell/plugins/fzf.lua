@@ -2,17 +2,6 @@ return {
 	"ibhagwan/fzf-lua",
 	dependencies = {
 		{ "junegunn/fzf", build = "./install --bin" },
-		{
-			"max397574/better-escape.nvim",
-			opts = {
-				timeout = vim.o.timeoutlen,
-				default_mappings = false,
-				mappings = {
-					-- `ls` will open a buffer list
-					n = { l = { s = "<cmd>lua require('fzf-lua').buffers()<CR>" } },
-				},
-			},
-		},
 	},
 	config = function()
 		require("fzf-lua").register_ui_select()
@@ -68,6 +57,7 @@ return {
 			desc = "Project find files",
 			silent = true,
 		},
+		{ "<leader>l", "<cmd>lua require('fzf-lua').buffers()<CR>", desc = "FzfLua Buffers", silent = true },
 		{ "<leader>t", "<cmd>lua require('fzf-lua').tagstack()<CR>", desc = "FzfLua Tag Stack", silent = true },
 	},
 }

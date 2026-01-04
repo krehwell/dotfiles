@@ -75,30 +75,18 @@ return {
 				filetypes = { "typescript", "javascript", "typescriptreact" },
 				cmd = { "vtsls", "--stdio" },
 				on_init = function(client)
-					-- client.server_capabilities.semanticTokensProvider = nil
+					client.server_capabilities.semanticTokensProvider = nil
 					client.server_capabilities.documentFormattingProvider = false
 					client.server_capabilities.documentRangeFormattingProvider = false
-					-- client.server_capabilities.codeLensProvider = nil
-					-- client.server_capabilities.documentHighlightProvider = false
+					client.server_capabilities.codeLensProvider = nil
+					client.server_capabilities.documentHighlightProvider = false
 					local biome_config = {
 						cmd = { "biome", "lsp-proxy" },
-						root_dir = vim.fs.root(0, { "tsconfig.json", "jsconfig.json", "package.json" }),
 					}
 					vim.lsp.config("biome", biome_config)
 					vim.lsp.enable("biome")
 				end,
-				capabilities = {
-					textDocument = {
-						semanticTokens = {
-							multilineTokenSupport = true,
-						},
-					},
-				},
-				root_dir = vim.fs.root(0, { "tsconfig.json", "jsconfig.json", "package.json" }),
-				settings = {
-					typescript = jsts_settings,
-					javascript = jsts_settings,
-				},
+				settings = { typescript = jsts_settings, javascript = jsts_settings },
 			},
 
 			-- deno = {
