@@ -93,6 +93,17 @@ return {
 		},
 	},
 	{
+		"subev/sibling-jump.nvim",
+		event = "LspAttach",
+		config = function()
+			require("sibling_jump").setup({
+				next_key = "]]",
+				prev_key = "[[",
+				block_loop_key = "<C-l>",
+			})
+		end,
+	},
+	{
 		"tpope/vim-surround",
 		keys = {
 			{ "cs", "<Plug>VSurround", desc = "Change surround", mode = "n" },
@@ -114,18 +125,8 @@ return {
 	},
 
 	-- BEAUTIFY
-	{
-		"echasnovski/mini.icons",
-		version = false,
-		event = "BufReadPre",
-		config = function()
-			require("mini.icons").setup()
-		end,
-	},
-	{
-		"j-hui/fidget.nvim",
-		event = "LspAttach",
-	},
+	{ "echasnovski/mini.icons", version = false, event = "BufReadPre" },
+	{ "j-hui/fidget.nvim", event = "LspAttach", opts = { notification = { window = { winblend = 0 } } } },
 	{
 		"uga-rosa/ccc.nvim",
 		event = "BufReadPre",

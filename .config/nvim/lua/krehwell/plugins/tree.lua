@@ -51,9 +51,7 @@ return {
 
 		skip_confirm_for_simple_edits = true,
 		prompt_save_on_select_new_entry = false,
-		win_options = {
-			winbar = "%!v:lua.get_oil_winbar()",
-		},
+		win_options = { winbar = "%!v:lua.get_oil_winbar()" },
 	},
 	keys = {
 		{

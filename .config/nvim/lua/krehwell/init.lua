@@ -9,19 +9,19 @@ if not vim.loop.fs_stat(lazypath) then
 		"clone",
 		"--filter=blob:none",
 		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", 
+		"--branch=stable",
 		lazypath,
 	})
 end
 vim.opt.rtp:prepend(lazypath)
 vim.keymap.set("n", "<F5>", ":Lazy sync<CR>")
 
-require("lazy").setup("krehwell.plugins", { 
-    change_detection = {
-        enabled = true,
-        notify = false,
-    },
-    ui = {
-        border = "rounded",
-    },
+require("lazy").setup("krehwell.plugins", {
+	change_detection = {
+		enabled = true,
+		notify = false,
+	},
+	ui = {
+		border = "rounded",
+	},
 })

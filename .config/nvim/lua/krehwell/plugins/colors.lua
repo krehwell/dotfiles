@@ -3,9 +3,10 @@ vim.opt.background = "dark"
 
 local dim_my_highlights = function()
 	vim.api.nvim_set_hl(0, "NoSyntaxColoring", { fg = "NvimLightGray2" })
-
 	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 	vim.api.nvim_set_hl(0, "NormalNC", { link = "Normal" })
+
+	-- turnoff all syntax colors
 	vim.api.nvim_set_hl(0, "Module", { link = "NoSyntaxColoring" })
 	vim.api.nvim_set_hl(0, "Constant", { link = "NoSyntaxColoring" })
 	vim.api.nvim_set_hl(0, "String", { link = "NoSyntaxColoring" })
@@ -33,20 +34,20 @@ local dim_my_highlights = function()
 	vim.api.nvim_set_hl(0, "Typedef", { link = "NoSyntaxColoring" })
 	vim.api.nvim_set_hl(0, "Special", { link = "NoSyntaxColoring" })
 
+	-- UI sanity colors
 	vim.api.nvim_set_hl(0, "TabLineSel", { link = "DiffText" })
+	vim.api.nvim_set_hl(0, "TabLine", { link = "Conceal" })
+	vim.api.nvim_set_hl(0, "TabLineFill", { link = "Conceal" })
+	vim.api.nvim_set_hl(0, "WinSeparator", { link = "Conceal" })
 end
 
 return {
 	"Verf/deepwhite.nvim",
 	config = function()
-		vim.cmd([[ let &statusline='%#WinSeparator#' ]]) -- color the split window dashes
-
 		vim.api.nvim_create_autocmd({ "VimEnter" }, {
 			group = vim.api.nvim_create_augroup("krehwell/dim_my_highlights", { clear = true }),
 			desc = "I don't like colorscheme, turn off all highlighting",
-			callback = function()
-				dim_my_highlights()
-			end,
+			callback = dim_my_highlights,
 		})
 
 		vim.cmd("colorscheme default")

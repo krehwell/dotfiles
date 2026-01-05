@@ -31,13 +31,7 @@ return {
 	cmd = { "Mason" },
 	dependencies = {
 		{ "williamboman/mason.nvim" },
-		{
-			"folke/lazydev.nvim",
-			ft = "lua",
-			opts = {
-				library = { { path = "${3rd}/luv/library", words = { "vim%.uv" } } },
-			},
-		},
+		{ "folke/lazydev.nvim", ft = "lua" },
 	},
 	ft = { "*" },
 	opts = {
@@ -71,22 +65,53 @@ return {
 				},
 			},
 
-			vtsls = {
-				filetypes = { "typescript", "javascript", "typescriptreact" },
-				cmd = { "vtsls", "--stdio" },
+			-- vtsls = {
+			-- 	filetypes = { "typescript", "javascript", "typescriptreact" },
+			-- 	cmd = { "vtsls", "--stdio" },
+			-- 	on_init = function(client)
+			-- 		client.server_capabilities.semanticTokensProvider = nil
+			-- 		client.server_capabilities.documentFormattingProvider = false
+			-- 		client.server_capabilities.documentRangeFormattingProvider = false
+			-- 		client.server_capabilities.codeLensProvider = nil
+			-- 		client.server_capabilities.documentHighlightProvider = false
+			-- 		local biome_config = {
+			-- 			cmd = { "biome", "lsp-proxy" },
+			-- 		}
+			-- 		vim.lsp.config("biome", biome_config)
+			-- 		vim.lsp.enable("biome")
+			-- 	end,
+			-- 	settings = { typescript = jsts_settings, javascript = jsts_settings },
+			-- },
+
+			tsgo = {
+				filetypes = {
+					"javascript",
+					"javascriptreact",
+					"javascript.jsx",
+					"typescript",
+					"typescriptreact",
+					"typescript.tsx",
+				},
+				cmd = { "tsgo", "--lsp", "--stdio" },
 				on_init = function(client)
 					client.server_capabilities.semanticTokensProvider = nil
 					client.server_capabilities.documentFormattingProvider = false
 					client.server_capabilities.documentRangeFormattingProvider = false
 					client.server_capabilities.codeLensProvider = nil
 					client.server_capabilities.documentHighlightProvider = false
-					local biome_config = {
-						cmd = { "biome", "lsp-proxy" },
-					}
-					vim.lsp.config("biome", biome_config)
-					vim.lsp.enable("biome")
 				end,
 				settings = { typescript = jsts_settings, javascript = jsts_settings },
+			},
+
+			biome = {
+				single_file_support = true,
+				cmd = { "biome", "lsp-proxy" },
+				root_markers = { "biome.json", "biome.jsonc" },
+			},
+
+			emmet_language_server = {
+                      cmd = { "emmet-language-server", "--stdio" },
+				filetypes = { "css", "html", "javascript", "javascriptreact", "typescriptreact" },
 			},
 
 			-- deno = {
@@ -109,8 +134,7 @@ return {
 					},
 				},
 				on_init = function(client)
-					-- inject schemas dynamically from SchemaStore
-					client.config.settings.json.schemas = require("schemastore").json.schemas()
+					client.config.settings.json.schemas = require("schemastore").json.schemas() -- typechecking for schema
 					client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
 				end,
 			},
@@ -139,10 +163,6 @@ return {
 			gopls = {
 				cmd = { "gopls" },
 				filetypes = { "go", "gomod", "gowork" },
-			},
-
-			typos_lsp = {
-				cmd = { "typos-lsp" },
 			},
 
 			typos = {

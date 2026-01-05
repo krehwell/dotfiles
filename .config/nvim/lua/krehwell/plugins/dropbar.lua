@@ -21,6 +21,9 @@ return {
 		},
 	},
 	config = function(_, opts)
+		-- don't need statusline as it's now replaced with dropbar
+		vim.cmd([[ let &statusline='%#WinSeparator#' ]])
+
 		require("dropbar").setup(opts)
 	end,
 }
