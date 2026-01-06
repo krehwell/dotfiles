@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+if [[ $# -eq 1 ]]; then
+    selected=$1
+else
+    selected=$(find ~/Documents ~/Documents/personal ~/.local/share/nvim/lazy ~/.config ~/Downloads ~ ~/utils/ -mindepth 1 -maxdepth 1 -type d | fzf)
+fi
+
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+selected_name=$(basename "$selected" | tr . _)
+existingSession=$(tmux list-sessions -F '#S' | grep "^$selected_name$")
+
+if [[ -z $TMUX ]]; then
+    # not in tmux session
+    if [[ -z $existingSession ]]; then
+        if [[ -f $selected/.vim/tmux-session ]]; then
+            $selected/.vim/tmux-session restore
+            tmux attach-session -t $selected_name
+        else
+            tmux new-session -s $selected_name -c $selected
+        fi
+    else
+        tmux attach -t $selected_name
+    fi
+else
+    # inside tmux session
+    if [[ -z $existingSession ]]; then
+        if [[ -f $selected/.vim/tmux-session ]]; then
+            $selected/.vim/tmux-session restore
+        else
+            tmux new-session -ds $selected_name -c $selected
+        fi
+    fi
+    tmux switch-client -t $selected_name
+fi
