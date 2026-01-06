@@ -1,0 +1,13 @@
+#!/bin/bash
+# The file path passed from xargs
+FILE_PATH="$1"
+
+# check if a window named 'nvim' exists
+if tmux list-windows -F "#W" | grep -q "^nvim$"; then
+    # window exists: send keys to the existing nvim session
+    tmux send-keys -t nvim Escape ":tabedit $FILE_PATH" Enter
+    tmux select-window -t nvim
+else
+    # window doesn't exist: create it
+    tmux new-window -n nvim "nvim $FILE_PATH"
+fi
