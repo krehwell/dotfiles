@@ -1,13 +1,20 @@
 #!/bin/bash
-# The file path passed from xargs
+
+# 1. Get the absolute path of the file to avoid CWD issues
+# This ensures it works even if the new window opens in a different dir
 FILE_PATH="$1"
 
-# check if a window named 'nvim' exists
-if tmux list-windows -F "#W" | grep -q "^nvim$"; then
-    # window exists: send keys to the existing nvim session
-    tmux send-keys -t nvim Escape ":tabedit $FILE_PATH" Enter
-    tmux select-window -t nvim
+# 2. Find the first window running nvim, vim, or vi
+TARGET_WINDOW=$(tmux list-panes -a -F "#{window_id} #{pane_current_command}" | \
+                grep -E "nvim|vim|vi" | head -n 1 | awk '{print $1}')
+
+if [ -n "$TARGET_WINDOW" ]; then
+    # Window found: Open in a new tab
+    # We use 'Escape' to clear any prompts/modes
+    tmux send-keys -t "$TARGET_WINDOW" Escape ":tabedit $FILE_PATH" Enter
+    tmux select-window -t "$TARGET_WINDOW"
 else
-    # window doesn't exist: create it
-    tmux new-window -n nvim "nvim $FILE_PATH"
+    # No editor found: 
+    # -c "#{pane_current_path}" ensures the new window starts in your current dir
+    tmux new-window -c "#{pane_current_path}" -n nvim "nvim $FILE_PATH"
 fi
