@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
-selected=`cat ~/utils/cht.sh/languages ~/utils/cht.sh/commands | fzf`
-if [[ -z $selected ]]; then
-    exit 0
-fi
+
+selected=$(cat ~/utils/cht.sh/languages ~/utils/cht.sh/commands | fzf)
+[[ -z $selected ]] && exit 0
 
 read -p "Enter Query: " query
 
 if grep -qs "$selected" ~/utils/cht.sh/languages; then
-    query=`echo $query | tr ' ' '+'`
-    bash -c "echo \"curl cht.sh/$selected/$query/\" & curl cht.sh/$selected/$query & while [ : ]; do sleep 1; done"
+    query=$(echo "$query" | tr ' ' '+')
+    curl "cht.sh/$selected/$query" | less -R
 else
-    bash -c "curl -s cht.sh/$selected~$query | less"
+    curl -s "cht.sh/$selected~$query" | less -R
 fi
+
