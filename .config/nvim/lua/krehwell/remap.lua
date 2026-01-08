@@ -4,7 +4,10 @@ vim.g.maplocalleader = "\\"
 --- BASIC MAPPING
 vim.keymap.set("n", "<Leader>-", ":vertical resize -23<CR>")
 vim.keymap.set("n", "<Leader>=", ":vertical resize +23<CR>")
-
+vim.keymap.set({ "i", "s", "n" }, "<esc>", function()
+	vim.cmd("noh")
+	return "<esc>"
+end, { desc = "Escape, clear hlsearch, and stop snippet session", expr = true })
 
 vim.keymap.set("n", "<C-g>", function()
 	local get_git_branch = function()

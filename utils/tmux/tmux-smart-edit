@@ -1,20 +1,17 @@
 #!/bin/bash
 
-# 1. Get the absolute path of the file to avoid CWD issues
-# This ensures it works even if the new window opens in a different dir
 FILE_PATH="$1"
 
-# 2. Find the first window running nvim, vim, or vi
+NVIM_FZF_PROMPT="Fzf files formatter='path.dirname_first' query="
+
+# find the first window running of nvim, vim, or vi
 TARGET_WINDOW=$(tmux list-panes -a -F "#{window_id} #{pane_current_command}" | \
                 grep -E "nvim|vim|vi" | head -n 1 | awk '{print $1}')
 
 if [ -n "$TARGET_WINDOW" ]; then
-    # Window found: Open in a new tab
-    # We use 'Escape' to clear any prompts/modes
-    tmux send-keys -t "$TARGET_WINDOW" Escape ":tabedit $FILE_PATH" Enter
+    tmux send-keys -t "$TARGET_WINDOW" Escape ":" "$NVIM_FZF_PROMPT" "$FILE_PATH" Enter
     tmux select-window -t "$TARGET_WINDOW"
 else
-    # No editor found: 
-    # -c "#{pane_current_path}" ensures the new window starts in your current dir
-    tmux new-window -c "#{pane_current_path}" -n nvim "nvim $FILE_PATH"
+    tmux new-window -c "#{pane_current_path}" -n vi \
+        "nvim +\":Fzf files formatter='path.dirname_first' query='$FILE_PATH'\"" 
 fi
