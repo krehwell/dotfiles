@@ -2,11 +2,23 @@ return {
 	"saghen/blink.cmp",
 	event = "BufReadPre",
 	version = "*",
-	dependencies = { "rafamadriz/friendly-snippets", "joelazar/blink-calc" },
+	dependencies = {
+		"rafamadriz/friendly-snippets",
+		"joelazar/blink-calc",
+		{
+			"nvim-mini/mini.snippets",
+			config = function()
+				require("mini.snippets").setup({
+					snippets = { require("mini.snippets").gen_loader.from_lang() },
+				})
+			end,
+		},
+	},
 
 	config = function(_, opts)
 		require("blink.cmp").setup(opts)
-		vim.lsp.config("*", { capabilities = require("blink.cmp").get_lsp_capabilities(nil, true) }) -- Extend neovim's client capabilities with the completion ones.
+		-- Extend neovim's client capabilities with the completion ones.
+		vim.lsp.config("*", { capabilities = require("blink.cmp").get_lsp_capabilities(nil, true) })
 	end,
 
 	---@module 'blink.cmp'
@@ -20,26 +32,20 @@ return {
 			providers = {
 				snippets = {
 					enabled = true,
-					-- hide snippet suggestion after dot(.)
 					should_show_items = function(ctx)
-						return ctx.trigger.initial_kind ~= "trigger_character"
+						return ctx.trigger.initial_kind ~= "trigger_character" -- hide snippet suggestion after dot(.)
 					end,
 				},
-				calc = {
-					name = "Calc",
-					module = "blink-calc",
-				},
+				calc = { name = "Calc", module = "blink-calc" },
 			},
 		},
 
-		snippets = { preset = "luasnip" },
+		snippets = { preset = "mini_snippets" },
 
 		signature = { enabled = true },
 
 		completion = {
-			accept = {
-				auto_brackets = { enabled = false },
-			},
+			accept = { auto_brackets = { enabled = false } },
 		},
 	},
 }

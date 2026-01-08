@@ -13,6 +13,12 @@ return {
 				vim.g.undotree_SetFocusWhenToggle = 1
 			end,
 		},
+		{
+			"esmuellert/codediff.nvim",
+			dependencies = { "MunifTanjim/nui.nvim" },
+			cmd = "CodeDiff",
+			opts = { highlights = { char_brightness = 1.65 } },
+		},
 	},
 
 	keys = {
