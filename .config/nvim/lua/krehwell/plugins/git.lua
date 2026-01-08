@@ -6,6 +6,13 @@ return {
 	dependencies = {
 		{ "tpope/vim-fugitive" },
 		{ "tpope/vim-rhubarb" },
+		{
+			"mbbill/undotree",
+			keys = { { "<leader>u", ":UndotreeToggle<CR>:UndotreeFocus<CR>", desc = "Toggle undotree", mode = "n" } },
+			init = function()
+				vim.g.undotree_SetFocusWhenToggle = 1
+			end,
+		},
 	},
 
 	keys = {
@@ -23,8 +30,8 @@ return {
 			end,
 			desc = "Git: toggle status",
 		},
-		{ "gh", ":diffget //2 <CR>", desc = "Git: get lhs of diff", silent = true },
-		{ "gl", ":diffget //3 <CR>", desc = "Git: get rhs of diff", silent = true },
+		{ "dh", ":diffget //2 <CR>", desc = "Git: get lhs of diff" },
+		{ "dl", ":diffget //3 <CR>", desc = "Git: get rhs of diff" },
 		{
 			"gp",
 			function()
@@ -70,12 +77,7 @@ return {
 		-- 	change = { hl = "GitSignsChange", text = "~", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
 		-- 	delete = { hl = "GitSignsDelete", text = "_", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
 		-- 	topdelete = { hl = "GitSignsDelete", text = "‾", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-		-- 	changedelete = {
-		-- 		hl = "GitSignsDelete",
-		-- 		text = "_",
-		-- 		numhl = "GitSignsDeleteNr",
-		-- 		linehl = "GitSignsDeleteLn",
-		-- 	},
+		-- 	changedelete = { hl = "GitSignsDelete", text = "_", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn", },
 		-- 	untracked = { hl = "GitSignsAdd", text = "┆", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
 		-- },
 		signcolumn = false,
@@ -85,10 +87,6 @@ return {
 		watch_gitdir = { interval = 1000, follow_files = true },
 
 		current_line_blame = true,
-		current_line_blame_opts = {
-			virt_text = true,
-			virt_text_pos = "right_align", -- 'eol' | 'overlay' | 'right_align'
-			ignore_whitespace = false,
-		},
+		current_line_blame_opts = { virt_text = true, virt_text_pos = "eol", virt_text_priority = 9999 },
 	},
 }

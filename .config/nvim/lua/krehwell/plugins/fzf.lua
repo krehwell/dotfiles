@@ -57,7 +57,7 @@ return {
 			desc = "Project find files",
 			silent = true,
 		},
-		{ "<leader>l", "<cmd>lua require('fzf-lua').buffers()<CR>", desc = "FzfLua Buffers", silent = true },
-		{ "<leader>t", "<cmd>lua require('fzf-lua').tagstack()<CR>", desc = "FzfLua Tag Stack", silent = true },
+		{ "gl", "<cmd>lua require('fzf-lua').buffers()<CR>", desc = "FzfLua Buffers", silent = true },
+		{ "gt", "<cmd>lua require('fzf-lua').tagstack()<CR>", desc = "FzfLua Tag Stack", silent = true },
 	},
 }

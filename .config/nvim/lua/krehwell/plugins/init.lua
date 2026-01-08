@@ -1,52 +1,21 @@
 return {
-	-- LSP helper related
+	-- LSP HELPER RELATED
 	{
 		"folke/trouble.nvim",
-		opts = {},
 		cmd = "Trouble",
 		keys = {
-			{
-				"<leader>xx",
-				"<cmd>Trouble diagnostics toggle<cr>",
-				desc = "Diagnostics (Trouble)",
-			},
+			{ "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)" },
 		},
 	},
 	{
 		"axelvc/template-string.nvim",
 		config = function()
 			require("template-string").setup({
-				filetypes = {
-					"html",
-					"typescript",
-					"javascript",
-					"typescriptreact",
-					"javascriptreact",
-					"vue",
-					"svelte",
-					"python",
-					"cs",
-				},
-				jsx_brackets = true, -- must add brackets to JSX attributes
-				remove_template_string = true, -- remove backticks when there are no template strings
-				restore_quotes = {
-					normal = [["]],
-					jsx = [["]],
-				},
+				filetypes = { "html", "typescriptreact", "javascriptreact", "typescript", "javascript" },
+				jsx_brackets = true,
+				remove_template_string = true,
+				restore_quotes = { normal = [["]], jsx = [["]] },
 			})
-		end,
-	},
-
-	-- MARKDOWN PREVIEWER
-	{
-		"toppair/peek.nvim",
-		event = { "VeryLazy" },
-		ft = { "markdown", "md" },
-		build = "deno task --quiet build:fast",
-		config = function()
-			require("peek").setup()
-			vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
-			vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
 		end,
 	},
 
@@ -58,27 +27,23 @@ return {
 		---@type quicker.SetupOptions
 		opts = {
 			wrap = false,
-		},
-		config = function()
-			require("quicker").setup({
-				keys = {
-					{
-						">",
-						function()
-							require("quicker").expand({ before = 2, after = 2, add_to_existing = true })
-						end,
-						desc = "Expand quickfix context",
-					},
-					{
-						"<",
-						function()
-							require("quicker").collapse()
-						end,
-						desc = "Collapse quickfix context",
-					},
+			keys = {
+				{
+					">",
+					function()
+						require("quicker").expand({ before = 2, after = 2, add_to_existing = true })
+					end,
+					desc = "Expand quickfix context",
 				},
-			})
-		end,
+				{
+					"<",
+					function()
+						require("quicker").collapse()
+					end,
+					desc = "Collapse quickfix context",
+				},
+			},
+		},
 	},
 	{
 		"justinmk/vim-gtfo",
@@ -93,17 +58,6 @@ return {
 		},
 	},
 	{
-		"subev/sibling-jump.nvim",
-		event = "LspAttach",
-		config = function()
-			require("sibling_jump").setup({
-				next_key = "]]",
-				prev_key = "[[",
-				block_loop_key = "<C-l>",
-			})
-		end,
-	},
-	{
 		"tpope/vim-surround",
 		keys = {
 			{ "cs", "<Plug>VSurround", desc = "Change surround", mode = "n" },
@@ -112,17 +66,14 @@ return {
 			{ "S", mode = "v", desc = "Surround selected" },
 		},
 	},
-	{ "tpope/vim-repeat", keys = { { "." } } },
 	{
-		"mbbill/undotree",
-		cmd = { "UndotreeToggle", "UndotreeFocus" },
+		"tpope/vim-speeddating",
 		keys = {
-			{ "<leader>u", ":UndotreeToggle<CR>:UndotreeFocus<CR>", desc = "Toggle undotree", mode = "n" },
+			{ "<C-a>", desc = "Increment (vim-speeddating)", mode = "n" },
+			{ "<C-x>", desc = "Decrement (vim-speeddating)", mode = "n" },
 		},
-		init = function()
-			vim.g.undotree_SetFocusWhenToggle = 1
-		end,
 	},
+	{ "tpope/vim-repeat", keys = { { "." } } },
 
 	-- BEAUTIFY
 	{ "echasnovski/mini.icons", version = false, event = "BufReadPre" },

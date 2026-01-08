@@ -42,7 +42,9 @@ local dim_my_highlights = function()
 end
 
 return {
-	"Verf/deepwhite.nvim",
+	-- "Verf/deepwhite.nvim",
+	"oskarnurm/koda.nvim",
+	priority = 1000,
 	config = function()
 		vim.api.nvim_create_autocmd({ "VimEnter" }, {
 			group = vim.api.nvim_create_augroup("krehwell/dim_my_highlights", { clear = true }),
@@ -50,6 +52,6 @@ return {
 			callback = dim_my_highlights,
 		})
 
-		vim.cmd("colorscheme default")
+		vim.cmd("colorscheme koda")
 	end,
 }

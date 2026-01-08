@@ -109,11 +109,6 @@ return {
 				root_markers = { "biome.json", "biome.jsonc" },
 			},
 
-			emmet_language_server = {
-				cmd = { "emmet-language-server", "--stdio" },
-				filetypes = { "css", "html", "javascript", "javascriptreact", "typescriptreact" },
-			},
-
 			-- deno = {
 			-- 	cmd = { "deno", "lsp" },
 			-- 	root_dir = vim.fs.root(0, { "deno.json", "deno.jsonc" }), -- detect Deno project
