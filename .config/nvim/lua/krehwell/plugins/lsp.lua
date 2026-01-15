@@ -65,43 +65,33 @@ return {
 				},
 			},
 
-			vtsls = {
-				filetypes = { "typescript", "javascript", "typescriptreact" },
-				cmd = { "vtsls", "--stdio" },
-				on_init = function(client)
-					client.server_capabilities.semanticTokensProvider = nil
-					client.server_capabilities.documentFormattingProvider = false
-					client.server_capabilities.documentRangeFormattingProvider = false
-					client.server_capabilities.codeLensProvider = nil
-					client.server_capabilities.documentHighlightProvider = false
-					local biome_config = {
-						cmd = { "biome", "lsp-proxy" },
-					}
-					vim.lsp.config("biome", biome_config)
-					vim.lsp.enable("biome")
-				end,
-				settings = { typescript = jsts_settings, javascript = jsts_settings },
-			},
-
-			-- tsgo = {
-			-- 	filetypes = {
-			-- 		"javascript",
-			-- 		"javascriptreact",
-			-- 		"javascript.jsx",
-			-- 		"typescript",
-			-- 		"typescriptreact",
-			-- 		"typescript.tsx",
-			-- 	},
-			-- 	cmd = { "tsgo", "--lsp", "--stdio" },
+			-- vtsls = {
+			-- 	filetypes = { "typescript", "javascript", "typescriptreact" },
+			-- 	cmd = { "vtsls", "--stdio" },
 			-- 	on_init = function(client)
-			-- 		client.server_capabilities.semanticTokensProvider = nil
+			-- 		-- client.server_capabilities.semanticTokensProvider = nil
 			-- 		client.server_capabilities.documentFormattingProvider = false
 			-- 		client.server_capabilities.documentRangeFormattingProvider = false
-			-- 		client.server_capabilities.codeLensProvider = nil
-			-- 		client.server_capabilities.documentHighlightProvider = false
+			-- 		-- client.server_capabilities.codeLensProvider = nil
+			-- 		-- client.server_capabilities.documentHighlightProvider = false
+			-- 		local biome_config = {
+			-- 			cmd = { "biome", "lsp-proxy" },
+			-- 		}
+			-- 		vim.lsp.config("biome", biome_config)
+			-- 		vim.lsp.enable("biome")
 			-- 	end,
 			-- 	settings = { typescript = jsts_settings, javascript = jsts_settings },
 			-- },
+
+			tsgo = {
+				filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+				cmd = { "tsgo", "--lsp", "--stdio" },
+				on_init = function(client)
+					client.server_capabilities.documentFormattingProvider = false
+					client.server_capabilities.documentRangeFormattingProvider = false
+				end,
+				settings = { typescript = jsts_settings, javascript = jsts_settings },
+			},
 
 			biome = {
 				single_file_support = true,

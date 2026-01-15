@@ -5,6 +5,9 @@ vim.g.maplocalleader = "\\"
 vim.keymap.set("n", "<Leader>-", ":vertical resize -23<CR>")
 vim.keymap.set("n", "<Leader>=", ":vertical resize +23<CR>")
 vim.keymap.set({ "i", "s", "n" }, "<esc>", function()
+	pcall(function()
+		require("mini.snippets").session.stop()
+	end)
 	vim.cmd("noh")
 	return "<esc>"
 end, { desc = "Escape, clear hlsearch, and stop snippet session", expr = true })

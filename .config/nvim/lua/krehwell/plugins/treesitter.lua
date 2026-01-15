@@ -2,9 +2,10 @@ return {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
 	event = "BufReadPre",
+	branch = "master",
+
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter-refactor",
-		"nvim-treesitter/nvim-treesitter-textobjects",
 	},
 
 	-- enabled = false,
@@ -42,19 +43,12 @@ return {
 			},
 		},
 
-		refactor = {
-			highlight_definitions = {
-				enable = true,
-				-- Set to false if you have an `updatetime` of ~100.
-				clear_on_cursor_move = true,
-			},
-		},
+		refactor = { highlight_definitions = { enable = true, clear_on_cursor_move = true } },
 
 		indent = { enable = true },
 	},
 
 	config = function(_, opts)
-		vim.opt.smartindent = true
 		require("nvim-treesitter.configs").setup(opts)
 	end,
 }

@@ -24,10 +24,7 @@ return {
 	---@module 'oil'
 	---@type oil.SetupOpts
 	opts = {
-		lsp_file_methods = {
-			enabled = true,
-			timeout_ms = 10000,
-		},
+		lsp_file_methods = { enabled = true, timeout_ms = 10000 },
 
 		buf_options = {
 			buflisted = false,

@@ -5,7 +5,6 @@ return {
 	},
 	config = function()
 		require("fzf-lua").register_ui_select()
-		local actions = require("fzf-lua.actions")
 
 		require("fzf-lua").setup({
 			{ "default-title" },
@@ -25,7 +24,6 @@ return {
 			blines = { _treesitter = false },
 			buffers = {
 				formatter = "path.filename_first",
-				actions = { ["ctrl-d"] = { fn = actions.buf_del, reload = true } },
 			},
 			files = { formatter = "path.filename_first" },
 			grep = {},
@@ -38,7 +36,8 @@ return {
 	keys = {
 		{ "<C-f>", ":lua require('fzf-lua').grep()<CR><CR><C-g>", desc = "Fuzzy search (Regex)", silent = true },
 		{ "<C-k>", ":lua require('fzf-lua').grep()<CR><CR>", desc = "Fuzzy search", silent = true },
-		{ "fzf", "<cmd>lua require('fzf-lua').builtin()<CR>", desc = "FzfLua features list", silent = true },
+		{ "fzf", "<cmd>lua require('fzf-lua').builtin()<CR>", desc = "FzfLua features list" },
+		{ "fzr", "<cmd>lua require('fzf-lua').resume()<CR>", desc = "FzfLua last fzf-lua picker" },
 		{ "ga", "<cmd>lua require('fzf-lua').grep_cword()<CR>", desc = "Any jump", silent = true },
 		{
 			"<c-p>",
@@ -58,6 +57,6 @@ return {
 			silent = true,
 		},
 		{ "gl", "<cmd>lua require('fzf-lua').buffers()<CR>", desc = "FzfLua Buffers", silent = true },
-		{ "gt", "<cmd>lua require('fzf-lua').tagstack()<CR>", desc = "FzfLua Tag Stack", silent = true },
+		{ "<leader>t", "<cmd>lua require('fzf-lua').tagstack()<CR>", desc = "FzfLua Tag Stack", silent = true },
 	},
 }
