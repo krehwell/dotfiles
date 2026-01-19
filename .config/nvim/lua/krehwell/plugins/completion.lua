@@ -3,14 +3,11 @@ return {
 	event = "BufReadPre",
 	version = "*",
 	dependencies = {
-		"rafamadriz/friendly-snippets",
 		"joelazar/blink-calc",
 		{
 			"nvim-mini/mini.snippets",
 			config = function()
-				require("mini.snippets").setup({
-					snippets = { require("mini.snippets").gen_loader.from_lang() },
-				})
+				require("mini.snippets").setup({ snippets = { require("mini.snippets").gen_loader.from_lang() } })
 			end,
 		},
 	},
@@ -28,19 +25,21 @@ return {
 		cmdline = { enabled = true },
 
 		sources = {
-			default = { "lsp", "path", "snippets", "buffer", "calc" },
+			default = { "lsp", "buffer", "calc" },
 			providers = {
 				snippets = {
-					enabled = true,
 					should_show_items = function(ctx)
-						return ctx.trigger.initial_kind ~= "trigger_character" -- hide snippet suggestion after dot(.)
+						return ctx.trigger.initial_kind ~= "trigger_character"
+							and not require("blink.cmp").snippet_active()
 					end,
 				},
 				calc = { name = "Calc", module = "blink-calc" },
 			},
 		},
 
-		snippets = { preset = "mini_snippets" },
+		snippets = {
+			-- preset = "mini_snippets"
+		},
 
 		signature = { enabled = true },
 

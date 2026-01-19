@@ -33,6 +33,7 @@ local dim_my_highlights = function()
 	vim.api.nvim_set_hl(0, "Structure", { link = "NoSyntaxColoring" })
 	vim.api.nvim_set_hl(0, "Typedef", { link = "NoSyntaxColoring" })
 	vim.api.nvim_set_hl(0, "Special", { link = "NoSyntaxColoring" })
+	vim.api.nvim_set_hl(0, "DiagnosticUnnecessary", { link = "Comment" })
 
 	-- UI sanity colors
 	vim.api.nvim_set_hl(0, "TabLineSel", { link = "DiffText" })
