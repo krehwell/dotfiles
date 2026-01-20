@@ -6,7 +6,6 @@ return {
 
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter-refactor",
-		"tpope/vim-sleuth",
 	},
 
 	-- enabled = false,

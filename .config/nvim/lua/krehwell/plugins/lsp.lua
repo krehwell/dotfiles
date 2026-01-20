@@ -1,6 +1,7 @@
 local jsts_settings = {
 	preferences = {
 		includePackageJsonAutoImports = "off",
+		-- importModuleSpecifierPreference = "non-relative",
 		useAliasesForRenames = false,
 		renameShorthandProperties = false,
 		autoImportFileExcludePatterns = {
@@ -15,15 +16,9 @@ local jsts_settings = {
 			"pspdfkit",
 			"esbuild",
 		},
-		tsserver = {
-			watchOptions = {
-				excludeDirectories = { "node_modules", "dist", ".next", "out" },
-			},
-		},
+		tsserver = { watchOptions = { excludeDirectories = { "node_modules", "dist", ".next", "out" } } },
 	},
-	updateImportsOnFileMove = {
-		enabled = "always",
-	},
+	updateImportsOnFileMove = { enabled = "always" },
 }
 
 return {
@@ -45,43 +40,45 @@ return {
 				end,
 				filetypes = { "lua" },
 				root_dir = vim.fs.root(0, { ".luarc.json", ".luarc.jsonc" }),
-				settings = {
-					Lua = {
-						completion = { callSnippet = "Replace" },
-						format = { enable = false },
-						hint = {
-							enable = true,
-							arrayIndex = "Disable",
-						},
-						runtime = { version = "LuaJIT" },
-						workspace = {
-							checkThirdParty = false,
-							library = {
-								vim.env.VIMRUNTIME,
-								"${3rd}/luv/library",
-							},
-						},
-					},
-				},
 			},
 
-			vtsls = {
+			ts_ls = {
 				filetypes = { "typescript", "javascript", "typescriptreact" },
-				cmd = { "vtsls", "--stdio" },
+				cmd = { "typescript-language-server", "--stdio" },
 				on_init = function(client)
-					-- client.server_capabilities.semanticTokensProvider = nil
+					client.server_capabilities.semanticTokensProvider = nil
 					client.server_capabilities.documentFormattingProvider = false
 					client.server_capabilities.documentRangeFormattingProvider = false
-					-- client.server_capabilities.codeLensProvider = nil
-					-- client.server_capabilities.documentHighlightProvider = false
-					local biome_config = {
-						cmd = { "biome", "lsp-proxy" },
-					}
-					vim.lsp.config("biome", biome_config)
-					vim.lsp.enable("biome")
+					client.server_capabilities.codeLensProvider = nil
+					client.server_capabilities.documentHighlightProvider = false
 				end,
 				settings = { typescript = jsts_settings, javascript = jsts_settings },
 			},
+
+			-- vtsls = {
+			-- 	filetypes = { "typescript", "javascript", "typescriptreact" },
+			-- 	cmd = { "vtsls", "--stdio" },
+			-- 	on_init = function(client)
+			-- 		client.server_capabilities.semanticTokensProvider = nil
+			-- 		client.server_capabilities.documentFormattingProvider = false
+			-- 		client.server_capabilities.documentRangeFormattingProvider = false
+			-- 		client.server_capabilities.codeLensProvider = nil
+			-- 		client.server_capabilities.documentHighlightProvider = false
+			-- 	end,
+			-- 	settings = {
+			-- 		typescript = jsts_settings,
+			-- 		javascript = jsts_settings,
+			-- 		vtsls = {
+			-- 			enableMoveToFileCodeAction = true,
+			-- 			autoUseWorkspaceTsdk = true,
+			-- 			experimental = {
+			-- 				completion = {
+			-- 					enableServerSideFuzzyMatch = true,
+			-- 				},
+			-- 			},
+			-- 		},
+			-- 	},
+			-- },
 
 			-- tsgo = {
 			-- 	filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
