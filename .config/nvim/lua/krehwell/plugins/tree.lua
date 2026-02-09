@@ -17,19 +17,11 @@ end
 
 return {
 	"stevearc/oil.nvim",
-	dependencies = {
-		{ "echasnovski/mini.icons", opts = {} },
-	},
 	ft = { "oil" },
 	---@module 'oil'
 	---@type oil.SetupOpts
 	opts = {
-		lsp_file_methods = { enabled = true, timeout_ms = 10000 },
-
-		buf_options = {
-			buflisted = false,
-			bufhidden = "hide",
-		},
+		lsp_file_methods = { enabled = true, timeout_ms = 10000, autosave_changes = true },
 
 		watch_for_changes = true,
 

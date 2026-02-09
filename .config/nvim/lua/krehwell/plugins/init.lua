@@ -66,17 +66,10 @@ return {
 			{ "S", mode = "v", desc = "Surround selected" },
 		},
 	},
-	{
-		"tpope/vim-speeddating",
-		keys = {
-			{ "<C-a>", desc = "Increment (vim-speeddating)", mode = "n" },
-			{ "<C-x>", desc = "Decrement (vim-speeddating)", mode = "n" },
-		},
-	},
 	{ "tpope/vim-repeat", keys = { { "." } } },
 
 	-- BEAUTIFY
-	{ "echasnovski/mini.icons", version = false, event = "BufReadPre" },
+	{ "DaikyXendo/nvim-material-icon", event = "BufReadPre" },
 	{ "j-hui/fidget.nvim", event = "LspAttach", opts = { notification = { window = { winblend = 0 } } } },
 	{
 		"uga-rosa/ccc.nvim",

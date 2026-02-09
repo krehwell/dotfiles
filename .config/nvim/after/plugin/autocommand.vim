@@ -50,24 +50,26 @@ augroup END
 
 " ----- DELETE BUFFER EXCEPT THE ONEs OPENED ON WINDOWS OR TABS -----
 function! WipeoutInactiveBufs()
-    " From tabpagebuflist() help, get a list of all buffers in all tabs
-    let tablist = []
-    for i in range(tabpagenr('$'))
-        call extend(tablist, tabpagebuflist(i + 1))
+    " Get the buffer number of the alternate file in the current window
+    let l:alternate_buf = bufnr('#')
+    
+    " Filter for buffers that are:
+    " 1. Hidden (not visible in any window)
+    " 2. Not modified (unsaved changes)
+    " 3. Not the current alternate file
+    let l:inactive_bufs = filter(getbufinfo(), {idx, val -> 
+        \ val.hidden && 
+        \ !val.changed && 
+        \ val.bufnr != l:alternate_buf
+        \ })
+    
+    let l:nWipeouts = 0
+    for l:buf in l:inactive_bufs
+        execute 'bwipeout' l:buf.bufnr
+        let l:nWipeouts += 1
     endfor
 
-    " Below originally inspired by Hara Krishna Dara and Keith Roberts
-    " http://tech.groups.yahoo.com/group/vim/message/56425
-    let nWipeouts = 0
-    for i in range(1, bufnr('$'))
-        if bufexists(i) && !getbufvar(i,"&mod") && index(tablist, i) == -1
-        " bufno exists AND isn't modified AND isn't in the list of buffers open in windows and tabs
-            silent exec 'bwipeout' i
-            let nWipeouts = nWipeouts + 1
-        endif
-    endfor
-    echomsg nWipeouts . ' buffer(s) wiped out'
-    :bufdo e
+    echomsg l:nWipeouts . ' buffer(s) wiped out (preserved alternate)'
 endfunction
 command! -nargs=0 LsWipeInactive :call WipeoutInactiveBufs()
 command! -nargs=0 LswipeInactive :call WipeoutInactiveBufs()

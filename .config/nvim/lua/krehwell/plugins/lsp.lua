@@ -26,7 +26,6 @@ return {
 	cmd = { "Mason" },
 	dependencies = {
 		{ "williamboman/mason.nvim" },
-		{ "folke/lazydev.nvim", ft = "lua" },
 	},
 	ft = { "*" },
 	opts = {
@@ -42,9 +41,22 @@ return {
 				root_dir = vim.fs.root(0, { ".luarc.json", ".luarc.jsonc" }),
 			},
 
-			ts_ls = {
-				filetypes = { "typescript", "javascript", "typescriptreact" },
-				cmd = { "typescript-language-server", "--stdio" },
+			-- ts_ls = {
+			-- 	filetypes = { "typescript", "javascript", "typescriptreact" },
+			-- 	cmd = { "typescript-language-server", "--stdio" },
+			-- 	on_init = function(client)
+			-- 		client.server_capabilities.semanticTokensProvider = nil
+			-- 		client.server_capabilities.documentFormattingProvider = false
+			-- 		client.server_capabilities.documentRangeFormattingProvider = false
+			-- 		client.server_capabilities.codeLensProvider = nil
+			-- 		client.server_capabilities.documentHighlightProvider = false
+			-- 	end,
+			-- 	settings = { typescript = jsts_settings, javascript = jsts_settings },
+			-- },
+
+			tsgo = {
+				filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+				cmd = { "tsgo", "--lsp", "--stdio" },
 				on_init = function(client)
 					client.server_capabilities.semanticTokensProvider = nil
 					client.server_capabilities.documentFormattingProvider = false
@@ -54,41 +66,6 @@ return {
 				end,
 				settings = { typescript = jsts_settings, javascript = jsts_settings },
 			},
-
-			-- vtsls = {
-			-- 	filetypes = { "typescript", "javascript", "typescriptreact" },
-			-- 	cmd = { "vtsls", "--stdio" },
-			-- 	on_init = function(client)
-			-- 		client.server_capabilities.semanticTokensProvider = nil
-			-- 		client.server_capabilities.documentFormattingProvider = false
-			-- 		client.server_capabilities.documentRangeFormattingProvider = false
-			-- 		client.server_capabilities.codeLensProvider = nil
-			-- 		client.server_capabilities.documentHighlightProvider = false
-			-- 	end,
-			-- 	settings = {
-			-- 		typescript = jsts_settings,
-			-- 		javascript = jsts_settings,
-			-- 		vtsls = {
-			-- 			enableMoveToFileCodeAction = true,
-			-- 			autoUseWorkspaceTsdk = true,
-			-- 			experimental = {
-			-- 				completion = {
-			-- 					enableServerSideFuzzyMatch = true,
-			-- 				},
-			-- 			},
-			-- 		},
-			-- 	},
-			-- },
-
-			-- tsgo = {
-			-- 	filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-			-- 	cmd = { "tsgo", "--lsp", "--stdio" },
-			-- 	on_init = function(client)
-			-- 		client.server_capabilities.documentFormattingProvider = false
-			-- 		client.server_capabilities.documentRangeFormattingProvider = false
-			-- 	end,
-			-- 	settings = { typescript = jsts_settings, javascript = jsts_settings },
-			-- },
 
 			biome = {
 				single_file_support = true,

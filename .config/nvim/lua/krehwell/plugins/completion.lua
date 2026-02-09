@@ -16,9 +16,7 @@ return {
 
 		sources = {
 			default = { "lsp", "path", "buffer", "calc" },
-			providers = {
-				calc = { name = "Calc", module = "blink-calc" },
-			},
+			providers = { calc = { name = "Calc", module = "blink-calc" } },
 		},
 
 		signature = { enabled = true },

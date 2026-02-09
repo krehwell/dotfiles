@@ -2,11 +2,7 @@ return {
 	"Bekaboo/dropbar.nvim",
 	-- enabled = false,
 	opts = {
-		icons = {
-			kinds = {
-				symbols = { File = " " },
-			},
-		},
+		icons = { kinds = { symbols = { File = " " } } },
 		sources = {
 			treesitter = {
 				-- only show this things, I don't need deep complex dropbar info
@@ -23,7 +19,6 @@ return {
 	config = function(_, opts)
 		-- don't need statusline as it's now replaced with dropbar
 		vim.cmd([[ let &statusline='%#WinSeparator#' ]])
-
 		require("dropbar").setup(opts)
 	end,
 }

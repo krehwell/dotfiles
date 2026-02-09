@@ -52,8 +52,8 @@ local on_attach = function(bufnr)
 	-- format like this does not lose the jumplist
 	vim.keymap.set("n", "gq", function()
 		local cur_line = vim.api.nvim_win_get_cursor(0)[1]
-		local start_line = math.max(cur_line - 2, 1)
-		local end_line = cur_line + 2
+		local start_line = math.max(cur_line - 10, 1)
+		local end_line = cur_line + 10
 		vim.lsp.buf.format({
 			range = {
 				["start"] = { start_line, 0 },
