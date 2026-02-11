@@ -14,7 +14,7 @@ if status is-interactive
     set fish_cursor_insert block
 
     function killall_lsp
-        set patterns biome Biome next vtsls eslint_d eslint prettierd node bun bunx tsserver next-server yarn turbo watchman deno
+        set patterns biome Biome next vtsls eslint_d eslint prettierd node bun bunx tsserver next-server yarn turbo watchman deno opencode
 
         for pattern in $patterns
             echo "Killing processes matching: $pattern"
@@ -24,3 +24,6 @@ if status is-interactive
 end
 
 export PATH="$HOME/.local/bin:$PATH"
+
+# Added by Antigravity
+fish_add_path /Users/ard/.antigravity/antigravity/bin

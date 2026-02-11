@@ -45,13 +45,7 @@ return {
 				if vim.fn.getcwd() == os.getenv("HOME") then
 					return require("fzf-lua").git_files()
 				end
-				local extend = function(table1, table2)
-					return vim.tbl_extend("force", table1, table2)
-				end
-				return require("fzf-lua").files(extend({}, {
-					cmd = "rg --files --hidden --ignore --glob='!.git' --sortr=modified",
-					fzf_opts = { ["--scheme"] = "path", ["--tiebreak"] = "index" },
-				}))
+				return require("fzf-lua").files()
 			end,
 			desc = "Project find files",
 			silent = true,

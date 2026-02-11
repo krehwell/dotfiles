@@ -17,19 +17,19 @@ end
 
 return {
 	"stevearc/oil.nvim",
-	ft = { "oil" },
 	---@module 'oil'
 	---@type oil.SetupOpts
 	opts = {
+        default_file_explorer = true,
 		lsp_file_methods = { enabled = true, timeout_ms = 10000, autosave_changes = true },
 
 		watch_for_changes = true,
 
-		view_options = {
-			show_hidden = true,
-		},
+        view_options = {
+            show_hidden = true,
+        },
 
-		delete_to_trash = true,
+        delete_to_trash = true,
 
 		keymaps = {
 			["<C-h>"] = { "actions.parent" },
@@ -38,14 +38,14 @@ return {
 			["<C-p>"] = false,
 		},
 
-		skip_confirm_for_simple_edits = true,
-		prompt_save_on_select_new_entry = false,
-		win_options = { winbar = "%!v:lua.get_oil_winbar()" },
-	},
-	keys = {
-		{
-			"<C-b>",
-			function()
+        skip_confirm_for_simple_edits = true,
+        prompt_save_on_select_new_entry = false,
+        win_options = { winbar = "%!v:lua.get_oil_winbar()" },
+    },
+    keys = {
+        {
+            "<C-b>",
+            function()
 				local oil = require("oil")
 				oil.open()
 			end,

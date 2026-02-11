@@ -33,26 +33,32 @@ return {
 
 			lua_ls = {
 				cmd = { "lua-language-server" },
+
 				on_init = function(client)
 					client.server_capabilities.semanticTokensProvider = nil
 					client.server_capabilities.documentHighlightProvider = false
 				end,
-				filetypes = { "lua" },
-				root_dir = vim.fs.root(0, { ".luarc.json", ".luarc.jsonc" }),
-			},
 
-			-- ts_ls = {
-			-- 	filetypes = { "typescript", "javascript", "typescriptreact" },
-			-- 	cmd = { "typescript-language-server", "--stdio" },
-			-- 	on_init = function(client)
-			-- 		client.server_capabilities.semanticTokensProvider = nil
-			-- 		client.server_capabilities.documentFormattingProvider = false
-			-- 		client.server_capabilities.documentRangeFormattingProvider = false
-			-- 		client.server_capabilities.codeLensProvider = nil
-			-- 		client.server_capabilities.documentHighlightProvider = false
-			-- 	end,
-			-- 	settings = { typescript = jsts_settings, javascript = jsts_settings },
-			-- },
+				filetypes = { "lua" },
+
+				root_dir = function(fname)
+					return vim.fs.root(fname, { ".luarc.json", ".luarc.jsonc", ".git" })
+				end,
+
+				settings = {
+					Lua = {
+						runtime = { version = "LuaJIT" },
+						diagnostics = {
+							globals = { "vim" },
+						},
+						workspace = {
+							library = vim.api.nvim_get_runtime_file("", true),
+							checkThirdParty = false,
+						},
+						telemetry = { enable = false },
+					},
+				},
+			},
 
 			tsgo = {
 				filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
