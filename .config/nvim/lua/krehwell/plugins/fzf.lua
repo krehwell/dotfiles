@@ -25,7 +25,9 @@ return {
 			buffers = {
 				formatter = "path.filename_first",
 			},
-			files = { formatter = "path.filename_first" },
+			files = { 
+                -- formatter = "path.filename_first" 
+            },
 			grep = {},
 			git = {},
 		})

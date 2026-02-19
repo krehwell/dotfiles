@@ -25,7 +25,7 @@ return {
 	"b0o/SchemaStore.nvim",
 	cmd = { "Mason" },
 	dependencies = {
-		{ "williamboman/mason.nvim" },
+		{ "williamboman/mason.nvim", "RRethy/vim-illuminate" },
 	},
 	ft = { "*" },
 	opts = {

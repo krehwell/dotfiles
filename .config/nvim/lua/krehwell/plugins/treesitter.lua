@@ -4,10 +4,6 @@ return {
 	event = "BufReadPre",
 	branch = "master",
 
-	dependencies = {
-		"nvim-treesitter/nvim-treesitter-refactor",
-	},
-
 	-- enabled = false,
 
 	opts = {
@@ -42,8 +38,6 @@ return {
 				node_decremental = "<BS>", -- this is <C-BS>
 			},
 		},
-
-		refactor = { highlight_definitions = { enable = true, clear_on_cursor_move = true } },
 
 		indent = { enable = true },
 	},
