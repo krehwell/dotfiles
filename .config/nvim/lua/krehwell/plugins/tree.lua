@@ -19,6 +19,7 @@ return {
 	"stevearc/oil.nvim",
 	---@module 'oil'
 	---@type oil.SetupOpts
+    lazy = false,
 	opts = {
         default_file_explorer = true,
 		lsp_file_methods = { enabled = true, timeout_ms = 10000, autosave_changes = true },
