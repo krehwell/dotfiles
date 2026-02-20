@@ -23,8 +23,6 @@ return {
 	{
 		"stevearc/quicker.nvim",
 		event = "FileType qf",
-		---@module "quicker"
-		---@type quicker.SetupOptions
 		opts = {
 			wrap = false,
 			keys = {
@@ -50,7 +48,6 @@ return {
 		keys = { { "gof", desc = "Go to folder" }, { "got", desc = "Go to terminal" } },
 	},
 	{
-		-- css to jsx inline
 		"isomoar/vim-css-to-inline",
 		keys = {
 			{ "tis", desc = "Transform to inline styles" },
