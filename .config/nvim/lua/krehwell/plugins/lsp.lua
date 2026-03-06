@@ -1,24 +1,54 @@
 local jsts_settings = {
-	preferences = {
-		includePackageJsonAutoImports = "off",
-		-- importModuleSpecifierPreference = "non-relative",
-		useAliasesForRenames = false,
-		renameShorthandProperties = false,
-		autoImportFileExcludePatterns = {
-			"@vidstack",
-			"@vidstack/*",
-			"vidstack/*",
-			"@mui",
-			"@mui/*",
-			"@mui/**",
-			"@next/dist",
-			"@next/dist/*",
-			"pspdfkit",
-			"esbuild",
+	typescript = {
+		preferences = {
+			includePackageJsonAutoImports = "off",
+			useAliasesForRenames = false,
+			renameShorthandProperties = false,
+			autoImportFileExcludePatterns = {
+				"@vidstack",
+				"@vidstack/*",
+				"vidstack/*",
+				"@mui",
+				"@mui/*",
+				"@mui/**",
+				"@next/dist",
+				"@next/dist/*",
+				"pspdfkit",
+				"esbuild",
+			},
 		},
-		tsserver = { watchOptions = { excludeDirectories = { "node_modules", "dist", ".next", "out" } } },
+		updateImportsOnFileMove = {
+			enabled = "always",
+		},
+		tsserver = {
+			watchOptions = {
+				excludeDirectories = { "node_modules", "dist", ".next", "out" },
+			},
+		},
 	},
-	updateImportsOnFileMove = { enabled = "always" },
+
+	javascript = {
+		preferences = {
+			includePackageJsonAutoImports = "off",
+			useAliasesForRenames = false,
+			renameShorthandProperties = false,
+			autoImportFileExcludePatterns = {
+				"@vidstack",
+				"@vidstack/*",
+				"vidstack/*",
+				"@mui",
+				"@mui/*",
+				"@mui/**",
+				"@next/dist",
+				"@next/dist/*",
+				"pspdfkit",
+				"esbuild",
+			},
+		},
+		updateImportsOnFileMove = {
+			enabled = "always",
+		},
+	},
 }
 
 return {
@@ -70,7 +100,7 @@ return {
 					client.server_capabilities.codeLensProvider = nil
 					client.server_capabilities.documentHighlightProvider = false
 				end,
-				settings = { typescript = jsts_settings, javascript = jsts_settings },
+				settings = jsts_settings,
 			},
 
 			biome = {

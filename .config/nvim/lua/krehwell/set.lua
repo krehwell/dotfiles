@@ -47,7 +47,7 @@ vim.opt.listchars = { space = "⋅", trail = "⋅", tab = "  ↦" }
 vim.opt.wrap = false
 -- vim.opt.number = true
 -- vim.opt.relativenumber = true
-vim.opt.signcolumn = "no"
+vim.opt.signcolumn = "yes:1"
 vim.opt.scrolloff = 22
 vim.opt.sidescrolloff = 18
 vim.opt.virtualedit = "block"
