@@ -48,7 +48,7 @@ return {
 			desc = "Git: reset current lines change",
 		},
 		{
-			"]g",
+			"]c",
 			function()
 				if vim.wo.diff then
 					vim.cmd.normal({ "]c", bang = true })
@@ -59,7 +59,7 @@ return {
 			desc = "Git: jump to next line change",
 		},
 		{
-			"[g",
+			"[c",
 			function()
 				if vim.wo.diff then
 					vim.cmd.normal({ "[c", bang = true })

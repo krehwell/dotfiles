@@ -1,7 +1,7 @@
 local jsts_settings = {
 	typescript = {
 		preferences = {
-			includePackageJsonAutoImports = "off",
+			-- includePackageJsonAutoImports = "off",
 			useAliasesForRenames = false,
 			renameShorthandProperties = false,
 			autoImportFileExcludePatterns = {
@@ -94,11 +94,11 @@ return {
 				filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
 				cmd = { "tsgo", "--lsp", "--stdio" },
 				on_init = function(client)
-					client.server_capabilities.semanticTokensProvider = nil
+					-- client.server_capabilities.semanticTokensProvider = nil
 					client.server_capabilities.documentFormattingProvider = false
 					client.server_capabilities.documentRangeFormattingProvider = false
-					client.server_capabilities.codeLensProvider = nil
-					client.server_capabilities.documentHighlightProvider = false
+					-- client.server_capabilities.codeLensProvider = nil
+					-- client.server_capabilities.documentHighlightProvider = false
 				end,
 				settings = jsts_settings,
 			},
