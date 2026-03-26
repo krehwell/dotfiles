@@ -19,34 +19,41 @@ return {
 	"stevearc/oil.nvim",
 	---@module 'oil'
 	---@type oil.SetupOpts
-    lazy = false,
+	lazy = false,
 	opts = {
-        default_file_explorer = true,
+		default_file_explorer = true,
 		lsp_file_methods = { enabled = true, timeout_ms = 10000, autosave_changes = true },
 
 		watch_for_changes = true,
 
-        view_options = {
-            show_hidden = true,
-        },
+		view_options = {
+			show_hidden = true,
+		},
 
-        delete_to_trash = true,
+		delete_to_trash = true,
 
 		keymaps = {
 			["<C-h>"] = { "actions.parent" },
 			["<C-l>"] = { "actions.select" },
 			["<C-c>"] = false,
 			["<C-p>"] = false,
+			["y%"] = function()
+				local oil = require("oil")
+				local dir = oil.get_current_dir()
+				local relative = vim.fn.fnamemodify(dir, ":.")
+				vim.fn.setreg("+", relative)
+				vim.notify("Copied relative dir: " .. relative)
+			end,
 		},
 
-        skip_confirm_for_simple_edits = true,
-        prompt_save_on_select_new_entry = false,
-        win_options = { winbar = "%!v:lua.get_oil_winbar()" },
-    },
-    keys = {
-        {
-            "<C-b>",
-            function()
+		skip_confirm_for_simple_edits = true,
+		prompt_save_on_select_new_entry = false,
+		win_options = { winbar = "%!v:lua.get_oil_winbar()" },
+	},
+	keys = {
+		{
+			"<C-b>",
+			function()
 				local oil = require("oil")
 				oil.open()
 			end,
