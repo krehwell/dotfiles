@@ -99,8 +99,12 @@ end
 
 return {
 	"lengarvey/base16-vim",
-	-- "oskarnurm/koda.nvim",
 	priority = 1000,
+	dependencies = {
+		-- BEAUTIFY
+		{ "DaikyXendo/nvim-material-icon", event = "BufReadPre" },
+		{ "j-hui/fidget.nvim", event = "LspAttach", opts = { notification = { window = { winblend = 0 } } } },
+	},
 	config = function()
 		vim.api.nvim_create_autocmd({ "VimEnter" }, {
 			group = vim.api.nvim_create_augroup("krehwell/dim_my_highlights", { clear = true }),
@@ -108,14 +112,13 @@ return {
 			callback = dim_my_highlights,
 		})
 
+
 		vim.api.nvim_create_autocmd({ "VimEnter" }, {
 			group = vim.api.nvim_create_augroup("krehwell/sanity_tab_color", { clear = true }),
 			desc = "make sense tab color",
 			callback = sanity_tab_color,
 		})
 
-		vim.cmd([[
-            colorscheme default
-        ]])
+		vim.cmd([[ colorscheme default ]])
 	end,
 }

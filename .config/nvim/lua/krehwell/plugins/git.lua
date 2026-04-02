@@ -6,13 +6,6 @@ return {
 	dependencies = {
 		{ "tpope/vim-fugitive" },
 		{ "tpope/vim-rhubarb" },
-		{
-			"mbbill/undotree",
-			keys = { { "<leader>u", ":UndotreeToggle<CR>:UndotreeFocus<CR>", desc = "Toggle undotree", mode = "n" } },
-			init = function()
-				vim.g.undotree_SetFocusWhenToggle = 1
-			end,
-		},
 	},
 
 	keys = {
@@ -77,7 +70,12 @@ return {
 			change = { hl = "GitSignsChange", text = "~", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
 			delete = { hl = "GitSignsDelete", text = "_", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
 			topdelete = { hl = "GitSignsDelete", text = "‾", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-			changedelete = { hl = "GitSignsDelete", text = "_", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn", },
+			changedelete = {
+				hl = "GitSignsDelete",
+				text = "_",
+				numhl = "GitSignsDeleteNr",
+				linehl = "GitSignsDeleteLn",
+			},
 			untracked = { hl = "GitSignsAdd", text = "┆", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
 		},
 		signcolumn = true,

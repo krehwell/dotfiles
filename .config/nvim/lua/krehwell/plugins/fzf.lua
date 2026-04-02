@@ -1,8 +1,5 @@
 return {
 	"ibhagwan/fzf-lua",
-	dependencies = {
-		{ "junegunn/fzf", build = "./install --bin" },
-	},
 	config = function()
 		require("fzf-lua").register_ui_select()
 

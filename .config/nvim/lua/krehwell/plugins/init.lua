@@ -64,21 +64,4 @@ return {
 		},
 	},
 	{ "tpope/vim-repeat", keys = { { "." } } },
-
-	-- BEAUTIFY
-	{ "DaikyXendo/nvim-material-icon", event = "BufReadPre" },
-	{ "j-hui/fidget.nvim", event = "LspAttach", opts = { notification = { window = { winblend = 0 } } } },
-	{
-		"uga-rosa/ccc.nvim",
-		event = "BufReadPre",
-		config = function()
-			local ccc = require("ccc")
-			ccc.setup({
-				highlighter = { auto_enable = true, lsp = true },
-			})
-		end,
-		keys = {
-			{ "<leader>c", "<cmd>:CccConvert<CR>", desc = "Toggle highlight color" },
-		},
-	},
 }

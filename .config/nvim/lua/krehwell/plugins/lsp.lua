@@ -1,106 +1,23 @@
-local jsts_settings = {
-	typescript = {
-		preferences = {
-			-- includePackageJsonAutoImports = "off",
-			useAliasesForRenames = false,
-			renameShorthandProperties = false,
-			autoImportFileExcludePatterns = {
-				"@vidstack",
-				"@vidstack/*",
-				"vidstack/*",
-				"@mui",
-				"@mui/*",
-				"@mui/**",
-				"@next/dist",
-				"@next/dist/*",
-				"pspdfkit",
-				"esbuild",
-			},
-		},
-		updateImportsOnFileMove = {
-			enabled = "always",
-		},
-		tsserver = {
-			watchOptions = {
-				excludeDirectories = { "node_modules", "dist", ".next", "out" },
-			},
-		},
-	},
-
-	javascript = {
-		preferences = {
-			includePackageJsonAutoImports = "off",
-			useAliasesForRenames = false,
-			renameShorthandProperties = false,
-			autoImportFileExcludePatterns = {
-				"@vidstack",
-				"@vidstack/*",
-				"vidstack/*",
-				"@mui",
-				"@mui/*",
-				"@mui/**",
-				"@next/dist",
-				"@next/dist/*",
-				"pspdfkit",
-				"esbuild",
-			},
-		},
-		updateImportsOnFileMove = {
-			enabled = "always",
-		},
-	},
-}
-
 return {
-	"b0o/SchemaStore.nvim",
+	"williamboman/mason.nvim",
 	cmd = { "Mason" },
 	dependencies = {
-		{ "williamboman/mason.nvim", "RRethy/vim-illuminate" },
+		{ "RRethy/vim-illuminate" },
 	},
 	ft = { "*" },
 	opts = {
 		servers = {
 
-			lua_ls = {
-				cmd = { "lua-language-server" },
-
-				on_init = function(client)
-					client.server_capabilities.semanticTokensProvider = nil
-					client.server_capabilities.documentHighlightProvider = false
-				end,
-
-				filetypes = { "lua" },
-
-				root_dir = function(fname)
-					return vim.fs.root(fname, { ".luarc.json", ".luarc.jsonc", ".git" })
-				end,
-
-				settings = {
-					Lua = {
-						runtime = { version = "LuaJIT" },
-						diagnostics = {
-							globals = { "vim" },
-						},
-						workspace = {
-							library = vim.api.nvim_get_runtime_file("", true),
-							checkThirdParty = false,
-						},
-						telemetry = { enable = false },
-					},
-				},
-			},
-
 			tsgo = {
 				filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
 				cmd = { "tsgo", "--lsp", "--stdio" },
 				on_init = function(client)
-					-- client.server_capabilities.semanticTokensProvider = nil
+					client.server_capabilities.semanticTokensProvider = nil
 					client.server_capabilities.documentFormattingProvider = false
 					client.server_capabilities.documentRangeFormattingProvider = false
-					-- client.server_capabilities.codeLensProvider = nil
-					-- client.server_capabilities.documentHighlightProvider = false
+					client.server_capabilities.codeLensProvider = nil
+					client.server_capabilities.documentHighlightProvider = false
 				end,
-				settings = jsts_settings,
 			},
 
 			biome = {
@@ -128,10 +45,6 @@ return {
 						validate = { enable = true },
 					},
 				},
-				on_init = function(client)
-					client.config.settings.json.schemas = require("schemastore").json.schemas() -- typechecking for schema
-					client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
-				end,
 			},
 
 			cssls = {
