@@ -1,8 +1,3 @@
--- indentation behaviour
-vim.cmd([[
-  " filetype plugin indent on
-]])
-
 vim.loader.enable()
 -- Use an indentation of 4 spaces.
 vim.opt.backspace = "2"
@@ -23,6 +18,8 @@ vim.opt.writebackup = false
 vim.opt.swapfile = false
 vim.opt.undofile = true
 vim.opt.autoread = true
+vim.cmd("packadd nvim.difftool")
+vim.cmd("packadd nvim.undotree")
 
 -- WINDOW BEHAVIOR
 -- vim.opt.colorcolumn = "120"
@@ -73,12 +70,7 @@ vim.optfoldmethod = "indent"
 vim.opt.ignorecase = true
 vim.opt.incsearch = true
 vim.opt.smartcase = true
--- vim.opt.path:append("**")
-vim.opt.isfname:append("@-@")
-vim.opt.shortmess:append({
-	w = true,
-	s = true,
-})
+vim.opt.shortmess:append({ w = true, s = true, })
 
 -- DISABLE HEALTH CHECKS FOR THESE PROVIDERS.
 vim.g.loaded_python3_provider = 0

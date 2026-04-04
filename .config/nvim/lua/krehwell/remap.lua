@@ -48,7 +48,6 @@ vim.keymap.set({ "n", "v" }, "0", function()
 		return "^zH"
 	end
 end, { expr = true, desc = "Smart zero: toggle between ^ and 0" })
-vim.cmd("packadd nvim.undotree")
 vim.keymap.set("n", "<leader>u", require("undotree").open)
 
 ----- SESSION BUFFER CONTROLLER
@@ -69,8 +68,7 @@ end
 
 vim.keymap.set("n", "<M-o>", ask_load_session)
 vim.keymap.set("n", "<M-s>", ask_save_session)
-vim.keymap.set("n", "<localleader>o", ask_load_session)
-vim.keymap.set("n", "<localleader>s", ask_save_session)
+
 ----- CD TO CURRENT BUFFER's DIR | lcd -> for cding the current buffer only to the current dir
 vim.keymap.set("n", "<localleader>cd", ":cd %:p:h<CR>")
 vim.keymap.set("n", "<localleader>lcd", ":lcd %:p:h<CR>")

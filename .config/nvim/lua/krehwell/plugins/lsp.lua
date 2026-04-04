@@ -7,18 +7,18 @@ return {
 	ft = { "*" },
 	opts = {
 		servers = {
-
-			tsgo = {
-				filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-				cmd = { "tsgo", "--lsp", "--stdio" },
-				on_init = function(client)
-					client.server_capabilities.semanticTokensProvider = nil
-					client.server_capabilities.documentFormattingProvider = false
-					client.server_capabilities.documentRangeFormattingProvider = false
-					client.server_capabilities.codeLensProvider = nil
-					client.server_capabilities.documentHighlightProvider = false
-				end,
-			},
+			--
+			-- tsgo = {
+			-- 	filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+			-- 	cmd = { "tsgo", "--lsp", "--stdio" },
+			-- 	on_init = function(client)
+			-- 		client.server_capabilities.semanticTokensProvider = nil
+			-- 		client.server_capabilities.documentFormattingProvider = false
+			-- 		client.server_capabilities.documentRangeFormattingProvider = false
+			-- 		client.server_capabilities.codeLensProvider = nil
+			-- 		client.server_capabilities.documentHighlightProvider = false
+			-- 	end,
+			-- },
 
 			biome = {
 				single_file_support = true,
@@ -26,15 +26,14 @@ return {
 				root_markers = { "biome.json", "biome.jsonc" },
 			},
 
-			-- deno = {
-			-- 	cmd = { "deno", "lsp" },
-			-- 	root_dir = vim.fs.root(0, { "deno.json", "deno.jsonc" }), -- detect Deno project
-			-- 	init_options = {
-			-- 		lint = true, -- enable linting
-			-- 		unstable = true, -- allow unstable APIs
-			-- 	},
-			-- 	settings = {},
-			-- },
+			deno = {
+				cmd = { "deno", "lsp" },
+				root_dir = vim.fs.root(0, { "deno.json", "deno.jsonc" }), -- detect Deno project
+				init_options = {
+					lint = true, -- enable linting
+				},
+				settings = {},
+			},
 
 			jsonls = {
 				cmd = { "vscode-json-language-server", "--stdio" },

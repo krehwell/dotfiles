@@ -112,7 +112,6 @@ return {
 			callback = dim_my_highlights,
 		})
 
-
 		vim.api.nvim_create_autocmd({ "VimEnter" }, {
 			group = vim.api.nvim_create_augroup("krehwell/sanity_tab_color", { clear = true }),
 			desc = "make sense tab color",
