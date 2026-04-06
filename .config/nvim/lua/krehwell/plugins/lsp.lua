@@ -8,27 +8,28 @@ return {
 	opts = {
 		servers = {
 			--
-			-- tsgo = {
-			-- 	filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-			-- 	cmd = { "tsgo", "--lsp", "--stdio" },
-			-- 	on_init = function(client)
-			-- 		client.server_capabilities.semanticTokensProvider = nil
-			-- 		client.server_capabilities.documentFormattingProvider = false
-			-- 		client.server_capabilities.documentRangeFormattingProvider = false
-			-- 		client.server_capabilities.codeLensProvider = nil
-			-- 		client.server_capabilities.documentHighlightProvider = false
-			-- 	end,
-			-- },
+			tsgo = {
+				filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+				cmd = { "tsgo", "--lsp", "--stdio" },
+				root_dir = vim.fs.root(0, { "package.json", "package.lock" }),
+				on_init = function(client)
+					client.server_capabilities.semanticTokensProvider = nil
+					client.server_capabilities.documentFormattingProvider = false
+					client.server_capabilities.documentRangeFormattingProvider = false
+					client.server_capabilities.codeLensProvider = nil
+					client.server_capabilities.documentHighlightProvider = false
+				end,
+			},
 
 			biome = {
 				single_file_support = true,
 				cmd = { "biome", "lsp-proxy" },
-				root_markers = { "biome.json", "biome.jsonc" },
+				root_markers = { "biome.json" },
 			},
 
 			deno = {
 				cmd = { "deno", "lsp" },
-				root_dir = vim.fs.root(0, { "deno.json", "deno.jsonc" }), -- detect Deno project
+				root_dir = vim.fs.root(0, { "deno.json" }), -- detect Deno project
 				init_options = {
 					lint = true, -- enable linting
 				},

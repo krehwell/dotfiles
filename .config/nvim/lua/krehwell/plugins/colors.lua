@@ -3,7 +3,7 @@ local dim_my_highlights = function()
 	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 	vim.api.nvim_set_hl(0, "NormalNC", { link = "Normal" })
 
-	-- turnoff all syntax colors
+	-- turnoff all syntax highlighting
 	vim.api.nvim_set_hl(0, "Module", { link = "NoSyntaxColoring" })
 	vim.api.nvim_set_hl(0, "Constant", { link = "NoSyntaxColoring" })
 	vim.api.nvim_set_hl(0, "String", { link = "NoSyntaxColoring" })
