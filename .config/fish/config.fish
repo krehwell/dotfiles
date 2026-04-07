@@ -7,7 +7,7 @@ if status is-interactive
     alias sex='bash -c \'(open . || explorer.exe . || nautilus .) &\''
     alias vim=nvim
     alias tmux='tmux -2'
-    alias rm='rmtrash'
+    # alias rm='rmtrash'
 
     # status --is-interactive; and rbenv init - fish | source
 

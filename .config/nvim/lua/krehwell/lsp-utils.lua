@@ -62,12 +62,7 @@ local on_attach = function(bufnr)
 end
 
 local diagnostic_config = {
-	show_diagnostic_autocmds = {
-		"InsertLeave",
-		"TextChanged",
-		"BufEnter",
-		"WinEnter",
-	},
+	show_diagnostic_autocmds = { "InsertLeave", "TextChanged", "BufEnter", "WinEnter" },
 	virtual_text = true,
 	update_in_insert = true,
 	signs = false,
@@ -84,7 +79,4 @@ local diagnostic_config = {
 	},
 }
 
-return {
-	on_attach = on_attach,
-	diagnostic_config = diagnostic_config,
-}
+return { on_attach = on_attach, diagnostic_config = diagnostic_config }
