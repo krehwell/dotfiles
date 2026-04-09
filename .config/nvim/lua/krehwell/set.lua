@@ -20,6 +20,7 @@ vim.opt.undofile = true
 vim.opt.autoread = true
 vim.cmd("packadd nvim.difftool")
 vim.cmd("packadd nvim.undotree")
+-- vim.cmd("packadd nvim.tohtml")
 
 -- WINDOW BEHAVIOR
 -- vim.opt.colorcolumn = "120"
@@ -36,6 +37,8 @@ require("vim._core.ui2").enable()
 vim.opt.wildignore:append({ ".DS_Store" })
 vim.o.completeopt = "menuone,noselect,noinsert"
 vim.o.pumheight = 15
+vim.o.autocomplete = true
+vim.o.pumborder = "rounded"
 
 -- SHOW WHITESPACE
 -- vim.opt.list = true

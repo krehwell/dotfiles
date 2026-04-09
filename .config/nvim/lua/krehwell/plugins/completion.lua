@@ -12,7 +12,7 @@ return {
 
 	opts = {
 		keymap = { preset = "enter" },
-		cmdline = { enabled = true },
+		cmdline = { enabled = false },
 
 		sources = {
 			default = { "lsp", "path", "buffer", "calc" },
