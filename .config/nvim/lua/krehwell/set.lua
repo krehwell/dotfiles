@@ -30,6 +30,7 @@ vim.opt.equalalways = true
 vim.opt.title = true
 vim.opt.winborder = "rounded"
 vim.opt.wildmenu = true
+require("vim._core.ui2").enable()
 
 -- Completion.
 vim.opt.wildignore:append({ ".DS_Store" })
@@ -70,7 +71,7 @@ vim.optfoldmethod = "indent"
 vim.opt.ignorecase = true
 vim.opt.incsearch = true
 vim.opt.smartcase = true
-vim.opt.shortmess:append({ w = true, s = true, })
+vim.opt.shortmess:append({ w = true, s = true })
 
 -- DISABLE HEALTH CHECKS FOR THESE PROVIDERS.
 vim.g.loaded_python3_provider = 0
