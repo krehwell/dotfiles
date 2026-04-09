@@ -20,6 +20,7 @@ return {
                     augroup END
                 ]])
 				vim.cmd("Git")
+				vim.cmd.normal({ "5j" })
 			end,
 			desc = "Git: toggle status",
 		},

@@ -18,7 +18,7 @@ local groups = {
 	FloatBorder = { fg = "NvimLightGrey4", update = true },
 
 	-- Keep comments dimmed but distinguishable.
-	Comment = { fg = "NvimDarkGrey4", italic = true, update = true },
+	Comment = { fg = "NvimLightGrey4", italic = true, update = true },
 	DiagnosticUnnecessary = { link = "Comment" },
 
 	-- Tabs / splits.
@@ -35,6 +35,7 @@ local groups = {
 
 -- Vim builtin syntax groups to flatten.
 local vim_syntax = {
+    "Normal",
 	"Module",
 	"Constant",
 	"String",
