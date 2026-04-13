@@ -36,9 +36,9 @@ require("vim._core.ui2").enable()
 -- Completion.
 vim.opt.wildignore:append({ ".DS_Store" })
 vim.o.completeopt = "menuone,noselect,noinsert"
-vim.o.pumheight = 15
-vim.o.autocomplete = true
-vim.o.pumborder = "rounded"
+-- vim.o.pumheight = 15
+-- vim.o.autocomplete = true
+-- vim.o.pumborder = "rounded"
 
 -- SHOW WHITESPACE
 -- vim.opt.list = true

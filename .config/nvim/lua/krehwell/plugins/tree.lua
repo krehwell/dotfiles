@@ -17,9 +17,9 @@ end
 
 return {
 	"stevearc/oil.nvim",
+	lazy = false,
 	---@module 'oil'
 	---@type oil.SetupOpts
-	lazy = false,
 	opts = {
 		default_file_explorer = true,
 		lsp_file_methods = { enabled = true, timeout_ms = 10000, autosave_changes = true },
@@ -51,6 +51,34 @@ return {
 		win_options = { winbar = "%!v:lua.get_oil_winbar()" },
 	},
 	keys = {
+		{
+			"]f",
+			function()
+				local oil = require("oil")
+
+				oil.open(nil, {}, function()
+					vim.schedule(function()
+						vim.cmd("normal! j")
+						oil.select()
+					end)
+				end)
+			end,
+			desc = "Open next file in Oil",
+		},
+		{
+			"[f",
+			function()
+				local oil = require("oil")
+
+				oil.open(nil, {}, function()
+					vim.schedule(function()
+						vim.cmd("normal! k")
+						oil.select()
+					end)
+				end)
+			end,
+			desc = "Open prev file in Oil",
+		},
 		{
 			"<C-b>",
 			function()

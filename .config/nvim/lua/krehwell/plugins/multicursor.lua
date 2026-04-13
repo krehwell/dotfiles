@@ -4,6 +4,7 @@ return {
 	event = "CursorMoved",
 	keys = {
 		{ "<C-n>", desc = "Start multicursor", mode = { "n", "v" } },
+		{ "<C-q>", desc = "Start multicursor in toggle cursor", mode = { "n", "v" } },
 	},
 	config = function()
 		local mc = require("multicursor-nvim")
