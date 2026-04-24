@@ -3,6 +3,7 @@ return {
 	cmd = { "Mason" },
 	dependencies = {
 		{ "RRethy/vim-illuminate" },
+		{ "chaneyzorn/spellwand.nvim" },
 	},
 	ft = { "*" },
 	opts = {
