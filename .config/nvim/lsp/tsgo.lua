@@ -1,5 +1,5 @@
 return {
-	filetypes = {},
+	filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
 	cmd = { "tsgo", "--lsp", "--stdio" },
 	root_dir = function(bufnr, on_dir)
 		local root_markers = { { "package-lock.json", "yarn.lock", "pnpm-lock.yaml" }, { ".git" } }
