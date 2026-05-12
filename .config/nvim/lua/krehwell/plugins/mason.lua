@@ -3,25 +3,35 @@ return {
     cmd = { "Mason" },
     dependencies = {
         { "RRethy/vim-illuminate" },
-        { "chaneyzorn/spellwand.nvim" },
+        { "WhoIsSethDaniel/mason-tool-installer.nvim" },
     },
-    ft = { "*" },
-    opts = {
-        ensure_installed = {
-            "biome",
-            "css_variables",
-            "cssls",
-            "cssmodules_ls",
-            "denols",
-            "gopls",
-            "html",
-            "jsonls",
-            "tailwindcss-language-server",
-            "tsgo",
-        },
-    },
-    config = function(_, opts)
-        require("mason").setup(opts)
+    event = "VeryLazy",
+    config = function()
+        require("mason").setup()
+        require("mason-tool-installer").setup({
+            ensure_installed = {
+                -- LSPs
+                "biome",
+                "css-lsp",
+                "css-variables-language-server",
+                "cssmodules-language-server",
+                "deno",
+                "gopls",
+                "html-lsp",
+                "json-lsp",
+                "lua-language-server",
+                "tailwindcss-language-server",
+                "tsgo",
+                -- Formatters
+                "stylua",
+                -- Linters
+                "hadolint",
+                "dotenv-linter",
+            },
+        })
+
+        local lsp_utils = require("krehwell.lsp-utils")
+        vim.diagnostic.config(lsp_utils.diagnostic_config)
 
         local servers = vim.iter(vim.api.nvim_get_runtime_file("lsp/*.lua", true))
             :map(function(file)
@@ -34,8 +44,6 @@ return {
             group = vim.api.nvim_create_augroup("krehwell/lsp_configure", { clear = true }),
             desc = "LSP Setup",
             callback = function(event)
-                local lsp_utils = require("krehwell.lsp-utils")
-                vim.diagnostic.config(lsp_utils.diagnostic_config)
                 lsp_utils.on_attach(event.buf)
             end,
         })

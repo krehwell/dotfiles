@@ -1,39 +1,22 @@
 return {
-    "nvimtools/none-ls.nvim",
-    dependencies = {
-        "nvim-lua/plenary.nvim",
-    },
-    event = "LspAttach",
+    "mfussenegger/nvim-lint",
+    event = { "BufReadPost", "BufWritePost", "InsertLeave" },
     config = function()
-        local null_ls = require("null-ls")
-        null_ls.setup({
-            update_in_insert = false,
-            sources = {
-                -- LUA
-                null_ls.builtins.formatting.stylua.with({
-                    indent_type = "Spaces",
-                    collapse_simple_statement = "Always",
-                }),
+        vim.filetype.add({ extension = { env = "dotenv" }, pattern = { ["%.env%..*"] = "dotenv" }, })
 
-                -- DOCKER
-                null_ls.builtins.diagnostics.hadolint,
+        local lint = require("lint")
 
-                -- GO
-                null_ls.builtins.formatting.goimports,
-                null_ls.builtins.formatting.golines,
-                null_ls.builtins.formatting.goimports_reviser,
-                -- null_ls.builtins.formatting.gofumpt.with({ space = true, }),
+        lint.linters_by_ft = {
+            dockerfile = { "hadolint" },
+            dotenv = { "dotenv_linter" },
+        }
 
-                -- TS
-                null_ls.builtins.formatting.biome.with({
-                    condition = function(utils)
-                        return utils.root_has_file({ "package.json" })
-                    end,
-                }),
-                -- null_ls.builtins.diagnostics.biome,
-
-                null_ls.builtins.diagnostics.dotenv_linter,
-            },
+        local group = vim.api.nvim_create_augroup("krehwell/lint", { clear = true })
+        vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
+            group = group,
+            callback = function()
+                require("lint").try_lint()
+            end,
         })
     end,
 }

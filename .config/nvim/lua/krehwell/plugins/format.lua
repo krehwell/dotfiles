@@ -10,7 +10,7 @@ return {
                 typescript = { "biome" },
                 javascriptreact = { "biome" },
                 typescriptreact = { "biome" },
-                go = { "goimports" },
+                go = { "goimports_reviser", "goimports", "golines" },
             },
 
             format_on_save = false, -- { lsp_format = "fallback", timeout_ms = 500, },
