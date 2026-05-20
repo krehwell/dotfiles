@@ -27,6 +27,8 @@ if [[ -z $TMUX ]]; then
     fi
 else
     # inside tmux session
+    current_session=$(tmux display-message -p '#S')
+
     if [[ -z $existingSession ]]; then
         if [[ -f $selected/.vim/tmux-session ]]; then
             $selected/.vim/tmux-session restore
@@ -35,4 +37,12 @@ else
         fi
     fi
     tmux switch-client -t $selected_name
+
+    # If we came from a throwaway bootstrap session (default numeric name like
+    # "0" with a single pane), kill it so it doesn't linger after switching.
+    if [[ $current_session =~ ^[0-9]+$ && $current_session != $selected_name ]]; then
+        if [[ $(tmux list-panes -s -t "$current_session" 2>/dev/null | wc -l) -eq 1 ]]; then
+            tmux kill-session -t "$current_session"
+        fi
+    fi
 fi

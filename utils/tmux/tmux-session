@@ -4,10 +4,14 @@ set -e
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-# Dump all panes with session, window index, window name, pane index, path, and command
+# Dump panes of the CURRENT session only (session, window index, window name,
+# pane index, path). Using the current session instead of `-a` (all sessions on
+# the server) so saving captures just the session you're in, not every open one.
 dump() {
     local d=$'\t'
-    tmux list-panes -a -F "#S${d}#{window_index}${d}#{window_name}${d}#P${d}#{pane_current_path}"
+    local session
+    session=$(tmux display-message -p '#S')
+    tmux list-panes -s -t "$session" -F "#S${d}#{window_index}${d}#{window_name}${d}#P${d}#{pane_current_path}"
 }
 
 # Save session layout to a file
