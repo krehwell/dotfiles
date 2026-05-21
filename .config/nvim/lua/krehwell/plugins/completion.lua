@@ -14,6 +14,10 @@ return {
         keymap = { preset = "enter" },
         cmdline = { enabled = false },
 
+        -- guarantee the native Rust matcher; error loudly instead of
+        -- silently falling back to the (much slower) Lua matcher
+        fuzzy = { implementation = "rust" },
+
         sources = {
             default = { "lsp", "path", "buffer", "calc" },
             providers = { calc = { name = "Calc", module = "blink-calc" } },
