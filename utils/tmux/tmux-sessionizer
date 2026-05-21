@@ -1,48 +1,70 @@
 #!/usr/bin/env bash
+#
+# tmux-sessionizer
+#
+# this is to jump into a tmux session per project. you pass a directory (or just
+# fuzzy find one with fzf), and it opens a tmux session named after that dir. if
+# the session already exist it just reuse it so we don't get duplicates,
+# otherwise it make a new one. if the dir has a saved layout in
+# <dir>/.vim/tmux-session it restore that, if not just a plain session.
+#
+# where you end up depends on where you run it:
+#   - not in tmux:  attach to the session
+#   - in tmux    :  switch to it, and if the session we came from was just a
+#                   throwaway ([0]/[1]/[n] name, one window, one pane, only a
+#                   shell like fish/bash/zsh) then kill it so they don't pile up
+#
+# i usually bind this in tmux.conf as a popup:
+#   bind-key C-p display-popup -E -w 80% -h 80% "~/utils/tmux/tmux-sessionizer"
+#
+# usage: tmux-sessionizer [directory]
 
+# Pick a project directory (passed as an argument, or fuzzy-found).
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
     selected=$(find ~/Documents ~/Documents/personal ~/.local/share/nvim/lazy ~/.config ~/Downloads ~ ~/utils/ -mindepth 1 -maxdepth 1 -type d | fzf)
 fi
+[[ -z $selected ]] && exit 0
 
-if [[ -z $selected ]]; then
+selected_name=$(basename "$selected" | tr . _)
+
+# A session is "throwaway" (safe to replace) when it's a freshly bootstrapped
+# session the user never personalized: a default numeric name, a single window
+# with a single pane, and that pane just sitting at a shell prompt. Targeted by
+# session id, since numeric names collide with window/pane indexes as targets.
+is_throwaway_session() {
+    local id=$1 name wins panes cmd
+    read -r name wins panes cmd < <(tmux display-message -p -t "$id" \
+        '#{session_name} #{session_windows} #{window_panes} #{pane_current_command}')
+    [[ $name =~ ^[0-9]+$ && $wins -eq 1 && $panes -eq 1 ]] || return 1
+    case $cmd in fish | bash | zsh | sh | dash | ksh) return 0 ;; *) return 1 ;; esac
+}
+
+# Create the session if it doesn't exist yet.
+if ! tmux has-session -t "=$selected_name" 2>/dev/null; then
+    if [[ -f $selected/.vim/tmux-session ]]; then
+        "$selected/.vim/tmux-session" restore
+    else
+        tmux new-session -ds "$selected_name" -c "$selected"
+    fi
+fi
+
+# Outside tmux: attach and we're done.
+if [[ -z $TMUX ]]; then
+    tmux attach -t "$selected_name"
     exit 0
 fi
 
-selected_name=$(basename "$selected" | tr . _)
-existingSession=$(tmux list-sessions -F '#S' | grep "^$selected_name$")
+# Inside tmux: switch to the session, then drop the one we came from if it was a
+# disposable throwaway (decided before switching, so the switch can't race the
+# inspection). Killing it is safe even if the client briefly lingers — tmux just
+# reassigns the client to the session we switched to.
+current_id=$(tmux display-message -p '#{session_id}')
+current_name=$(tmux display-message -p '#S')
 
-if [[ -z $TMUX ]]; then
-    # not in tmux session
-    if [[ -z $existingSession ]]; then
-        if [[ -f $selected/.vim/tmux-session ]]; then
-            $selected/.vim/tmux-session restore
-            tmux attach-session -t $selected_name
-        else
-            tmux new-session -s $selected_name -c $selected
-        fi
-    else
-        tmux attach -t $selected_name
-    fi
-else
-    # inside tmux session
-    current_session=$(tmux display-message -p '#S')
+replace_current=false
+[[ $current_name != $selected_name ]] && is_throwaway_session "$current_id" && replace_current=true
 
-    if [[ -z $existingSession ]]; then
-        if [[ -f $selected/.vim/tmux-session ]]; then
-            $selected/.vim/tmux-session restore
-        else
-            tmux new-session -ds $selected_name -c $selected
-        fi
-    fi
-    tmux switch-client -t $selected_name
-
-    # If we came from a throwaway bootstrap session (default numeric name like
-    # "0" with a single pane), kill it so it doesn't linger after switching.
-    if [[ $current_session =~ ^[0-9]+$ && $current_session != $selected_name ]]; then
-        if [[ $(tmux list-panes -s -t "$current_session" 2>/dev/null | wc -l) -eq 1 ]]; then
-            tmux kill-session -t "$current_session"
-        fi
-    fi
-fi
+tmux switch-client -t "$selected_name"
+[[ $replace_current == true ]] && tmux kill-session -t "$current_id"
