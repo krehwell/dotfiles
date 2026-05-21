@@ -3,10 +3,9 @@ if status is-interactive
     set fish_greeting
 
     alias :q='exit'
-    alias :qa='tmux kill-session'
+    alias :qa='tmux kill-server'
     alias sex='bash -c \'(open . || explorer.exe . || nautilus .) &\''
     alias vim=nvim
-    alias tmux='tmux -2'
     alias rm='rmtrash'
 
     # status --is-interactive; and rbenv init - fish | source
