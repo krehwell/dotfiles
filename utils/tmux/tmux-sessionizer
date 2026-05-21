@@ -1,70 +1,146 @@
 #!/usr/bin/env bash
-#
+set -euo pipefail
+
+# -----------------------------------------------------------------------------
 # tmux-sessionizer
+# -----------------------------------------------------------------------------
+# Jump into a tmux session per project. Pass a directory (or fuzzy-find one)
+# and it opens/attaches a session named after that directory. Reuses existing
+# sessions, restores saved layouts, and cleans up throwaway sessions.
 #
-# this is to jump into a tmux session per project. you pass a directory (or just
-# fuzzy find one with fzf), and it opens a tmux session named after that dir. if
-# the session already exist it just reuse it so we don't get duplicates,
-# otherwise it make a new one. if the dir has a saved layout in
-# <dir>/.vim/tmux-session it restore that, if not just a plain session.
-#
-# where you end up depends on where you run it:
-#   - not in tmux:  attach to the session
-#   - in tmux    :  switch to it, and if the session we came from was just a
-#                   throwaway ([0]/[1]/[n] name, one window, one pane, only a
-#                   shell like fish/bash/zsh) then kill it so they don't pile up
-#
-# i usually bind this in tmux.conf as a popup:
+# Bind in tmux.conf as a popup:
 #   bind-key C-p display-popup -E -w 80% -h 80% "~/utils/tmux/tmux-sessionizer"
 #
-# usage: tmux-sessionizer [directory]
+# Usage: tmux-sessionizer [directory]
+# -----------------------------------------------------------------------------
 
-# Pick a project directory (passed as an argument, or fuzzy-found).
-if [[ $# -eq 1 ]]; then
-    selected=$1
-else
-    selected=$(find ~/Documents ~/Documents/personal ~/.local/share/nvim/lazy ~/.config ~/Downloads ~ ~/utils/ -mindepth 1 -maxdepth 1 -type d | fzf)
-fi
-[[ -z $selected ]] && exit 0
+# --- Configuration -----------------------------------------------------------
 
-selected_name=$(basename "$selected" | tr . _)
+SEARCH_PATHS=(
+    ~/Documents
+    ~/Documents/personal
+    ~/.local/share/nvim/lazy
+    ~/.config
+    ~/Downloads
+    ~
+    ~/utils
+)
 
-# A session is "throwaway" (safe to replace) when it's a freshly bootstrapped
-# session the user never personalized: a default numeric name, a single window
-# with a single pane, and that pane just sitting at a shell prompt. Targeted by
-# session id, since numeric names collide with window/pane indexes as targets.
-is_throwaway_session() {
-    local id=$1 name wins panes cmd
-    read -r name wins panes cmd < <(tmux display-message -p -t "$id" \
-        '#{session_name} #{session_windows} #{window_panes} #{pane_current_command}')
-    [[ $name =~ ^[0-9]+$ && $wins -eq 1 && $panes -eq 1 ]] || return 1
-    case $cmd in fish | bash | zsh | sh | dash | ksh) return 0 ;; *) return 1 ;; esac
+LAYOUT_FILE=".vim/tmux-session"
+
+# --- Helpers -----------------------------------------------------------------
+
+die() {
+    printf '%s\n' "$*" >&2
+    exit 1
 }
 
-# Create the session if it doesn't exist yet.
-if ! tmux has-session -t "=$selected_name" 2>/dev/null; then
-    if [[ -f $selected/.vim/tmux-session ]]; then
-        "$selected/.vim/tmux-session" restore
+# Check if a tmux session name already exists
+session_exists() {
+    tmux has-session -t "$1" 2>/dev/null
+}
+
+# A session is "throwaway" when it looks like a freshly bootstrapped session
+# that was never personalized:
+#   - default numeric name (0, 1, 2, ...)
+#   - exactly one window
+#   - exactly one pane
+#   - that pane is just an idle shell
+# Takes a session *id* (e.g. "$0") to avoid numeric-name ambiguity.
+is_throwaway_session() {
+    local id=$1 name window_count pane_count cmd
+
+    name=$(tmux display-message -p -t "$id" '#{session_name}' 2>/dev/null) || return 1
+    [[ $name =~ ^[0-9]+$ ]] || return 1
+
+    window_count=$(tmux list-windows -t "$id" 2>/dev/null | wc -l)
+    [[ $window_count -eq 1 ]] || return 1
+
+    pane_count=$(tmux list-panes -s -t "$id" 2>/dev/null | wc -l)
+    [[ $pane_count -eq 1 ]] || return 1
+
+    cmd=$(tmux list-panes -s -t "$id" -F '#{pane_current_command}' 2>/dev/null)
+    case $cmd in
+        fish|bash|zsh|sh|dash|ksh) return 0 ;;
+        *) return 1 ;;
+    esac
+}
+
+# Create or restore a session. If inside tmux, create detached (-d).
+create_session() {
+    local name=$1 dir=$2 inside_tmux=${3:-false}
+
+    if [[ -x "$dir/$LAYOUT_FILE" ]]; then
+        # Restore saved layout
+        if [[ "$inside_tmux" == true ]]; then
+            "$dir/$LAYOUT_FILE" restore
+        else
+            "$dir/$LAYOUT_FILE" restore
+            tmux attach-session -t "$name"
+        fi
     else
-        tmux new-session -ds "$selected_name" -c "$selected"
+        if [[ "$inside_tmux" == true ]]; then
+            tmux new-session -ds "$name" -c "$dir"
+        else
+            tmux new-session -s "$name" -c "$dir"
+        fi
     fi
-fi
+}
 
-# Outside tmux: attach and we're done.
-if [[ -z $TMUX ]]; then
-    tmux attach -t "$selected_name"
-    exit 0
-fi
+# --- Main --------------------------------------------------------------------
 
-# Inside tmux: switch to the session, then drop the one we came from if it was a
-# disposable throwaway (decided before switching, so the switch can't race the
-# inspection). Killing it is safe even if the client briefly lingers — tmux just
-# reassigns the client to the session we switched to.
-current_id=$(tmux display-message -p '#{session_id}')
-current_name=$(tmux display-message -p '#S')
+main() {
+    local selected selected_name current_name current_id replace_current=false
 
-replace_current=false
-[[ $current_name != $selected_name ]] && is_throwaway_session "$current_id" && replace_current=true
+    # Select directory
+    if [[ $# -eq 1 ]]; then
+        selected=$1
+    else
+        # Build find arguments dynamically so missing paths don't break it
+        local find_args=()
+        for p in "${SEARCH_PATHS[@]}"; do
+            [[ -d "$p" ]] || continue
+            find_args+=("$p")
+        done
 
-tmux switch-client -t "$selected_name"
-[[ $replace_current == true ]] && tmux kill-session -t "$current_id"
+        [[ ${#find_args[@]} -eq 0 ]] && die "No search paths found."
+
+        selected=$(find "${find_args[@]}" -mindepth 1 -maxdepth 1 -type d 2>/dev/null | fzf) || true
+    fi
+
+    [[ -z "${selected:-}" ]] && exit 0
+
+    selected_name=$(basename "$selected" | tr . _)
+    [[ -z "$selected_name" ]] && die "Invalid directory name."
+
+    current_name=""
+    current_id=""
+
+    if [[ -n "${TMUX:-}" ]]; then
+        current_name=$(tmux display-message -p '#S')
+        current_id=$(tmux display-message -p '#{session_id}')
+    fi
+
+    # Create if missing
+    if ! session_exists "$selected_name"; then
+        create_session "$selected_name" "$selected" "$([[ -n "${TMUX:-}" ]] && echo true || echo false)"
+    fi
+
+    # Attach or switch
+    if [[ -z "${TMUX:-}" ]]; then
+        tmux attach-session -t "$selected_name"
+    else
+        # Decide whether to kill the current session BEFORE switching
+        if [[ "$current_name" != "$selected_name" ]] && is_throwaway_session "$current_id"; then
+            replace_current=true
+        fi
+
+        tmux switch-client -t "$selected_name"
+
+        if [[ "$replace_current" == true ]]; then
+            tmux kill-session -t "$current_id"
+        fi
+    fi
+}
+
+main "$@"
