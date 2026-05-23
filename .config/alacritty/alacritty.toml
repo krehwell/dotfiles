@@ -1,7 +1,7 @@
 [general]
     live_config_reload = true
     import = [
-        "~/.config/alacritty/themes/themes/base16_default_dark.toml"
+        "~/.config/alacritty/themes/base16_default_dark.toml"
     ]
 
 [colors]
