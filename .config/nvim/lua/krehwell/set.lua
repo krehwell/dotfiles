@@ -12,7 +12,6 @@ vim.opt.textwidth = 120
 vim.opt.cursorline = true
 
 -- HIDDEN FILE RELATED CONFIG
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.backup = false
 vim.opt.writebackup = false
 vim.opt.swapfile = false
