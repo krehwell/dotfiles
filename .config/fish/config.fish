@@ -23,9 +23,3 @@ if status is-interactive
 end
 
 export PATH="$HOME/.local/bin:$PATH"
-
-# Added by Antigravity
-fish_add_path /Users/ard/.antigravity/antigravity/bin
-
-# Added by Antigravity IDE
-fish_add_path /Users/ard/.antigravity-ide/antigravity-ide/bin
