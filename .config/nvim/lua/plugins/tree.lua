@@ -15,6 +15,19 @@ function _G.get_oil_winbar()
     end
 end
 
+-- open oil, step one entry in `motion` ("j"/"k"), then open that file
+local function oil_step(motion)
+    return function()
+        local oil = require("oil")
+        oil.open(nil, {}, function()
+            vim.schedule(function()
+                vim.cmd("normal! " .. motion)
+                oil.select()
+            end)
+        end)
+    end
+end
+
 return {
     "stevearc/oil.nvim",
     lazy = false,
@@ -51,39 +64,12 @@ return {
         win_options = { winbar = "%!v:lua.get_oil_winbar()" },
     },
     keys = {
-        {
-            "]f",
-            function()
-                local oil = require("oil")
-
-                oil.open(nil, {}, function()
-                    vim.schedule(function()
-                        vim.cmd("normal! j")
-                        oil.select()
-                    end)
-                end)
-            end,
-            desc = "Open next file in Oil",
-        },
-        {
-            "[f",
-            function()
-                local oil = require("oil")
-
-                oil.open(nil, {}, function()
-                    vim.schedule(function()
-                        vim.cmd("normal! k")
-                        oil.select()
-                    end)
-                end)
-            end,
-            desc = "Open prev file in Oil",
-        },
+        { "]f", oil_step("j"), desc = "Open next file in Oil" },
+        { "[f", oil_step("k"), desc = "Open prev file in Oil" },
         {
             "<C-b>",
             function()
-                local oil = require("oil")
-                oil.open()
+                require("oil").open()
             end,
             desc = "Toggle file explorer (oil.nvim)",
             silent = true,

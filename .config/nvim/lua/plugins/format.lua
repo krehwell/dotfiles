@@ -17,7 +17,7 @@ return {
         })
 
         vim.keymap.set("n", "gq", function()
-            conform.format(vim.tbl_extend("force", { lsp_fallback = true, async = false }, opts or {}))
-        end, opts)
+            conform.format({ lsp_fallback = true, async = false })
+        end)
     end,
 }

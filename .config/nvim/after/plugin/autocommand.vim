@@ -5,14 +5,6 @@ augroup reload_file_on_focus
 augroup END
 
 
-" ----- RELATIVE LINE NUMBERS ON NECESSARY
-augroup numbertoggle
-  autocmd!
-  autocmd BufEnter,FocusGained,WinEnter * if &nu && mode() != "i" | set rnu   | endif
-  autocmd BufLeave,FocusLost,WinLeave   * if &nu                  | set nornu | endif
-augroup END
-
-
 " ----- TAB NAMING
 set tabline=%!TabLine()
 
@@ -27,25 +19,44 @@ function! TabLine()
     return line
 endfunction
 
-function! TabLabel(n)
-    let wincount = tabpagewinnr(a:n, '$')
-    let winnr = tabpagewinnr(a:n)
-
-    let bufnr = tabpagebuflist(a:n)[winnr - 1]
-    let bufname = bufname(bufnr)
-    let bufmodified = getbufvar(bufnr, '&mod') == 1 ? '+' : ''
-    let dirname = fnamemodify(bufname, ':p:h:t')
-    let filename = fnamemodify(bufname, ':t')
-    let window_info = wincount > 1 ? '['.wincount.']' : ''
-    return ' ' . a:n . ':' . dirname . '/' . filename . window_info . bufmodified
+function! s:TabNormalWins(n)
+    let l:wins = []
+    for l:w in range(1, tabpagewinnr(a:n, '$'))
+        let l:winid = win_getid(l:w, a:n)
+        if nvim_win_get_config(l:winid).relative !=# ''
+            continue
+        endif
+        if getbufvar(winbufnr(l:winid), '&buftype') !=# ''
+            continue
+        endif
+        call add(l:wins, l:winid)
+    endfor
+    return l:wins
 endfunction
 
+function! TabLabel(n)
+    let l:wins = s:TabNormalWins(a:n)
+    let l:wincount = len(l:wins)
 
-" ----- NOAUTOCOMMENT TO ALL FILES -----
-augroup AutoCommentDisable
-    autocmd!
-    autocmd FileType * set formatoptions-=cro
-augroup END
+    " Prefer the active window's buffer, but only if it's a real editing
+    " window; otherwise fall back to the first real one, then to whatever the
+    " active window holds (e.g. a tab showing only a file tree).
+    let l:activewin = win_getid(tabpagewinnr(a:n), a:n)
+    if index(l:wins, l:activewin) >= 0
+        let l:bufnr = winbufnr(l:activewin)
+    elseif l:wincount > 0
+        let l:bufnr = winbufnr(l:wins[0])
+    else
+        let l:bufnr = tabpagebuflist(a:n)[tabpagewinnr(a:n) - 1]
+    endif
+
+    let l:bufname = bufname(l:bufnr)
+    let l:bufmodified = getbufvar(l:bufnr, '&mod') == 1 ? '+' : ''
+    let l:dirname = fnamemodify(l:bufname, ':p:h:t')
+    let l:filename = fnamemodify(l:bufname, ':t')
+    let l:window_info = l:wincount > 1 ? '['.l:wincount.']' : ''
+    return ' ' . a:n . ':' . l:dirname . '/' . l:filename . l:window_info . l:bufmodified
+endfunction
 
 
 " ----- DELETE BUFFER EXCEPT THE ONEs OPENED ON WINDOWS OR TABS -----
@@ -91,35 +102,8 @@ endfunction
 autocmd FileType qf map <buffer> dd :RemoveQFItem<cr>
 
 
-" ----- HIGHLIGHT ON YANK
-lua << EOF
-local autocmd = vim.api.nvim_create_autocmd
-local augroup = vim.api.nvim_create_augroup
-local yank_group = augroup('HighlightYank', {})
-autocmd('TextYankPost', {
-    group = yank_group,
-    pattern = '*',
-    callback = function()
-        vim.highlight.on_yank({
-            higroup = 'IncSearch',
-            timeout = 40,
-        })
-    end,
-})
-EOF
-
-
 " ----- GO TO LAST LOCATION WHEN OPENING A BUFFER
-lua << EOF
-vim.api.nvim_create_autocmd('BufReadPost', {
-    group = vim.api.nvim_create_augroup('krehwell/last_location', { clear = true }),
-    desc = 'Go to the last location when opening a buffer',
-    callback = function(args)
-        local mark = vim.api.nvim_buf_get_mark(args.buf, '"')
-        local line_count = vim.api.nvim_buf_line_count(args.buf)
-        if mark[1] > 0 and mark[1] <= line_count then
-            vim.cmd 'normal! g`"zz'
-        end
-    end,
-})
-EOF
+augroup last_location
+    autocmd!
+    autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe 'normal! g`"zz' | endif
+augroup END

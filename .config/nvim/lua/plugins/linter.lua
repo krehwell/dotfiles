@@ -1,6 +1,8 @@
+local lint_events = { "BufReadPost", "BufWritePost", "InsertLeave" }
+
 return {
     "mfussenegger/nvim-lint",
-    event = { "BufReadPost", "BufWritePost", "InsertLeave" },
+    event = lint_events,
     config = function()
         vim.filetype.add({ extension = { env = "dotenv" }, pattern = { ["%.env%..*"] = "dotenv" }, })
 
@@ -11,11 +13,10 @@ return {
             dotenv = { "dotenv_linter" },
         }
 
-        local group = vim.api.nvim_create_augroup("krehwell/lint", { clear = true })
-        vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
-            group = group,
+        vim.api.nvim_create_autocmd(lint_events, {
+            group = vim.api.nvim_create_augroup("lint", { clear = true }),
             callback = function()
-                require("lint").try_lint()
+                lint.try_lint()
             end,
         })
     end,

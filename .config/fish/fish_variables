@@ -26,4 +26,3 @@ SETUVAR fish_color_search_match:\x2d\x2dbackground\x3dbrblack
 SETUVAR fish_color_selection:\x2d\x2dbackground\x3dbrblack
 SETUVAR fish_color_user:blue
 SETUVAR fish_color_valid_path:green
-SETUVAR fish_user_paths:/Users/ard/\x2eantigravity/antigravity/bin\x1e/opt/homebrew/opt/node\x4022/bin\x1e/opt/homebrew/opt/node\x4020/bin\x1e/opt/homebrew/bin\x1e/Users/ard/go/bin

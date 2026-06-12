@@ -30,7 +30,7 @@ return {
             },
         })
 
-        local lsp_utils = require("krehwell.lsp-utils")
+        local lsp_utils = require("lsp-utils")
         vim.diagnostic.config(lsp_utils.diagnostic_config)
 
         local servers = vim.iter(vim.api.nvim_get_runtime_file("lsp/*.lua", true))
@@ -41,7 +41,7 @@ return {
         vim.lsp.enable(servers)
 
         vim.api.nvim_create_autocmd("LspAttach", {
-            group = vim.api.nvim_create_augroup("krehwell/lsp_configure", { clear = true }),
+            group = vim.api.nvim_create_augroup("lsp_configure", { clear = true }),
             desc = "LSP Setup",
             callback = function(event)
                 lsp_utils.on_attach(event.buf)

@@ -24,8 +24,9 @@ return {
             end,
             desc = "Git: toggle status",
         },
-        { "dh", ":diffget //2 <CR>", desc = "Git: get lhs of diff" },
-        { "dl", ":diffget //3 <CR>", desc = "Git: get rhs of diff" },
+        { "dv", ":Gvdiffsplit!<CR>", desc = "Git: open 3-way merge diff" },
+        { "dh", ":diffget //2<CR>", desc = "Git: get lhs of diff (ours)" },
+        { "dl", ":diffget //3<CR>", desc = "Git: get rhs of diff (theirs)" },
         {
             "gp",
             function()
@@ -67,17 +68,12 @@ return {
 
     opts = {
         signs = {
-            add = { hl = "GitSignsAdd", text = "+", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
-            change = { hl = "GitSignsChange", text = "~", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
-            delete = { hl = "GitSignsDelete", text = "_", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-            topdelete = { hl = "GitSignsDelete", text = "‾", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-            changedelete = {
-                hl = "GitSignsDelete",
-                text = "_",
-                numhl = "GitSignsDeleteNr",
-                linehl = "GitSignsDeleteLn",
-            },
-            untracked = { hl = "GitSignsAdd", text = "┆", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
+            add = { text = "+" },
+            change = { text = "~" },
+            delete = { text = "_" },
+            topdelete = { text = "‾" },
+            changedelete = { text = "_" },
+            untracked = { text = "┆" },
         },
         signcolumn = true,
         numhl = true,

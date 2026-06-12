@@ -12,12 +12,14 @@ return {
         -- add file to jumper list
         vim.keymap.set("n", "ma", function()
             jumper.add()
+            print("(hand-of-god) mark added")
         end)
 
         -- explore jumper list as buffer
         vim.keymap.set("n", "mo", function()
             jumper:explore()
             vim.cmd("setlocal cursorline")
+            print("(hand-of-god) explore marks")
         end)
     end,
 }

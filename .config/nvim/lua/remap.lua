@@ -51,10 +51,13 @@ end, { expr = true, desc = "Smart zero: toggle between ^ and 0" })
 vim.keymap.set("n", "<leader>u", require("undotree").open)
 
 ----- SESSION BUFFER CONTROLLER
+local session_file = function() -- ~/.vim/sessions/<current dir name>.vim
+	return "~/.vim/sessions/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t") .. ".vim"
+end
+
 local ask_save_session = function(without_confirm)
-	local cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ":t") -- get name of current dir only
 	vim.api.nvim_input(":wa<CR>")
-	local save_cmd = ":mksession! ~/.vim/session/" .. cwd .. ".vim<left><left><left><left>"
+	local save_cmd = ":mksession! " .. session_file() .. "<left><left><left><left>"
 	if without_confirm then
 		save_cmd = save_cmd .. "<CR>"
 	end
@@ -62,8 +65,7 @@ local ask_save_session = function(without_confirm)
 end
 
 local ask_load_session = function()
-	local cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
-	vim.api.nvim_input(":source ~/.vim/session/" .. cwd .. ".vim<left><left><left><left>")
+	vim.api.nvim_input(":source " .. session_file() .. "<left><left><left><left>")
 end
 
 vim.keymap.set("n", "<M-o>", ask_load_session)
@@ -78,4 +80,4 @@ vim.keymap.set("n", "y%", function()
 	local path = vim.fn.expand("%:.")
 	vim.fn.setreg("+", path)
 	vim.notify("Copied relative path: " .. path)
-end, { desc = "Copy absolute file path" })
+end, { desc = "Copy relative file path" })
