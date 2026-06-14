@@ -53,16 +53,16 @@ vim.opt.sidescrolloff = 18
 vim.opt.virtualedit = "block"
 vim.opt.laststatus = 0
 vim.opt.fillchars = {
-	vert = "│", -- alternatives │
-	fold = " ",
-	eob = "~", -- suppress ~ at EndOfBuffer
-	diff = "╱", -- alternatives = ⣿ ░ ─
-	msgsep = "‾",
-	foldopen = "▾",
-	foldsep = "│",
-	foldclose = "▸",
-	stlnc = "—",
-	stl = "—",
+    vert = "│", -- alternatives │
+    fold = " ",
+    eob = "~", -- suppress ~ at EndOfBuffer
+    diff = "╱", -- alternatives = ⣿ ░ ─
+    msgsep = "‾",
+    foldopen = "▾",
+    foldsep = "│",
+    foldclose = "▸",
+    stlnc = "—",
+    stl = "—",
 }
 -- vim.opt.jumpoptions:append("stack")
 -- vim.opt.jumpoptions:append("clean")
@@ -79,6 +79,16 @@ vim.g.loaded_python3_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_node_provider = 0
+
+-- CLIPBOARD OVER SSH (OSC 52)
+if os.getenv("SSH_TTY") then
+    local osc52 = require("vim.ui.clipboard.osc52")
+    vim.g.clipboard = {
+        name = "OSC 52",
+        copy = { ["+"] = osc52.copy("+"), ["*"] = osc52.copy("*") },
+        paste = { ["+"] = osc52.paste("+"), ["*"] = osc52.paste("*") },
+    }
+end
 
 -- ETC
 -- vim.opt.hidden = true
