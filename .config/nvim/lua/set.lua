@@ -81,7 +81,7 @@ vim.g.loaded_perl_provider = 0
 vim.g.loaded_node_provider = 0
 
 -- CLIPBOARD OVER SSH (OSC 52)
-if os.getenv("SSH_TTY") then
+if os.getenv("SSH_TTY") or os.getenv("SSH_CONNECTION") then
     local osc52 = require("vim.ui.clipboard.osc52")
     vim.g.clipboard = {
         name = "OSC 52",
