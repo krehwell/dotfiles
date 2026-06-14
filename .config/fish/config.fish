@@ -6,7 +6,7 @@ if status is-interactive
     alias :qa='tmux kill-server'
     alias sex='bash -c \'(open . || explorer.exe . || nautilus .) &\''
     alias vim=nvim
-    alias rm='rmtrash'
+    # alias rm='rmtrash'
 
     # status --is-interactive; and rbenv init - fish | source
 
