@@ -1,8 +1,7 @@
 [general]
     live_config_reload = true
-    import = [
-        "~/.config/alacritty/themes/base16_default_dark.toml"
-    ]
+    # No color import: base16-shell is the sole source of truth, painting the
+    # palette via escapes on shell startup (persisted in ~/.base16_theme).
 
 [colors]
     # Don't brighten bold text (#d8d8d8 -> #f8f8f8); keep one uniform white

@@ -6,6 +6,9 @@ return {
         require("fzf-lua").setup({
             { "default-title" },
             desc = "fzf lua default options",
+            -- Derive fzf's palette (incl. the selected-line bg+) from the
+            -- active colorscheme instead of fzf's near-black default.
+            fzf_colors = true,
             winopts = {
                 width = 0.94,
                 height = 0.75,

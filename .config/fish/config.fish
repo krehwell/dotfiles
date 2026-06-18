@@ -2,6 +2,14 @@ if status is-interactive
     fish_vi_key_bindings
     set fish_greeting
 
+    # Base16 Shell: defines base16-* theme switchers, reapplies persisted theme,
+    # and sets terminal ANSI colors (so alacritty + tmux + nvim follow).
+    # Skipped silently if not cloned (e.g. fresh machine).
+    if test -f "$HOME/.config/base16-shell/profile_helper.fish"
+        source "$HOME/.config/base16-shell/profile_helper.fish"
+        test -e ~/.base16_theme; or base16-default-dark
+    end
+
     alias :q='exit'
     alias :qa='tmux kill-server'
     alias sex='bash -c \'(open . || explorer.exe . || nautilus .) &\''

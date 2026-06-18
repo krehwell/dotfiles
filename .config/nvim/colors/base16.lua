@@ -1,6 +1,5 @@
--- No-distraction colorscheme: strips syntax colors, keeps structure visible.
--- Uses the active base16 palette for bg/cursorline/winbar/comments, but every
--- syntax token is flattened to `fg`. For the colored variant, see `base16`.
+-- base16 colorscheme: basic base16 syntax highlighting, calm by design.
+-- Variables/punctuation stay neutral; only meaningful tokens get color.
 -- Requires Neovim 0.12+
 
 vim.cmd.highlight("clear")
@@ -8,7 +7,7 @@ if vim.fn.exists("syntax_on") then
     vim.cmd.syntax("reset")
 end
 vim.o.termguicolors = true
-vim.g.colors_name = "no-distraction"
+vim.g.colors_name = "base16"
 
 -- Palette follows the active base16-shell theme, so switching with `base16-*`
 -- repaints nvim too (on restart). Falls back to default-dark.
@@ -33,6 +32,15 @@ end
 local fg = c[7] or "#d8d8d8"       -- base05 foreground (ANSI white)
 local comment = c[20] or "#b8b8b8" -- base04, quiet but readable
 local dim = c[8] or "#585858"      -- base03 bright-black (borders)
+
+-- Conventional base16 syntax colors.
+local red = c[1] or "#ab4642"
+local orange = c[16] or "#dc9656"
+local yellow = c[3] or "#f7ca88"
+local green = c[2] or "#a1b56c"
+local cyan = c[6] or "#86c1b9"
+local blue = c[4] or "#7cafc2"
+local magenta = c[5] or "#ba8baf"
 
 -- Scale a "#rrggbb" toward black. Used to derive a bar bg that's darker than
 -- the theme background (works for dark and light schemes alike).
@@ -83,27 +91,49 @@ local groups = {
     IlluminatedWordWrite = { link = "MatchParen" },
 }
 
--- Every syntax token (vim builtin + treesitter) flattened to fg — no color.
-local flat = {
-    "Module", "Constant", "String", "Character", "Number", "Boolean", "Float",
-    "Operator", "Identifier", "Function", "Label", "Keyword", "Exception",
-    "PreProc", "Include", "Define", "Macro", "Type", "StorageClass",
-    "Structure", "Typedef", "Special", "Delimiter", "Statement", "Conditional",
-    "Repeat",
-    "@annotation", "@attribute", "@boolean", "@character", "@constructor",
-    "@constant", "@constant.builtin", "@constant.macro", "@exception",
-    "@variable.member", "@number.float", "@function", "@function.macro",
-    "@function.builtin", "@function.method", "@keyword", "@keyword.function",
-    "@keyword.operator", "@label", "@module", "@number", "@operator",
-    "@variable.parameter", "@property", "@punctuation.bracket",
-    "@punctuation.special", "@punctuation.delimiter", "@string",
-    "@string.special.symbol", "@string.escape", "@tag", "@tag.delimiter",
-    "@markup", "@markup.heading", "@markup.raw", "@type", "@type.builtin",
-    "@variable", "@variable.builtin",
+-- Syntax groups (vim builtin + treesitter), keyed by color. Anything not
+-- listed keeps its default; neutral tokens are mapped to fg explicitly.
+local syntax = {
+    [fg] = { -- variables, members, punctuation, modules: stay calm
+        "Identifier", "Delimiter",
+        "@variable", "@variable.parameter", "@variable.member", "@property",
+        "@module", "@punctuation.bracket", "@punctuation.delimiter", "@constructor",
+    },
+    [green] = {
+        "String", "Character",
+        "@string", "@character", "@string.special.symbol", "@markup.raw",
+    },
+    [orange] = {
+        "Constant", "Number", "Float", "Boolean",
+        "@constant", "@constant.builtin", "@constant.macro",
+        "@number", "@number.float", "@boolean",
+    },
+    [blue] = {
+        "Function",
+        "@function", "@function.builtin", "@function.method", "@function.macro",
+        "@markup.heading",
+    },
+    [magenta] = {
+        "Keyword", "Statement", "Conditional", "Repeat", "Operator", "Exception",
+        "@keyword", "@keyword.function", "@keyword.operator", "@operator", "@exception",
+    },
+    [yellow] = {
+        "Type", "StorageClass", "Structure", "Typedef", "Label",
+        "@type", "@type.builtin", "@label", "@attribute",
+    },
+    [cyan] = {
+        "Special", "PreProc", "Include", "Define", "Macro",
+        "@annotation", "@punctuation.special", "@string.escape", "@tag.delimiter",
+    },
+    [red] = {
+        "@tag", "@variable.builtin",
+    },
 }
 
-for _, g in ipairs(flat) do
-    groups[g] = { fg = fg }
+for color, names in pairs(syntax) do
+    for _, g in ipairs(names) do
+        groups[g] = { fg = color }
+    end
 end
 
 for group, opts in pairs(groups) do
