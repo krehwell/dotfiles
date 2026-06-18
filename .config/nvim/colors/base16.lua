@@ -25,13 +25,15 @@ local c = {} -- index -> "#rrggbb"
 if vim.fn.filereadable(script) == 1 then
     for line in io.lines(script) do
         local n, r, g, b = line:match('^color(%d+)="(%x%x)/(%x%x)/(%x%x)"')
-        if n then c[tonumber(n)] = "#" .. r .. g .. b end
+        if n then
+            c[tonumber(n)] = "#" .. r .. g .. b
+        end
     end
 end
 
-local fg = c[7] or "#d8d8d8"       -- base05 foreground (ANSI white)
+local fg = c[7] or "#d8d8d8" -- base05 foreground (ANSI white)
 local comment = c[20] or "#b8b8b8" -- base04, quiet but readable
-local dim = c[8] or "#585858"      -- base03 bright-black (borders)
+local dim = c[8] or "#585858" -- base03 bright-black (borders)
 
 -- Conventional base16 syntax colors.
 local red = c[1] or "#ab4642"
@@ -51,12 +53,14 @@ local function darken(hex, f)
     return string.format("#%02x%02x%02x", r, g, b)
 end
 local bg = c[0] or "#181818" -- base00 (editor background)
-local bar = darken(bg, 0.6)  -- base00 darkened, for the winbar
+local bar = darken(bg, 0.6) -- base00 darkened, for the winbar
 
 -- Keep Neovim's built-in `:terminal` and any terminal-color consumers on the
 -- same 16-color palette the rest of the stack uses.
 for i = 0, 15 do
-    if c[i] then vim.g["terminal_color_" .. i] = c[i] end
+    if c[i] then
+        vim.g["terminal_color_" .. i] = c[i]
+    end
 end
 
 ---@type table<string, vim.api.keyset.highlight>
@@ -95,38 +99,83 @@ local groups = {
 -- listed keeps its default; neutral tokens are mapped to fg explicitly.
 local syntax = {
     [fg] = { -- variables, members, punctuation, modules: stay calm
-        "Identifier", "Delimiter",
-        "@variable", "@variable.parameter", "@variable.member", "@property",
-        "@module", "@punctuation.bracket", "@punctuation.delimiter", "@constructor",
+        "Identifier",
+        "Delimiter",
+        "@variable",
+        "@variable.parameter",
+        "@variable.member",
+        "@property",
+        "@module",
+        "@punctuation.bracket",
+        "@punctuation.delimiter",
+        "@constructor",
     },
     [green] = {
-        "String", "Character",
-        "@string", "@character", "@string.special.symbol", "@markup.raw",
+        "String",
+        "Character",
+        "@string",
+        "@character",
+        "@string.special.symbol",
+        "@markup.raw",
     },
     [orange] = {
-        "Constant", "Number", "Float", "Boolean",
-        "@constant", "@constant.builtin", "@constant.macro",
-        "@number", "@number.float", "@boolean",
+        "Constant",
+        "Number",
+        "Float",
+        "Boolean",
+        "@constant",
+        "@constant.builtin",
+        "@constant.macro",
+        "@number",
+        "@number.float",
+        "@boolean",
     },
     [blue] = {
         "Function",
-        "@function", "@function.builtin", "@function.method", "@function.macro",
+        "@function",
+        "@function.builtin",
+        "@function.method",
+        "@function.macro",
         "@markup.heading",
     },
     [magenta] = {
-        "Keyword", "Statement", "Conditional", "Repeat", "Operator", "Exception",
-        "@keyword", "@keyword.function", "@keyword.operator", "@operator", "@exception",
+        "Keyword",
+        "Statement",
+        "Conditional",
+        "Repeat",
+        "Operator",
+        "Exception",
+        "@keyword",
+        "@keyword.function",
+        "@keyword.operator",
+        "@operator",
+        "@exception",
     },
     [yellow] = {
-        "Type", "StorageClass", "Structure", "Typedef", "Label",
-        "@type", "@type.builtin", "@label", "@attribute",
+        "Type",
+        "StorageClass",
+        "Structure",
+        "Typedef",
+        "Label",
+        "@type",
+        "@type.builtin",
+        "@label",
+        "@attribute",
     },
     [cyan] = {
-        "Special", "PreProc", "Include", "Define", "Macro",
-        "@annotation", "@punctuation.special", "@string.escape", "@tag.delimiter",
+        "Special",
+        "PreProc",
+        "Include",
+        "Define",
+        "Macro",
+        "@annotation",
+        "@punctuation.special",
+        "@string.escape",
+        "@tag.delimiter",
     },
     [red] = {
-        "@tag", "@variable.builtin",
+        "@tag",
+        "@variable.builtin",
     },
 }
 

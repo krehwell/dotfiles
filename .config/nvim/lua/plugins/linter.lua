@@ -4,7 +4,7 @@ return {
     "mfussenegger/nvim-lint",
     event = lint_events,
     config = function()
-        vim.filetype.add({ extension = { env = "dotenv" }, pattern = { ["%.env%..*"] = "dotenv" }, })
+        vim.filetype.add({ extension = { env = "dotenv" }, pattern = { ["%.env%..*"] = "dotenv" } })
 
         local lint = require("lint")
 

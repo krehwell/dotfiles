@@ -26,13 +26,15 @@ local c = {} -- index -> "#rrggbb"
 if vim.fn.filereadable(script) == 1 then
     for line in io.lines(script) do
         local n, r, g, b = line:match('^color(%d+)="(%x%x)/(%x%x)/(%x%x)"')
-        if n then c[tonumber(n)] = "#" .. r .. g .. b end
+        if n then
+            c[tonumber(n)] = "#" .. r .. g .. b
+        end
     end
 end
 
-local fg = c[7] or "#d8d8d8"       -- base05 foreground (ANSI white)
+local fg = c[7] or "#d8d8d8" -- base05 foreground (ANSI white)
 local comment = c[20] or "#b8b8b8" -- base04, quiet but readable
-local dim = c[8] or "#585858"      -- base03 bright-black (borders)
+local dim = c[8] or "#585858" -- base03 bright-black (borders)
 
 -- Scale a "#rrggbb" toward black. Used to derive a bar bg that's darker than
 -- the theme background (works for dark and light schemes alike).
@@ -43,12 +45,14 @@ local function darken(hex, f)
     return string.format("#%02x%02x%02x", r, g, b)
 end
 local bg = c[0] or "#181818" -- base00 (editor background)
-local bar = darken(bg, 0.6)  -- base00 darkened, for the winbar
+local bar = darken(bg, 0.6) -- base00 darkened, for the winbar
 
 -- Keep Neovim's built-in `:terminal` and any terminal-color consumers on the
 -- same 16-color palette the rest of the stack uses.
 for i = 0, 15 do
-    if c[i] then vim.g["terminal_color_" .. i] = c[i] end
+    if c[i] then
+        vim.g["terminal_color_" .. i] = c[i]
+    end
 end
 
 ---@type table<string, vim.api.keyset.highlight>

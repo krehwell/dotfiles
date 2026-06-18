@@ -23,7 +23,6 @@
 
 [keyboard]
     bindings = [
-        { key = "F1", chars = "~/utils/tmux/tmux-sessionizer\n" },
         { key = "Key6", mods = "Control", chars = "\u001e" },
         { key = "F10", action = "ToggleMaximized" },
         { key = "Return", mods = "Shift", chars = "\n" }

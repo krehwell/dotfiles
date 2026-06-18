@@ -2,7 +2,7 @@
 return {
     "alucherdi/hand-of-god",
     keys = {
-        { "mo", ":norm mme<CR>",              desc = "hand-of-god open edit mode" },
+        { "mo", ":norm mme<CR>", desc = "hand-of-god open edit mode" },
         { "ma", desc = "hand-of-god add file" },
     },
     config = function(_, opts)

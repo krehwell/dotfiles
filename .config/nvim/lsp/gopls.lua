@@ -1,5 +1,5 @@
 ---@type vim.lsp.Config
 return {
-	cmd = { "gopls" },
-	filetypes = { "go", "gomod", "gowork" },
+    cmd = { "gopls" },
+    filetypes = { "go", "gomod", "gowork" },
 }
