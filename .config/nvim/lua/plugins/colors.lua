@@ -1,9 +1,10 @@
+-- BEAUTIFY
 return {
-    "lengarvey/base16-vim",
+    "DaikyXendo/nvim-material-icon",
+    event = "BufReadPre",
+    opts = { default = true },
     priority = 1000,
     dependencies = {
-        -- BEAUTIFY
-        { "DaikyXendo/nvim-material-icon", event = "BufReadPre", opts = { default = true } },
         {
             "j-hui/fidget.nvim",
             event = "LspAttach",

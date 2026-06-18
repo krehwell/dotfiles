@@ -78,6 +78,6 @@ vim.keymap.set("n", "<localleader>lcd", ":lcd %:p:h<CR>")
 ----- COPY CURRENT RELATIVE PATH
 vim.keymap.set("n", "y%", function()
     local path = vim.fn.expand("%:.")
-    vim.fn.setreg("+", path)
+    vim.fn.setreg("+", "@" .. path)
     vim.notify("Copied relative path: " .. path)
 end, { desc = "Copy relative file path" })

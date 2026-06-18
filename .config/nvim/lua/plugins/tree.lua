@@ -54,7 +54,7 @@ return {
                 local oil = require("oil")
                 local dir = oil.get_current_dir()
                 local relative = vim.fn.fnamemodify(dir, ":.")
-                vim.fn.setreg("+", relative)
+                vim.fn.setreg("+", "@" .. relative)
                 vim.notify("Copied relative dir: " .. relative)
             end,
         },
