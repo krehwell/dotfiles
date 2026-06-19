@@ -20,6 +20,7 @@ return {
                     augroup END
                 ]])
                 vim.cmd("Git")
+                vim.cmd("resize " .. math.floor(vim.o.lines * 0.25))
                 vim.cmd.normal({ "5j" })
             end,
             desc = "Git: toggle status",
