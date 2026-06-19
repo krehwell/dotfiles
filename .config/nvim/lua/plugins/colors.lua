@@ -11,7 +11,5 @@ return {
             opts = { notification = { window = { winblend = 0 } } },
         },
     },
-    config = function()
-        vim.cmd([[ colorscheme base16 ]])
-    end,
+    config = function() vim.cmd([[ colorscheme base16 ]]) end,
 }

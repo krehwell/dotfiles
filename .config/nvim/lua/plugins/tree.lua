@@ -68,9 +68,7 @@ return {
         { "[f", oil_step("k"), desc = "Open prev file in Oil" },
         {
             "<C-b>",
-            function()
-                require("oil").open()
-            end,
+            function() require("oil").open() end,
             desc = "Toggle file explorer (oil.nvim)",
             silent = true,
         },

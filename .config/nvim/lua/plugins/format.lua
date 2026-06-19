@@ -16,8 +16,6 @@ return {
             format_on_save = false, -- { lsp_format = "fallback", timeout_ms = 500, },
         })
 
-        vim.keymap.set("n", "gq", function()
-            conform.format({ lsp_fallback = true, async = false })
-        end)
+        vim.keymap.set("n", "gq", function() conform.format({ lsp_fallback = true, async = false }) end)
     end,
 }

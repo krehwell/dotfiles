@@ -5,9 +5,7 @@ return {
         -- turn off auto-comment
         vim.api.nvim_create_autocmd("FileType", {
             pattern = "*",
-            callback = function()
-                vim.opt_local.formatoptions:remove({ "r", "o", "c" })
-            end,
+            callback = function() vim.opt_local.formatoptions:remove({ "r", "o", "c" }) end,
         })
     end,
     opts = function()

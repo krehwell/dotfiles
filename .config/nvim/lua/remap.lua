@@ -21,15 +21,11 @@ end
 local ask_save_session = function(without_confirm)
     vim.api.nvim_input(":wa<CR>")
     local save_cmd = ":mksession! " .. session_file() .. "<left><left><left><left>"
-    if without_confirm then
-        save_cmd = save_cmd .. "<CR>"
-    end
+    if without_confirm then save_cmd = save_cmd .. "<CR>" end
     vim.api.nvim_input(save_cmd)
 end
 
-local ask_load_session = function()
-    vim.api.nvim_input(":source " .. session_file() .. "<left><left><left><left>")
-end
+local ask_load_session = function() vim.api.nvim_input(":source " .. session_file() .. "<left><left><left><left>") end
 
 vim.keymap.set("n", "<M-o>", ask_load_session)
 vim.keymap.set("n", "<M-s>", ask_save_session)

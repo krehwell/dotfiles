@@ -34,9 +34,7 @@ local on_attach = function(bufnr)
         please_remind_me_lsp()
         vim.lsp.buf.rename()
     end, opts)
-    vim.keymap.set("n", "ge", function()
-        vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" })
-    end, opts)
+    vim.keymap.set("n", "ge", function() vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" }) end, opts)
 
     -- DIAGNOSTIC JUMPS
     local err = vim.diagnostic.severity.ERROR
@@ -47,9 +45,7 @@ local on_attach = function(bufnr)
         { "]e", { count = 1, severity = err }, "Next error" },
     }
     for _, j in ipairs(diag_jumps) do
-        vim.keymap.set("n", j[1], function()
-            vim.diagnostic.jump(j[2])
-        end, { desc = j[3] })
+        vim.keymap.set("n", j[1], function() vim.diagnostic.jump(j[2]) end, { desc = j[3] })
     end
 end
 

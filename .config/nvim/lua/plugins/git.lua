@@ -23,17 +23,13 @@ return {
         { "dl", ":diffget //3<CR>", desc = "Git: get rhs of diff (theirs)" },
         {
             "gp",
-            function()
-                vim.cmd("Gitsigns preview_hunk")
-            end,
+            function() vim.cmd("Gitsigns preview_hunk") end,
             desc = "Git: preview hunk",
             silent = true,
         },
         {
             "gu",
-            function()
-                vim.cmd("Gitsigns reset_hunk")
-            end,
+            function() vim.cmd("Gitsigns reset_hunk") end,
             desc = "Git: reset current lines change",
         },
         {

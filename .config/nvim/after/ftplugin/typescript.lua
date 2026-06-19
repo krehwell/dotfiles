@@ -20,9 +20,7 @@ vim.keymap.set("n", "[[", function()
         }
 
         for _, pattern in ipairs(patterns) do
-            if vim.fn.search(pattern, "bcW") > 0 then
-                return
-            end
+            if vim.fn.search(pattern, "bcW") > 0 then return end
         end
 
         vim.cmd("normal! ?\\(function\\|const\\)\\s*\\h\\w*<CR>")

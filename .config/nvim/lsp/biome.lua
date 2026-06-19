@@ -15,8 +15,6 @@ return {
             return -- Deno project: let denols handle it
         end
         local root = vim.fs.root(fname, { "biome.json", "biome.jsonc" })
-        if root then
-            on_dir(root)
-        end
+        if root then on_dir(root) end
     end,
 }

@@ -15,9 +15,7 @@ return {
 
         vim.api.nvim_create_autocmd(lint_events, {
             group = vim.api.nvim_create_augroup("lint", { clear = true }),
-            callback = function()
-                lint.try_lint()
-            end,
+            callback = function() lint.try_lint() end,
         })
     end,
 }
