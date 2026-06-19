@@ -25,7 +25,8 @@
     bindings = [
         { key = "Key6", mods = "Control", chars = "\u001e" },
         { key = "F10", action = "ToggleMaximized" },
-        { key = "Return", mods = "Shift", chars = "\n" }
+        { key = "Return", mods = "Shift", chars = "\n" },
+        { key = "Tab", mods = "Control", chars = "\u001b[9;5u" }
     ]
 
 [selection]

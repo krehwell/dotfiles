@@ -35,7 +35,6 @@ return {
         { "<C-k>", ":lua require('fzf-lua').grep()<CR><CR>", desc = "Fuzzy search", silent = true },
         { "fzf", "<cmd>lua require('fzf-lua').builtin()<CR>", desc = "FzfLua features list" },
         { "fzr", "<cmd>lua require('fzf-lua').resume()<CR>", desc = "FzfLua last fzf-lua picker" },
-        { "ga", "<cmd>lua require('fzf-lua').grep_cword()<CR>", desc = "Any jump", silent = true },
         {
             "<c-p>",
             function()
@@ -47,7 +46,13 @@ return {
             desc = "Project find files",
             silent = true,
         },
-        { "gl", "<cmd>lua require('fzf-lua').buffers()<CR>", desc = "FzfLua Buffers", silent = true },
-        { "<leader>t", "<cmd>lua require('fzf-lua').tagstack()<CR>", desc = "FzfLua Tag Stack", silent = true },
+        { "<C-Tab>", "<cmd>lua require('fzf-lua').buffers()<CR>", desc = "FzfLua Buffers", silent = true },
+        {
+            "ga",
+            "<cmd>lua require('fzf-lua').grep_cword()<CR>",
+            desc = "FzfLua grep anyword under cursor",
+            silent = true,
+        },
+        { "gt", "<cmd>lua require('fzf-lua').tagstack()<CR>", desc = "FzfLua Tag Stack", silent = true },
     },
 }
