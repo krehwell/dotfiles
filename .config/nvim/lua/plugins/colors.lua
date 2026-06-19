@@ -1,7 +1,7 @@
 -- BEAUTIFY
 return {
     "DaikyXendo/nvim-material-icon",
-    event = "BufReadPre",
+    -- event = "BufReadPre",
     opts = { default = true },
     priority = 1000,
     dependencies = {

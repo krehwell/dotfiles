@@ -17,11 +17,6 @@ vim.opt.rtp:prepend(lazypath)
 vim.keymap.set("n", "<F5>", ":Lazy sync<CR>")
 
 require("lazy").setup("plugins", {
-    change_detection = {
-        enabled = true,
-        notify = false,
-    },
-    ui = {
-        border = "rounded",
-    },
+    change_detection = { enabled = true, notify = false },
+    ui = { border = "rounded" },
 })
