@@ -82,6 +82,10 @@ local groups = {
     -- Keep comments dimmed but distinguishable.
     Comment = { fg = comment, italic = true },
     DiagnosticUnnecessary = { link = "Comment" },
+    DiagnosticUnderlineError = { undercurl = true, sp = red },
+    DiagnosticUnderlineWarn = { undercurl = true, sp = yellow },
+    DiagnosticUnderlineInfo = { undercurl = true, sp = blue },
+    DiagnosticUnderlineHint = { undercurl = true, sp = cyan },
 
     -- Tabs / splits.
     TabLineSel = { link = "DiffText" },
