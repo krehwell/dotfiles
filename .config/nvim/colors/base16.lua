@@ -3,9 +3,7 @@
 -- Requires Neovim 0.12+
 
 vim.cmd.highlight("clear")
-if vim.fn.exists("syntax_on") then
-    vim.cmd.syntax("reset")
-end
+if vim.fn.exists("syntax_on") then vim.cmd.syntax("reset") end
 vim.o.termguicolors = true
 vim.g.colors_name = "base16"
 
@@ -25,9 +23,7 @@ local c = {} -- index -> "#rrggbb"
 if vim.fn.filereadable(script) == 1 then
     for line in io.lines(script) do
         local n, r, g, b = line:match('^color(%d+)="(%x%x)/(%x%x)/(%x%x)"')
-        if n then
-            c[tonumber(n)] = "#" .. r .. g .. b
-        end
+        if n then c[tonumber(n)] = "#" .. r .. g .. b end
     end
 end
 
@@ -58,9 +54,7 @@ local bar = darken(bg, 0.6) -- base00 darkened, for the winbar
 -- Keep Neovim's built-in `:terminal` and any terminal-color consumers on the
 -- same 16-color palette the rest of the stack uses.
 for i = 0, 15 do
-    if c[i] then
-        vim.g["terminal_color_" .. i] = c[i]
-    end
+    if c[i] then vim.g["terminal_color_" .. i] = c[i] end
 end
 
 ---@type table<string, vim.api.keyset.highlight>
@@ -97,6 +91,11 @@ local groups = {
     IlluminatedWordText = { link = "MatchParen" },
     IlluminatedWordRead = { link = "MatchParen" },
     IlluminatedWordWrite = { link = "MatchParen" },
+
+    -- Snacks picker: it links its groups to ours, but two read badly by default —
+    -- the focused line gets no bg, and dir text (NonText) collides with Visual's bg.
+    SnacksPickerListCursorLine = { link = "Visual" },
+    SnacksPickerDir = { link = "Comment" },
 }
 
 -- Syntax groups (vim builtin + treesitter), keyed by color. Anything not

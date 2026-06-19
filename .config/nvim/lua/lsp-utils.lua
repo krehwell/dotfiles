@@ -5,23 +5,30 @@ end
 local on_attach = function(bufnr)
     local opts = { buffer = bufnr, remap = false, silent = true }
 
-    -- LSP PICKERS (fzf-lua) — each reminds first, then opens the picker
-    local fzf_maps = {
-        { "gd", "lsp_definitions", { jump1 = true } },
-        { "gD", "lsp_declarations", { jump1 = true } },
-        { "g#", "lsp_live_workspace_symbols", {} },
-        { "gri", "lsp_implementations", { jump1 = true } },
-        { "grt", "lsp_typedefs", { jump1 = true } },
-        { "grr", "lsp_references", { ignore_current_line = true } },
-        { "gO", "lsp_document_symbols", {} },
-        { "gra", "lsp_code_actions", {} },
+    -- LSP PICKERS (snacks) — each reminds first, then opens the picker. snacks
+    -- defaults: auto_confirm (jump straight on a single result) + tagstack push.
+    local lsp_maps = {
+        { "gd", "lsp_definitions" },
+        { "gD", "lsp_declarations" },
+        { "g#", "lsp_workspace_symbols" },
+        { "gri", "lsp_implementations" },
+        { "grt", "lsp_type_definitions" },
+        { "grr", "lsp_references" },
+        { "gO", "lsp_symbols" }, -- document symbols
     }
-    for _, m in ipairs(fzf_maps) do
+    for _, m in ipairs(lsp_maps) do
         vim.keymap.set("n", m[1], function()
             please_remind_me_lsp()
-            require("fzf-lua")[m[2]](m[3])
+            require("snacks").picker[m[2]]()
         end, opts)
     end
+
+    -- code actions: snacks has no picker; ui_select routes it through snacks.
+    vim.keymap.set("n", "gra", function()
+        please_remind_me_lsp()
+        require("snacks") -- ensure ui_select handler is installed
+        vim.lsp.buf.code_action()
+    end, opts)
 
     vim.keymap.set("n", "grn", function()
         please_remind_me_lsp()

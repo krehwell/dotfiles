@@ -12,13 +12,6 @@ return {
         {
             "gs",
             function()
-                -- close git status if "gs" in it
-                vim.cmd([[
-                    augroup FugitiveToggleMapping
-                        autocmd!
-                        autocmd Filetype fugitive nnoremap <buffer> gs :q<cr>
-                    augroup END
-                ]])
                 vim.cmd("Git")
                 vim.cmd("resize " .. math.floor(vim.o.lines * 0.25))
                 vim.cmd.normal({ "5j" })
