@@ -52,7 +52,6 @@ return {
         picker = {
             enabled = true,
             ui_select = false,
-            -- wider than the 0.8 default; preset logic (default/vertical) untouched.
             layout = { layout = { width = 0.9 } },
             win = {
                 input = { keys = { ["<Esc>"] = { "close", mode = { "n", "i" } } } },

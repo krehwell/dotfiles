@@ -9,7 +9,6 @@ return {
     config = function()
         local ts = require("nvim-treesitter")
 
-        -- async install; no-op if a parser is already present
         ts.install({
             "tsx",
             "typescript",
@@ -25,7 +24,6 @@ return {
             "markdown_inline",
         })
 
-        -- highlighting + experimental treesitter indentation per filetype
         vim.api.nvim_create_autocmd("FileType", {
             pattern = {
                 "tsx",

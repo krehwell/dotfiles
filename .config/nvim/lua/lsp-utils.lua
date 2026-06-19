@@ -1,7 +1,3 @@
-local please_remind_me_lsp = function()
-    print("IF YOU RENAMING/UPDATING THINGS, PLEASE MAKE SURE YOU UPDATE THE APP/MOBILE AS WELL!!!")
-end
-
 local on_attach = function(bufnr)
     local opts = { buffer = bufnr, remap = false, silent = true }
 
@@ -17,23 +13,15 @@ local on_attach = function(bufnr)
         { "gO", "lsp_symbols" }, -- document symbols
     }
     for _, m in ipairs(lsp_maps) do
-        vim.keymap.set("n", m[1], function()
-            please_remind_me_lsp()
-            require("snacks").picker[m[2]]()
-        end, opts)
+        vim.keymap.set("n", m[1], function() require("snacks").picker[m[2]]() end, opts)
     end
 
-    -- code actions: snacks has no picker; ui_select routes it through snacks.
     vim.keymap.set("n", "gra", function()
-        please_remind_me_lsp()
-        require("snacks") -- ensure ui_select handler is installed
+        require("snacks")
         vim.lsp.buf.code_action()
     end, opts)
 
-    vim.keymap.set("n", "grn", function()
-        please_remind_me_lsp()
-        vim.lsp.buf.rename()
-    end, opts)
+    vim.keymap.set("n", "grn", function() vim.lsp.buf.rename() end, opts)
     vim.keymap.set("n", "ge", function() vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" }) end, opts)
 
     -- DIAGNOSTIC JUMPS

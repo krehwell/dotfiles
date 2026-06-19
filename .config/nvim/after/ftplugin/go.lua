@@ -7,4 +7,4 @@ local function printf_format()
     vim.cmd("normal! ==")
 end
 
-vim.keymap.set("n", "<leader>l", printf_format, { noremap = true, silent = true })
+vim.keymap.set("n", "<leader><leader>", printf_format, { noremap = true, silent = true })

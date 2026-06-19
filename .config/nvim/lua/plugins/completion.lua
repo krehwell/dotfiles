@@ -2,11 +2,7 @@ return {
     "saghen/blink.cmp",
     event = "BufReadPre",
     version = "*",
-    dependencies = {
-        "joelazar/blink-calc",
-        "windwp/nvim-ts-autotag",
-        "windwp/nvim-autopairs",
-    },
+    dependencies = { "joelazar/blink-calc", "windwp/nvim-ts-autotag", "windwp/nvim-autopairs" },
 
     config = function(_, opts)
         local capabilities = require("blink.cmp").get_lsp_capabilities(nil, true)
@@ -21,8 +17,6 @@ return {
         keymap = { preset = "enter" },
         cmdline = { enabled = false },
 
-        -- guarantee the native Rust matcher; error loudly instead of
-        -- silently falling back to the (much slower) Lua matcher
         fuzzy = { implementation = "rust" },
 
         sources = {
