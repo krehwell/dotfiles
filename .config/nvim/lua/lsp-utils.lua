@@ -1,8 +1,9 @@
-local on_attach = function(bufnr)
+local on_attach = function(bufnr, client)
     local opts = { buffer = bufnr, remap = false, silent = true }
 
-    -- LSP PICKERS (snacks) — each reminds first, then opens the picker. snacks
-    -- defaults: auto_confirm (jump straight on a single result) + tagstack push.
+    -- I don't want lsp syntax highlight.  rely all from ts insteead
+    if client and client.server_capabilities then client.server_capabilities.semanticTokensProvider = nil end
+
     local lsp_maps = {
         { "gd", "lsp_definitions" },
         { "gD", "lsp_declarations" },
@@ -13,7 +14,7 @@ local on_attach = function(bufnr)
         { "gO", "lsp_symbols" }, -- document symbols
     }
     for _, m in ipairs(lsp_maps) do
-        vim.keymap.set("n", m[1], function() require("snacks").picker[m[2]]() end, opts)
+        vim.keymap.set("n", m[1], function() require("snacks").picker[m[2]]({ jump = { reuse_win = false } }) end, opts)
     end
 
     vim.keymap.set("n", "gra", function()

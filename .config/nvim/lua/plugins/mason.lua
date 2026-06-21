@@ -41,7 +41,7 @@ return {
         vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("lsp_configure", { clear = true }),
             desc = "LSP Setup",
-            callback = function(event) lsp_utils.on_attach(event.buf) end,
+            callback = function(event) lsp_utils.on_attach(event.buf, vim.lsp.get_client_by_id(event.data.client_id)) end,
         })
     end,
 }

@@ -10,6 +10,17 @@ vim.keymap.set({ "i", "s", "n" }, "<esc>", function()
 end, { desc = "Escape, clear hlsearch, and stop snippet session", expr = true })
 
 ----- EDITING
+----- EDITING
+vim.keymap.set("v", "$", "$<left>")
+vim.keymap.set("v", "w", "e")
+vim.keymap.set({ "n", "v" }, "0", function()
+    local first_non_blank = vim.fn.match(vim.fn.getline("."), "\\S") + 1
+    if vim.fn.col(".") == first_non_blank then
+        return "0"
+    else
+        return "^zH"
+    end
+end, { expr = true, desc = "Smart zero: toggle between ^ and 0" })
 vim.keymap.set("v", "<C-c>", '"+y')
 vim.keymap.set("n", "<leader>u", require("undotree").open)
 
@@ -38,11 +49,11 @@ vim.keymap.set("n", "<localleader>lcd", ":lcd %:p:h<CR>")
 vim.keymap.set("n", "y%", function()
     local path = vim.fn.expand("%:.")
     vim.fn.setreg("+", "@" .. path)
-    vim.notify("Copied relative path: " .. path)
+    vim.notify("Copied relative path: @" .. path)
 end, { desc = "Copy relative file path" })
 
 vim.keymap.set("n", "y^", function()
     local path = vim.fn.expand("%:.") .. ":" .. vim.fn.line(".")
-    vim.fn.setreg("+", path)
-    vim.notify("Copied path with line: " .. path)
+    vim.fn.setreg("+", "@" .. path)
+    vim.notify("Copied path with line: @" .. path)
 end, { desc = "Copy relative file path with line number" })

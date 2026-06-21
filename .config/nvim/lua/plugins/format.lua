@@ -3,13 +3,20 @@ return {
     config = function()
         local conform = require("conform")
 
+        -- don't format deno project please
+        local function ts_formatter(bufnr)
+            local fname = vim.api.nvim_buf_get_name(bufnr)
+            if vim.fs.root(fname, { "deno.json", "deno.jsonc" }) then return { "deno_fmt" } end
+            return { "biome" }
+        end
+
         conform.setup({
             formatters_by_ft = {
                 lua = { "stylua" },
-                javascript = { "biome" },
-                typescript = { "biome" },
-                javascriptreact = { "biome" },
-                typescriptreact = { "biome" },
+                javascript = ts_formatter,
+                typescript = ts_formatter,
+                javascriptreact = ts_formatter,
+                typescriptreact = ts_formatter,
                 go = { "goimports_reviser", "goimports", "golines" },
             },
 
