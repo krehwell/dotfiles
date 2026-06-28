@@ -43,6 +43,14 @@ local function oil_step(motion)
         oil.open(nil, {}, function()
             vim.schedule(function()
                 vim.cmd("normal! " .. motion)
+
+                local row = vim.api.nvim_win_get_cursor(0)[1]
+                local filename = vim.api.nvim_buf_get_lines(0, row - 1, row, false)[1]
+                -- landed on the "../" parent entry: step back so we open a real file
+                if not filename or string.find(filename, "../", 1, true) then
+                    vim.cmd("normal! " .. (motion == "j" and "k" or "j"))
+                end
+
                 oil.select()
             end)
         end)
