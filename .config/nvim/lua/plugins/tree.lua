@@ -1,3 +1,5 @@
+local detail = false
+
 function _G.get_oil_winbar()
     local dir = require("oil").get_current_dir()
     if dir then
@@ -12,6 +14,25 @@ function _G.get_oil_winbar()
     else
         -- If there is no current directory (e.g. over ssh), just show the buffer name
         return vim.api.nvim_buf_get_name(0)
+    end
+end
+
+-- copy current oil dir as "@<relative path>"
+local function oil_copy_relative_dir()
+    local oil = require("oil")
+    local dir = oil.get_current_dir()
+    local relative = vim.fn.fnamemodify(dir, ":.")
+    vim.fn.setreg("+", "@" .. relative .. " ")
+    vim.notify("Copied relative dir: " .. relative)
+end
+
+-- toggle extra file detail columns
+local function oil_toggle_detail()
+    detail = not detail
+    if detail then
+        require("oil").set_columns({ "icon", "permissions", "size", "mtime" })
+    else
+        require("oil").set_columns({ "icon" })
     end
 end
 
@@ -50,13 +71,8 @@ return {
             ["<C-l>"] = { "actions.select" },
             ["<C-c>"] = false,
             ["<C-p>"] = false,
-            ["y%"] = function()
-                local oil = require("oil")
-                local dir = oil.get_current_dir()
-                local relative = vim.fn.fnamemodify(dir, ":.")
-                vim.fn.setreg("+", "@" .. relative)
-                vim.notify("Copied relative dir: " .. relative)
-            end,
+            ["y%"] = oil_copy_relative_dir,
+            ["<C-b>"] = { desc = "Toggle file detail view", callback = oil_toggle_detail },
         },
 
         skip_confirm_for_simple_edits = true,

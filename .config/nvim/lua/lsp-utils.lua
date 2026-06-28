@@ -5,22 +5,18 @@ local on_attach = function(bufnr, client)
     if client and client.server_capabilities then client.server_capabilities.semanticTokensProvider = nil end
 
     local lsp_maps = {
-        { "gd", "lsp_definitions" },
-        { "gD", "lsp_declarations" },
-        { "g#", "lsp_workspace_symbols" },
-        { "gri", "lsp_implementations" },
-        { "grt", "lsp_type_definitions" },
-        { "grr", "lsp_references" },
-        { "gO", "lsp_symbols" }, -- document symbols
+        { "gd", "lsp_definitions", { jump1 = true } },
+        { "gD", "lsp_declarations", { jump1 = true } },
+        { "g#", "lsp_live_workspace_symbols", {} },
+        { "gri", "lsp_implementations", { jump1 = true } },
+        { "grt", "lsp_typedefs", { jump1 = true } },
+        { "grr", "lsp_references", { ignore_current_line = true } },
+        { "gO", "lsp_document_symbols", {} }, -- document symbols
+        { "gra", "lsp_code_actions", {} },
     }
     for _, m in ipairs(lsp_maps) do
-        vim.keymap.set("n", m[1], function() require("snacks").picker[m[2]]({ jump = { reuse_win = false } }) end, opts)
+        vim.keymap.set("n", m[1], function() require("fzf-lua")[m[2]](m[3]) end, opts)
     end
-
-    vim.keymap.set("n", "gra", function()
-        require("snacks")
-        vim.lsp.buf.code_action()
-    end, opts)
 
     vim.keymap.set("n", "grn", function() vim.lsp.buf.rename() end, opts)
     vim.keymap.set("n", "ge", function() vim.diagnostic.open_float(nil, { focus = false, scope = "cursor" }) end, opts)

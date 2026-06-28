@@ -5,11 +5,7 @@ return {
     "Bekaboo/dropbar.nvim",
     -- enabled = false,
     opts = {
-        icons = { kinds = { symbols = { File = " " } } },
-        sources = {
-            treesitter = symbol_filter,
-            lsp = symbol_filter,
-        },
+        sources = { treesitter = symbol_filter, lsp = symbol_filter },
     },
     config = function(_, opts)
         -- don't need statusline as it's now replaced with dropbar

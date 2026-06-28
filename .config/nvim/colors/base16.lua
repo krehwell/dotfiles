@@ -87,15 +87,14 @@ local groups = {
     TabLineFill = { link = "Conceal" },
     WinSeparator = { link = "Conceal" },
 
-    -- Illuminate.
-    IlluminatedWordText = { link = "MatchParen" },
-    IlluminatedWordRead = { link = "MatchParen" },
-    IlluminatedWordWrite = { link = "MatchParen" },
+    Directory = { fg = blue },
 
-    -- Snacks picker: it links its groups to ours, but two read badly by default —
-    -- the focused line gets no bg, and dir text (NonText) collides with Visual's bg.
-    SnacksPickerListCursorLine = { link = "Visual" },
-    SnacksPickerDir = { link = "Comment" },
+    SnacksPickerDir = { link = "FzfLuaNormal" },
+    SnacksPickerPathHidden = { link = "FzfLuaNormal" },
+
+    IlluminatedWordText = { link = "Search" },
+    IlluminatedWordRead = { link = "Search" },
+    IlluminatedWordWrite = { link = "Search" },
 }
 
 -- Syntax groups (vim builtin + treesitter), keyed by color. Anything not

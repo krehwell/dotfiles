@@ -16,7 +16,7 @@
 
 [font]
     normal = { family = "Consolas Nerd Font Mono" }
-    size = 15.3
+    size = 15
     bold = { family = "Consolas Nerd Font Mono" }
     italic = { family = "Consolas Nerd Font Mono" }
     bold_italic = { family = "Consolas Nerd Font Mono" }
