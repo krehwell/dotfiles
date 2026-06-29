@@ -64,7 +64,6 @@ return {
                 desc = "FzfLua grep anyword under cursor",
                 silent = true,
             },
-            { "gt", "<cmd>lua require('fzf-lua').tagstack()<CR>", desc = "FzfLua Tag Stack", silent = true },
         },
     },
 }
