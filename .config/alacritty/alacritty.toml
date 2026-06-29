@@ -1,12 +1,8 @@
 [general]
     live_config_reload = true
-    # No color import: base16-shell is the sole source of truth, painting the
-    # palette via escapes on shell startup (persisted in ~/.base16_theme).
 
 [colors]
-    # Don't brighten bold text (#d8d8d8 -> #f8f8f8); keep one uniform white
-    # so bold output matches Claude Code / shell / nvim exactly.
-    # draw_bold_text_with_bright_colors = false
+    draw_bold_text_with_bright_colors = true
 
 [window]
     option_as_alt = "Both"
@@ -16,7 +12,7 @@
 
 [font]
     normal = { family = "Consolas Nerd Font Mono" }
-    size = 15
+    size = 15.4
     bold = { family = "Consolas Nerd Font Mono" }
     italic = { family = "Consolas Nerd Font Mono" }
     bold_italic = { family = "Consolas Nerd Font Mono" }
