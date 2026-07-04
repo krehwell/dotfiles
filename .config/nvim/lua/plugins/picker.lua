@@ -15,8 +15,7 @@ return {
         opts = {
             picker = {
                 enabled = true,
-                ui_select = false,
-                layout = { layout = { width = 0.9 } },
+                layout = { layout = { width = 0.94 } },
                 win = { input = { keys = { ["<Esc>"] = { "close", mode = { "n", "i" } } } } },
             },
         },

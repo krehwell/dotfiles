@@ -8,8 +8,7 @@ return {
         sources = { treesitter = symbol_filter, lsp = symbol_filter },
     },
     config = function(_, opts)
-        -- don't need statusline as it's now replaced with dropbar
-        vim.cmd([[ let &statusline='%#WinSeparator#' ]])
+        vim.cmd([[ let &statusline='%#WinSeparator#' ]]) -- don't need statusline as it's now replaced with dropbar
         require("dropbar").setup(opts)
     end,
 }

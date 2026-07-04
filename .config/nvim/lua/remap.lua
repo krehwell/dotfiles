@@ -10,7 +10,6 @@ vim.keymap.set({ "i", "s", "n" }, "<esc>", function()
 end, { desc = "Escape, clear hlsearch, and stop snippet session", expr = true })
 
 ----- EDITING
------ EDITING
 vim.keymap.set("v", "$", "$<left>")
 vim.keymap.set("v", "w", "e")
 vim.keymap.set({ "n", "v" }, "0", function()
@@ -38,12 +37,12 @@ end
 
 local ask_load_session = function() vim.api.nvim_input(":source " .. session_file() .. "<left><left><left><left>") end
 
-vim.keymap.set("n", "<M-o>", ask_load_session)
-vim.keymap.set("n", "<M-s>", ask_save_session)
+vim.keymap.set("n", "<leader><C-s>", ask_load_session)
+vim.keymap.set("n", "<leader><C-o>", ask_save_session)
 
 ----- CD TO CURRENT BUFFER's DIR | lcd -> for cding the current buffer only to the current dir
-vim.keymap.set("n", "<localleader>cd", ":cd %:p:h<CR>")
-vim.keymap.set("n", "<localleader>lcd", ":lcd %:p:h<CR>")
+vim.keymap.set("n", "<leader><CR>", ":cd %:p:h<CR>")
+vim.keymap.set("n", "<leader><S-CR>", ":lcd %:p:h<CR>")
 
 ----- COPY CURRENT RELATIVE PATH
 vim.keymap.set("n", "y%", function()

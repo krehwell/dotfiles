@@ -22,9 +22,9 @@ return {
                 "lua-language-server",
                 "tailwindcss-language-server",
                 "tsgo",
-                -- Formatters
+                -- FORMATTERS
                 "stylua",
-                -- Linters
+                -- LINTERS
                 "hadolint",
                 "dotenv-linter",
             },
