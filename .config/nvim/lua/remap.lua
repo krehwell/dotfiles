@@ -37,8 +37,8 @@ end
 
 local ask_load_session = function() vim.api.nvim_input(":source " .. session_file() .. "<left><left><left><left>") end
 
-vim.keymap.set("n", "<leader><C-s>", ask_load_session)
-vim.keymap.set("n", "<leader><C-o>", ask_save_session)
+vim.keymap.set("n", "<leader><C-o>", ask_load_session)
+vim.keymap.set("n", "<leader><C-s>", ask_save_session)
 
 ----- CD TO CURRENT BUFFER's DIR | lcd -> for cding the current buffer only to the current dir
 vim.keymap.set("n", "<leader><CR>", ":cd %:p:h<CR>")
