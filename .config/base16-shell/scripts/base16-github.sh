@@ -1,18 +1,18 @@
 #!/bin/sh
 # base16-shell (https://github.com/chriskempson/base16-shell)
 # Base16 Shell template by Chris Kempson (http://chriskempson.com)
-# Github scheme by Defman21
-export BASE16_THEME=github
+# Github Dark scheme by Tinted Theming (https://github.com/tinted-theming)
+export BASE16_THEME=github-dark
 
-color00="ff/ff/ff" # Base 00 - Black
-color01="ed/6a/43" # Base 08 - Red
-color02="18/36/91" # Base 0B - Green
-color03="79/5d/a3" # Base 0A - Yellow
-color04="79/5d/a3" # Base 0D - Blue
-color05="a7/1d/5d" # Base 0E - Magenta
-color06="18/36/91" # Base 0C - Cyan
-color07="33/33/33" # Base 05 - White
-color08="96/98/96" # Base 03 - Bright Black
+color00="0d/11/17" # Base 00 - Black
+color01="ff/a6/57" # Base 08 - Red
+color02="a5/d6/ff" # Base 0B - Green
+color03="bb/80/09" # Base 0A - Yellow
+color04="d2/a8/ff" # Base 0D - Blue
+color05="ff/7b/72" # Base 0E - Magenta
+color06="7e/e7/87" # Base 0C - Cyan
+color07="c9/d1/d9" # Base 05 - White
+color08="6e/76/81" # Base 03 - Bright Black
 color09=$color01 # Base 08 - Bright Red
 color10=$color02 # Base 0B - Bright Green
 color11=$color03 # Base 0A - Bright Yellow
@@ -20,14 +20,14 @@ color12=$color04 # Base 0D - Bright Blue
 color13=$color05 # Base 0E - Bright Magenta
 color14=$color06 # Base 0C - Bright Cyan
 color15="ff/ff/ff" # Base 07 - Bright White
-color16="00/86/b3" # Base 09
-color17="33/33/33" # Base 0F
-color18="f5/f5/f5" # Base 01
-color19="c8/c8/fa" # Base 02
-color20="e8/e8/e8" # Base 04
-color21="ff/ff/ff" # Base 06
-color_foreground="33/33/33" # Base 05
-color_background="ff/ff/ff" # Base 00
+color16="79/c0/ff" # Base 09
+color17="ff/a1/98" # Base 0F
+color18="16/1b/22" # Base 01
+color19="48/4f/58" # Base 02
+color20="8b/94/9e" # Base 04
+color21="f0/f6/fc" # Base 06
+color_foreground="c9/d1/d9" # Base 05
+color_background="0d/11/17" # Base 00
 
 if [ -n "$TMUX" ]; then
   # Tell tmux to pass the escape sequences through
@@ -79,13 +79,13 @@ put_template 21 $color21
 # foreground / background / cursor color
 if [ -n "$ITERM_SESSION_ID" ]; then
   # iTerm2 proprietary escape codes
-  put_template_custom Pg 333333 # foreground
-  put_template_custom Ph ffffff # background
-  put_template_custom Pi 333333 # bold color
-  put_template_custom Pj c8c8fa # selection color
-  put_template_custom Pk 333333 # selected text color
-  put_template_custom Pl 333333 # cursor
-  put_template_custom Pm ffffff # cursor text
+  put_template_custom Pg c9d1d9 # foreground
+  put_template_custom Ph 0d1117 # background
+  put_template_custom Pi c9d1d9 # bold color
+  put_template_custom Pj 484f58 # selection color
+  put_template_custom Pk c9d1d9 # selected text color
+  put_template_custom Pl c9d1d9 # cursor
+  put_template_custom Pm 0d1117 # cursor text
 else
   put_template_var 10 $color_foreground
   if [ "$BASE16_SHELL_SET_BACKGROUND" != false ]; then
