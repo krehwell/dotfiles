@@ -1,4 +1,5 @@
 vim.loader.enable()
+
 -- Use an indentation of 4 spaces.
 vim.opt.backspace = "2"
 vim.opt.tabstop = 4
@@ -64,9 +65,6 @@ vim.opt.fillchars = {
     stlnc = "—",
     stl = "—",
 }
--- vim.opt.jumpoptions:append("stack")
--- vim.opt.jumpoptions:append("clean")
--- vim.opt.virtualedit = "block"
 
 -- SEARCH/FIND BEHAVIOR
 vim.opt.ignorecase = true

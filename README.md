@@ -1,6 +1,6 @@
 # Distraction-Free Dotfiles
 
-Try to be minimalist possible
+as less as I could
 
 ## Tools Deps: 
 
@@ -12,6 +12,8 @@ Try to be minimalist possible
 
 
 ## Mac `defaults write` overrides:
+
+I hate animation, turn them all off:
 
 1. Close Finder using command+q
 

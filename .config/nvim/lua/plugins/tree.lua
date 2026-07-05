@@ -1,3 +1,5 @@
+local detail = false
+
 function _G.get_oil_winbar()
     local dir = require("oil").get_current_dir()
     if dir then
@@ -15,6 +17,25 @@ function _G.get_oil_winbar()
     end
 end
 
+-- copy current oil dir as "@<relative path>"
+local function oil_copy_relative_dir()
+    local oil = require("oil")
+    local dir = oil.get_current_dir()
+    local relative = vim.fn.fnamemodify(dir, ":.")
+    vim.fn.setreg("+", "@" .. relative .. " ")
+    vim.notify("Copied relative dir: " .. relative)
+end
+
+-- toggle extra file detail columns
+local function oil_toggle_detail()
+    detail = not detail
+    if detail then
+        require("oil").set_columns({ "icon", "permissions", "size", "mtime" })
+    else
+        require("oil").set_columns({ "icon" })
+    end
+end
+
 -- open oil, step one entry in `motion` ("j"/"k"), then open that file
 local function oil_step(motion)
     return function()
@@ -22,6 +43,13 @@ local function oil_step(motion)
         oil.open(nil, {}, function()
             vim.schedule(function()
                 vim.cmd("normal! " .. motion)
+
+                local entry = oil.get_cursor_entry()
+                -- landed on "../" or a directory: step back so we open a real file
+                if not entry or entry.name == ".." or entry.type == "directory" then
+                    vim.cmd("normal! " .. (motion == "j" and "k" or "j"))
+                end
+
                 oil.select()
             end)
         end)
@@ -50,13 +78,8 @@ return {
             ["<C-l>"] = { "actions.select" },
             ["<C-c>"] = false,
             ["<C-p>"] = false,
-            ["y%"] = function()
-                local oil = require("oil")
-                local dir = oil.get_current_dir()
-                local relative = vim.fn.fnamemodify(dir, ":.")
-                vim.fn.setreg("+", relative)
-                vim.notify("Copied relative dir: " .. relative)
-            end,
+            ["y%"] = oil_copy_relative_dir,
+            ["<C-b>"] = { desc = "Toggle file detail view", callback = oil_toggle_detail },
         },
 
         skip_confirm_for_simple_edits = true,
@@ -68,9 +91,7 @@ return {
         { "[f", oil_step("k"), desc = "Open prev file in Oil" },
         {
             "<C-b>",
-            function()
-                require("oil").open()
-            end,
+            function() require("oil").open() end,
             desc = "Toggle file explorer (oil.nvim)",
             silent = true,
         },

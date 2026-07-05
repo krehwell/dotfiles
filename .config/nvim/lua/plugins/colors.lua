@@ -1,12 +1,16 @@
+-- BEAUTIFY
 return {
-    "lengarvey/base16-vim",
+    "nvim-mini/mini.icons",
     priority = 1000,
     dependencies = {
-        -- BEAUTIFY
-        { "DaikyXendo/nvim-material-icon" , event = "BufReadPre", opts = { default = true, } },
-        { "j-hui/fidget.nvim",             event = "LspAttach",  opts = { notification = { window = { winblend = 0 } } } },
+        {
+            "j-hui/fidget.nvim",
+            event = "LspAttach",
+            opts = { notification = { window = { winblend = 0 } } },
+        },
     },
     config = function()
-        vim.cmd([[ colorscheme no-distraction ]])
+        require("mini.icons").setup()
+        vim.cmd([[ colorscheme base16 ]])
     end,
 }

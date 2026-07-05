@@ -1,13 +1,8 @@
 [general]
     live_config_reload = true
-    import = [
-        "~/.config/alacritty/themes/base16_default_dark.toml"
-    ]
 
 [colors]
-    # Don't brighten bold text (#d8d8d8 -> #f8f8f8); keep one uniform white
-    # so bold output matches Claude Code / shell / nvim exactly.
-    # draw_bold_text_with_bright_colors = false
+    draw_bold_text_with_bright_colors = true
 
 [window]
     option_as_alt = "Both"
@@ -17,17 +12,17 @@
 
 [font]
     normal = { family = "Consolas Nerd Font Mono" }
-    size = 15.3
+    size = 15.4
     bold = { family = "Consolas Nerd Font Mono" }
     italic = { family = "Consolas Nerd Font Mono" }
     bold_italic = { family = "Consolas Nerd Font Mono" }
 
 [keyboard]
     bindings = [
-        { key = "F1", chars = "~/utils/tmux/tmux-sessionizer\n" },
         { key = "Key6", mods = "Control", chars = "\u001e" },
         { key = "F10", action = "ToggleMaximized" },
-        { key = "Return", mods = "Shift", chars = "\n" }
+        { key = "Tab", mods = "Control", chars = "\u001b[9;5u" },
+        { key = "Return", mods = "Shift", chars = "\u001b[13;2u" }, # shift enter
     ]
 
 [selection]

@@ -12,14 +12,8 @@ return {
         {
             "gs",
             function()
-                -- close git status if "gs" in it
-                vim.cmd([[
-                    augroup FugitiveToggleMapping
-                        autocmd!
-                        autocmd Filetype fugitive nnoremap <buffer> gs :q<cr>
-                    augroup END
-                ]])
                 vim.cmd("Git")
+                vim.cmd("resize " .. math.floor(vim.o.lines * 0.25))
                 vim.cmd.normal({ "5j" })
             end,
             desc = "Git: toggle status",
@@ -29,17 +23,13 @@ return {
         { "dl", ":diffget //3<CR>", desc = "Git: get rhs of diff (theirs)" },
         {
             "gp",
-            function()
-                vim.cmd("Gitsigns preview_hunk")
-            end,
+            function() vim.cmd("Gitsigns preview_hunk") end,
             desc = "Git: preview hunk",
             silent = true,
         },
         {
             "gu",
-            function()
-                vim.cmd("Gitsigns reset_hunk")
-            end,
+            function() vim.cmd("Gitsigns reset_hunk") end,
             desc = "Git: reset current lines change",
         },
         {

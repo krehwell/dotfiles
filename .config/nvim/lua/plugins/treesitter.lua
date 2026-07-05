@@ -3,15 +3,12 @@ return {
     branch = "main",
     build = ":TSUpdate",
     cond = function()
-        return vim.fn.executable("cc") == 1
-            or vim.fn.executable("gcc") == 1
-            or vim.fn.executable("clang") == 1
+        return vim.fn.executable("cc") == 1 or vim.fn.executable("gcc") == 1 or vim.fn.executable("clang") == 1
     end,
     lazy = false,
     config = function()
         local ts = require("nvim-treesitter")
 
-        -- async install; no-op if a parser is already present
         ts.install({
             "tsx",
             "typescript",
@@ -27,7 +24,6 @@ return {
             "markdown_inline",
         })
 
-        -- highlighting + experimental treesitter indentation per filetype
         vim.api.nvim_create_autocmd("FileType", {
             pattern = {
                 "tsx",
