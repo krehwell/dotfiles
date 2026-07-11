@@ -46,7 +46,7 @@ function tinted-chrome --description 'Generate a Chrome theme extension from the
     }
 }" >$dir/manifest.json
 
-    echo "manifest ditulis ke $dir untuk $(basename (readlink $theme))"
-    echo "pertama kali: chrome://extensions -> Developer mode -> Load unpacked -> $dir"
-    echo "selanjutnya: tinggal klik reload di chrome://extensions"
+    echo "manifest written to $dir for $(basename (readlink $theme))"
+    echo "first time: chrome://extensions -> Developer mode -> Load unpacked -> $dir"
+    echo "afterwards: just hit reload on the extension in chrome://extensions"
 end
