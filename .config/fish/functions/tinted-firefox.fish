@@ -9,7 +9,7 @@ function tinted-firefox --description 'Generate Firefox userChrome.css from the 
     set -l ffdir ~/Library/Application\ Support/Firefox
     set -l rel (awk -F= '/^\[Install/{f=1} f && /^Default=/{print $2; exit}' $ffdir/profiles.ini 2>/dev/null)
     if test -z "$rel"
-        echo "profil Firefox tidak ketemu (Firefox belum pernah dijalankan?)"
+        echo "Firefox profile not found (has Firefox ever been run?)"
         return 1
     end
     set -l profile $ffdir/$rel
@@ -52,5 +52,5 @@ toolbar .toolbarbutton-1 { fill: $muted !important; color: $muted !important; }"
     grep -qs 'legacyUserProfileCustomizations.stylesheets", true' $profile/user.js
     or echo $pref >>$profile/user.js
 
-    echo "userChrome.css ditulis untuk $(basename (readlink $theme)) — restart Firefox"
+    echo "userChrome.css written for $(basename (readlink $theme)) — restart Firefox to apply"
 end
