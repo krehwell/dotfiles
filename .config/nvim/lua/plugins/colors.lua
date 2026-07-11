@@ -11,6 +11,6 @@ return {
     },
     config = function()
         require("mini.icons").setup()
-        vim.cmd([[ colorscheme base16 ]])
+        vim.cmd([[ colorscheme base24 ]])
     end,
 }
