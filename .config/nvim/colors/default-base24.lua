@@ -45,8 +45,17 @@ local groups = {
     TabLineFill = { link = "Conceal" },
     WinSeparator = { link = "Conceal" },
 
-    SnacksPickerDir = { link = "FzfLuaNormal" },
-    SnacksPickerPathHidden = { link = "FzfLuaNormal" },
+    -- Snacks picker: mirror fzf-lua's files look (see base24.lua).
+    SnacksPickerDir = { fg = comment },
+    SnacksPickerPathHidden = { fg = fg },
+    SnacksPickerFile = { fg = fg },
+    SnacksPickerMatch = { link = "Special" },
+    SnacksPickerListCursorLine = { link = "CursorLine" },
+    SnacksPickerBorder = { fg = fg },
+    SnacksPickerTitle = { fg = fg },
+    SnacksPickerPrompt = { link = "Special" },
+    SnacksPickerSelected = { link = "Special" },
+    SnacksPickerInputSearch = { fg = fg },
 
     IlluminatedWordText = { link = "Search" },
     IlluminatedWordRead = { link = "Search" },

@@ -55,8 +55,19 @@ local groups = {
 
     Directory = { fg = p.base0D },
 
-    SnacksPickerDir = { link = "FzfLuaNormal" },
-    SnacksPickerPathHidden = { link = "FzfLuaNormal" },
+    -- Snacks picker: mirror fzf-lua's files look. fzf resolves its colors
+    -- from: DirPart->Comment, FzfMatch/FzfPrompt/FzfMarker->Special,
+    -- FzfCursorLine->CursorLine, Border/Title->Normal (bright, not dim).
+    SnacksPickerDir = { fg = comment },
+    SnacksPickerPathHidden = { fg = fg },
+    SnacksPickerFile = { fg = fg },
+    SnacksPickerMatch = { link = "Special" },
+    SnacksPickerListCursorLine = { link = "CursorLine" },
+    SnacksPickerBorder = { fg = fg },
+    SnacksPickerTitle = { fg = fg },
+    SnacksPickerPrompt = { link = "Special" },
+    SnacksPickerSelected = { link = "Special" },
+    SnacksPickerInputSearch = { fg = fg },
 
     IlluminatedWordText = { link = "Search" },
     IlluminatedWordRead = { link = "Search" },
