@@ -6,9 +6,9 @@
 
 [window]
     option_as_alt = "Both"
-    decorations = "none"
+    # decorations = "none"
     # decorations = "Buttonless"
-    startup_mode = "Maximized"
+    # startup_mode = "Maximized"
 
 [font]
     normal = { family = "Consolas Nerd Font Mono" }
@@ -21,6 +21,7 @@
     bindings = [
         { key = "Key6", mods = "Control", chars = "\u001e" },
         { key = "F10", action = "ToggleMaximized" },
+        { key = "F", mods = "Command|Control", action = "ToggleSimpleFullscreen" },
         { key = "Tab", mods = "Control", chars = "\u001b[9;5u" },
         { key = "Return", mods = "Shift", chars = "\u001b[13;2u" }, # shift enter
     ]
