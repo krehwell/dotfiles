@@ -83,7 +83,15 @@ function set_theme
 
   # Source newly symlinked file
   if test -f "$BASE16_SHELL_COLORSCHEME_PATH"
-    sh $BASE16_SHELL_COLORSCHEME_PATH
+    # LOCAL PATCH: over ssh from inside tmux, TERM=tmux-* but $TMUX is unset,
+    # so the theme script wraps its escapes in tmux passthrough and recolors
+    # the whole outer terminal. Force a non-tmux TERM so it emits plain OSC,
+    # which tmux applies to this pane only.
+    if string match -q 'tmux*' -- "$TERM"; and test -z "$TMUX"
+      env TERM=xterm-256color sh $BASE16_SHELL_COLORSCHEME_PATH
+    else
+      sh $BASE16_SHELL_COLORSCHEME_PATH
+    end
 
     # Env variables aren't globally set when bash shell is sourced
     set -gx BASE16_THEME "$theme_name"
