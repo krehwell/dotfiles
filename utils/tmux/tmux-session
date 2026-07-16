@@ -24,6 +24,13 @@ terminal_size() {
     stty size 2>/dev/null | awk '{ printf "-x%d -y%d", $2, $1 }'
 }
 
+# Split direction based on terminal shape. Cells are ~2x taller than wide, so a
+# landscape monitor gives cols > 2*rows; anything narrower is treated as portrait
+# and panes get stacked instead of placed side by side.
+split_flag() {
+    stty size 2>/dev/null | awk '{ print ($2 > $1 * 2) ? "-h" : "-v" }' | grep . || echo "-h"
+}
+
 # Check if a session exists
 session_exists() {
     tmux has-session -t "$1" 2>/dev/null
@@ -33,6 +40,7 @@ session_exists() {
 restore() {
     tmux start-server
     local dimensions="$(terminal_size)"
+    local split="$(split_flag)"
     declare -A seen_windows
 
     while IFS=$'\t' read session win_index win_name pane_index dir; do
@@ -48,7 +56,7 @@ restore() {
                 tmux new-window -d -t "$session:$win_index" -n "$win_name" -c "$dir"
                 seen_windows["$window_key"]=1
             else
-                tmux split-window -h -t "$session:$win_index" -c "$dir"
+                tmux split-window "$split" -t "$session:$win_index" -c "$dir"
             fi
         fi
     done < "$DIR"/.tmux-session

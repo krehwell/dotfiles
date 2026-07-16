@@ -24,6 +24,8 @@
         { key = "F", mods = "Command|Control", action = "ToggleSimpleFullscreen" },
         { key = "Tab", mods = "Control", chars = "\u001b[9;5u" },
         { key = "Return", mods = "Shift", chars = "\u001b[13;2u" }, # shift enter
+        { key = "Escape", mods = "Command", action = "ClearLogNotice" }, # dismiss error banner
+        { key = "[", mods = "Command|Control", action = "ClearLogNotice" },
     ]
 
 [selection]
