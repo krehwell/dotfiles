@@ -11,7 +11,7 @@ if status is-interactive
         # Fallback when no theme has ever been set (fresh machine / wiped
         # ~/.config/tinted-theming). base24-neovim = stock nvim palette,
         # local script in tinted-shell/scripts.
-        set -g BASE16_THEME_DEFAULT "base24-neovim"
+        set -g BASE16_THEME_DEFAULT "base24-opencode-material"
         source "$HOME/.config/tinted-shell/profile_helper.fish"
     end
 
