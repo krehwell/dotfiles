@@ -6,6 +6,13 @@ return {
     dependencies = {
         { "tpope/vim-fugitive" },
         { "tpope/vim-rhubarb" },
+        {
+            "esmuellert/codediff.nvim",
+            cmd = "CodeDiff",
+            opts = {
+                explorer = { position = "bottom", focus_on_select = true },
+            },
+        },
     },
 
     keys = {

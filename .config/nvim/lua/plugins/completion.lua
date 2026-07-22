@@ -15,7 +15,7 @@ return {
 
     opts = {
         keymap = { preset = "enter" },
-        cmdline = { enabled = false },
+        cmdline = { enabled = true },
 
         fuzzy = { implementation = "rust" },
 
