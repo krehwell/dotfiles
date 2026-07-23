@@ -6,8 +6,7 @@
 
 [window]
     option_as_alt = "Both"
-    # decorations = "none"
-    # decorations = "Buttonless"
+    decorations = "none"
     # startup_mode = "Maximized"
 
 [font]
@@ -21,7 +20,7 @@
     bindings = [
         { key = "Key6", mods = "Control", chars = "\u001e" },
         { key = "F10", action = "ToggleMaximized" },
-        { key = "F", mods = "Command|Control", action = "ToggleSimpleFullscreen" },
+        { key = "F", mods = "Command|Control", action = "ToggleMaximized" },
         { key = "Tab", mods = "Control", chars = "\u001b[9;5u" },
         { key = "Return", mods = "Shift", chars = "\u001b[13;2u" }, # shift enter
         { key = "Escape", mods = "Command", action = "ClearLogNotice" }, # dismiss error banner
