@@ -24,9 +24,6 @@ return {
                 "tsgo",
                 -- FORMATTERS
                 "stylua",
-                -- LINTERS
-                "hadolint",
-                "dotenv-linter",
             },
         })
 

@@ -35,7 +35,6 @@ local on_attach = function(bufnr, client)
 end
 
 local diagnostic_config = {
-    show_diagnostic_autocmds = { "InsertLeave", "TextChanged", "BufEnter", "WinEnter" },
     virtual_text = true,
     update_in_insert = false,
     signs = false,

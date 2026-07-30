@@ -83,9 +83,6 @@ function! WipeoutInactiveBufs()
     echomsg l:nWipeouts . ' buffer(s) wiped out (preserved alternate)'
 endfunction
 command! -nargs=0 LsWipeInactive :call WipeoutInactiveBufs()
-command! -nargs=0 LswipeInactive :call WipeoutInactiveBufs()
-command! -nargs=0 LSWipeInactive :call WipeoutInactiveBufs()
-command! -nargs=0 LSwipeInactive :call WipeoutInactiveBufs()
 
 
 " ----- GO TO LAST LOCATION WHEN OPENING A BUFFER

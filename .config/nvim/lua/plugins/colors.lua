@@ -8,7 +8,6 @@ return {
             event = "LspAttach",
             opts = { notification = { window = { winblend = 0 } } },
         },
-        { "arnauKL/south.nvim" },
     },
     config = function()
         require("mini.icons").setup()

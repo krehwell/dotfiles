@@ -12,7 +12,7 @@ return {
         on_dir(project_root)
     end,
     on_init = function(client)
-        client.server_capabilities.semanticTokensProvider = nil
+        -- semanticTokensProvider is stripped for every client in lsp-utils on_attach
         client.server_capabilities.documentFormattingProvider = false
         client.server_capabilities.documentRangeFormattingProvider = false
         client.server_capabilities.codeLensProvider = nil
