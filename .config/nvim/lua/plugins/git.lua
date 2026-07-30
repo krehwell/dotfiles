@@ -1,5 +1,7 @@
 vim.opt.diffopt = vim.opt.diffopt + "vertical"
 
+vim.env.GIT_OPTIONAL_LOCKS = "0"
+
 return {
     "lewis6991/gitsigns.nvim",
     event = "BufReadPre",
@@ -10,7 +12,8 @@ return {
             "esmuellert/codediff.nvim",
             cmd = "CodeDiff",
             opts = {
-                explorer = { position = "bottom", focus_on_select = true },
+                explorer = { position = "bottom", focus_on_select = true, initial_focus = "modified" },
+                history = { initial_focus = "modified" },
             },
         },
     },
@@ -26,8 +29,8 @@ return {
             desc = "Git: toggle status",
         },
         { "dv", ":Gvdiffsplit!<CR>", desc = "Git: open 3-way merge diff" },
-        { "dh", ":diffget //2<CR>", desc = "Git: get lhs of diff (ours)" },
-        { "dl", ":diffget //3<CR>", desc = "Git: get rhs of diff (theirs)" },
+        { "2do", ":diffget //2<CR>", desc = "Git: get lhs of diff (ours)" },
+        { "3do", ":diffget //3<CR>", desc = "Git: get rhs of diff (theirs)" },
         {
             "gp",
             function() vim.cmd("Gitsigns preview_hunk") end,
@@ -45,7 +48,7 @@ return {
                 if vim.wo.diff then
                     vim.cmd.normal({ "]c", bang = true })
                 else
-                    require("gitsigns").nav_hunk("next")
+                    require("gitsigns").nav_hunk("next", { target = "all" })
                 end
             end,
             desc = "Git: jump to next line change",
@@ -56,7 +59,7 @@ return {
                 if vim.wo.diff then
                     vim.cmd.normal({ "[c", bang = true })
                 else
-                    require("gitsigns").nav_hunk("prev")
+                    require("gitsigns").nav_hunk("prev", { target = "all" })
                 end
             end,
             desc = "Git: jump to prev line change",
