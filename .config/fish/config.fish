@@ -8,9 +8,12 @@ if status is-interactive
     # colors (9-14), unlike base16 where they duplicate the normal ones.
     # Skipped silently if not cloned (e.g. fresh machine).
     if test -f "$HOME/.config/tinted-shell/profile_helper.fish"
+        # Keep runtime state (theme symlink + theme_name) inside tinted-shell
+        # itself instead of the upstream default ~/.config/tinted-theming.
+        set -g BASE16_CONFIG_PATH "$HOME/.config/tinted-shell"
         # Fallback when no theme has ever been set (fresh machine / wiped
-        # ~/.config/tinted-theming). base24-neovim = stock nvim palette,
-        # local script in tinted-shell/scripts.
+        # state). base24-neovim = stock nvim palette, local script in
+        # tinted-shell/scripts.
         set -g BASE16_THEME_DEFAULT "base24-opencode-material"
         source "$HOME/.config/tinted-shell/profile_helper.fish"
     end

@@ -1,6 +1,7 @@
 -- Shared palette loader for the base24 / no-distraction colorschemes.
 -- Reads the active tinted-shell theme (the symlink tinted-shell keeps at
--- ~/.config/tinted-theming/base16_shell_theme) and maps its ANSI colorNN
+-- ~/.config/tinted-shell/base16_shell_theme, via BASE16_CONFIG_PATH set in
+-- config.fish) and maps its ANSI colorNN
 -- slots to semantic base24 tokens. base16 and base24 scripts use the same
 -- slot layout; base16 ones just define the brights (base12-17) as copies of
 -- the normal accents, so both work. Falls back to default-dark hexes.
@@ -41,7 +42,7 @@ local slots = {
 -- Parse fresh on every call (not module-cached) so `:colorscheme` after a
 -- theme switch picks up the new palette without restarting nvim.
 function M.load()
-    local script = vim.fn.expand("~/.config/tinted-theming/base16_shell_theme")
+    local script = vim.fn.expand("~/.config/tinted-shell/base16_shell_theme")
     local c = {} -- ANSI slot -> "#rrggbb"
     if vim.fn.filereadable(script) == 1 then
         local refs = {} -- base16 scripts alias brights: color09="$color01"
