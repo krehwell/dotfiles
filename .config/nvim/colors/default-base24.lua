@@ -34,6 +34,7 @@ local groups = {
     CursorLine = { bg = p.base01 },
     CursorColumn = { link = "CursorLine" },
     CursorLineNr = { fg = fg },
+    Visual = { bg = p.base02 },
 
     -- Winbar / dropbar: bar bg darker than the editor background.
     WinBar = { fg = fg, bg = bar },
@@ -57,9 +58,9 @@ local groups = {
     SnacksPickerSelected = { link = "Special" },
     SnacksPickerInputSearch = { fg = fg },
 
-    IlluminatedWordText = { link = "Search" },
-    IlluminatedWordRead = { link = "Search" },
-    IlluminatedWordWrite = { link = "Search" },
+    IlluminatedWordText = { bg = p.base02 },
+    IlluminatedWordRead = { bg = p.base02 },
+    IlluminatedWordWrite = { bg = p.base02 },
 
     -- Stock default syntax, tinted. Groups not listed keep their built-in
     -- defaults, which already link to these (Number -> Constant, @string ->

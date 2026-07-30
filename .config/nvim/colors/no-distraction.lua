@@ -31,6 +31,7 @@ local groups = {
     CursorLine = { bg = p.base01 },
     CursorColumn = { link = "CursorLine" },
     CursorLineNr = { fg = fg },
+    Visual = { bg = p.base02 },
 
     -- Winbar / dropbar: bar bg darker than the editor background.
     WinBar = { fg = fg, bg = bar },
@@ -61,9 +62,9 @@ local groups = {
     SnacksPickerInputSearch = { fg = fg },
 
     -- Illuminate.
-    IlluminatedWordText = { link = "MatchParen" },
-    IlluminatedWordRead = { link = "MatchParen" },
-    IlluminatedWordWrite = { link = "MatchParen" },
+    IlluminatedWordText = { bg = p.base02 },
+    IlluminatedWordRead = { bg = p.base02 },
+    IlluminatedWordWrite = { bg = p.base02 },
 }
 
 -- Every syntax token (vim builtin + treesitter) flattened to fg — no color.
