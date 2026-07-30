@@ -20,6 +20,7 @@ local comment = p.base04 -- stock uses its grey4; base04 is our equivalent
 local dim = p.base03 -- borders, invisibles
 local bg = p.base00
 local bar = tinted.darken(bg, 0.6) -- winbar bg, darker than the editor bg
+local illuminate = tinted.mix(p.base01, p.base02, 0.5) -- above cursorline, below Visual
 
 tinted.terminal_colors(p)
 
@@ -58,9 +59,9 @@ local groups = {
     SnacksPickerSelected = { link = "Special" },
     SnacksPickerInputSearch = { fg = fg },
 
-    IlluminatedWordText = { bg = p.base02 },
-    IlluminatedWordRead = { bg = p.base02 },
-    IlluminatedWordWrite = { bg = p.base02 },
+    IlluminatedWordText = { bg = illuminate },
+    IlluminatedWordRead = { bg = illuminate },
+    IlluminatedWordWrite = { bg = illuminate },
 
     -- Stock default syntax, tinted. Groups not listed keep their built-in
     -- defaults, which already link to these (Number -> Constant, @string ->

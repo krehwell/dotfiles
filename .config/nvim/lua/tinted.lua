@@ -66,6 +66,18 @@ function M.load()
     return p
 end
 
+-- Mix two "#rrggbb" colors: f=0 gives a, f=1 gives b. Used to derive shades
+-- between palette slots (e.g. illuminate bg between cursorline and selection).
+function M.mix(a, b, f)
+    local out = "#"
+    for i = 2, 6, 2 do
+        local ca = tonumber(a:sub(i, i + 1), 16)
+        local cb = tonumber(b:sub(i, i + 1), 16)
+        out = out .. string.format("%02x", math.floor(ca + (cb - ca) * f + 0.5))
+    end
+    return out
+end
+
 -- Scale a "#rrggbb" toward black. Used to derive a bar bg that's darker than
 -- the theme background (works for dark and light schemes alike).
 function M.darken(hex, f)

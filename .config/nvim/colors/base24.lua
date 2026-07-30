@@ -20,6 +20,7 @@ local comment = p.base04 -- guide says base03, but that's too dim to read
 local dim = p.base03 -- borders, invisibles
 local bg = p.base00
 local bar = tinted.darken(bg, 0.6) -- winbar bg, darker than the editor bg
+local illuminate = tinted.mix(p.base01, p.base02, 0.5) -- above cursorline, below Visual
 
 tinted.terminal_colors(p)
 
@@ -70,9 +71,9 @@ local groups = {
     SnacksPickerSelected = { link = "Special" },
     SnacksPickerInputSearch = { fg = fg },
 
-    IlluminatedWordText = { bg = p.base02 },
-    IlluminatedWordRead = { bg = p.base02 },
-    IlluminatedWordWrite = { bg = p.base02 },
+    IlluminatedWordText = { bg = illuminate },
+    IlluminatedWordRead = { bg = illuminate },
+    IlluminatedWordWrite = { bg = illuminate },
 }
 
 -- Syntax groups (vim builtin + treesitter), keyed by base24 token. Anything
