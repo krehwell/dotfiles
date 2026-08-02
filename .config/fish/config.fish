@@ -2,18 +2,8 @@ if status is-interactive
     fish_vi_key_bindings
     set fish_greeting
 
-    # Tinted Shell (base16-shell successor): defines base16-*/base24-* theme
-    # switchers, reapplies persisted theme, and sets terminal ANSI colors
-    # (so alacritty + tmux + nvim follow). base24 schemes have real bright
-    # colors (9-14), unlike base16 where they duplicate the normal ones.
-    # Skipped silently if not cloned (e.g. fresh machine).
     if test -f "$HOME/.config/tinted-shell/profile_helper.fish"
-        # Keep runtime state (theme symlink + theme_name) inside tinted-shell
-        # itself instead of the upstream default ~/.config/tinted-theming.
         set -g BASE16_CONFIG_PATH "$HOME/.config/tinted-shell"
-        # Fallback when no theme has ever been set (fresh machine / wiped
-        # state). base24-neovim = stock nvim palette, local script in
-        # tinted-shell/scripts.
         set -g BASE16_THEME_DEFAULT "base24-opencode-material"
         source "$HOME/.config/tinted-shell/profile_helper.fish"
     end
@@ -25,6 +15,7 @@ if status is-interactive
     alias rm='rmtrash'
 
     set fish_cursor_insert block
+    set -gx CLAUDE_CODE_TMUX_TRUECOLOR 1
 end
 
 # Portable PATH: $HOME adapts to any machine/username (mac: /Users/<user>,
