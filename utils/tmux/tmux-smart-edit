@@ -1,17 +1,25 @@
 #!/bin/bash
+# Open "path" or "path:line" (Cmd+Shift+click in alacritty) in the editor window of its project.
+# Editor window: named vi/nvim or running vim, with cwd above the file. None: spawn one.
+# Opens in a tab, reusing the tab if the file is already open.
 
-FILE_PATH="$1"
+export PATH="/opt/homebrew/bin:$PATH"
 
-NVIM_FZF_PROMPT="Fzf files formatter='path.dirname_first' query="
+cwd=$(tmux display -p '#{pane_current_path}')
+file="${1%%:[0-9]*}"
+line="${1#"$file"}"
+line="${line#:}"
+file="${file#@}"
+file="${file/#\~/$HOME}"
+[ "${file:0:1}" = / ] || file="$cwd/$file"
+[ -f "$file" ] || exit 1
 
-# find the first window running of nvim, vim, or vi
-TARGET_WINDOW=$(tmux list-panes -a -F "#{window_id} #{pane_current_command}" | \
-                grep -E "nvim|vim|vi" | head -n 1 | awk '{print $1}')
+read -r pane cmd < <(tmux list-panes -a -F '#{pane_id} #{pane_current_command} #{window_name} #{pane_current_path}' |
+    awk -v file="$file" '($2 ~ /^(n?vim|vi)$/ || $3 ~ /^(n?vim|vi)$/) && index(file, $4 "/") == 1 { print $1, $2; exit }')
+[ -n "$pane" ] || pane=$(tmux new-window -P -F '#{pane_id}' -c "$cwd" -n vi)
 
-if [ -n "$TARGET_WINDOW" ]; then
-    tmux send-keys -t "$TARGET_WINDOW" Escape ":" "$NVIM_FZF_PROMPT" "$FILE_PATH" Enter
-    tmux select-window -t "$TARGET_WINDOW"
-else
-    tmux new-window -c "#{pane_current_path}" -n vi \
-        "nvim +\":Fzf files formatter='path.dirname_first' query='$FILE_PATH'\"" 
-fi
+case "$cmd" in
+    nvim|vim|vi) tmux send-keys -t "$pane" Escape ":tab drop${line:+ +$line} $file" Enter ;;
+    *) tmux send-keys -t "$pane" "nvim${line:+ +$line} $file" Enter ;;
+esac
+tmux switch-client -t "$pane"
