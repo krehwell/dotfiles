@@ -1,76 +1,41 @@
 #!/usr/bin/env bash
-# Save and restore the state of tmux sessions, windows, and panes.
+# Save and restore a tmux session's windows and panes.
+#   tmux-session save [session]   layout -> <session_path>/.vim/tmux-session
+#   tmux-session restore <dir>    recreate the session saved in <dir>/.vim/tmux-session
 set -e
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
-# Dump panes of the CURRENT session only (session, window index, window name,
-# pane index, path). Using the current session instead of `-a` (all sessions on
-# the server) so saving captures just the session you're in, not every open one.
-dump() {
-    local d=$'\t'
-    local session
-    session=$(tmux display-message -p '#S')
-    tmux list-panes -s -t "$session" -F "#S${d}#{window_index}${d}#{window_name}${d}#P${d}#{pane_current_path}"
-}
-
-# Save session layout to a file
 save() {
-    dump > "$DIR"/.tmux-session
+    local session=${1:-$(tmux display -p '#S')}
+    local dir
+    dir=$(tmux display -p -t "=$session:" '#{session_path}')
+    mkdir -p "$dir/.vim"
+    tmux list-panes -s -t "=$session" -F $'#S\t#{window_index}\t#{window_name}\t#P\t#{pane_current_path}' > "$dir/.vim/tmux-session"
+    tmux display-message "saved $dir/.vim/tmux-session"
 }
 
-# Get terminal size for new sessions
-terminal_size() {
-    stty size 2>/dev/null | awk '{ printf "-x%d -y%d", $2, $1 }'
-}
-
-# Split direction based on terminal shape. Cells are ~2x taller than wide, so a
-# landscape monitor gives cols > 2*rows; anything narrower is treated as portrait
-# and panes get stacked instead of placed side by side.
-split_flag() {
-    stty size 2>/dev/null | awk '{ print ($2 > $1 * 2) ? "-h" : "-v" }' | grep . || echo "-h"
-}
-
-# Check if a session exists
-session_exists() {
-    tmux has-session -t "$1" 2>/dev/null
-}
-
-# Restore session layout from file
 restore() {
-    tmux start-server
-    local dimensions="$(terminal_size)"
-    local split="$(split_flag)"
-    declare -A seen_windows
+    local file="${1:?dir}/.vim/tmux-session" size split
+    # cells are ~2x taller than wide: landscape terminal splits side by side, portrait stacks
+    size=$(stty size 2>/dev/null | awk '{ printf "-x%d -y%d", $2, $1 }')
+    split=$(stty size 2>/dev/null | awk '{ print ($2 > $1 * 2) ? "-h" : "-v" }' | grep . || echo -h)
+    declare -A seen
 
-    while IFS=$'\t' read session win_index win_name pane_index dir; do
-        if [[ -d "$dir" ]]; then
-            local window_key="${session}:${win_index}"
-
-            if ! session_exists "$session"; then
-                tmux new-session -d -s "$session" -c "$dir" $dimensions
-                tmux rename-window -t "$session:0" "$win_name"
-                [[ "$win_index" != "0" ]] && tmux move-window -s "$session:0" -t "$session:$win_index"
-                seen_windows["$window_key"]=1
-            elif [[ -z "${seen_windows["$window_key"]}" ]]; then
-                tmux new-window -d -t "$session:$win_index" -n "$win_name" -c "$dir"
-                seen_windows["$window_key"]=1
-            else
-                tmux split-window "$split" -t "$session:$win_index" -c "$dir"
-            fi
+    while IFS=$'\t' read -r session win name pane dir; do
+        [[ -d "$dir" ]] || continue
+        if ! tmux has-session -t "=$session" 2>/dev/null; then
+            tmux new-session -d -s "$session" -n "$name" -c "$dir" $size
+            [[ $win == 0 ]] || tmux move-window -s "$session:0" -t "$session:$win"
+        elif [[ -z ${seen[$session:$win]} ]]; then
+            tmux new-window -d -t "$session:$win" -n "$name" -c "$dir"
+        else
+            tmux split-window $split -t "$session:$win" -c "$dir"
         fi
-    done < "$DIR"/.tmux-session
-
-    echo "Restored tmux sessions with windows and panes."
+        seen[$session:$win]=1
+    done < "$file"
 }
 
-
-# Command-line interface
-case "$1" in
-    save | restore )
-        $1
-        ;;
-    * )
-        echo "valid commands: save, restore" >&2
-        exit 1
+case $1 in
+    save) save "$2" ;;
+    restore) restore "$2" ;;
+    *) echo "usage: tmux-session save [session] | restore <dir>" >&2; exit 1 ;;
 esac

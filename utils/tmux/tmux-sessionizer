@@ -66,24 +66,13 @@ is_throwaway_session() {
     esac
 }
 
-# Create or restore a session. If inside tmux, create detached (-d).
+# Create a session detached; main attaches or switches afterwards.
 create_session() {
-    local name=$1 dir=$2 inside_tmux=${3:-false}
-
-    if [[ -x "$dir/$LAYOUT_FILE" ]]; then
-        # Restore saved layout
-        if [[ "$inside_tmux" == true ]]; then
-            "$dir/$LAYOUT_FILE" restore
-        else
-            "$dir/$LAYOUT_FILE" restore
-            tmux attach-session -t "$name"
-        fi
+    local name=$1 dir=$2
+    if [[ -f "$dir/$LAYOUT_FILE" ]]; then
+        "${BASH_SOURCE%/*}/tmux-session" restore "$dir"
     else
-        if [[ "$inside_tmux" == true ]]; then
-            tmux new-session -ds "$name" -c "$dir"
-        else
-            tmux new-session -s "$name" -c "$dir"
-        fi
+        tmux new-session -ds "$name" -c "$dir"
     fi
 }
 
@@ -123,7 +112,7 @@ main() {
 
     # Create if missing
     if ! session_exists "$selected_name"; then
-        create_session "$selected_name" "$selected" "$([[ -n "${TMUX:-}" ]] && echo true || echo false)"
+        create_session "$selected_name" "$selected"
     fi
 
     # Attach or switch
