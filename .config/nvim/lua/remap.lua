@@ -28,11 +28,9 @@ local session_file = function() -- ~/.vim/<current dir name>.vim
     return "~/.vim/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t") .. ".vim"
 end
 
-local ask_save_session = function(without_confirm)
+local ask_save_session = function()
     vim.api.nvim_input(":wa<CR>")
-    local save_cmd = ":mksession! " .. session_file() .. "<left><left><left><left>"
-    if without_confirm then save_cmd = save_cmd .. "<CR>" end
-    vim.api.nvim_input(save_cmd)
+    vim.api.nvim_input(":mksession! " .. session_file() .. "<left><left><left><left>")
 end
 
 local ask_load_session = function() vim.api.nvim_input(":source " .. session_file() .. "<left><left><left><left>") end

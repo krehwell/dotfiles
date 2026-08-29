@@ -5,8 +5,7 @@ return {
 
         -- don't format deno project please
         local function ts_formatter(bufnr)
-            local fname = vim.api.nvim_buf_get_name(bufnr)
-            if vim.fs.root(fname, { "deno.json", "deno.jsonc" }) then return { "deno_fmt" } end
+            if require("lsp-utils").deno_root(bufnr) then return { "deno_fmt" } end
             return { "biome" }
         end
 

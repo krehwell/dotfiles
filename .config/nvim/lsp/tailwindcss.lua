@@ -13,22 +13,5 @@ return {
         "package.json",
         ".git",
     },
-    filetypes = {
-        -- html
-        "html",
-        -- css
-        "css",
-        "less",
-        "sass",
-        "scss",
-        -- js
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact",
-        -- mixed
-        "vue",
-        "svelte",
-        "templ",
-    },
+    filetypes = { "html", "css", "scss", "javascript", "javascriptreact", "typescript", "typescriptreact" },
 }

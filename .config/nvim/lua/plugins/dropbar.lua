@@ -3,12 +3,11 @@ local symbol_filter = { valid_types = { "constructor", "function" }, max_depth =
 
 return {
     "Bekaboo/dropbar.nvim",
-    -- enabled = false,
     opts = {
         sources = { treesitter = symbol_filter, lsp = symbol_filter },
     },
     config = function(_, opts)
-        vim.cmd([[ let &statusline='%#WinSeparator#' ]]) -- don't need statusline as it's now replaced with dropbar
+        vim.o.statusline = "%#WinSeparator#" -- don't need statusline as it's now replaced with dropbar
         require("dropbar").setup(opts)
     end,
 }

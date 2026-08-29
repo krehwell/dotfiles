@@ -34,6 +34,8 @@ local on_attach = function(bufnr, client)
     end
 end
 
+local deno_root = function(bufnr) return vim.fs.root(bufnr, { "deno.json", "deno.jsonc" }) end
+
 local diagnostic_config = {
     virtual_text = true,
     update_in_insert = false,
@@ -51,4 +53,4 @@ local diagnostic_config = {
     },
 }
 
-return { on_attach = on_attach, diagnostic_config = diagnostic_config }
+return { on_attach = on_attach, diagnostic_config = diagnostic_config, deno_root = deno_root }
