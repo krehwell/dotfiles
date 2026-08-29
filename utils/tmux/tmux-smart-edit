@@ -1,25 +1,57 @@
 #!/bin/bash
-# Open "path" or "path:line" (Cmd+Shift+click in alacritty) in the editor window of its project.
-# Editor window: named vi/nvim or running vim, with cwd above the file. None: spawn one.
-# Opens in a tab, reusing the tab if the file is already open.
-
+# Open "path" or "path:line" (Cmd+Shift+click in alacritty) in the editor of its project, in a tab.
+# tmux while a tmux client is attached, herdr otherwise.
+# Editor = window/tab named vi/nvim or running nvim, with cwd above the file. None: spawn one.
 export PATH="/opt/homebrew/bin:$PATH"
+herdr=${HERDR_BIN_PATH:-$HOME/.local/bin/herdr}
 
-cwd=$(tmux display -p '#{pane_current_path}')
 file="${1%%:[0-9]*}"
 line="${1#"$file"}"
 line="${line#:}"
 file="${file#@}"
 file="${file/#\~/$HOME}"
-[ "${file:0:1}" = / ] || file="$cwd/$file"
-[ -f "$file" ] || exit 1
+resolve() { [ "${file:0:1}" = / ] || file="$1/$file"; [ -f "$file" ] || exit 1; }
+open_cmd() { echo ":tab drop${line:+ +$line} $file"; }
+nvim_cmd() { echo "nvim${line:+ +$line} $file"; }
 
-read -r pane cmd < <(tmux list-panes -a -F '#{pane_id} #{pane_current_command} #{window_name} #{pane_current_path}' |
-    awk -v file="$file" '($2 ~ /^(n?vim|vi)$/ || $3 ~ /^(n?vim|vi)$/) && index(file, $4 "/") == 1 { print $1, $2; exit }')
-[ -n "$pane" ] || pane=$(tmux new-window -P -F '#{pane_id}' -c "$cwd" -n vi)
+tmux_edit() {
+    local pane cmd
+    resolve "$(tmux display -p '#{pane_current_path}')"
+    read -r pane cmd < <(tmux list-panes -a -F '#{pane_id} #{pane_current_command} #{window_name} #{pane_current_path}' |
+        awk -v file="$file" '($2 ~ /^(n?vim|vi)$/ || $3 ~ /^(n?vim|vi)$/) && index(file, $4 "/") == 1 { print $1, $2; exit }')
+    [ -n "$pane" ] || pane=$(tmux new-window -P -F '#{pane_id}' -c "$(tmux display -p '#{pane_current_path}')" -n vi)
+    case "$cmd" in
+        nvim|vim|vi) tmux send-keys -t "$pane" Escape "$(open_cmd)" Enter ;;
+        *) tmux send-keys -t "$pane" "$(nvim_cmd)" Enter ;;
+    esac
+    tmux switch-client -t "$pane"
+}
 
-case "$cmd" in
-    nvim|vim|vi) tmux send-keys -t "$pane" Escape ":tab drop${line:+ +$line} $file" Enter ;;
-    *) tmux send-keys -t "$pane" "nvim${line:+ +$line} $file" Enter ;;
-esac
-tmux switch-client -t "$pane"
+herdr_edit() {
+    local panes pane tab ws cwd r
+    panes=$("$herdr" pane list | jq -c '.result.panes[]')
+    resolve "$(jq -r 'select(.focused) | .cwd' <<<"$panes")"
+    read -r pane tab < <(jq -r --arg f "$file" '.cwd as $c | select(($f | startswith($c + "/")) and ((.terminal_title // "") | test(" - Nvim$"))) | "\(.pane_id) \(.tab_id)"' <<<"$panes" | head -1)
+    if [ -n "$pane" ]; then
+        "$herdr" pane send-keys "$pane" esc >/dev/null
+        "$herdr" pane send-text "$pane" "$(open_cmd)" >/dev/null
+        "$herdr" pane send-keys "$pane" enter >/dev/null
+    else
+        read -r ws cwd < <(jq -r --arg f "$file" '.cwd as $c | select($f | startswith($c + "/")) | "\(.workspace_id) \(.cwd)"' <<<"$panes" |
+            awk '!r || length($2) < length(r) { w = $1; r = $2 } END { print w, r }')
+        [ -n "$ws" ] || read -r ws cwd < <(jq -r 'select(.focused) | "\(.workspace_id) \(.cwd)"' <<<"$panes")
+        tab=$(jq -r --arg ws "$ws" 'select(.workspace_id == $ws) | .tab_id' <<<"$panes" | uniq |
+            while read -r t; do "$herdr" tab get "$t" | jq -r 'select(.result.tab.label | test("^(n?vim|vi)$")) | .result.tab.tab_id'; done | head -1)
+        if [ -n "$tab" ]; then
+            pane=$(jq -r --arg t "$tab" 'select(.tab_id == $t) | .pane_id' <<<"$panes" | head -1)
+        else
+            r=$("$herdr" tab create --workspace "$ws" --cwd "$cwd" --label vi --no-focus)
+            pane=$(jq -r .result.root_pane.pane_id <<<"$r")
+            tab=$(jq -r .result.tab.tab_id <<<"$r")
+        fi
+        "$herdr" pane run "$pane" "$(nvim_cmd)" >/dev/null
+    fi
+    "$herdr" tab focus "$tab" >/dev/null
+}
+
+if [ -n "$(tmux list-clients 2>/dev/null)" ]; then tmux_edit; else herdr_edit; fi
