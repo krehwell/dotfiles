@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # Save and restore a tmux session's windows and panes.
 #   tmux-session save [session]   layout -> <session_path>/.vim/tmux-session
-#   tmux-session restore <dir>    recreate the session saved in <dir>/.vim/tmux-session
+#   tmux-session restore <dir>    recreate the session saved in <dir>/.vim/tmux-session,
+#                                 or add its missing windows if the session already runs
 set -e
 
 save() {
@@ -25,13 +26,16 @@ restore() {
         if ! tmux has-session -t "=$session" 2>/dev/null; then
             tmux new-session -d -s "$session" -n "$name" -c "$dir" $size
             [[ $win == 0 ]] || tmux move-window -s "$session:0" -t "$session:$win"
-        elif [[ -z ${seen[$session:$win]} ]]; then
-            tmux new-window -d -t "$session:$win" -n "$name" -c "$dir"
-        else
+        elif [[ -n ${seen[$session:$win]} ]]; then
             tmux split-window $split -t "$session:$win" -c "$dir"
+        elif tmux list-windows -t "=$session" -F '#{window_index}' | grep -qx "$win"; then
+            continue
+        else
+            tmux new-window -d -t "$session:$win" -n "$name" -c "$dir"
         fi
         seen[$session:$win]=1
     done < "$file"
+    tmux display-message "restored $file"
 }
 
 case $1 in
