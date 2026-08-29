@@ -1,135 +1,35 @@
 #!/usr/bin/env bash
-set -euo pipefail
-
-# -----------------------------------------------------------------------------
-# tmux-sessionizer
-# -----------------------------------------------------------------------------
-# Jump into a tmux session per project. Pass a directory (or fuzzy-find one)
-# and it opens/attaches a session named after that directory. Reuses existing
-# sessions, restores saved layouts, and cleans up throwaway sessions.
-#
-# Bind in tmux.conf as a popup:
-#   bind-key C-p display-popup -E -w 80% -h 80% "~/utils/tmux/tmux-sessionizer"
-#
+# Pick a project directory with fzf and jump to its tmux session or herdr workspace
+# (herdr when HERDR_SOCKET_PATH is set), creating it from <dir>/.vim/tmux-session if missing.
 # Usage: tmux-sessionizer [directory]
-# -----------------------------------------------------------------------------
+set -euo pipefail
+export PATH="/opt/homebrew/bin:$PATH"
+herdr=${HERDR_BIN_PATH:-herdr}
+layout=${BASH_SOURCE%/*}/tmux-session
 
-# --- Configuration -----------------------------------------------------------
+dir=${1:-$(find ~/Documents ~/Documents/personal ~/.local/share/nvim/lazy ~/.config ~/Downloads ~ ~/utils -mindepth 1 -maxdepth 1 -type d 2>/dev/null | fzf)}
+[[ -n $dir ]] || exit 0
+name=$(basename "$dir" | tr . _)
 
-SEARCH_PATHS=(
-    ~/Documents
-    ~/Documents/personal
-    ~/.local/share/nvim/lazy
-    ~/.config
-    ~/Downloads
-    ~
-    ~/utils
-)
-
-LAYOUT_FILE=".vim/tmux-session"
-
-# --- Helpers -----------------------------------------------------------------
-
-die() {
-    printf '%s\n' "$*" >&2
-    exit 1
-}
-
-# Check if a tmux session name already exists
-session_exists() {
-    tmux has-session -t "$1" 2>/dev/null
-}
-
-# A session is "throwaway" when it looks like a freshly bootstrapped session
-# that was never personalized:
-#   - default numeric name (0, 1, 2, ...)
-#   - exactly one window
-#   - exactly one pane
-#   - that pane is just an idle shell
-# Takes a session *id* (e.g. "$0") to avoid numeric-name ambiguity.
-is_throwaway_session() {
-    local id=$1 name window_count pane_count cmd
-
-    name=$(tmux display-message -p -t "$id" '#{session_name}' 2>/dev/null) || return 1
-    [[ $name =~ ^[0-9]+$ ]] || return 1
-
-    window_count=$(tmux list-windows -t "$id" 2>/dev/null | wc -l)
-    [[ $window_count -eq 1 ]] || return 1
-
-    pane_count=$(tmux list-panes -s -t "$id" 2>/dev/null | wc -l)
-    [[ $pane_count -eq 1 ]] || return 1
-
-    cmd=$(tmux list-panes -s -t "$id" -F '#{pane_current_command}' 2>/dev/null)
-    case $cmd in
-        fish|bash|zsh|sh|dash|ksh) return 0 ;;
-        *) return 1 ;;
-    esac
-}
-
-# Create a session detached; main attaches or switches afterwards.
-create_session() {
-    local name=$1 dir=$2
-    if [[ -f "$dir/$LAYOUT_FILE" ]]; then
-        "${BASH_SOURCE%/*}/tmux-session" restore "$dir"
+if [[ -n ${HERDR_SOCKET_PATH:-} ]]; then
+    id=$("$herdr" workspace list | jq -r --arg l "$name" '.result.workspaces[] | select(.label == $l) | .workspace_id')
+    if [[ -n $id ]]; then
+        "$herdr" workspace focus "$id" >/dev/null
+    elif [[ -f "$dir/.vim/tmux-session" ]]; then
+        "$layout" restore "$dir"
     else
-        tmux new-session -ds "$name" -c "$dir"
+        "$herdr" workspace create --cwd "$dir" --label "$name" --focus >/dev/null
     fi
-}
+    exit
+fi
 
-# --- Main --------------------------------------------------------------------
+if ! tmux has-session -t "=$name" 2>/dev/null; then
+    if [[ -f "$dir/.vim/tmux-session" ]]; then "$layout" restore "$dir"; else tmux new-session -ds "$name" -c "$dir"; fi
+fi
+[[ -n ${TMUX:-} ]] || exec tmux attach-session -t "=$name"
 
-main() {
-    local selected selected_name current_name current_id replace_current=false
-
-    # Select directory
-    if [[ $# -eq 1 ]]; then
-        selected=$1
-    else
-        # Build find arguments dynamically so missing paths don't break it
-        local find_args=()
-        for p in "${SEARCH_PATHS[@]}"; do
-            [[ -d "$p" ]] || continue
-            find_args+=("$p")
-        done
-
-        [[ ${#find_args[@]} -eq 0 ]] && die "No search paths found."
-
-        selected=$(find "${find_args[@]}" -mindepth 1 -maxdepth 1 -type d 2>/dev/null | fzf) || true
-    fi
-
-    [[ -z "${selected:-}" ]] && exit 0
-
-    selected_name=$(basename "$selected" | tr . _)
-    [[ -z "$selected_name" ]] && die "Invalid directory name."
-
-    current_name=""
-    current_id=""
-
-    if [[ -n "${TMUX:-}" ]]; then
-        current_name=$(tmux display-message -p '#S')
-        current_id=$(tmux display-message -p '#{session_id}')
-    fi
-
-    # Create if missing
-    if ! session_exists "$selected_name"; then
-        create_session "$selected_name" "$selected"
-    fi
-
-    # Attach or switch
-    if [[ -z "${TMUX:-}" ]]; then
-        tmux attach-session -t "$selected_name"
-    else
-        # Decide whether to kill the current session BEFORE switching
-        if [[ "$current_name" != "$selected_name" ]] && is_throwaway_session "$current_id"; then
-            replace_current=true
-        fi
-
-        tmux switch-client -t "$selected_name"
-
-        if [[ "$replace_current" == true ]]; then
-            tmux kill-session -t "$current_id"
-        fi
-    fi
-}
-
-main "$@"
+# leave a fresh numeric session (one idle shell pane) behind: kill it after switching away
+current=$(tmux display -p '#{session_id}')
+panes=$(tmux list-panes -s -t "$current" -F '#{session_name} #{pane_current_command}')
+tmux switch-client -t "=$name"
+[[ $panes =~ ^[0-9]+\ (fish|bash|zsh|sh)$ ]] && [[ $(tmux display -p -t "$current" '#S') != "$name" ]] && tmux kill-session -t "$current" || true

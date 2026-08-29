@@ -6,10 +6,10 @@ as less as I could
 
 0. `neovim`
 1. `fish`
-2. `tmux`
+2. `tmux` or `herdr`
 3. `rmtrash`
 4. `fzf` & `bat`
-5. `alacritty` with `Consolas Nerd Font Mono`
+5. `alacritty` with `Consolas Nerd Font Mono` (this is the best font ever! 😠)
 
 
 ## Mac `defaults write` overrides:

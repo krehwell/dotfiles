@@ -10,6 +10,9 @@
 !/.config/fish
 !/.config/nvim
 !/.config/tinted-shell
+!/.config/herdr
+/.config/herdr/*
+!/.config/herdr/config.toml
 !/.vim
 /.vim/*
 !/.vim/.gitkeep

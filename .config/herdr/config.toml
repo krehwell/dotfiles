@@ -1,0 +1,25 @@
+[[keys.command]]
+key = "prefix+ctrl+p"
+type = "popup"
+command = "~/utils/tmux/tmux-sessionizer"
+description = "open project workspace"
+width = "80%"
+height = "80%"
+
+[[keys.command]]
+key = "prefix+ctrl+s"
+type = "shell"
+command = "~/utils/tmux/tmux-session save"
+description = "save workspace layout"
+
+[[keys.command]]
+key = "prefix+ctrl+o"
+type = "shell"
+command = "~/utils/tmux/tmux-session restore"
+description = "restore missing tabs from layout"
+
+[ui]
+prompt_new_tab_name = false
+
+[ui.toast]
+delivery = "herdr"  # in-app toast when an agent finishes or needs input; prefix+o jumps to it
