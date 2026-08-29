@@ -1,24 +1,20 @@
-# ignore all files
+# home is the repo: ignore everything, whitelist what is tracked
 /*
-
-# unignore nvim folder
-/.config/**/
+!/.gitignore
+!/README.md
+!/.tmux.conf
+!/utils
+!/.config
 /.config/*
-!.config/nvim/
-!.config/nvim/*
-/.config/nvim/colors/
-!.config/nvim/after/*
-!.config/nvim/after/ftplugin/
-
-# file to be unignored
-!.tmux.conf
-!.bashrc
-!.screenrc
-!.gitignore
-!.profile
-!readme.md
-
+!/.config/alacritty
+!/.config/fish
+!/.config/nvim
+!/.config/tinted-shell
+!/.vim
+/.vim/*
+!/.vim/.gitkeep
 **/.DS_Store
-
-# Local Netlify folder
-.netlify
+# runtime state written by tinted-shell / lua_ls
+/.config/tinted-shell/base16_shell_theme
+/.config/tinted-shell/theme_name
+/.config/nvim/.luarc.json
