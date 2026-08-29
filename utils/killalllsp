@@ -1,9 +1,4 @@
 #!/usr/bin/env fish
 # Kill stray LSP / dev-server / package-manager processes.
-
 set patterns biome Biome next vtsls eslint_d eslint prettierd node bun bunx tsserver next-server yarn turbo watchman deno opencode tsgo
-
-for pattern in $patterns
-    echo "Killing processes matching: $pattern"
-    pkill -9 ^$pattern
-end
+pkill -9 "^("(string join '|' $patterns)")"
