@@ -29,8 +29,6 @@ return {
             desc = "Git: toggle status",
         },
         { "dv", ":Gvdiffsplit!<CR>", desc = "Git: open 3-way merge diff" },
-        { "2do", ":diffget //2<CR>", desc = "Git: get lhs of diff (ours)" },
-        { "3do", ":diffget //3<CR>", desc = "Git: get rhs of diff (theirs)" },
         {
             "gp",
             function() vim.cmd("Gitsigns preview_hunk") end,
