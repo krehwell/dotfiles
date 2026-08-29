@@ -9,6 +9,7 @@ as less as I could
 2. `tmux`
 3. `rmtrash`
 4. `fzf` & `bat`
+5. `alacritty` with `Consolas Nerd Font Mono` (Cmd+Shift+click on a `path:line` opens it in nvim)
 
 
 ## Mac `defaults write` overrides:
