@@ -11,6 +11,6 @@ return {
     },
     config = function()
         require("mini.icons").setup()
-        vim.cmd([[ colorscheme default-base24 ]])
+        vim.cmd([[ colorscheme no-distraction ]])
     end,
 }
