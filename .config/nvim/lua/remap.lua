@@ -24,8 +24,8 @@ vim.keymap.set("v", "<C-c>", '"+y')
 vim.keymap.set("n", "<leader>u", require("undotree").open)
 
 ----- SESSION BUFFER CONTROLLER
-local session_file = function() -- ~/.vim/sessions/<current dir name>.vim
-    return "~/.vim/sessions/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t") .. ".vim"
+local session_file = function() -- ~/.vim/<current dir name>.vim
+    return "~/.vim/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t") .. ".vim"
 end
 
 local ask_save_session = function(without_confirm)
