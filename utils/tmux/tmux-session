@@ -6,6 +6,7 @@
 # Rows: name  window  window_name  pane  dir  (tab separated)
 set -e
 export PATH="/opt/homebrew/bin:$PATH"
+export LC_CTYPE=${LC_CTYPE:-en_US.UTF-8}  # tmux prints the tab separators as _ without a UTF-8 locale
 herdr=${HERDR_BIN_PATH:-herdr}
 
 tmux_save() {
@@ -21,21 +22,21 @@ tmux_restore() {
     # cells are ~2x taller than wide: landscape terminal splits side by side, portrait stacks
     size=$(stty size 2>/dev/null | awk '{ printf "-x%d -y%d", $2, $1 }')
     split=$(stty size 2>/dev/null | awk '{ print ($2 > $1 * 2) ? "-h" : "-v" }' | grep . || echo -h)
-    declare -A seen
+    local seen=()
 
     while IFS=$'\t' read -r session win name pane dir; do
         [[ -d "$dir" ]] || continue
         if ! tmux has-session -t "=$session" 2>/dev/null; then
             tmux new-session -d -s "$session" -n "$name" -c "$dir" $size
             [[ $win == 0 ]] || tmux move-window -s "$session:0" -t "$session:$win"
-        elif [[ -n ${seen[$session:$win]} ]]; then
+        elif [[ -n ${seen[$win]:-} ]]; then
             tmux split-window $split -t "$session:$win" -c "$dir"
         elif tmux list-windows -t "=$session" -F '#{window_index}' | grep -qx "$win"; then
             continue
         else
             tmux new-window -d -t "$session:$win" -n "$name" -c "$dir"
         fi
-        seen[$session:$win]=1
+        seen[$win]=1
     done < "$file"
     tmux display-message "restored $file"
 }
@@ -56,13 +57,14 @@ herdr_save() {
         fi
         printf '%s\t%s\t%s\t%s\t%s\n' "$label" "$num" "$name" "$((i++))" "$cwd"
     done < <(herdr_panes "$ws") > "$dir/.vim/tmux-session"
+    "$herdr" notification show "saved $dir/.vim/tmux-session" >/dev/null
 }
 
 herdr_restore() {
     local ws=${HERDR_ACTIVE_WORKSPACE_ID:-${HERDR_WORKSPACE_ID:-}} file r existing
     local dir=${1:-$(herdr_root "$ws")}
     file="$dir/.vim/tmux-session"
-    declare -A tabs  # window -> root pane created this run, or "-" when the tab already existed
+    local tabs=()  # window -> root pane created this run, or "-" when the tab already existed
 
     while IFS=$'\t' read -r label win name pane cwd; do
         [[ -d "$cwd" ]] || continue
@@ -89,6 +91,7 @@ herdr_restore() {
             *) "$herdr" pane split "${tabs[$win]}" --direction right --cwd "$cwd" --no-focus >/dev/null ;;
         esac
     done < "$file"
+    "$herdr" notification show "restored $file" >/dev/null
 }
 
 backend=tmux; [[ -n ${HERDR_SOCKET_PATH:-} ]] && backend=herdr
