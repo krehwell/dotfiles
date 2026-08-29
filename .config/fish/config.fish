@@ -18,18 +18,4 @@ if status is-interactive
     set -gx CLAUDE_CODE_TMUX_TRUECOLOR 1
 end
 
-# Portable PATH: $HOME adapts to any machine/username (mac: /Users/<user>,
-# vps: /home/<user>), and each dir is only added if it exists on this machine
-# (so mac-only homebrew paths are simply skipped on the VPS).
-set -l candidate_paths \
-    $HOME/.local/bin \
-    /opt/homebrew/bin \
-    $HOME/go/bin \
-    $HOME/.cargo/bin \
-    $HOME/utils
-
-set -l existing_paths
-for dir in $candidate_paths
-    test -d $dir; and set -a existing_paths $dir
-end
-test (count $existing_paths) -gt 0; and fish_add_path -g $existing_paths
+fish_add_path -g $HOME/.local/bin /opt/homebrew/bin $HOME/go/bin $HOME/.cargo/bin $HOME/utils
