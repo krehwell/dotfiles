@@ -9,7 +9,6 @@ if status is-interactive
     end
 
     alias :q='exit'
-    alias :qa='tmux kill-server'
     alias sex='bash -c \'(open . || explorer.exe . || nautilus .) &\''
     alias vim=nvim
     alias rm='rmtrash'
