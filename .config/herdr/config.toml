@@ -20,7 +20,7 @@ description = "restore missing tabs from layout"
 
 [ui]
 prompt_new_tab_name = false
-tab_bar_position = "bottom"
+# tab_bar_position = "bottom"
 
 status_indicators = "symbols"
 show_agent_labels_on_pane_borders = true
