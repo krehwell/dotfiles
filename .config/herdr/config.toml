@@ -18,6 +18,13 @@ type = "shell"
 command = "~/utils/tmux/tmux-session restore"
 description = "restore missing tabs from layout"
 
+[keys]
+last_pane = "prefix+l"          # like tmux prefix+l: jump back to the last pane
+focus_pane_left = "prefix+left"    # pane navigation on arrows, tmux style
+focus_pane_down = "prefix+down"
+focus_pane_up = "prefix+up"
+focus_pane_right = "prefix+right"
+
 [ui]
 prompt_new_tab_name = false
 # tab_bar_position = "bottom"
