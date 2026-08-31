@@ -28,18 +28,17 @@ tmux_edit() {
 }
 
 herdr_edit() {
-    local panes pane tab ws cwd r
+    local panes ws cwd pane tab r
     panes=$("$herdr" pane list | jq -c '.result.panes[]')
-    resolve "$(jq -r 'select(.focused) | .cwd' <<<"$panes")"
-    read -r pane tab < <(jq -r --arg f "$file" '.cwd as $c | select(($f | startswith($c + "/")) and ((.terminal_title // "") | test(" - Nvim$"))) | "\(.pane_id) \(.tab_id)"' <<<"$panes" | head -1)
+    read -r ws cwd < <(jq -r 'select(.focused) | "\(.workspace_id) \(.cwd)"' <<<"$panes")
+    resolve "$cwd"
+    # stay in the focused workspace: its nvim pane, else its vi tab, else a new vi tab
+    read -r pane tab < <(jq -r --arg ws "$ws" 'select(.workspace_id == $ws and ((.terminal_title // "") | test(" - Nvim$"))) | "\(.pane_id) \(.tab_id)"' <<<"$panes" | head -1)
     if [ -n "$pane" ]; then
         "$herdr" pane send-keys "$pane" esc >/dev/null
         "$herdr" pane send-text "$pane" "$(open_cmd)" >/dev/null
         "$herdr" pane send-keys "$pane" enter >/dev/null
     else
-        read -r ws cwd < <(jq -r --arg f "$file" '.cwd as $c | select($f | startswith($c + "/")) | "\(.workspace_id) \(.cwd)"' <<<"$panes" |
-            awk '!r || length($2) < length(r) { w = $1; r = $2 } END { print w, r }')
-        [ -n "$ws" ] || read -r ws cwd < <(jq -r 'select(.focused) | "\(.workspace_id) \(.cwd)"' <<<"$panes")
         tab=$(jq -r --arg ws "$ws" 'select(.workspace_id == $ws) | .tab_id' <<<"$panes" | uniq |
             while read -r t; do "$herdr" tab get "$t" | jq -r 'select(.result.tab.label | test("^(n?vim|vi)$")) | .result.tab.tab_id'; done | head -1)
         if [ -n "$tab" ]; then
