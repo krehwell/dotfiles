@@ -1,18 +1,25 @@
 #!/bin/bash
 # Open "path" or "path:line" (Cmd+Shift+click in alacritty) in the editor of its project, in a tab.
 # tmux while a tmux client is attached, herdr otherwise.
-# Editor = window/tab named vi/nvim or running nvim, with cwd above the file. None: spawn one.
+# A real file opens directly at its line; anything else goes to the snacks picker as a query.
 export PATH="/opt/homebrew/bin:$PATH"
 herdr=${HERDR_BIN_PATH:-$HOME/.local/bin/herdr}
+backend=herdr; [ -n "$(tmux list-clients 2>/dev/null)" ] && backend=tmux
 
-file="${1%%:[0-9]*}"
-line="${1#"$file"}"
+query="${1#@}"
+file="${query%%:[0-9]*}"
+line="${query#"$file"}"
 line="${line#:}"
-file="${file#@}"
 file="${file/#\~/$HOME}"
-resolve() { [ "${file:0:1}" = / ] || file="$1/$file"; [ -f "$file" ] || exit 1; }
-open_cmd() { echo ":tab drop${line:+ +$line} $file"; }
-nvim_cmd() { echo "nvim${line:+ +$line} $file"; }
+resolve() { [ "${file:0:1}" = / ] || file="$1/$file"; [ -f "$file" ] && found=1; }
+ex_cmd() {
+    if [ -n "${found:-}" ]; then echo ":tab drop${line:+ +$line} $file"
+    else echo ":lua require(\"snacks\").picker.smart({ pattern = \"$query\" })"; fi
+}
+nvim_cmd() {
+    if [ -n "${found:-}" ]; then echo "nvim${line:+ +$line} $file"
+    else echo "nvim '+lua require(\"snacks\").picker.smart({ pattern = \"$query\" })'"; fi
+}
 
 tmux_edit() {
     local pane cmd
@@ -21,7 +28,7 @@ tmux_edit() {
         awk -v file="$file" '($2 ~ /^(n?vim|vi)$/ || $3 ~ /^(n?vim|vi)$/) && index(file, $4 "/") == 1 { print $1, $2; exit }')
     [ -n "$pane" ] || pane=$(tmux new-window -P -F '#{pane_id}' -c "$(tmux display -p '#{pane_current_path}')" -n vi)
     case "$cmd" in
-        nvim|vim|vi) tmux send-keys -t "$pane" Escape "$(open_cmd)" Enter ;;
+        nvim|vim|vi) tmux send-keys -t "$pane" Escape "$(ex_cmd)" Enter ;;
         *) tmux send-keys -t "$pane" "$(nvim_cmd)" Enter ;;
     esac
     tmux switch-client -t "$pane"
@@ -36,7 +43,7 @@ herdr_edit() {
     read -r pane tab < <(jq -r --arg ws "$ws" 'select(.workspace_id == $ws and ((.terminal_title // "") | test(" - Nvim$"))) | "\(.pane_id) \(.tab_id)"' <<<"$panes" | head -1)
     if [ -n "$pane" ]; then
         "$herdr" pane send-keys "$pane" esc >/dev/null
-        "$herdr" pane send-text "$pane" "$(open_cmd)" >/dev/null
+        "$herdr" pane send-text "$pane" "$(ex_cmd)" >/dev/null
         "$herdr" pane send-keys "$pane" enter >/dev/null
     else
         tab=$(jq -r --arg ws "$ws" 'select(.workspace_id == $ws) | .tab_id' <<<"$panes" | uniq |
@@ -53,4 +60,4 @@ herdr_edit() {
     "$herdr" tab focus "$tab" >/dev/null
 }
 
-if [ -n "$(tmux list-clients 2>/dev/null)" ]; then tmux_edit; else herdr_edit; fi
+${backend}_edit
