@@ -1,3 +1,4 @@
+onboarding = false
 [[keys.command]]
 key = "prefix+ctrl+p"
 type = "popup"
