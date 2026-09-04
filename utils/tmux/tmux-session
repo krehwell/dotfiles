@@ -1,13 +1,25 @@
 #!/usr/bin/env bash
 # Save and restore a project's windows/tabs and panes. Works for tmux sessions and herdr
 # workspaces (herdr when HERDR_SOCKET_PATH is set), sharing one file: <root>/.vim/tmux-session
-#   tmux-session save [session|workspace]   root = tmux session_path / shortest herdr pane cwd
-#   tmux-session restore [dir]              create the session/workspace, or add its missing windows
+#   tmux-session save [session|workspace]   root = tmux session_path / herdr pane cwd matching the label
+#   tmux-session restore [dir]              create the session/workspace, or reconcile a live one:
+#                                           windows are matched by name; matched ones keep their
+#                                           content and return to their saved position, missing ones
+#                                           are created, everything else moves to the end
 # Rows: name  window  window_name  pane  dir  [pane_name]  (tab separated; pane_name is herdr only)
 set -e
 export PATH="/opt/homebrew/bin:$PATH"
 export LC_CTYPE=${LC_CTYPE:-en_US.UTF-8}  # tmux prints the tab separators as _ without a UTF-8 locale
 herdr=${HERDR_BIN_PATH:-herdr}
+
+take_lock() {
+    lock="$1/.vim/.restore.lock"
+    find "$lock" -maxdepth 0 -mmin +1 -exec rmdir {} \; 2>/dev/null || true  # stale lock from a killed run
+    mkdir "$lock" 2>/dev/null || exit 0  # a restore is already running (double key press)
+    trap "rmdir '$lock'" EXIT
+}
+
+# --- tmux ---------------------------------------------------------------------
 
 tmux_save() {
     local session=${1:-$(tmux display -p '#S')} dir
@@ -18,84 +30,168 @@ tmux_save() {
 }
 
 tmux_restore() {
-    local file="${1:-$(tmux display -p '#{session_path}')}/.vim/tmux-session" size split
+    local dir=${1:-$(tmux display -p '#{session_path}')} file session size split
+    file="$dir/.vim/tmux-session"
+    take_lock "$dir"
+    read -r session _ < "$file"
     # cells are ~2x taller than wide: landscape terminal splits side by side, portrait stacks
     size=$(stty size 2>/dev/null | awk '{ printf "-x%d -y%d", $2, $1 }')
     split=$(stty size 2>/dev/null | awk '{ print ($2 > $1 * 2) ? "-h" : "-v" }' | grep . || echo -h)
-    local seen=()
 
-    while IFS=$'\t' read -r session win name pane dir _; do
-        [[ -d "$dir" ]] || continue
-        if ! tmux has-session -t "=$session" 2>/dev/null; then
-            tmux new-session -d -s "$session" -n "$name" -c "$dir" $size
-            [[ $win == 0 ]] || tmux move-window -s "$session:0" -t "$session:$win"
-        elif [[ -n ${seen[$win]:-} ]]; then
-            tmux split-window $split -t "$session:$win" -c "$dir"
-        elif tmux list-windows -t "=$session" -F '#{window_index}' | grep -qx "$win"; then
-            continue
-        else
-            tmux new-window -d -t "$session:$win" -n "$name" -c "$dir"
+    if ! tmux has-session -t "=$session" 2>/dev/null; then
+        local win name pane cwd started= curwin=
+        while IFS=$'\t' read -r _ win name pane cwd _; do
+            [[ -d "$cwd" ]] || continue
+            if [[ -z $started ]]; then
+                tmux new-session -d -s "$session" -n "$name" -c "$cwd" $size
+                curwin=$(tmux list-windows -t "=$session" -F '#{window_id}' | head -1)
+                started=$win
+            elif [[ $win == "$started" ]]; then
+                tmux split-window $split -d -t "$curwin" -c "$cwd"
+            else
+                curwin=$(tmux new-window -dP -F '#{window_id}' -t "=$session:" -n "$name" -c "$cwd")
+                started=$win
+            fi
+        done < "$file"
+        tmux display-message "restored $file"
+        return
+    fi
+
+    local wid=() wname=() used=() desired=() srcof=() count=0 i j w maxwin=0
+    while IFS=$'\t' read -r wid[$count] wname[$count]; do
+        count=$((count + 1))
+    done < <(tmux list-windows -t "=$session" -F $'#{window_id}\t#{window_name}')
+
+    local win name pane cwd id
+    while IFS=$'\t' read -r _ win name pane cwd _; do
+        [[ -d "$cwd" ]] || continue
+        if [[ $win -gt $maxwin ]]; then maxwin=$win; fi
+        if [[ -z ${desired[$win]:-} ]]; then
+            id=
+            for ((i = 0; i < count; i++)); do
+                if [[ -z ${used[$i]:-} && ${wname[$i]} == "$name" ]]; then used[$i]=1 id=${wid[$i]}; break; fi
+            done
+            if [[ -n $id ]]; then
+                desired[$win]=$id  # already open: keep its content, only its position changes
+            else
+                desired[$win]=$(tmux new-window -dP -F '#{window_id}' -t "=$session:" -n "$name" -c "$cwd")
+                srcof[$win]=${desired[$win]}
+            fi
+        elif [[ -n ${srcof[$win]:-} ]]; then
+            tmux split-window $split -d -t "${srcof[$win]}" -c "$cwd"
         fi
-        seen[$win]=1
     done < "$file"
+
+    # layout order first, everything else keeps its relative order after it
+    i=0
+    for ((w = 0; w <= maxwin; w++)); do
+        [[ -n ${desired[$w]:-} ]] || continue
+        tmux move-window -d -s "${desired[$w]}" -t "=$session:$((100 + i))"
+        i=$((i + 1))
+    done
+    j=0
+    for ((i = 0; i < count; i++)); do
+        [[ -n ${used[$i]:-} ]] && continue
+        tmux move-window -d -s "${wid[$i]}" -t "=$session:$((200 + j))"
+        j=$((j + 1))
+    done
+    tmux move-window -r -t "=$session:"
     tmux display-message "restored $file"
 }
 
+# --- herdr --------------------------------------------------------------------
+
+herdr_api() { printf '%s\n' "$1" | nc -U -w 2 "${HERDR_SOCKET_PATH:-$HOME/.config/herdr/herdr.sock}" | head -1; }
 herdr_panes() { "$herdr" pane list | jq -r --arg ws "$1" '.result.panes[] | select(.workspace_id == $ws) | "\(.tab_id)\t\(.cwd)\t\(.label // "")"'; }
-herdr_root() { herdr_panes "$1" | cut -f2 | awk '!r || length < length(r) { r = $0 } END { print r }'; }
+herdr_label() { "$herdr" workspace get "$1" | jq -r .result.workspace.label; }
+# project root of a workspace: the pane cwd whose basename matches the label, else the shortest cwd
+herdr_root() {
+    herdr_panes "$1" | cut -f2 | awk -v l="$(herdr_label "$1")" '
+        { n = $0; sub(".*/", "", n); gsub(/\./, "_", n) }
+        n == l && !hit { hit = $0 }
+        !r || length($0) < length(r) { r = $0 }
+        END { print (hit ? hit : r) }'
+}
 
 herdr_save() {
-    local ws=${1:-${HERDR_ACTIVE_WORKSPACE_ID:-$HERDR_WORKSPACE_ID}} label dir tab cwd prev num name i=0
-    label=$("$herdr" workspace get "$ws" | jq -r .result.workspace.label)
+    local ws=${1:-${HERDR_ACTIVE_WORKSPACE_ID:-$HERDR_WORKSPACE_ID}} label dir w=0 i tid name cwd pname
+    label=$(herdr_label "$ws")
     dir=$(herdr_root "$ws")
     mkdir -p "$dir/.vim"
-    while IFS=$'\t' read -r tab cwd pname; do
-        if [[ $tab != "$prev" ]]; then
-            read -r num name < <("$herdr" tab get "$tab" | jq -r '.result.tab | "\(.number - 1) \(.label)"')
-            prev=$tab i=0
-        fi
-        printf '%s\t%s\t%s\t%s\t%s\t%s\n' "$label" "$num" "$name" "$((i++))" "$cwd" "$pname"
-    done < <(herdr_panes "$ws") > "$dir/.vim/tmux-session"
+    while IFS=$'\t' read -r tid name; do
+        i=0
+        while IFS=$'\t' read -r _ cwd pname; do
+            printf '%s\t%s\t%s\t%s\t%s\t%s\n' "$label" "$w" "$name" "$((i++))" "$cwd" "$pname"
+        done < <(herdr_panes "$ws" | awk -F'\t' -v t="$tid" '$1 == t')
+        w=$((w + 1))
+    done < <("$herdr" tab list --workspace "$ws" | jq -r '.result.tabs[] | "\(.tab_id)\t\(.label)"') > "$dir/.vim/tmux-session"
     "$herdr" notification show "saved $dir/.vim/tmux-session" >/dev/null
 }
 
 herdr_restore() {
-    local ws=${HERDR_ACTIVE_WORKSPACE_ID:-${HERDR_WORKSPACE_ID:-}} r new count=  # count: tabs already in the workspace, set on the first row
-    local dir=${1:-$(herdr_root "$ws")}
-    local file="$dir/.vim/tmux-session" lock="$dir/.vim/.restore.lock"
-    find "$lock" -maxdepth 0 -mmin +1 -exec rmdir {} \; 2>/dev/null || true  # stale lock from a killed run
-    mkdir "$lock" 2>/dev/null || exit 0  # a restore is already running (double key press)
-    trap "rmdir '$lock'" EXIT
-    local tabs=()  # window -> root pane created this run
+    local ws dir file r new i j w maxwin=0
+    local tabid=() tlabel=() used=() desired=() srcof=() count=0
+    if [[ -n ${1:-} ]]; then
+        dir=$1
+        ws=$("$herdr" workspace list | jq -r --arg l "$(head -1 "$dir/.vim/tmux-session" | cut -f1)" '.result.workspaces[] | select(.label == $l) | .workspace_id')
+    else
+        ws=${HERDR_ACTIVE_WORKSPACE_ID:-${HERDR_WORKSPACE_ID:?no workspace}}
+        dir=$(herdr_root "$ws")
+    fi
+    file="$dir/.vim/tmux-session"
+    take_lock "$dir"
 
+    if [[ -n $ws ]]; then
+        read -r owner _ < "$file"
+        if [[ $owner != $(herdr_label "$ws") ]]; then  # refuse a layout saved for another workspace
+            "$herdr" notification show "layout in $dir is for '$owner', not this workspace" >/dev/null
+            exit 1
+        fi
+        i=0
+        while IFS=$'\t' read -r tabid[$i] tlabel[$i]; do
+            i=$((i + 1))
+        done < <("$herdr" tab list --workspace "$ws" | jq -r '.result.tabs[] | "\(.tab_id)\t\(.label)"')
+        count=$i
+    fi
+
+    local label win name pane cwd pname id
     while IFS=$'\t' read -r label win name pane cwd pname; do
         [[ -d "$cwd" ]] || continue
+        if [[ $win -gt $maxwin ]]; then maxwin=$win; fi
         new=
-        if [[ -z $count ]]; then
-            ws=$("$herdr" workspace list | jq -r --arg l "$label" '.result.workspaces[] | select(.label == $l) | .workspace_id')
-            if [[ -z $ws ]]; then
-                r=$("$herdr" workspace create --cwd "$cwd" --label "$label" --focus)
-                ws=$(jq -r .result.workspace.workspace_id <<<"$r")
-                "$herdr" tab rename "$(jq -r .result.tab.tab_id <<<"$r")" "$name" >/dev/null
-                new=$(jq -r .result.root_pane.pane_id <<<"$r")
-                tabs[$win]=$new
-                count=0
+        if [[ -z $ws ]]; then
+            r=$("$herdr" workspace create --cwd "$cwd" --label "$label" --focus)
+            ws=$(jq -r .result.workspace.workspace_id <<<"$r")
+            "$herdr" tab rename "$(jq -r .result.tab.tab_id <<<"$r")" "$name" >/dev/null
+            desired[$win]=$(jq -r .result.tab.tab_id <<<"$r")
+            srcof[$win]=$(jq -r .result.root_pane.pane_id <<<"$r")
+            new=${srcof[$win]}
+        elif [[ -z ${desired[$win]:-} ]]; then
+            id=
+            for ((i = 0; i < count; i++)); do
+                if [[ -z ${used[$i]:-} && ${tlabel[$i]} == "$name" ]]; then used[$i]=1 id=${tabid[$i]}; break; fi
+            done
+            if [[ -n $id ]]; then
+                desired[$win]=$id  # already open: keep its content, only its position changes
             else
-                count=$("$herdr" tab list --workspace "$ws" | jq '.result.tabs | length')
+                r=$("$herdr" tab create --workspace "$ws" --cwd "$cwd" --label "$name" --no-focus)
+                desired[$win]=$(jq -r .result.tab.tab_id <<<"$r")
+                srcof[$win]=$(jq -r .result.root_pane.pane_id <<<"$r")
+                new=${srcof[$win]}
             fi
+        elif [[ -n ${srcof[$win]:-} ]]; then
+            new=$("$herdr" pane split "${srcof[$win]}" --direction right --cwd "$cwd" --no-focus | jq -r .result.pane.pane_id)
         fi
-        if [[ -n $new ]]; then :
-        elif [[ -n ${tabs[$win]:-} ]]; then
-            new=$("$herdr" pane split "${tabs[$win]}" --direction right --cwd "$cwd" --no-focus | jq -r .result.pane.pane_id)
-        elif (( win < count )); then
-            continue  # a tab already sits at this slot, leave it alone like tmux does with an existing window
-        else
-            r=$("$herdr" tab create --workspace "$ws" --cwd "$cwd" --label "$name" --no-focus)
-            new=$(jq -r .result.root_pane.pane_id <<<"$r")
-            tabs[$win]=$new
-        fi
-        [[ -z $pname ]] || "$herdr" pane rename "$new" "$pname" >/dev/null
+        [[ -z ${pname:-} || -z $new ]] || "$herdr" pane rename "$new" "$pname" >/dev/null
     done < "$file"
+
+    # layout order first, everything else keeps its relative order after it
+    j=0
+    for ((w = 0; w <= maxwin; w++)); do
+        [[ -n ${desired[$w]:-} ]] || continue
+        herdr_api "{\"id\":\"mv$j\",\"method\":\"tab.move\",\"params\":{\"tab_id\":\"${desired[$w]}\",\"insert_index\":$j}}" >/dev/null
+        j=$((j + 1))
+    done
     "$herdr" notification show "restored $file" >/dev/null
 }
 
