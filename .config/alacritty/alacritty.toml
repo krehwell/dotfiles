@@ -39,3 +39,4 @@
     command = "/Users/ard/utils/tmux/tmux-smart-edit"
     post_processing = true
     mouse = { enabled = true, mods = "Command|Shift" }
+    binding = { key = "O", mods = "Command|Shift" }  # label every match at once, press the letter to open
