@@ -22,7 +22,7 @@ description = "restore missing tabs from layout"
 [[keys.command]]
 key = "prefix+ctrl+l"
 type = "shell"
-command = "$HERDR_BIN_PATH pane list | jq -r '.result.panes[] | select(.workspace_id == env.HERDR_ACTIVE_WORKSPACE_ID) | .pane_id' | xargs -I{} $HERDR_BIN_PATH pane send-keys {} ctrl+l && $HERDR_BIN_PATH notification show cleared >/dev/null || $HERDR_BIN_PATH notification show 'clear failed' >/dev/null"
+command = "$HERDR_BIN_PATH pane list | jq -r '.result.panes[] | select(.workspace_id == env.HERDR_ACTIVE_WORKSPACE_ID and .agent == null) | .pane_id' | xargs -I{} $HERDR_BIN_PATH pane send-keys {} ctrl+l && $HERDR_BIN_PATH notification show cleared >/dev/null || $HERDR_BIN_PATH notification show 'clear failed' >/dev/null"
 description = "clear all panes"
 
 [keys]
