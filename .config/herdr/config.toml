@@ -19,6 +19,12 @@ type = "shell"
 command = "~/utils/tmux/tmux-session restore"
 description = "restore missing tabs from layout"
 
+[[keys.command]]
+key = "prefix+ctrl+l"
+type = "shell"
+command = "$HERDR_BIN_PATH pane list | jq -r '.result.panes[] | select(.workspace_id == env.HERDR_ACTIVE_WORKSPACE_ID) | .pane_id' | xargs -I{} $HERDR_BIN_PATH pane send-keys {} ctrl+l"
+description = "clear all panes"
+
 [keys]
 last_pane = "prefix+l"          # like tmux prefix+l: jump back to the last pane
 focus_pane_left = "prefix+left"    # pane navigation on arrows, tmux style
