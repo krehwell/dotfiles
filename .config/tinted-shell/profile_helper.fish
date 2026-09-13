@@ -66,10 +66,10 @@ function set_theme
   end
 
   # Symlink and source
-  # LOCAL PATCH: upstream blindly prepends "base16-", breaking base24-* and
-  # tinted8-* themes. Keep the name as-is when it already has a prefix.
+  # LOCAL PATCH: upstream blindly prepends "base16-", breaking base24-*
+  # themes. Keep the name as-is when it already has a prefix.
   set -l script_name "base16-$theme_name"
-  if string match -qr '^(base16|base24|tinted8)-' -- "$theme_name"
+  if string match -qr '^(base16|base24)-' -- "$theme_name"
     set script_name "$theme_name"
   end
   command ln -fs \
