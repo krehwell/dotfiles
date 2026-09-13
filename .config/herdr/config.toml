@@ -40,5 +40,3 @@ delivery = "herdr"  # in-app toast when an agent finishes or needs input; prefix
 [theme]
 name = "solarized"
 auto_switch = false
-[theme.custom]
-overlay0 = "#839496"  # solarized base0; the theme's #586e75 disappears on the focused-row bg
