@@ -2,6 +2,12 @@ if status is-interactive
     fish_vi_key_bindings
     set fish_greeting
 
+    if test -f "$HOME/.config/tinted-shell/profile_helper.fish"
+        set -g BASE16_CONFIG_PATH "$HOME/.config/tinted-shell"
+        set -g BASE16_THEME_DEFAULT "base24-opencode-material"
+        source "$HOME/.config/tinted-shell/profile_helper.fish"
+    end
+
     alias :q='exit'
     alias sex='bash -c \'(open . || explorer.exe . || nautilus .) &\''
     alias vim=nvim

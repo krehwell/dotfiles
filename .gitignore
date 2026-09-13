@@ -9,6 +9,7 @@
 !/.config/alacritty
 !/.config/fish
 !/.config/nvim
+!/.config/tinted-shell
 !/.config/herdr
 /.config/herdr/*
 !/.config/herdr/config.toml
@@ -16,4 +17,7 @@
 /.vim/*
 !/.vim/.gitkeep
 **/.DS_Store
+# runtime state written by tinted-shell / lua_ls
+/.config/tinted-shell/base16_shell_theme
+/.config/tinted-shell/theme_name
 /.config/nvim/.luarc.json

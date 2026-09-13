@@ -2,7 +2,8 @@
     live_config_reload = true
 
 [terminal]
-    shell = "/Users/ard/.local/bin/herdr"  # start straight into the herdr session
+    # interactive fish first so tinted-shell paints the palette, then exec into herdr
+    shell = { program = "/opt/homebrew/bin/fish", args = ["-i", "-C", "exec /Users/ard/.local/bin/herdr"] }
 
 [colors]
     draw_bold_text_with_bright_colors = true
