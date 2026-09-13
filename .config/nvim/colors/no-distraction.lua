@@ -1,7 +1,7 @@
 -- No-distraction colorscheme: strips syntax colors, keeps structure visible.
--- Uses the active tinted-shell palette (see lua/tinted.lua) for bg/cursorline/
--- winbar/comments, but every syntax token is flattened to `fg`. Comments stay
--- the one distinguishable token. For the colored variant, see `base24`.
+-- Uses the static palette in lua/tinted.lua for bg/cursorline/winbar/comments,
+-- but every syntax token is flattened to `fg`. Comments stay the one
+-- distinguishable token.
 -- Requires Neovim 0.12+
 
 vim.cmd.highlight("clear")
