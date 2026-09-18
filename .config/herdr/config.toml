@@ -26,7 +26,11 @@ command = "$HERDR_BIN_PATH pane list | jq -r '.result.panes[] | select(.workspac
 description = "clear all panes"
 
 [keys]
-last_pane = "prefix+tab"          # like tmux prefix+l: jump back to the last pane
+last_pane = "prefix+l"          # like tmux prefix+l: jump back to the last pane
+focus_pane_left = "prefix+left"    # pane navigation on arrows, tmux style
+focus_pane_down = "prefix+down"
+focus_pane_up = "prefix+up"
+focus_pane_right = "prefix+right"
 
 [ui]
 prompt_new_tab_name = false
@@ -38,5 +42,5 @@ show_agent_labels_on_pane_borders = true
 delivery = "herdr"  # in-app toast when an agent finishes or needs input; prefix+o jumps to it
 
 [theme]
-name = "solarized"
+name = "catppuccin"
 auto_switch = false
