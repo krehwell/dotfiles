@@ -58,12 +58,13 @@ local groups = {
     Directory = { fg = p.base0D },
 
     -- Snacks picker: mirror fzf-lua's files look. fzf resolves its colors
-    -- from: DirPart->Comment, FzfMatch/FzfPrompt/FzfMarker->Special,
+    -- from: DirPart->Comment, FzfPrompt/FzfMarker->Special, matches are
+    -- reverse video (winopts.treesitter fzf_colors hl=-1:reverse),
     -- FzfCursorLine->CursorLine, Border/Title->Normal (bright, not dim).
     SnacksPickerDir = { fg = comment },
     SnacksPickerPathHidden = { fg = fg },
     SnacksPickerFile = { fg = fg },
-    SnacksPickerMatch = { link = "Special" },
+    SnacksPickerMatch = { reverse = true },
     SnacksPickerListCursorLine = { link = "CursorLine" },
     SnacksPickerBorder = { fg = fg },
     SnacksPickerTitle = { fg = fg },

@@ -48,13 +48,13 @@ local groups = {
     TabLineFill = { link = "Conceal" },
     WinSeparator = { link = "Conceal" },
 
-    -- Snacks picker: mirror fzf-lua's files look (see base24.lua). Special
-    -- is flattened to fg in this scheme, so match/prompt flatten too —
-    -- consistent with how fzf_colors resolves them here.
+    -- Snacks picker: mirror fzf-lua's look (see base24.lua). fzf-lua renders
+    -- matches as reverse video (winopts.treesitter fzf_colors hl=-1:reverse),
+    -- not via Special, so the match group must be reverse too.
     SnacksPickerDir = { fg = comment },
     SnacksPickerPathHidden = { fg = fg },
     SnacksPickerFile = { fg = fg },
-    SnacksPickerMatch = { link = "Special" },
+    SnacksPickerMatch = { reverse = true },
     SnacksPickerListCursorLine = { link = "CursorLine" },
     SnacksPickerBorder = { fg = fg },
     SnacksPickerTitle = { fg = fg },
