@@ -21,7 +21,7 @@ return {
                 "json-lsp",
                 "lua-language-server",
                 "tailwindcss-language-server",
-                "tsgo",
+                "tsc",
                 -- FORMATTERS
                 "stylua",
             },

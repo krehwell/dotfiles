@@ -1,7 +1,7 @@
 ---@type vim.lsp.Config
 return {
     filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-    cmd = { "tsgo", "--lsp", "--stdio" },
+    cmd = { "tsc", "--lsp", "--stdio" },
     root_dir = function(bufnr, on_dir)
         if require("lsp-utils").deno_root(bufnr) then return end
         local root_markers = { { "package-lock.json", "yarn.lock", "pnpm-lock.yaml" }, { ".git" } }
