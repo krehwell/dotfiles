@@ -24,8 +24,8 @@ nvim_cmd() {
 tmux_edit() {
     local pane cmd
     resolve "$(tmux display -p '#{pane_current_path}')"
-    read -r pane cmd < <(tmux list-panes -a -F '#{pane_id} #{pane_current_command} #{window_name} #{pane_current_path}' |
-        awk -v file="$file" '($2 ~ /^(n?vim|vi)$/ || $3 ~ /^(n?vim|vi)$/) && index(file, $4 "/") == 1 { print $1, $2; exit }')
+    read -r pane cmd < <(tmux list-panes -a -F $'#{pane_id}\t#{pane_current_command}\t#{window_name}\t#{pane_current_path}' |
+        awk -F '\t' -v file="$file" '($2 ~ /^(n?vim|vi)$/ || $3 ~ /(^| )(n?vim|vi)$/) && index(file, $4 "/") == 1 { print $1, $2; exit }')
     [ -n "$pane" ] || pane=$(tmux new-window -P -F '#{pane_id}' -c "$(tmux display -p '#{pane_current_path}')" -n vi)
     case "$cmd" in
         nvim|vim|vi) tmux send-keys -t "$pane" Escape "$(ex_cmd)" Enter ;;
@@ -47,7 +47,7 @@ herdr_edit() {
         "$herdr" pane send-keys "$pane" enter >/dev/null
     else
         tab=$(jq -r --arg ws "$ws" 'select(.workspace_id == $ws) | .tab_id' <<<"$panes" | uniq |
-            while read -r t; do "$herdr" tab get "$t" | jq -r 'select(.result.tab.label | test("^(n?vim|vi)$")) | .result.tab.tab_id'; done | head -1)
+            while read -r t; do "$herdr" tab get "$t" | jq -r 'select(.result.tab.label | test("(^| )(n?vim|vi)$")) | .result.tab.tab_id'; done | head -1)
         if [ -n "$tab" ]; then
             pane=$(jq -r --arg t "$tab" 'select(.tab_id == $t) | .pane_id' <<<"$panes" | head -1)
         else
