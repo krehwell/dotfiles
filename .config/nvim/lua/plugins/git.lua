@@ -13,7 +13,7 @@ return {
             cmd = "CodeDiff",
             opts = {
                 explorer = { position = "bottom", focus_on_select = true, initial_focus = "modified" },
-                history = { initial_focus = "modified" },
+                history = { initial_focus = "modified", focus_on_select = true },
             },
         },
     },
