@@ -2,6 +2,7 @@
 # Open "path" or "path:line" (Cmd+Shift+click in alacritty) in the editor of its project, in a tab.
 # tmux while a tmux client is attached, herdr otherwise.
 # A real file opens directly at its line; anything else goes to the snacks picker as a query.
+# Directories and binary files (images, pdf, ...) go to Finder/their app via `open` instead.
 export PATH="/opt/homebrew/bin:$PATH"
 herdr=${HERDR_BIN_PATH:-$HOME/.local/bin/herdr}
 backend=herdr; [ -n "$(tmux list-clients 2>/dev/null)" ] && backend=tmux
@@ -11,7 +12,12 @@ file="${query%%:[0-9]*}"
 line="${query#"$file"}"
 line="${line#:}"
 file="${file/#\~/$HOME}"
-resolve() { [ "${file:0:1}" = / ] || file="$1/$file"; [ -f "$file" ] && found=1; }
+resolve() {
+    [ "${file:0:1}" = / ] || file="$1/$file"
+    [ -e "$file" ] || return
+    if [ -d "$file" ] || { [ -s "$file" ] && [ "$(file -b --mime-encoding "$file")" = binary ]; }; then exec open "$file"; fi
+    found=1
+}
 ex_cmd() {
     if [ -n "${found:-}" ]; then echo ":tab drop${line:+ +$line} $file"
     else echo ":lua require(\"snacks\").picker.smart({ pattern = \"$query\" })"; fi
