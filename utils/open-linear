@@ -1,0 +1,4 @@
+#!/bin/bash
+# Open a Linear issue id (Cmd+Shift+click in alacritty) in the browser.
+id="${1#@}"
+[ -n "$id" ] && open "https://linear.app/knowt/issue/${id}"
