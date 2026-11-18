@@ -48,5 +48,10 @@
 
 [[hints.enabled]]
     regex = "#[0-9]+"
-    command = { program = "/bin/sh", args = ["-c", "exec ~/utils/open-pr \"$1\"", "sh"] }
+    command = { program = "/bin/sh", args = ["-c", "exec ~/utils/open-github \"$1\"", "sh"] }
+    mouse = { enabled = true, mods = "Command|Shift" }
+
+[[hints.enabled]]
+    regex = "[0-9a-f]{7,40}"
+    command = { program = "/bin/sh", args = ["-c", "exec ~/utils/open-github \"$1\"", "sh"] }
     mouse = { enabled = true, mods = "Command|Shift" }
