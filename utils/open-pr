@@ -1,0 +1,3 @@
+#!/bin/bash
+n="${1#\#}"
+[ -n "$n" ] && open "https://github.com/Knowt/Goliath/pull/${n}"

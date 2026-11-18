@@ -45,3 +45,8 @@
     regex = "(WEB|BACK|MOB|DES|OPS|SMARK|TMARK|SEO)-[0-9]+"
     command = "/Users/ard/utils/open-linear"
     mouse = { enabled = true, mods = "Command|Shift" }
+
+[[hints.enabled]]
+    regex = "#[0-9]+"
+    command = "/Users/ard/utils/open-pr"
+    mouse = { enabled = true, mods = "Command|Shift" }
