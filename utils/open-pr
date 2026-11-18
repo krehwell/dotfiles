@@ -1,3 +1,7 @@
 #!/bin/bash
-n="${1#\#}"
-[ -n "$n" ] && open "https://github.com/Knowt/Goliath/pull/${n}"
+export PATH="/opt/homebrew/bin:$PATH"
+herdr=${HERDR_BIN_PATH:-$HOME/.local/bin/herdr}
+if [ -n "$(tmux list-clients 2>/dev/null)" ]; then cwd=$(tmux display -p '#{pane_current_path}')
+else cwd=$("$herdr" pane list | jq -r '.result.panes[] | select(.focused) | .cwd'); fi
+repo=$(git -C "$cwd" remote get-url origin 2>/dev/null | sed -E 's#^(git@|ssh://git@|https://)([^:/]+)[:/]#https://\2/#; s#\.git$##')
+[ -n "$repo" ] && open "$repo/pull/${1#\#}"
