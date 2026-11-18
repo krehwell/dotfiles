@@ -7,16 +7,45 @@ export PATH="/opt/homebrew/bin:$PATH"
 herdr=${HERDR_BIN_PATH:-$HOME/.local/bin/herdr}
 backend=herdr; [ -n "$(tmux list-clients 2>/dev/null)" ] && backend=tmux
 
-query="${1#@}"
-file="${query%%:[0-9]*}"
-line="${query#"$file"}"
-line="${line#:}"
-file="${file/#\~/$HOME}"
-resolve() {
+clicked="${1#@}"
+try() {
+    query="$2"
+    file="${query%%:[0-9]*}"
+    line="${query#"$file"}"
+    line="${line#:}"
+    case "$line" in *[!0-9]*) return 1 ;; esac
+    file="${file/#\~/$HOME}"
     [ "${file:0:1}" = / ] || file="$1/$file"
     [ -e "$file" ] || return
     if [ -d "$file" ] || { [ -s "$file" ] && [ "$(file -b --mime-encoding "$file")" = binary ]; }; then exec open "$file"; fi
     found=1
+}
+resolve() {
+    local cand
+    while read -r cand; do try "$1" "$cand" && return; done < <(wrapped "$2")
+    try "$1" "$clicked"
+}
+# a path cut by a line wrap: glue on the piece from the line below or above
+wrapped() {
+    awk -v f="$clicked" '
+        { L[NR] = $0 }
+        END {
+            P = "A-Za-z0-9_.@/:~-"
+            for (i = 1; i <= NR; i++) {
+                at = index(L[i], f); if (!at) continue
+                before = substr(L[i], 1, at - 1); after = substr(L[i], at + length(f))
+                match(after, "^[" P "]*"); rest = substr(after, RLENGTH + 1)
+                if (rest !~ "[" P "]" && i < NR) {
+                    next_line = L[i + 1]; sub("^[^" P "]*", "", next_line)
+                    if (match(next_line, "^[" P "]+")) print f substr(after, 1, length(after) - length(rest)) substr(next_line, 1, RLENGTH)
+                }
+                match(before, "[" P "]*$"); lead = substr(before, 1, RSTART - 1)
+                if (lead !~ "[" P "]" && i > 1) {
+                    prev = L[i - 1]; sub("[^" P "]*$", "", prev)
+                    if (match(prev, "[" P "]+$")) print substr(prev, RSTART) substr(before, length(lead) + 1) f
+                }
+            }
+        }' <<<"$1"
 }
 ex_cmd() {
     if [ -n "${found:-}" ]; then echo ":tab drop${line:+ +$line} $file"
@@ -29,7 +58,7 @@ nvim_cmd() {
 
 tmux_edit() {
     local pane cmd
-    resolve "$(tmux display -p '#{pane_current_path}')"
+    resolve "$(tmux display -p '#{pane_current_path}')" "$(tmux capture-pane -p)"
     read -r pane cmd < <(tmux list-panes -a -F $'#{pane_id}\t#{pane_current_command}\t#{window_name}\t#{pane_current_path}' |
         awk -F '\t' -v file="$file" '($2 ~ /^(n?vim|vi)$/ || $3 ~ /(^| )(n?vim|vi)$/) && index(file, $4 "/") == 1 { print $1, $2; exit }')
     [ -n "$pane" ] || pane=$(tmux new-window -P -F '#{pane_id}' -c "$(tmux display -p '#{pane_current_path}')" -n vi)
@@ -43,8 +72,9 @@ tmux_edit() {
 herdr_edit() {
     local panes ws cwd pane tab r
     panes=$("$herdr" pane list | jq -c '.result.panes[]')
-    read -r ws cwd < <(jq -r 'select(.focused) | "\(.workspace_id) \(.cwd)"' <<<"$panes")
-    resolve "$cwd"
+    read -r ws tab cwd < <(jq -r 'select(.focused) | "\(.workspace_id) \(.tab_id) \(.cwd)"' <<<"$panes")
+    # the click does not move focus, so the text can sit in any pane of this tab
+    resolve "$cwd" "$(jq -r --arg t "$tab" 'select(.tab_id == $t) | .pane_id' <<<"$panes" | while read -r p; do "$herdr" pane read --source visible "$p" </dev/null; echo; done)"
     # stay in the focused workspace: its nvim pane, else its vi tab, else a new vi tab
     read -r pane tab < <(jq -r --arg ws "$ws" 'select(.workspace_id == $ws and ((.terminal_title // "") | test(" - Nvim$"))) | "\(.pane_id) \(.tab_id)"' <<<"$panes" | head -1)
     if [ -n "$pane" ]; then
